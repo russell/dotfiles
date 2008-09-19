@@ -1,0 +1,13 @@
+
+menu 90.20 TSke&l.TAB :call tskeleton#ExpandBitUnderCursor("n", 'TAB')<cr>
+imenu 90.20 TSke&l.TAB <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'TAB')<cr>
+menu 90.20 TSke&l.function :call tskeleton#ExpandBitUnderCursor("n", 'function')<cr>
+imenu 90.20 TSke&l.function <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'function')<cr>
+menu 90.20 TSke&l.if :call tskeleton#ExpandBitUnderCursor("n", 'if')<cr>
+imenu 90.20 TSke&l.if <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'if')<cr>
+menu 90.20 TSke&l.ifelse :call tskeleton#ExpandBitUnderCursor("n", 'ifelse')<cr>
+imenu 90.20 TSke&l.ifelse <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ifelse')<cr>
+menu 90.20 TSke&l.try :call tskeleton#ExpandBitUnderCursor("n", 'try')<cr>
+imenu 90.20 TSke&l.try <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'try')<cr>
+menu 90.20 TSke&l.while :call tskeleton#ExpandBitUnderCursor("n", 'while')<cr>
+imenu 90.20 TSke&l.while <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'while')<cr>

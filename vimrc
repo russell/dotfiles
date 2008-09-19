@@ -214,6 +214,10 @@ function! EatChar(pat)
 	return (c =~ a:pat) ? '' : c
 endfunc
 
+let g:tskelUserName = "Russell Sim"
+let g:tskelUserName = "russell.sim@jcu.edu.au"
+let g:tskelUserWWW = "http://eresearch.edu.au"
+
 iabbr _me Russell Sim (russell.sim@jcu.edu.au)<C-R>=EatChar('\s')<CR>
 iabbr _t  <C-R>=strftime("%H:%M:%S")<CR><C-R>=EatChar('\s')<CR>
 iabbr _d  <C-R>=strftime("%a, %d %b %Y")<CR><C-R>=EatChar('\s')<CR>
