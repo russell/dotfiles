@@ -135,6 +135,7 @@ au BufReadPost *
 	" prefer expand and detect what the python file is using
 	au FileType python let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 4 
 	au FileType python DetectIndent
+	au FileType python let python_highlight_all = 1
 
 	" kill calltip window if we move cursor or leave insert mode
 	au CursorMovedI * if pumvisible() == 0|pclose|endif
