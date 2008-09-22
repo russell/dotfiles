@@ -96,12 +96,13 @@ endif
 if has("autocmd")
 augroup vimrcEx
 au!
-" In plain-text files and svn commit buffers, wrap automatically at 78 chars
-au FileType text,svn setlocal tw=78 fo+=t
+	autocmd BufNewFile  *.py      TSkeletonSetup python.py
+	" In plain-text files and svn commit buffers, wrap automatically at 78 chars
+	au FileType text,svn setlocal tw=78 fo+=t
 
-" In all files, try to jump back to the last spot cursor was in before exiting
-au BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	" In all files, try to jump back to the last spot cursor was in before exiting
+	au BufReadPost *
+		\ if line("'\"") > 0 && line("'\"") <= line("$") |
 		\   exe "normal g`\"" |
 		\ endif
 
@@ -216,7 +217,7 @@ function! EatChar(pat)
 endfunc
 
 let g:tskelUserName = "Russell Sim"
-let g:tskelUserName = "russell.sim@jcu.edu.au"
+let g:tskelUserEmail = "russell.sim@jcu.edu.au"
 let g:tskelUserWWW = "http://eresearch.edu.au"
 
 iabbr _me Russell Sim (russell.sim@jcu.edu.au)<C-R>=EatChar('\s')<CR>
