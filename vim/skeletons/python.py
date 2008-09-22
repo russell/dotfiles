@@ -1,7 +1,11 @@
+<tskel:before>
+let b:tskelDateFormat = '%Y'
+</tskel:before>
 ##############################################################################
 #
-# Copyright (c) 2006 James Cook University and Contributors.
+# Copyright (c) <+DATE+> James Cook University and Contributors.
 # All Rights Reserved.
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
