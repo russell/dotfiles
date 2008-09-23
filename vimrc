@@ -71,7 +71,7 @@ syntax on								" Turn on syntax highlighting
 
 " set up tags
 set tags=tags;/
-set tags+=$HOME/.vim/tags/python.ctags
+" set tags+=$HOME/.vim/tags/python.ctags
 
 """"" Folding
 set foldmethod=syntax					" By default, use syntax to determine folds
@@ -135,8 +135,12 @@ au!
 
 	" prefer expand and detect what the python file is using
 	au FileType python let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 4 
-	au FileType python DetectIndent
 	au FileType python let python_highlight_all = 1
+
+	" Rope
+	au FileType python let $PYTHONPATH .= ":~/.vim/python/ropevim"
+	au FileType python let ropevim_guess_project=1
+
 
 	" kill calltip window if we move cursor or leave insert mode
 	au CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -144,6 +148,10 @@ au!
 
 	" ZCML support
 	au BufNewFile,BufRead *.zcml,*.zpt	setf xml
+	au FileType xml let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 2 
+
+	" Detect indentation of all files
+	autocmd BufReadPost * :DetectIndent 
 
 	augroup END
 endif
@@ -215,6 +223,8 @@ function! EatChar(pat)
 	let c = nr2char(getchar(0))
 	return (c =~ a:pat) ? '' : c
 endfunc
+
+let g:TabIndentStyle = "emacs"
 
 let g:tskelUserName = "Russell Sim"
 let g:tskelUserEmail = "russell.sim@jcu.edu.au"
