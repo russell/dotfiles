@@ -23,6 +23,7 @@
 'Tlist_Use_SingleClick'	taglist.txt	/*'Tlist_Use_SingleClick'*
 'Tlist_WinHeight'	taglist.txt	/*'Tlist_WinHeight'*
 'Tlist_WinWidth'	taglist.txt	/*'Tlist_WinWidth'*
+'g:TabIndentStyle'	tab-indent.txt	/*'g:TabIndentStyle'*
 :DetectIndent	detectindent.txt	/*:DetectIndent*
 :MatchDebug	matchit.txt	/*:MatchDebug*
 :MkVimball	pi_vimball.txt	/*:MkVimball*
@@ -67,6 +68,19 @@ CreateBundleSnippet	snippets_emu.txt	/*CreateBundleSnippet*
 CreateSnippet	snippets_emu.txt	/*CreateSnippet*
 MatchError	matchit.txt	/*MatchError*
 TSkeletonMapGoToNextTag()	tSkeleton.txt	/*TSkeletonMapGoToNextTag()*
+TabIndent-1.0	tab-indent.txt	/*TabIndent-1.0*
+TabIndent-author	tab-indent.txt	/*TabIndent-author*
+TabIndent-changelog	tab-indent.txt	/*TabIndent-changelog*
+TabIndent-help	tab-indent.txt	/*TabIndent-help*
+TabIndent-history	tab-indent.txt	/*TabIndent-history*
+TabIndent-option-list	tab-indent.txt	/*TabIndent-option-list*
+TabIndent-thanks	tab-indent.txt	/*TabIndent-thanks*
+TabIndent-webpage	tab-indent.txt	/*TabIndent-webpage*
+TabIndent.01	tab-indent.txt	/*TabIndent.01*
+TabIndent.02	tab-indent.txt	/*TabIndent.02*
+TabIndent.03	tab-indent.txt	/*TabIndent.03*
+TabIndent.04	tab-indent.txt	/*TabIndent.04*
+TabIndent.05	tab-indent.txt	/*TabIndent.05*
 Tlist_Get_Tag_Prototype_By_Line()	taglist.txt	/*Tlist_Get_Tag_Prototype_By_Line()*
 Tlist_Get_Tagname_By_Line()	taglist.txt	/*Tlist_Get_Tagname_By_Line()*
 Tlist_Set_App()	taglist.txt	/*Tlist_Set_App()*
@@ -232,6 +246,7 @@ tSkeleton-tags	tSkeleton.txt	/*tSkeleton-tags*
 tSkeleton-usage	tSkeleton.txt	/*tSkeleton-usage*
 tSkeleton-utilities	tSkeleton.txt	/*tSkeleton-utilities*
 tSkeleton.txt	tSkeleton.txt	/*tSkeleton.txt*
+tab-indent.txt	tab-indent.txt	/*tab-indent.txt*
 taglist-commands	taglist.txt	/*taglist-commands*
 taglist-debug	taglist.txt	/*taglist-debug*
 taglist-extend	taglist.txt	/*taglist-extend*

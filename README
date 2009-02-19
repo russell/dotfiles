@@ -1,0 +1,14 @@
+=======
+Install
+=======
+
+To begin you must first install the required rope python packages. Using Debian run.
+
+apt-get install python-ropemacs
+
+from the directory containing this file run.
+
+cd vim/python/ropevim
+python setup.py install
+
+
