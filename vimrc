@@ -80,7 +80,7 @@ set foldlevelstart=99					" All folds open by default
 """" Command Line
 set wildmenu							" Autocomplete features in the status bar
 
-"""" F7 Spelling
+"""" F8 Spelling
 if v:version >= 700
 function! <SID>ToggleSpell()
    if &spell != 1
@@ -89,7 +89,7 @@ function! <SID>ToggleSpell()
 	   setlocal spell!
    endif
 endfunction
-nnoremap <silent> <F7> <ESC>:call <SID>ToggleSpell()<CR>
+nnoremap <silent> <F8> <ESC>:call <SID>ToggleSpell()<CR>
 endif
 
 """" Autocommands

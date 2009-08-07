@@ -1,1 +1,0 @@
-../python/ropevim/ropevim.vim
