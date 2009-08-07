@@ -2,9 +2,9 @@
 " Language:	Python
 " Maintainer:	Dmitry Vasiliev <dima@hlabs.spb.ru>
 " URL:		http://www.hlabs.spb.ru/vim/python.vim
-" Last Change:	2008-09-21
+" Last Change:	2009-07-24
 " Filenames:	*.py
-" Version:	2.6.1
+" Version:	2.6.5
 "
 " Based on python.vim (from Vim 6.1 distribution)
 " by Neil Schemenauer <nas@python.ca>
@@ -18,6 +18,8 @@
 "        (strings and comments)
 "    John Eikenberry
 "        for the patch fixing small typo
+"    Caleb Adamantine
+"        for the patch fixing highlighting for decorators
 
 "
 " Options:
@@ -108,7 +110,7 @@ syn keyword pythonStatement	def class nextgroup=pythonFunction skipwhite
 syn match   pythonFunction	"[a-zA-Z_][a-zA-Z0-9_]*" display contained
 syn keyword pythonRepeat	for while
 syn keyword pythonConditional	if elif else
-syn keyword pythonImport	import from as
+syn keyword pythonPreCondit	import from as
 syn keyword pythonException	try except finally
 syn keyword pythonOperator	and in is not or
 
@@ -117,7 +119,9 @@ if !exists("python_print_as_function") || python_print_as_function == 0
 endif
 
 " Decorators (new in Python 2.4)
-syn match   pythonDecorator	"@" display nextgroup=pythonFunction skipwhite
+syn match   pythonDecorator	"@" display nextgroup=pythonDottedName skipwhite
+syn match   pythonDottedName "[a-zA-Z_][a-zA-Z0-9_]*\(\.[a-zA-Z_][a-zA-Z0-9_]*\)*" display contained
+syn match   pythonDot        "\." display containedin=pythonDottedName
 
 " Comments
 syn match   pythonComment	"#.*$" display contains=pythonTodo,@Spell
@@ -143,10 +147,10 @@ if exists("python_highlight_space_errors") && python_highlight_space_errors != 0
 endif
 
 " Strings
-syn region pythonString		start=+'+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=pythonEscape,pythonEscapeError,@Spell
-syn region pythonString		start=+"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=pythonEscape,pythonEscapeError,@Spell
-syn region pythonString		start=+"""+ end=+"""+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest2,pythonSpaceError,@Spell
-syn region pythonString		start=+'''+ end=+'''+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest,pythonSpaceError,@Spell
+syn region pythonString		start=+[bB]\='+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=pythonEscape,pythonEscapeError,@Spell
+syn region pythonString		start=+[bB]\="+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=pythonEscape,pythonEscapeError,@Spell
+syn region pythonString		start=+[bB]\="""+ end=+"""+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest2,pythonSpaceError,@Spell
+syn region pythonString		start=+[bB]\='''+ end=+'''+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest,pythonSpaceError,@Spell
 
 syn match  pythonEscape		+\\[abfnrtv'"\\]+ display contained
 syn match  pythonEscape		"\\\o\o\=\o\=" display contained
@@ -193,12 +197,15 @@ endif
 
 if exists("python_highlight_string_format") && python_highlight_string_format != 0
   " str.format syntax
+  syn match pythonStrFormat "{{\|}}" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
   syn match pythonStrFormat	"{\([a-zA-Z_][a-zA-Z0-9_]*\|\d\+\)\(\.[a-zA-Z_][a-zA-Z0-9_]*\|\[\(\d\+\|[^!:\}]\+\)\]\)*\(![rs]\)\=\(:\({\([a-zA-Z_][a-zA-Z0-9_]*\|\d\+\)}\|\([^}]\=[<>=^]\)\=[ +-]\=#\=0\=\d*\(\.\d\+\)\=[bcdeEfFgGnoxX%]\=\)\=\)\=}" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
 endif
 
 if exists("python_highlight_string_templates") && python_highlight_string_templates != 0
   " String templates
-  syn match pythonStrTemplate	"\$\(\$\|{[a-zA-Z_][a-zA-Z0-9_]*}\|[a-zA-Z_][a-zA-Z0-9_]*\)" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
+  syn match pythonStrTemplate	"\$\$" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
+  syn match pythonStrTemplate	"\${[a-zA-Z_][a-zA-Z0-9_]*}" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
+  syn match pythonStrTemplate	"\$[a-zA-Z_][a-zA-Z0-9_]*" contained containedin=pythonString,pythonUniString,pythonRawString,pythonUniRawString
 endif
 
 if exists("python_highlight_doctests") && python_highlight_doctests != 0
@@ -264,7 +271,7 @@ if exists("python_highlight_exceptions") && python_highlight_exceptions != 0
   syn keyword pythonExClass	SystemError SystemExit TypeError
   syn keyword pythonExClass	UnboundLocalError UnicodeError
   syn keyword pythonExClass	UnicodeEncodeError UnicodeDecodeError
-  syn keyword pythonExClass	UnicodeTranslateError ValueError
+  syn keyword pythonExClass	UnicodeTranslateError ValueError VMSError
   syn keyword pythonExClass	WindowsError ZeroDivisionError
 
   syn keyword pythonExClass	Warning UserWarning BytesWarning DeprecationWarning
@@ -292,7 +299,7 @@ if version >= 508 || !exists("did_python_syn_inits")
   endif
 
   HiLink pythonStatement	Statement
-  HiLink pythonImport		Statement
+  HiLink pythonPreCondit	Statement
   HiLink pythonFunction		Function
   HiLink pythonConditional	Conditional
   HiLink pythonRepeat		Repeat
@@ -300,6 +307,8 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonOperator		Operator
 
   HiLink pythonDecorator	Define
+  HiLink pythonDottedName	Function
+  HiLink pythonDot          Normal
 
   HiLink pythonComment		Comment
   HiLink pythonCoding		Special
