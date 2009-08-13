@@ -1,6 +1,7 @@
 " add breakpoints for python 
 
 python << EOF
+import vim
 def SetBreakpoint():
     import re
     nLine = int( vim.eval( 'line(".")'))
