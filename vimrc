@@ -137,10 +137,6 @@ au!
 	au FileType python let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 4 
 	au FileType python let python_highlight_all = 1
 
-	" Rope
-	au FileType python let $PYTHONPATH .= ":~/.vim/python/ropevim"
-	au FileType python let ropevim_guess_project=1
-
 
 	" kill calltip window if we move cursor or leave insert mode
 	au CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -227,10 +223,10 @@ endfunc
 let g:TabIndentStyle = "emacs"
 
 let g:tskelUserName = "Russell Sim"
-let g:tskelUserEmail = "russell.sim@jcu.edu.au"
-let g:tskelUserWWW = "http://eresearch.edu.au"
+let g:tskelUserEmail = "russell@vpac.org"
+let g:tskelUserWWW = "http://www.vpac.org"
 
-iabbr _me Russell Sim (russell.sim@jcu.edu.au)<C-R>=EatChar('\s')<CR>
+iabbr _me Russell Sim (russell@vpac.org)<C-R>=EatChar('\s')<CR>
 iabbr _t  <C-R>=strftime("%H:%M:%S")<CR><C-R>=EatChar('\s')<CR>
 iabbr _d  <C-R>=strftime("%a, %d %b %Y")<CR><C-R>=EatChar('\s')<CR>
 iabbr _dt <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR><C-R>=EatChar('\s')<CR>
