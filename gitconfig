@@ -1,0 +1,34 @@
+[user]
+    name = Russell Sim
+    email = russell.sim@gmail.com
+
+[github]
+    user = russell
+    token = 4f022ce92bd6715972fcfb67c253c43a
+
+[core]
+    excludesfile = /home/russell/.gitignore
+
+[color]
+    diff = auto
+    branch = auto
+    status = auto
+
+[diff]
+    renames = true
+    tool = meld
+
+[alias]
+    st = status
+    d = diff
+    ci = commit -v
+    cia = commit -v -a
+    co = checkout
+    cp = cherry-pick
+    l = log
+    ll = log -p
+    lt = log trunk..
+    llt = log -p trunk..
+    lm = log master..
+    llm = log -p master..
+    b = branch
