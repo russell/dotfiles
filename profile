@@ -27,3 +27,4 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 export DEBEMAIL="Russell Sim <russell.sim@gmail.com>"
+export MAIL="russell.sim@gmail.com"
