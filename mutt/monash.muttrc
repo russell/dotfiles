@@ -6,6 +6,7 @@ color status blue default
 
 set from      = "russell.sim@monash.edu"
 set sendmail  = "/usr/bin/msmtp -a monash"
+set signature = ~/.mutt/monash.sig
 set mbox      = "+GMail/archive"
 unset record
 set postponed = "+GMail/drafts"

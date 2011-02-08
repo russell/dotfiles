@@ -4,7 +4,6 @@ set alias_file          = ~/.mutt/alias                         # alias file
 set header_cache        = ~/.mutt/cache/headers                 # where to store headers
 set message_cachedir    = ~/.mutt/cache/bodies                  # where to store bodies
 set certificate_file    = ~/.mutt/certificates                  # where to store certs
-set signature           = ~/.mutt/sig                           # my signature file
 set tmpdir              = ~/.mutt/temp                          # where to keep temp files
 set editor              = "/usr/bin/vim +/^$"                   # use vim and skip to first blank line
 #set editor="emacsclient %s"

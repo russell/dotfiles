@@ -6,6 +6,7 @@ color status green default
 
 set from      = "russell.sim@gmail.com"
 set sendmail  = "/usr/bin/msmtp -a gmail"
+set signature = ~/.mutt/gmail.sig
 set mbox      = "+GMail/archive"
 unset record
 set postponed = "+GMail/drafts"
