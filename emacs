@@ -4,7 +4,6 @@
 ;      (setq load-path (cons my-lisp-dir load-path))
 ;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/el-get")
 
 (custom-set-variables
@@ -34,7 +33,7 @@
 
 (require 'el-get)
 (setq el-get-sources
-      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython
+      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython ropemacs tidy pymacs auto-complete
 
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
@@ -56,11 +55,9 @@
 ;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
 
 ;; Initialize Rope
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-enable-autoimport t)
+;(pymacs-load "ropemacs" "rope-")
+;(setq ropemacs-enable-autoimport t)
 
-(require 'auto-complete)
-(global-auto-complete-mode t)
 
 ;; Flymake Python
 (add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -84,7 +81,6 @@
 
 ; XML Modes
 
-(load "~/.emacs.d/nxhtml/autostart.el")
 (setq mumamo-background-colors nil)
 (add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode))
 
