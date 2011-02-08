@@ -2,10 +2,10 @@
 # gmail specific options
 ###
 
-color status green default
+color status blue default
 
-set from      = "russell.sim@gmail.com"
-set sendmail  = "/usr/bin/msmtp -a gmail"
+set from      = "russell.sim@monash.edu"
+set sendmail  = "/usr/bin/msmtp -a monash"
 set mbox      = "+GMail/archive"
 unset record
 set postponed = "+GMail/drafts"
