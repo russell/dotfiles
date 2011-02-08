@@ -8,7 +8,7 @@ endif
 "" Skip this file unless we have +eval
 if 1
 
-""" Settings 
+""" Settings
 set nocompatible						" Don't be compatible with vi
 
 """" Movement
@@ -18,9 +18,9 @@ noremap k gk
 
 """" Searching and Patterns
 set ignorecase							" search is case insensitive
-set smartcase							" search case sensitive if caps on 
+set smartcase							" search case sensitive if caps on
 set incsearch							" show best match so far
-set hlsearch							" Highlight matches to the search 
+set hlsearch							" Highlight matches to the search
 
 """" Display
 set background=dark						" I use dark background
@@ -116,8 +116,8 @@ au!
 	au BufEnter * if &ft != 'help' | silent! cd %:p:h | endif
 
 	" Insert Vim-version as X-Editor in mail headers
-	au FileType mail sil 1  | call search("^$")
-				 \ | sil put! ='X-Editor: Vim-' . Version()
+	"au FileType mail sil 1  | call search("^$")
+	"			 \ | sil put! ='X-Editor: Vim-' . Version()
 
 	" smart indenting for python
 	au FileType python set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
@@ -134,7 +134,7 @@ au!
 	" au FileType python if &ft !~ 'django' | setlocal filetype=python.django_tempate.django_model | endif
 
 	" prefer expand and detect what the python file is using
-	au FileType python let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 4 
+	au FileType python let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 4
 	au FileType python let python_highlight_all = 1
 
 
@@ -144,10 +144,10 @@ au!
 
 	" ZCML support
 	au BufNewFile,BufRead *.zcml,*.zpt	setf xml
-	au FileType xml let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 2 
+	au FileType xml let g:detectindent_preferred_expandtab = 1 | let g:detectindent_preferred_indent = 2
 
 	" Detect indentation of all files
-	autocmd BufReadPost * :DetectIndent 
+	autocmd BufReadPost * :DetectIndent
 
 	augroup END
 endif
@@ -176,13 +176,13 @@ nnoremap  <s-right>  vl
 nnoremap  <s-left>   vh
 
 if &diff
-" easily handle diffing 
+" easily handle diffing
    vnoremap < :diffget<CR>
    vnoremap > :diffput<CR>
 else
 " visual shifting (builtin-repeat)
-   vnoremap < <gv                       
-   vnoremap > >gv 
+   vnoremap < <gv
+   vnoremap > >gv
 endif
 
 " Extra functionality for some existing commands:
@@ -223,10 +223,10 @@ endfunc
 let g:TabIndentStyle = "emacs"
 
 let g:tskelUserName = "Russell Sim"
-let g:tskelUserEmail = "russell@vpac.org"
-let g:tskelUserWWW = "http://www.vpac.org"
+let g:tskelUserEmail = "russell.sim@gmail.com"
+let g:tskelUserWWW = "http://www.russellsim.org"
 
-iabbr _me Russell Sim (russell@vpac.org)<C-R>=EatChar('\s')<CR>
+iabbr _me Russell Sim (russell.sim@gmail.com)<C-R>=EatChar('\s')<CR>
 iabbr _t  <C-R>=strftime("%H:%M:%S")<CR><C-R>=EatChar('\s')<CR>
 iabbr _d  <C-R>=strftime("%a, %d %b %Y")<CR><C-R>=EatChar('\s')<CR>
 iabbr _dt <C-R>=strftime("%a, %d %b %Y %H:%M:%S %z")<CR><C-R>=EatChar('\s')<CR>
