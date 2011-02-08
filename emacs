@@ -33,12 +33,13 @@
 
 (require 'el-get)
 (setq el-get-sources
-      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython ropemacs tidy pymacs auto-complete
+      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython ropemacs tidy auto-complete python-mode
 
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
         (:name dictionary-el    :type apt-get)
+        (:name pymacs           :type apt-get)
         (:name emacs-goodies-el :type apt-get)))
 
 (el-get)
@@ -55,8 +56,8 @@
 ;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
 
 ;; Initialize Rope
-;(pymacs-load "ropemacs" "rope-")
-;(setq ropemacs-enable-autoimport t)
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-autoimport t)
 
 
 ;; Flymake Python
