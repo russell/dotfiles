@@ -18,7 +18,7 @@ set mbox        = "+GMail/archive"            # [Gmail]/All Mail
 unset record                            # required to prevent duplicates in Sent
 
 # Address Book
-set query_command="goobook query '%s'"
+set query_command="goobook-mutt query '%s'"
 bind editor <Tab> complete-query
 macro index,pager a "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
 
@@ -26,7 +26,6 @@ set move = no  #Stop asking to "move read messages to mbox"!
 
 # index options
 set sort                = threads                       # like gmail
-set sort_aux            = reverse-last-date-received    # like gmail
 set sort_re                                             # thread based on reply_regexp
 
 # boxes
