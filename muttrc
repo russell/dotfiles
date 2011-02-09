@@ -41,5 +41,8 @@ folder-hook Monash/* source ~/.mutt/monash.muttrc
 
 macro index I   "<change-folder>!<enter>"   "go to Inbox"
 
+# open links with url view
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
 # quick-sync ~/Mail immediately with offlineimap
 macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
