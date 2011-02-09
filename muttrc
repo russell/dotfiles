@@ -30,6 +30,7 @@ set sort_re                                             # thread based on reply_
 # Viewing
 alternative_order text/enriched text/plain text/html
 auto_view text/html
+source ~/.mutt/colors.muttrc
 
 # boxes
 mailboxes +GMail/INBOX +GMail/archive +GMail/sent +GMail/drafts +GMail/spam +GMail/
