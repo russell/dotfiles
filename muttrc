@@ -28,6 +28,10 @@ set sort                = threads                       # like gmail
 set sort_aux            = reverse-last-date-received    # like gmail
 set sort_re                                             # thread based on reply_regexp
 
+# Viewing
+alternative_order text/enriched text/plain text/html
+auto_view text/html
+
 # boxes
 mailboxes +GMail/INBOX +GMail/archive +GMail/sent +GMail/drafts +GMail/spam +GMail/
 
