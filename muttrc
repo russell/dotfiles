@@ -4,7 +4,6 @@ set alias_file          = ~/.mutt/alias                         # alias file
 set header_cache        = ~/.mutt/cache/headers                 # where to store headers
 set message_cachedir    = ~/.mutt/cache/bodies                  # where to store bodies
 set certificate_file    = ~/.mutt/certificates                  # where to store certs
-set signature           = ~/.mutt/sig                           # my signature file
 set tmpdir              = ~/.mutt/temp                          # where to keep temp files
 set editor              = "/usr/bin/vim +/^$"                   # use vim and skip to first blank line
 #set editor="emacsclient %s"
@@ -28,11 +27,16 @@ set move = no  #Stop asking to "move read messages to mbox"!
 set sort                = threads                       # like gmail
 set sort_re                                             # thread based on reply_regexp
 
+# Viewing
+alternative_order text/enriched text/plain text/html
+auto_view text/html
+
 # boxes
 mailboxes +GMail/INBOX +GMail/archive +GMail/sent +GMail/drafts +GMail/spam +GMail/
 
 # account specific sources
 folder-hook GMail/* source ~/.mutt/gmail.muttrc
+folder-hook Monash/* source ~/.mutt/monash.muttrc
 
 macro index I   "<change-folder>!<enter>"   "go to Inbox"
 
