@@ -6,7 +6,7 @@ apt-get install python-ropemacs exuberant-ctags
 
 To begin you must first install the required rope python packages. Using Debian run.
 
-apt-get install python-ropemacs
+apt-get install python-ropemacs bzr subversion git-core links2
 
 from the directory containing this file run.
 
