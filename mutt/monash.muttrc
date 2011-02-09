@@ -7,11 +7,11 @@ color status blue default
 set from      = "russell.sim@monash.edu"
 set sendmail  = "/usr/bin/msmtp -a monash"
 set signature = ~/.mutt/monash.sig
-set mbox      = "+GMail/archive"
+set mbox      = "+Monash/archive"
 unset record
-set postponed = "+GMail/drafts"
+set postponed = "+Monash/drafts"
 
-macro index E "<change-folder>+GMail/archive<enter><limit>~B " "search everything"
-macro index D "<save-message>+GMail/bin<enter>"              "move message to the bin"
-macro index S "<save-message>+GMail/spam<enter>"               "mark message as spam"
+macro index E "<change-folder>+Monash/archive<enter><limit>~B " "search everything"
+macro index D "<save-message>+Monash/bin<enter><enter>"              "move message to the bin"
+macro index S "<save-message>+Monash/spam<enter>"               "mark message as spam"
 
