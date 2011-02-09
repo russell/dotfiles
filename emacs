@@ -99,21 +99,21 @@
 
 ;; Flymake XML
 
-;(when (load "flymake" t)
-;(defun flymake-xml-init ()
-;  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;		     'flymake-create-temp-inplace))
-;	 (local-file (file-relative-name
-;		      temp-file
-;		      (file-name-directory buffer-file-name))))
-;    (list "xmlstarlet" (list "val" "-E" local-file))))
-;
-;(add-to-list 'flymake-allowed-file-name-masks
-;             '("\\.\\(x\\|zc\\)ml\\'" flymake-xml-init))
-;(add-to-list 'flymake-allowed-file-name-masks
-;             '("\\.\\(ht\\|xht\\)ml\\'" flymake-xml-init))
-;(add-to-list 'flymake-allowed-file-name-masks
-;             '("\\.[zc]?pt\\'" flymake-xml-init)))
+(when (load "flymake" t)
+(defun flymake-xml-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+		     'flymake-create-temp-inplace))
+	 (local-file (file-relative-name
+		      temp-file
+		      (file-name-directory buffer-file-name))))
+    (list "xmlstarlet" (list "val" "-e" local-file))))
+
+(add-to-list 'flymake-allowed-file-name-masks
+             '("\\.\\(x\\|zc\\)ml\\'" flymake-xml-init))
+(add-to-list 'flymake-allowed-file-name-masks
+             '("\\.\\(ht\\|xht\\)ml\\'" flymake-xml-init))
+(add-to-list 'flymake-allowed-file-name-masks
+             '("\\.[zc]?pt\\'" flymake-xml-init)))
 ;;;Last minute Flymake customizations
 ;(add-hook 'xml-mode-hook (lambda () (flymake-mode 1)))
 ;(add-hook 'html-mode-hook (lambda () (flymake-mode 1)))
