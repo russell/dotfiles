@@ -28,12 +28,13 @@ set sort                = threads                       # like gmail
 set sort_re                                             # thread based on reply_regexp
 
 # Viewing
-alternative_order text/enriched text/plain text/html
+alternative_order text/plain text/html
 auto_view text/html
 source ~/.mutt/colors.muttrc
 
 # boxes
 mailboxes +GMail/INBOX +GMail/archive +GMail/sent +GMail/drafts +GMail/spam +GMail/
+mailboxes +Monash/INBOX +Monash/archive +Monash/sent +Monash/drafts +Monash/spam +Monash/
 
 # account specific sources
 folder-hook GMail/* source ~/.mutt/gmail.muttrc

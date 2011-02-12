@@ -12,6 +12,6 @@ unset record
 set postponed = "+GMail/drafts"
 
 macro index E "<change-folder>+GMail/archive<enter><limit>~B " "search everything"
-macro index d "<save-message>+GMail/bin<enter><enter>"              "move message to the bin"
+macro index,pager d "<save-message>+GMail/bin<enter><enter>"              "move message to the bin"
 macro index S "<save-message>+GMail/spam<enter>"               "mark message as spam"
 
