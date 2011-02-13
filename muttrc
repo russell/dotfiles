@@ -35,6 +35,9 @@ source ~/.mutt/colors.muttrc
 # boxes
 mailboxes +GMail/INBOX +GMail/archive +GMail/sent +GMail/drafts +GMail/spam +GMail/
 
+# security
+source ~/.mutt/gpg.muttrc
+
 # account specific sources
 folder-hook GMail/* source ~/.mutt/gmail.muttrc
 folder-hook Monash/* source ~/.mutt/monash.muttrc
