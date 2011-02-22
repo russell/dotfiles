@@ -24,8 +24,10 @@ macro index,pager a "<pipe-message>goobook add<return>" "add the sender address 
 set move = no  #Stop asking to "move read messages to mbox"!
 
 # index options
-set sort                = threads                       # like gmail
-set sort_re                                             # thread based on reply_regexp
+set sort = threads # like gmail
+set sort_re # thread based on reply_regexp
+set sort_browser = reverse-date # showing mbox list default to newest first
+set sort_aux = last-date-received # showing threads with youngest message last
 
 # Viewing
 alternative_order text/plain text/html
