@@ -14,6 +14,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(frame-background-mode (quote dark))
  '(inhibit-startup-screen t)
  '(mac-option-modifier (quote meta)))
 (custom-set-faces
@@ -31,7 +32,7 @@
      (setq color-theme-is-global t)
      (setq color-theme-is-cumulative t)
      (setq color-theme-load-all-themes nil)
-     (color-theme-tango)))
+     (color-theme-dark-laptop)))
 
 
 (require 'el-get)
