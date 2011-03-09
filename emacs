@@ -80,8 +80,16 @@
 (global-set-key [f11] 'flymake-goto-next-error)
 
 (add-hook 'python-mode-hook '(lambda () (define-key py-mode-map "\C-m" 'newline-and-indent)))
+(add-hook 'python-mode-hook '(lambda () (flyspell-prog-mode)))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+; C Mode
+
+(add-hook 'c-mode-common-hook '(lambda () (flyspell-prog-mode)))
+
+; RST Mode
+
+(add-hook 'rst-mode-hook '(lambda () (flyspell-mode)))
 
 ; XML Modes
 
