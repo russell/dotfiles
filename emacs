@@ -49,19 +49,33 @@
 (el-get)
 
 
+
+
+; General
+
+(global-set-key (kbd "<f9>") 'recompile)
+
 ; Python
 
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-;;(eval-after-load "pymacs"
-;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
+(defun my-python-hook-mode ()
+  (progn
 
-;; Initialize Rope
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-enable-autoimport t)
+    (require 'pymacs)
+    (autoload 'pymacs-apply "pymacs")
+    (autoload 'pymacs-call "pymacs")
+    (autoload 'pymacs-eval "pymacs" nil t)
+    (autoload 'pymacs-exec "pymacs" nil t)
+    (autoload 'pymacs-load "pymacs" nil t)
+
+    (pymacs-load "ropemacs" "rope-")
+    (setq ropemacs-enable-autoimport t)
+
+    (flyspell-prog-mode)
+
+    (define-key py-mode-map "\C-m" 'newline-and-indent)
+    (define-key py-mode-map [f4] 'speedbar-get-focus)
+    ))
+(add-hook 'python-mode-hook 'my-python-hook-mode)
 
 
 ;; Flymake Python
@@ -80,8 +94,6 @@
 (global-set-key [f10] 'flymake-goto-prev-error)
 (global-set-key [f11] 'flymake-goto-next-error)
 
-(add-hook 'python-mode-hook '(lambda () (define-key py-mode-map "\C-m" 'newline-and-indent)))
-(add-hook 'python-mode-hook '(lambda () (flyspell-prog-mode)))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ; C Mode
