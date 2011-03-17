@@ -32,7 +32,7 @@
      (setq color-theme-is-global t)
      (setq color-theme-is-cumulative t)
      (setq color-theme-load-all-themes nil)
-     (color-theme-dark-laptop)))
+     (color-theme-tango)))
 
 
 (require 'el-get)
