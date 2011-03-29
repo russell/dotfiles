@@ -7,7 +7,7 @@
 (add-to-list 'load-path "~/.emacs.d/el-get")
 
 ;; disable the toolbar
-(tool-bar-mode -1)
+(tool-bar-mode nil)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
