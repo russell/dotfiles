@@ -44,7 +44,7 @@ color index black         cyan    "~T !~F !~p !~P"
 color index black         red     "~F !~p !~P"
 # messages to me
 color index yellow        default "~p !~N !~T !~F !~P"
-color index brightyellow  white   "~p ~N !~T !~F !~P"
+color index yellow        white   "~p ~N !~T !~F !~P"
 color index yellow        cyan    "~p ~T !~F !~P"
 color index yellow        red     "~p ~F !~P"
 # messages from me
@@ -53,18 +53,18 @@ color index green         white   "~P ~N !~T !~F"
 color index green         cyan    "~P ~T !~F"
 color index green         red     "~P ~F"
 # messages which mention my name in the body
-color index yellow        default "~b \"phil(_g|\!| gregory| gold)|pgregory\" !~N !~T !~F !~p !~P"
-color index brightyellow  white   "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~N !~T !~F !~p !~P"
-color index yellow        cyan    "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~T !~F !~p !~P"
-color index yellow        red     "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~F !~p !~P"
+color index yellow        default "~b \"russell(\!| james| sim)\" !~N !~T !~F !~p !~P"
+color index yellow        white   "~b \"russell(\!| james| sim)\" ~N !~T !~F !~p !~P"
+color index yellow        cyan    "~b \"russell(\!| james| sim)\" ~T !~F !~p !~P"
+color index yellow        red     "~b \"russell(\!| james| sim)\" ~F !~p !~P"
 # messages which are in reference to my mails
-color index magenta       default "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" !~N !~T !~F !~p !~P"
-color index magenta       white   "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~N !~T !~F !~p !~P"
-color index magenta       cyan    "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~T !~F !~p !~P"
-color index magenta       red     "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~F !~p !~P"
+color index magenta       default '~x ".*@rodney|.*@marvin" !~N !~T !~F !~p !~P'
+color index magenta       white   '~x ".*@rodney|.*@marvin" ~N !~T !~F !~p !~P'
+color index magenta       cyan    '~x ".*@rodney|.*@marvin" ~T !~F !~p !~P'
+color index magenta       red     '~x ".*@rodney|.*@marvin" ~F !~p !~P'
 # messages to root, etc.
-color index cyan          default "~C \"(root|postmaster|abuse|mailer-daemon)@\" !~N !~P !~p"
-color index cyan          white   "~C \"(root|postmaster|abuse|mailer-daemon)@\" ~N !~P !~p"
+color index cyan          default "~C \"(root|postmaster|logcheck|abuse|mailer-daemon)@\" !~N !~P !~p"
+color index cyan          white   "~C \"(root|postmaster|logcheck|abuse|mailer-daemon)@\" ~N !~P !~p"
 # big messages
 color index brightred     default "!~N ~z 102400-"
 color index brightred     cyan    "~T !~F !~p !~P ~z 102400-"
