@@ -5,6 +5,7 @@
 ;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/el-get")
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
 
 ;; disable the toolbar
 (tool-bar-mode nil)
@@ -41,14 +42,14 @@
 
 (require 'el-get)
 (setq el-get-sources
-      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython ropemacs tidy auto-complete python-mode
+      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el
 
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
         (:name dictionary-el    :type apt-get)
-        (:name pymacs           :type apt-get)
-        (:name emacs-goodies-el :type apt-get)))
+;        (:name emacs-goodies-el :type apt-get)
+))
 
 (el-get)
 
@@ -60,11 +61,53 @@
 
 (global-set-key (kbd "<f9>") 'recompile)
 
+(setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
+
+;; When turning on flyspell-mode, automatically check the entire buffer.
+(defadvice flyspell-mode (after advice-flyspell-check-buffer-on-start activate)
+  (flyspell-buffer))
+
+;; Dynamic Abbreviations C-<tab>
+(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
+
+;; Autocomplete
+(require 'auto-complete)
+(global-auto-complete-mode t)
+(require 'auto-complete-config)
+(ac-config-default)
+
+
 ; Python
+
+;; Autofill inside of comments
+
+(defun python-auto-fill-comments-only ()
+  (auto-fill-mode 1)
+  (set (make-local-variable 'fill-nobreak-predicate)
+       (lambda ()
+         (not (python-in-literal)))))
+
+(defvar ac-source-rope
+  '((candidates
+     . (lambda ()
+         (prefix-list-elements (rope-completions) ac-target))))
+  "Source for Rope")
+
+
 
 (defun lconfig-python-mode ()
   (progn
 
+    (flyspell-prog-mode)
+
+    ;; Only spaces, no tabs
+    (setq indent-tabs-mode nil)
+
+    ;; Always end a file with a newline
+    (setq require-final-newline nil)
+
+    ;; Pymacs
     (require 'pymacs)
     (autoload 'pymacs-apply "pymacs")
     (autoload 'pymacs-call "pymacs")
@@ -72,10 +115,17 @@
     (autoload 'pymacs-exec "pymacs" nil t)
     (autoload 'pymacs-load "pymacs" nil t)
 
+    ;; Rope
     (pymacs-load "ropemacs" "rope-")
     (setq ropemacs-enable-autoimport t)
+    (ropemacs-mode)
 
-    (flyspell-prog-mode)
+    ;; Autocomplete
+    (add-to-list 'ac-omni-completion-sources
+		 (cons "\\." '(ac-source-ropemacs)))
+
+    ;; Auto Fill
+    ;;(python-auto-fill-comments-only)
 
     (define-key py-mode-map "\C-m" 'newline-and-indent)
     (define-key py-mode-map [f4] 'speedbar-get-focus)
@@ -100,6 +150,7 @@
 (global-set-key [f11] 'flymake-goto-next-error)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 
 ; C Mode
 (defun lconfig-c-mode ()
@@ -135,6 +186,7 @@
 (setq auto-mode-alist (cons '("\\.zpt$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pt$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zcml$" . nxml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.xhtml$" . nxml-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.rdf$" . nxml-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.php3$" . html-mode) auto-mode-alist))
 
@@ -171,3 +223,8 @@
 
 ;; match parenthisis
 (show-paren-mode 1)
+
+
+(put 'upcase-region 'disabled nil)
+
+(put 'narrow-to-region 'disabled nil)
