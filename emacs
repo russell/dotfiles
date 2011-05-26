@@ -56,6 +56,7 @@
 
 
 ; General
+(server-start)
 
 (global-set-key (kbd "<f9>") 'recompile)
 
