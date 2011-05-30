@@ -178,6 +178,13 @@
 (autoload 'po-mode "po-mode" "Major mode for translators to edit PO files" t)
 (add-hook 'po-mode-hook '(lambda () (flyspell-mode)))
 
+(eval-after-load "po-mode"
+  '(progn
+     (setq po-auto-replace-file-header 'ask)
+     (setq po-auto-replace-revision-date 'ask)
+     (setq po-default-file-header "")))
+
+
 ; RST Mode
 
 (add-hook 'rst-mode-hook '(lambda () (flyspell-mode)))
