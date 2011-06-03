@@ -35,8 +35,8 @@ auto_view text/html
 source ~/.mutt/colors.muttrc
 
 # boxes
-mailboxes +GMail/INBOX +GMail/archive +GMail/sent +GMail/drafts +GMail/spam +GMail/
-mailboxes +Monash/INBOX +Monash/archive +Monash/sent +Monash/drafts +Monash/spam +Monash/
+mailboxes +GMail/INBOX +GMail/
+mailboxes +Monash/INBOX +Monash/
 
 # security
 source ~/.mutt/gpg.muttrc

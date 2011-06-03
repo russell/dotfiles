@@ -77,6 +77,11 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+; Speedbar
+
+; close speedbar when selecting something from it
+;(add-hook 'speedbar-visiting-tag-hook '(lambda () (speedbar)))
+;(add-hook 'speedbar-visiting-file-hook '(lambda () (speedbar)))
 
 ; Python
 
