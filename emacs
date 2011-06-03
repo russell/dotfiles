@@ -20,6 +20,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(frame-background-mode (quote dark))
+ '(ido-enable-flex-matching t)
+ '(ido-everywhere t)
  '(inhibit-startup-screen t)
  '(mac-option-modifier (quote meta)))
 (custom-set-faces
@@ -42,7 +44,7 @@
 
 (require 'el-get)
 (setq el-get-sources
-      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el
+      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el smex
 
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
@@ -82,6 +84,19 @@
 ; close speedbar when selecting something from it
 ;(add-hook 'speedbar-visiting-tag-hook '(lambda () (speedbar)))
 ;(add-hook 'speedbar-visiting-file-hook '(lambda () (speedbar)))
+
+; IBuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
+; IDO
+(require 'ido)
+
+; SMEX
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 
 ; Python
 
