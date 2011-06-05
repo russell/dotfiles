@@ -73,6 +73,9 @@
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 
+; TRAMP
+(setq password-cache-expiry 1000)
+
 ;; Autocomplete
 (require 'auto-complete)
 (global-auto-complete-mode t)
@@ -91,6 +94,7 @@
 
 ; IDO
 (require 'ido)
+(ido-mode)
 
 ; SMEX
 (smex-initialize)
