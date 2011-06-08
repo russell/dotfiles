@@ -15,6 +15,8 @@ export HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -85,9 +87,13 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
+alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -104,3 +110,27 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+g () {
+   grep -G -w --color=always --include="*.py" --include="*.xhtml" --include="*.tac" --include="*.po" -R "$@" ~/code/df
+}
+
+export PYTHONPATH=$HOME/code/df:$HOME/.emacs.d/el-get/pymacs/:$HOME/.emacs.d/el-get/ropemacs/
+
+export PYTHONDONTWRITEBYTECODE=true
+
+export WANG_MANHOLE=true
+
+alias wangkill="ps aux | grep SimpleHTTPServer | awk '{ print $2 }' | xargs kill"
+alias wwgrep="grep -G -w --color=auto --include='*.py' --include='*.xhtml' --include='*.tac' --include='*.po' -R"
+alias wgrep="grep -G --color=auto --include='*.py' --include='*.xhtml' --include='*.tac' --include='*.po' -R"
+alias 'po-grep'="grep -G --color=auto --include='*.po' -R"
+alias 't-grep'="grep -G --color=auto --include='*.xhtml' -R"
+alias 'c-grep'='egrep -v "^#|^[[:space:]]|^$"'
+alias emacsc='emacsclient -n'
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+

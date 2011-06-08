@@ -11,13 +11,13 @@ set editor              = "/usr/bin/vim +/^$"                   # use vim and sk
 set realname = "Russell Sim"
 set mbox_type   = Maildir               # mailbox type
 set folder = "~/Mail"
-set spoolfile = "+GMail/INBOX"
-set postponed   = "+GMail/drafts"             # [Gmail]/Drafts
-set mbox        = "+GMail/archive"            # [Gmail]/All Mail
+set spoolfile = "=INBOX"
+set postponed   = "=Drafts"             # [Gmail]/Drafts
+#set mbox        = "archive"            # [Gmail]/All Mail
 unset record                            # required to prevent duplicates in Sent
 
 # Address Book
-set query_command="goobook-mutt query '%s'"
+set query_command="mutt-ldap.pl '%s'"
 bind editor <Tab> complete-query
 macro index,pager a "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
 
@@ -35,15 +35,15 @@ auto_view text/html
 source ~/.mutt/colors.muttrc
 
 # boxes
-mailboxes +GMail/INBOX +GMail/
-mailboxes +Monash/INBOX +Monash/
+mailboxes INBOX Sent\ Items Drafts Junk\ E-mail
 
 # security
 source ~/.mutt/gpg.muttrc
 
 # account specific sources
-folder-hook GMail/* source ~/.mutt/gmail.muttrc
-folder-hook Monash/* source ~/.mutt/monash.muttrc
+#folder-hook GMail/* source ~/.mutt/gmail.muttrc
+#folder-hook Monash/* source ~/.mutt/monash.muttrc
+source ~/.mutt/medibank.muttrc
 
 macro index I   "<change-folder>!<enter>"   "go to Inbox"
 

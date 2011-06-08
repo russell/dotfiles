@@ -44,10 +44,11 @@
 
 (require 'el-get)
 (setq el-get-sources
-      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el smex
+      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el smex rainbow-delimiters
 
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
+        (:name gb-po-mode :type emacswiki)
 
         (:name dictionary-el    :type apt-get)
 ;        (:name emacs-goodies-el :type apt-get)
@@ -100,7 +101,10 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c M-x") 'smex-update-and-run)
 
+; Flymake
+(setq flymake-start-syntax-check-on-find-file nil)
 
 ; Python
 
@@ -204,11 +208,11 @@
 
 (eval-after-load "po-mode"
   '(progn
-     (setq po-auto-replace-file-header 'ask)
-     (setq po-auto-replace-revision-date 'ask)
+     (setq po-auto-replace-file-header nil)
+     (setq po-auto-replace-revision-date nil)
      (setq po-default-file-header "")))
-
-
+;(eval-after-load "po-mode"
+;  '(load "gb-po-mode"))
 ; RST Mode
 
 (add-hook 'rst-mode-hook '(lambda () (flyspell-mode)))
