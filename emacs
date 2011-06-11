@@ -44,13 +44,18 @@
 
 (require 'el-get)
 (setq el-get-sources
-      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el smex rainbow-delimiters
+      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el smex rainbow-delimiters org-mode android-mode rst-mode
 
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
         (:name gb-po-mode :type emacswiki)
 
         (:name dictionary-el    :type apt-get)
+
+        (:name project-root
+	       :type hg
+	       :url "http://hg.piranha.org.ua/project-root/")
+
 ;        (:name emacs-goodies-el :type apt-get)
 ))
 
@@ -106,6 +111,13 @@
 ; Flymake
 (setq flymake-start-syntax-check-on-find-file nil)
 
+; Project Config
+(require 'project-root)
+(setq project-roots
+      `(("Python project"
+         :root-contains-files ("setup.py")
+         )))
+
 ; Python
 
 ;; Autofill inside of comments
@@ -151,6 +163,8 @@
     ;; Autocomplete
     (add-to-list 'ac-omni-completion-sources
 		 (cons "\\." '(ac-source-ropemacs)))
+
+    (with-project-root (rope-open-project (cdr project-details)))
 
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
