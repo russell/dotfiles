@@ -166,7 +166,6 @@ variable. Automatically applies expand-file-name to `path`."
 (setq flymake-start-syntax-check-on-find-file nil)
 
 ; Project Config
-(require 'project-root)
 (setq project-roots
       `(("Python project"
          :root-contains-files ("setup.py")
