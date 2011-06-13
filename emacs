@@ -1,10 +1,11 @@
+;; -*- Mode: Emacs-Lisp -*-
+
 ;(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 ;    (let* ((my-lisp-dir "~/.emacs.d/")
 ;	   (default-directory my-lisp-dir))
 ;      (setq load-path (cons my-lisp-dir load-path))
 ;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/el-get")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 
 ;; disable the toolbar
@@ -13,24 +14,17 @@
 ; set font
 (set-default-font "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true"))
-
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(el-get-standard-packages (quote ("predictive" "highlight-symbol" "highlight-parentheses" "highlight-indentation" "git-emacs" "git-blame" "flymake-point" "flymake-fringe-icons" "folding" "js2-mode" "js-comint" "json" "fic-ext-mode" "eol-conversion" "doxymacs" "dired-plus" "diff-git" "clevercss" "auto-complete-clang" "auctex" "active-menu" "django-mode" "fringe-helper" "csv-mode" "python-mode" "ropemode" "project-root" "theme-roller" "color-theme" "apel" "el-get" "cssh" "switch-window" "vkill" "google-maps" "nxhtml" "xcscope" "yasnippet" "tidy" "smex" "rainbow-delimiters" "org-mode" "android-mode" "rst-mode" "magit" "pymacs" "rope" "ropemacs" "ipython" "pylookup" "python-pep8")))
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(inhibit-startup-screen t)
  '(mac-option-modifier (quote meta)))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
-
 ;; color theme config
 (require 'color-theme)
 (eval-after-load "color-theme"
@@ -42,26 +36,71 @@
      (color-theme-tango)))
 
 
+(defun add-to-pythonpath (path)
+  "Adds a directory to the PYTHONPATH environment
+variable. Automatically applies expand-file-name to `path`."
+  (setenv "PYTHONPATH"
+    (concat (expand-file-name path) ":" (getenv "PYTHONPATH"))))
+
+
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
+(setq el-get-verbose t)
 (setq el-get-sources
-      '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet ipython tidy emacs-goodies-el smex rainbow-delimiters org-mode android-mode rst-mode
-
-        (:name magit
+      '((:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
-        (:name gb-po-mode :type emacswiki)
-
-        (:name dictionary-el    :type apt-get)
 
         (:name project-root
 	       :type hg
-	       :url "http://hg.piranha.org.ua/project-root/")
+	       :url "http://hg.piranha.org.ua/project-root/"
+	       :features project-root)
 
+        (:name pymacs
+               :type git
+               :url "http://github.com/pinard/Pymacs.git"
+               :build ("make")
+               :after (lambda ()
+                        (add-to-pythonpath (concat el-get-dir "pymacs"))))
+        (:name rope
+               :type http-tar
+               :options ("zxf")
+               :url "http://bitbucket.org/agr/rope/get/tip.tar.gz"
+               :after (lambda ()
+                        (add-to-pythonpath (concat el-get-dir "rope/rope"))))
+        (:name ropemode
+               :type http-tar
+               :options ("zxf")
+               :url "http://bitbucket.org/agr/ropemode/get/tip.tar.gz"
+               :after (lambda ()
+                        (add-to-pythonpath (concat el-get-dir "ropemode/ropemode"))))
+        (:name ropemacs
+               :type http-tar
+               :options ("zxf")
+               :url "http://bitbucket.org/agr/ropemacs/get/tip.tar.gz"
+	       :depends (pymacs rope ropemode)
+               :after (lambda ()
+                        (add-to-pythonpath (concat el-get-dir "ropemacs/ropemacs"))
+                        (setq ropemacs-local-prefix "C-c C-p")
+                        (require 'pymacs)
+			(setq pymacs-load-path '( "~/.emacs.d/el-get/rope"
+						  "~/.emacs.d/el-get/ropemode"
+						  "~/.emacs.d/el-get/ropemacs"
+						  "~/.emacs.d/el-get/python-mode"))
+                        (pymacs-load "ropemacs" "rope-")))
+	(:name python-mode
+               :type http-tar
+               :options ("zxf")
+               :url "http://launchpad.net/python-mode/trunk/5.2.0/+download/python-mode-5.2.0.tgz"
+	       :features (python-mode doctest-mode)
+	       :depends (pymacs)
+	       :post-init (lambda ()
+			    (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+			    (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+			    (autoload 'python-mode "python-mode" "Python editing mode." t)))
 ;        (:name emacs-goodies-el :type apt-get)
 ))
 
-(el-get)
-
-
+(el-get 'wait)
 
 
 ; General
