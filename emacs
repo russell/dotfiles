@@ -127,6 +127,19 @@ variable. Automatically applies expand-file-name to `path`."
 (require 'auto-complete-config)
 (ac-config-default)
 
+(defun prefix-list-elements (list prefix)
+  (let (value)
+    (nreverse
+     (dolist (element list value)
+      (setq value (cons (format "%s%s" prefix element) value))))))
+
+(defvar ac-source-rope
+  '((candidates
+     . (lambda ()
+         (prefix-list-elements (rope-completions) ac-target))))
+  "Source for Rope")
+
+
 ; Speedbar
 
 ; close speedbar when selecting something from it
@@ -165,7 +178,7 @@ variable. Automatically applies expand-file-name to `path`."
   (auto-fill-mode 1)
   (set (make-local-variable 'fill-nobreak-predicate)
        (lambda ()
-         (not (python-in-literal)))))
+         (not (python-in-string/comment)))))
 
 (defvar ac-source-rope
   '((candidates
@@ -186,32 +199,25 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Always end a file with a newline
     (setq require-final-newline nil)
 
-    ;; Pymacs
-    (require 'pymacs)
-    (autoload 'pymacs-apply "pymacs")
-    (autoload 'pymacs-call "pymacs")
-    (autoload 'pymacs-eval "pymacs" nil t)
-    (autoload 'pymacs-exec "pymacs" nil t)
-    (autoload 'pymacs-load "pymacs" nil t)
-
     ;; Rope
-    (pymacs-load "ropemacs" "rope-")
-    (setq ropemacs-enable-autoimport t)
     (ropemacs-mode)
 
     ;; Autocomplete
-    (add-to-list 'ac-omni-completion-sources
-		 (cons "\\." '(ac-source-ropemacs)))
+    (auto-complete-mode)
+    (set (make-local-variable 'ac-sources)
+	 (append ac-sources '(ac-source-rope) '(ac-source-yasnippet)))
 
     (with-project-root (rope-open-project (cdr project-details)))
 
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
 
-    (define-key py-mode-map "\C-m" 'newline-and-indent)
     (define-key py-mode-map [f4] 'speedbar-get-focus)
     ))
 (add-hook 'python-mode-hook 'lconfig-python-mode)
+(add-hook 'python-mode-hook '(lambda ()
+			       (ropemacs-mode)
+			      ))
 
 
 ;; Flymake Python
