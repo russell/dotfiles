@@ -97,7 +97,9 @@ variable. Automatically applies expand-file-name to `path`."
 			    (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 			    (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 			    (autoload 'python-mode "python-mode" "Python editing mode." t)))
-;        (:name emacs-goodies-el :type apt-get)
+        (:name ipython
+	       :depends (python-mode))
+
 ))
 
 (el-get 'wait)
