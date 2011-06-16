@@ -6,7 +6,6 @@
 ;      (setq load-path (cons my-lisp-dir load-path))
 ;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
 
 ;; disable the toolbar
 (tool-bar-mode nil)
@@ -141,13 +140,6 @@ variable. Automatically applies expand-file-name to `path`."
 
 ; TRAMP
 (setq password-cache-expiry 1000)
-
-;; Autocomplete
-(require 'auto-complete)
-(global-auto-complete-mode t)
-(require 'auto-complete-config)
-(ac-config-default)
-
 
 
 ;; follow symlinks to version controlled files
