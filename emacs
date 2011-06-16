@@ -171,7 +171,10 @@ variable. Automatically applies expand-file-name to `path`."
 
 ; Project Config
 (setq project-roots
-      `(("Python project"
+      `(("Python rope project"
+	 :root-contains-files (".ropeproject")
+         )
+	("Python project"
          :root-contains-files ("setup.py")
          )))
 
