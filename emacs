@@ -131,18 +131,10 @@ variable. Automatically applies expand-file-name to `path`."
 (require 'auto-complete-config)
 (ac-config-default)
 
-(defun prefix-list-elements (list prefix)
-  (let (value)
-    (nreverse
-     (dolist (element list value)
-      (setq value (cons (format "%s%s" prefix element) value))))))
 
-(defvar ac-source-rope
-  '((candidates
-     . (lambda ()
-         (prefix-list-elements (rope-completions) ac-target))))
-  "Source for Rope")
 
+;; follow symlinks to version controlled files
+(setq vc-follow-symlinks t)
 
 ; Speedbar
 
@@ -183,13 +175,6 @@ variable. Automatically applies expand-file-name to `path`."
        (lambda ()
          (not (python-in-string/comment)))))
 
-(defvar ac-source-rope
-  '((candidates
-     . (lambda ()
-         (prefix-list-elements (rope-completions) ac-target))))
-  "Source for Rope")
-
-
 
 (defun lconfig-python-mode ()
   (progn
@@ -202,25 +187,70 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Always end a file with a newline
     (setq require-final-newline nil)
 
-    ;; Rope
-    (ropemacs-mode)
+    (eval-after-load 'python
+      '(progn
+	 ;; Rope
+	 (ropemacs-mode)
+	 (setq ropemacs-enable-autoimport t)
+	 ))
+
+    (with-project-root (rope-open-project (cdr project-details)))
 
     ;; Autocomplete
     (auto-complete-mode)
-    (set (make-local-variable 'ac-sources)
-	 (append ac-sources '(ac-source-rope) '(ac-source-yasnippet)))
-
-    (with-project-root (rope-open-project (cdr project-details)))
 
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
 
     (define-key py-mode-map [f4] 'speedbar-get-focus)
+
+    (defun prefix-list-elements (list prefix)
+      (let (value)
+	(nreverse
+	 (dolist (element list value)
+	   (setq value (cons (format "%s%s" prefix element) value))))))
+    (defvar ac-source-rope
+      '((candidates
+	 . (lambda ()
+	     (prefix-list-elements (rope-completions) ac-target))))
+      "Source for Rope")
+    (defun ac-python-find ()
+      "Python `ac-find-function'."
+      (require 'thingatpt)
+      (let ((symbol (car-safe (bounds-of-thing-at-point 'symbol))))
+	(if (null symbol)
+	    (if (string= "." (buffer-substring (- (point) 1) (point)))
+		(point)
+	      nil)
+	  symbol)))
+    (defun ac-python-candidate ()
+      "Python `ac-candidates-function'"
+      (let (candidates)
+	(dolist (source ac-sources)
+	  (if (symbolp source)
+	      (setq source (symbol-value source)))
+	  (let* ((ac-limit (or (cdr-safe (assq 'limit source)) ac-limit))
+		 (requires (cdr-safe (assq 'requires source)))
+		 cand)
+	    (if (or (null requires)
+		    (>= (length ac-target) requires))
+		(setq cand
+		      (delq nil
+			    (mapcar (lambda (candidate)
+				      (propertize candidate 'source source))
+				    (funcall (cdr (assq 'candidates source)))))))
+	    (if (and (> ac-limit 1)
+		     (> (length cand) ac-limit))
+		(setcdr (nthcdr (1- ac-limit) cand) nil))
+	    (setq candidates (append candidates cand))))
+	(delete-dups candidates)))
+
+    (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-rope ac-source-yasnippet))
+    (set (make-local-variable 'ac-find-function) 'ac-python-find)
+    (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
+
     ))
 (add-hook 'python-mode-hook 'lconfig-python-mode)
-(add-hook 'python-mode-hook '(lambda ()
-			       (ropemacs-mode)
-			      ))
 
 
 ;; Flymake Python
@@ -331,3 +361,9 @@ variable. Automatically applies expand-file-name to `path`."
 (put 'upcase-region 'disabled nil)
 
 (put 'narrow-to-region 'disabled nil)
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
