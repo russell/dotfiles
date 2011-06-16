@@ -47,7 +47,9 @@ variable. Automatically applies expand-file-name to `path`."
 (require 'el-get)
 (setq el-get-verbose t)
 (setq el-get-sources
-      '((:name magit
+
+      '(rainbow-mode autopair po-mode predictive highlight-symbol highlight-parentheses highlight-indentation git-emacs git-blame flymake-point flymake-fringe-icons folding js2-mode js-comint json fic-ext-mode eol-conversion doxymacs dired-plus diff-git clevercss auto-complete-clang auctex active-menu django-mode fringe-helper csv-mode color-theme apel el-get cssh switch-window vkill google-maps nxhtml xcscope yasnippet tidy smex rainbow-delimiters org-mode android-mode rst-mode pylookup python-pep8
+	(:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
         (:name project-root
