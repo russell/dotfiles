@@ -25,14 +25,6 @@
  '(ido-everywhere t)
  '(inhibit-startup-screen t)
  '(mac-option-modifier (quote meta)))
-;; color theme config
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (setq color-theme-is-global t)
-     (setq color-theme-is-cumulative t)
-     (setq color-theme-load-all-themes nil)
-     (color-theme-tangotango)))
 
 
 (defun add-to-pythonpath (path)
@@ -104,7 +96,7 @@ variable. Automatically applies expand-file-name to `path`."
 	(:name color-theme-tangotango
 	       :type git
 	       :features color-theme-tangotango
-	       :url "git://github.com/juba/color-theme-tangotango.git")
+	       :url "git@github.com:russell/color-theme-tangotango.git")
 
 	(:name highlight-indentation
 	       :features highlight-indentation
@@ -123,6 +115,17 @@ variable. Automatically applies expand-file-name to `path`."
 
 ; General
 (server-start)
+
+
+;; color theme config
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (setq color-theme-is-global t)
+     (setq color-theme-is-cumulative t)
+     (setq color-theme-load-all-themes nil)
+     (color-theme-tangotango)))
+
 
 (global-set-key (kbd "<f9>") 'recompile)
 
