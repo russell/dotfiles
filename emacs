@@ -111,6 +111,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type git
 	       :url "https://github.com/antonj/Highlight-Indentation-for-Emacs")
 
+	(:name pycheckers
+	       :type hg
+	       :url "https://bitbucket.org/jek/sandbox")
+
 
 ))
 
@@ -266,15 +270,15 @@ variable. Automatically applies expand-file-name to `path`."
 ;; Flymake Python
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
+  (defun flymake-pycheckers-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-               'flymake-create-temp-inplace))
-       (local-file (file-relative-name
-            temp-file
-            (file-name-directory buffer-file-name))))
-      (list "~/bin/pycheckers"  (list local-file))))
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "~/.emacs.d/el-get/pycheckers/pycheckers" (list local-file))))
    (add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py\\'" flymake-pyflakes-init)))
+             '("\\.py\\'" flymake-pycheckers-init)))
 (load-library "flymake-cursor")
 (global-set-key [f10] 'flymake-goto-prev-error)
 (global-set-key [f11] 'flymake-goto-next-error)
@@ -376,4 +380,5 @@ variable. Automatically applies expand-file-name to `path`."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
+ '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
