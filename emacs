@@ -19,21 +19,20 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(el-get-standard-packages (quote ("rainbow-mode" "autopair" "po-mode" "predictive" "highlight-symbol" "highlight-parentheses" "highlight-indentation" "git-emacs" "git-blame" "flymake-point" "flymake-fringe-icons" "folding" "js2-mode" "js-comint" "json" "fic-ext-mode" "eol-conversion" "doxymacs" "dired-plus" "diff-git" "clevercss" "auto-complete-clang" "auctex" "active-menu" "django-mode" "fringe-helper" "csv-mode" "python-mode" "ropemode" "project-root" "color-theme" "apel" "el-get" "cssh" "switch-window" "vkill" "google-maps" "nxhtml" "xcscope" "yasnippet" "tidy" "smex" "rainbow-delimiters" "org-mode" "android-mode" "rst-mode" "magit" "pymacs" "rope" "ropemacs" "ipython" "pylookup" "python-pep8")))
+ '(el-get-standard-packages (quote ("popup-kill-ring" "color-theme-tangotango" "rainbow-mode" "autopair" "po-mode" "predictive" "highlight-symbol" "highlight-parentheses" "highlight-indentation" "git-emacs" "git-blame" "flymake-point" "flymake-fringe-icons" "folding" "js2-mode" "js-comint" "json" "fic-ext-mode" "eol-conversion" "doxymacs" "dired-plus" "diff-git" "clevercss" "auto-complete-clang" "auctex" "active-menu" "django-mode" "fringe-helper" "csv-mode" "python-mode" "ropemode" "project-root" "color-theme" "apel" "el-get" "cssh" "switch-window" "vkill" "google-maps" "nxhtml" "xcscope" "yasnippet" "tidy" "smex" "rainbow-delimiters" "org-mode" "android-mode" "rst-mode" "magit" "pymacs" "rope" "ropemacs" "ipython" "pylookup" "python-pep8")))
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(inhibit-startup-screen t)
  '(mac-option-modifier (quote meta)))
 ;; color theme config
-(require 'color-theme)
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
      (setq color-theme-is-global t)
      (setq color-theme-is-cumulative t)
      (setq color-theme-load-all-themes nil)
-     (color-theme-tango)))
+     (color-theme-tangotango)))
 
 
 (defun add-to-pythonpath (path)
@@ -48,7 +47,7 @@ variable. Automatically applies expand-file-name to `path`."
 (setq el-get-verbose t)
 (setq el-get-sources
 
-      '(rainbow-mode autopair po-mode predictive highlight-symbol highlight-parentheses highlight-indentation git-emacs git-blame flymake-point flymake-fringe-icons folding js2-mode js-comint json fic-ext-mode eol-conversion doxymacs dired-plus diff-git clevercss auto-complete-clang auctex active-menu django-mode fringe-helper csv-mode color-theme apel el-get cssh switch-window vkill google-maps nxhtml xcscope yasnippet tidy smex rainbow-delimiters org-mode android-mode rst-mode pylookup python-pep8
+      '(rainbow-mode autopair po-mode predictive highlight-symbol highlight-parentheses highlight-indentation git-emacs git-blame mo-git-blame virtualenv flymake-point flymake-fringe-icons folding js2-mode js-comint json fic-ext-mode eol-conversion doxymacs dired-plus diff-git clevercss auto-complete-clang auctex active-menu django-mode fringe-helper csv-mode color-theme apel el-get cssh switch-window vkill google-maps nxhtml xcscope yasnippet tidy smex rainbow-delimiters org-mode android-mode rst-mode pylookup python-pep8
 	(:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
@@ -101,6 +100,17 @@ variable. Automatically applies expand-file-name to `path`."
 			    (autoload 'python-mode "python-mode" "Python editing mode." t)))
         (:name ipython
 	       :depends (python-mode))
+
+	(:name color-theme-tangotango
+	       :type git
+	       :features color-theme-tangotango
+	       :url "git://github.com/juba/color-theme-tangotango.git")
+
+	(:name highlight-indentation
+	       :features highlight-indentation
+	       :type git
+	       :url "https://github.com/antonj/Highlight-Indentation-for-Emacs")
+
 
 ))
 
