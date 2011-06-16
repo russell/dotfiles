@@ -159,10 +159,12 @@ variable. Automatically applies expand-file-name to `path`."
 (ido-mode)
 
 ; SMEX
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c M-x") 'smex-update-and-run)
+(eval-after-load "smex"
+  '(progn
+    (smex-initialize)
+    (global-set-key (kbd "M-x") 'smex)
+    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
 
 ; Flymake
 (setq flymake-start-syntax-check-on-find-file nil)
