@@ -51,3 +51,5 @@
 [gui]
 	fontdiff = -family Courier -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	fontui = -family \"DejaVu Sans\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+[push]
+	default = tracking
