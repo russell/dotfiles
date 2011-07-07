@@ -85,6 +85,11 @@ variable. Automatically applies expand-file-name to `path`."
 						  "~/.emacs.d/el-get/ropemode"
 						  "~/.emacs.d/el-get/ropemacs"
 						  "~/.emacs.d/el-get/python-mode"))
+
+			  ;; Stops from erroring if there's a syntax err
+			(setq ropemacs-codeassist-maxfixes 3)
+			(setq ropemacs-guess-project t)
+			(setq ropemacs-enable-autoimport t)
                         (pymacs-load "ropemacs" "rope-")))
 	(:name python-mode
                :type http-tar
@@ -126,6 +131,19 @@ variable. Automatically applies expand-file-name to `path`."
 			    (add-to-list 'auto-mode-alist '("\\.po$" . po-mode+))
 			    (add-to-list 'auto-mode-alist '("\\.pot$" . po-mode+))))
 
+	(:name dirvars
+	       :features dirvars
+	       :type emacswiki)
+
+	(:name popup-kill-ring
+	       :type emacswiki
+               :after (lambda ()
+			(require 'popup)
+			(require 'pos-tip)
+			(require 'popup-kill-ring)
+			(global-set-key "\M-y" 'popup-kill-ring)
+			))
+
 ))
 
 (el-get 'wait)
@@ -157,6 +175,7 @@ variable. Automatically applies expand-file-name to `path`."
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 
+
 ; TRAMP
 (setq password-cache-expiry 1000)
 
@@ -164,19 +183,46 @@ variable. Automatically applies expand-file-name to `path`."
 ;; follow symlinks to version controlled files
 (setq vc-follow-symlinks t)
 
+;; Hilight the current line
+(global-hl-line-mode 1)
+
 ; Speedbar
 
 ; close speedbar when selecting something from it
 ;(add-hook 'speedbar-visiting-tag-hook '(lambda () (speedbar)))
 ;(add-hook 'speedbar-visiting-file-hook '(lambda () (speedbar)))
 
+;; Live completion with auto-complete
+;; (see http://cx4a.org/software/auto-complete/)
+(require 'auto-complete-config nil t)
+;; Do What I Mean mode
+(setq ac-dwim t)
+(ac-config-default)
+
+;; custom keybindings to use tab, enter and up and down arrows
+(define-key ac-complete-mode-map "\t" 'ac-expand)
+(define-key ac-complete-mode-map "\r" 'ac-complete)
+(define-key ac-complete-mode-map "\M-n" 'ac-next)
+(define-key ac-complete-mode-map "\M-p" 'ac-previous)
+
+
+; Skeleton pair
+(setq skeleton-pair t)
+(global-set-key "(" 'skeleton-pair-insert-maybe)
+(global-set-key "[" 'skeleton-pair-insert-maybe)
+(global-set-key "{" 'skeleton-pair-insert-maybe)
+(global-set-key "\"" 'skeleton-pair-insert-maybe)
+
+
 ; IBuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
+
 ; IDO
 (require 'ido)
 (ido-mode)
+(setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
 ; SMEX
 (eval-after-load "smex"
@@ -186,8 +232,10 @@ variable. Automatically applies expand-file-name to `path`."
     (global-set-key (kbd "M-X") 'smex-major-mode-commands)
     (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
 
+
 ; Flymake
 (setq flymake-start-syntax-check-on-find-file nil)
+
 
 ; Project Config
 (setq project-roots
@@ -198,6 +246,7 @@ variable. Automatically applies expand-file-name to `path`."
          :root-contains-files ("setup.py")
          )))
 
+
 ; Python
 
 ;; Autofill inside of comments
@@ -207,6 +256,12 @@ variable. Automatically applies expand-file-name to `path`."
   (set (make-local-variable 'fill-nobreak-predicate)
        (lambda ()
          (not (python-in-string/comment)))))
+
+
+(defun compile-project ()
+  "Compile the project, using the project root as the cwd."
+  (interactive)
+  (with-project-root (compile)))
 
 
 (defun lconfig-python-mode ()
@@ -237,16 +292,6 @@ variable. Automatically applies expand-file-name to `path`."
 
     (define-key py-mode-map [f4] 'speedbar-get-focus)
 
-    (defun prefix-list-elements (list prefix)
-      (let (value)
-	(nreverse
-	 (dolist (element list value)
-	   (setq value (cons (format "%s%s" prefix element) value))))))
-    (defvar ac-source-rope
-      '((candidates
-	 . (lambda ()
-	     (prefix-list-elements (rope-completions) ac-target))))
-      "Source for Rope")
     (defun ac-python-find ()
       "Python `ac-find-function'."
       (require 'thingatpt)
@@ -285,6 +330,29 @@ variable. Automatically applies expand-file-name to `path`."
 
     ))
 (add-hook 'python-mode-hook 'lconfig-python-mode)
+
+
+;; ropemacs Integration with auto-completion
+(defun ac-ropemacs-candidates ()
+  (mapcar (lambda (completion)
+	    (concat ac-prefix completion))
+	  (rope-completions)))
+
+(ac-define-source nropemacs
+  '((candidates . ac-ropemacs-candidates)
+    (symbol . "p")))
+
+(ac-define-source nropemacs-dot
+  '((candidates . ac-ropemacs-candidates)
+    (symbol . "p")
+    (prefix . c-dot)
+    (requires . 0)))
+
+(defun ac-nropemacs-setup ()
+  (setq ac-sources (append '(ac-source-nropemacs
+                             ac-source-nropemacs-dot) ac-sources)))
+
+(add-hook 'rope-open-project-hook 'ac-nropemacs-setup)
 
 
 ;; Flymake Python
