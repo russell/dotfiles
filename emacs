@@ -23,7 +23,8 @@
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(inhibit-startup-screen t)
- '(mac-option-modifier (quote meta)))
+ '(mac-option-modifier (quote meta))
+ '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
 (defun add-to-pythonpath (path)
@@ -141,7 +142,9 @@ variable. Automatically applies expand-file-name to `path`."
      (setq color-theme-load-all-themes nil)
      (color-theme-tangotango)))
 
-
+;; Terminal color config
+(setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
+;;(setq ansi-term-color-vector ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
 (global-set-key (kbd "<f9>") 'recompile)
 
 (setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
