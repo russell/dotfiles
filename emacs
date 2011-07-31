@@ -7,8 +7,9 @@
 ;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
 
-;; disable the toolbar
-(tool-bar-mode nil)
+
+(tool-bar-mode nil) ; disable the toolbar
+(scroll-bar-mode -1) ; no scroll bars
 
 ; set font
 (set-default-font "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
@@ -168,6 +169,22 @@ variable. Automatically applies expand-file-name to `path`."
 ;; Hilight the current line
 (global-hl-line-mode 1)
 
+
+;; Navigate windows with M-<arrows>
+(windmove-default-keybindings 'meta)
+(setq windmove-wrap-around t)
+
+
+; winner-mode provides C-<left> to get back to previous window layout
+(winner-mode 1)
+
+
+;; whenever an external process changes a file underneath emacs, and there
+;; was no unsaved changes in the corresponding buffer, just revert its
+;; content to reflect what's on-disk.
+(global-auto-revert-mode 1)
+
+
 ; Speedbar
 
 ; close speedbar when selecting something from it
@@ -204,7 +221,10 @@ variable. Automatically applies expand-file-name to `path`."
 ; IDO
 (require 'ido)
 (ido-mode)
+(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
+(setq ido-use-filename-at-point 'guess)
+
 
 ; SMEX
 (eval-after-load "smex"
@@ -214,6 +234,17 @@ variable. Automatically applies expand-file-name to `path`."
     (global-set-key (kbd "M-X") 'smex-major-mode-commands)
     (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
 
+
+;; C-x C-j opens dired with the cursor right on the file you're editing
+(require 'dired-x)
+
+
+;; full screen
+(defun fullscreen ()
+  (interactive)
+  (set-frame-parameter nil 'fullscreen
+(if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+(global-set-key [f11] 'fullscreen)
 
 ; Flymake
 (setq flymake-start-syntax-check-on-find-file nil)
