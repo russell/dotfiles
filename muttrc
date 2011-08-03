@@ -30,6 +30,8 @@ set sort_browser = reverse-date # showing mbox list default to newest first
 set sort_aux = last-date-received # showing threads with youngest message last
 
 # Viewing
+set markers=no                  # Fix multiline url wrapping to not break in gnome terminal
+set smart_wrap                  # dont wrap mid word
 alternative_order text/plain text/html
 auto_view text/html
 source ~/.mutt/colors.muttrc
