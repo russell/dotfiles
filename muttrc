@@ -25,16 +25,12 @@ set move = no  #Stop asking to "move read messages to mbox"!
 
 # tagged
 score "~T" 10
-
 ## Add a point to Flagged messages
 score "~F" 3
-
 ## Add a point to old (unread) messages
 score "~O" 4
-
 ## Add a point to messages addressed to you
 score "~p" 1
-
 ## Add a point to messages from you
 score "~P" 1
 
@@ -44,8 +40,7 @@ set index_format="%2N %Z %{%b %d} %-15.15F %s"
 set sort = threads # like gmail
 set sort_re # thread based on reply_regexp
 set sort_browser = reverse-date # showing mbox list default to newest first
-#set sort_aux = last-date-received # showing threads with youngest message last
-set sort_aux = score
+set sort_aux = last-date-received # showing threads with youngest message last
 
 
 # Viewing
