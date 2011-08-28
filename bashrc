@@ -25,6 +25,11 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# detect darwin
+if [ $(uname) == "Darwin" ]; then
+  DARWIN=1;
+fi
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -86,6 +91,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+if [ $DARWIN -eq 1 ]; then
+    alias ls='ls -G'
+fi
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
