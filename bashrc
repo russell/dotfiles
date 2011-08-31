@@ -126,9 +126,45 @@ g () {
    grep -G -w --color=always --include="*.py" --include="*.xhtml" --include="*.tac" --include="*.po" -R "$@" ~/code/df
 }
 
-export PYTHONDONTWRITEBYTECODE=true
 
-alias emacsc='emacsclient -n'
+# EMACS launcher
+e () {
+    if [ $DARWIN -eq 1 ]; then
+	EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs
+    else
+	EMACS=emacs
+    fi
+    EMACSCLIENT=emacsclient
+
+    tempuid=`id -u`
+    EMACSSERVER=$TMPDIR/emacs$tempuid/server
+
+    if [ -f $HOME/.emacsconfig ]; then
+	. $HOME/.emacsconfig
+    fi
+
+    if [ -z "$DISPLAY" ]; then
+	exec $EMACS "$@"
+    else
+	if [ $DARWIN -eq 1 ]; then
+	    if [ -e "$EMACSSERVER" ]; then
+		exec $EMACSCLIENT -n "$@"
+	    else
+		exec $EMACS --eval "(server-start)" "$@" &
+	    fi
+	else
+	    exec $EMACS --eval "(server-start)" --nw  &
+	    while [ ! -e "$EMACSSERVER" ]; do
+		sleep 1
+	    done
+	    if [ -e "$EMACSSERVER" ]; then
+		exec $EMACSCLIENT -n "$@"
+	    fi
+	fi
+    fi
+}
+
+export PYTHONDONTWRITEBYTECODE=true
 
 
 # set PATH so it includes user's private bin if it exists
