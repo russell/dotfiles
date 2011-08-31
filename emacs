@@ -47,7 +47,7 @@ variable. Automatically applies expand-file-name to `path`."
 (setq el-get-verbose t)
 (setq el-get-sources
 
-      '(rainbow-mode autopair predictive highlight-symbol highlight-parentheses git-emacs git-blame mo-git-blame virtualenv flymake-point flymake-fringe-icons folding js2-mode js-comint json fic-ext-mode eol-conversion doxymacs dired-plus diff-git clevercss auto-complete auto-complete-clang auctex active-menu django-mode fringe-helper csv-mode color-theme apel el-get cssh switch-window vkill google-maps nxhtml xcscope yasnippet tidy smex rainbow-delimiters org-mode android-mode rst-mode pylookup python-pep8
+      '(rainbow-mode autopair predictive highlight-symbol highlight-parentheses git-emacs git-blame mo-git-blame virtualenv flymake-point flymake-fringe-icons folding js2-mode js-comint json fic-ext-mode eol-conversion doxymacs dired-plus diff-git clevercss auto-complete auto-complete-clang auctex active-menu fringe-helper csv-mode apel el-get cssh switch-window vkill google-maps nxhtml xcscope yasnippet tidy smex rainbow-delimiters org-mode android-mode rst-mode pylookup python-pep8
 	(:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
@@ -55,6 +55,11 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type hg
 	       :url "http://hg.piranha.org.ua/project-root/"
 	       :features project-root)
+
+        (:name django-html
+	       :features (django-mode django-html-mode)
+               :type git
+               :url "https://github.com/myfreeweb/django-mode.git")
 
         (:name pymacs
                :type git
@@ -94,11 +99,10 @@ variable. Automatically applies expand-file-name to `path`."
 			(setq ropemacs-enable-autoimport t)
                         (pymacs-load "ropemacs" "rope-")))
 	(:name python-mode
-               :type http-tar
-               :options ("zxf")
-               :url "http://launchpad.net/python-mode/trunk/5.2.0/+download/python-mode-5.2.0.tgz"
-	       :features (python-mode doctest-mode)
-	       :depends (pymacs)
+	       :type emacsmirror
+	       :features (python-mode)
+	       :depends pymacs
+	       :compile nil
 	       :post-init (lambda ()
 			    (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 			    (add-to-list 'interpreter-mode-alist '("python" . python-mode))
@@ -106,10 +110,26 @@ variable. Automatically applies expand-file-name to `path`."
         (:name ipython
 	       :depends (python-mode))
 
+	(:name color-theme
+	       :type bzr
+	       :options nil
+	       :url "bzr://bzr.savannah.nongnu.org/color-theme/trunk"
+               :load "color-theme.el"
+               :features "color-theme"
+	       :post-init (lambda ()
+			    (color-theme-initialize)
+			    (setq color-theme-is-global t)
+			    (setq color-theme-is-cumulative t)
+			    (setq color-theme-load-all-themes nil)))
+
+
 	(:name color-theme-tangotango
 	       :type git
+	       :depends (color-theme)
 	       :features color-theme-tangotango
-	       :url "git@github.com:russell/color-theme-tangotango.git")
+	       :url "git@github.com:russell/color-theme-tangotango.git"
+	       :post-init (lambda ()
+			    (color-theme-tangotango)))
 
 	(:name highlight-indentation
 	       :features highlight-indentation
@@ -153,16 +173,6 @@ variable. Automatically applies expand-file-name to `path`."
 
 ; General
 (server-start)
-
-
-;; color theme config
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (setq color-theme-is-global t)
-     (setq color-theme-is-cumulative t)
-     (setq color-theme-load-all-themes nil)
-     (color-theme-tangotango)))
 
 ;; Terminal color config
 (setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
