@@ -7,8 +7,10 @@
 ;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
 
+; Hide the pymacs buffer
+(setq process-connection-type t)
 
-(tool-bar-mode nil) ; disable the toolbar
+(tool-bar-mode 0) ; disable the toolbar set to 0 for OSX
 (scroll-bar-mode -1) ; no scroll bars
 
 ; set font
@@ -98,6 +100,7 @@ variable. Automatically applies expand-file-name to `path`."
 			(setq ropemacs-guess-project t)
 			(setq ropemacs-enable-autoimport t)
                         (pymacs-load "ropemacs" "rope-")))
+
 	(:name python-mode
 	       :type emacsmirror
 	       :features (python-mode)
