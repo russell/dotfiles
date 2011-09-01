@@ -1,3 +1,4 @@
 vim/cache
 emacs.d/ac-comphist.dat
+emacs.d/el-get/
 *.pyc
