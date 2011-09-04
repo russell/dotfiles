@@ -1,7 +1,4 @@
 # -*- mode: sh -*-
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -164,8 +161,22 @@ e () {
     fi
 }
 
-export PYTHONDONTWRITEBYTECODE=true
+# Mutt launcher
+m () {
+    offlineimap -1 -u quiet > /dev/null &
+    OPID=$!
+    mutt
+    kill $OPID
+    ps $OPID > /dev/null
+    while [ $? -eq 0 ]; do
+	kill $OPID
+	sleep 3;
+	ps $OPID > /dev/null
+    done
+    offlineimap -o -u basic
+}
 
+export PYTHONDONTWRITEBYTECODE=true
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
