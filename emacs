@@ -7,9 +7,6 @@
 ;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
 
-; Hide the pymacs buffer
-(setq process-connection-type t)
-
 (tool-bar-mode 0) ; disable the toolbar set to 0 for OSX
 (scroll-bar-mode -1) ; no scroll bars
 
