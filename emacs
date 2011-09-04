@@ -495,6 +495,11 @@ variable. Automatically applies expand-file-name to `path`."
 ;(add-hook 'xml-mode-hook (lambda () (flymake-mode 1)))
 ;(add-hook 'html-mode-hook (lambda () (flymake-mode 1)))
 
+; Flymake latex
+
+(defun flymake-get-tex-args (file-name)
+    (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
+
 ; Scrolling
 
 (require 'smooth-scrolling)
