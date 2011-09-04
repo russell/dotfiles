@@ -179,15 +179,13 @@ variable. Automatically applies expand-file-name to `path`."
 
 (el-get 'wait)
 
-
-; General
-(server-start)
-
 ;; Terminal color config
 (setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
 ;;(setq ansi-term-color-vector ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
 (global-set-key (kbd "<f9>") 'recompile)
 
+(setq ispell-program-name "aspell")
+(setq ispell-list-command "list")
 (setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
 
 ;; When turning on flyspell-mode, automatically check the entire buffer.
