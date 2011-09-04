@@ -27,18 +27,19 @@
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
+;(unless (require 'el-get nil t)
+;  (url-retrieve
+;   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+;   (lambda (s)
+;     (end-of-buffer)
+;     (eval-print-last-sexp))))
+
+
 (defun add-to-pythonpath (path)
   "Adds a directory to the PYTHONPATH environment
 variable. Automatically applies expand-file-name to `path`."
   (setenv "PYTHONPATH"
     (concat (expand-file-name path) ":" (getenv "PYTHONPATH"))))
-
-;; '(el-get-standard-packages (quote ("theme-roller" "color-theme" "apel" "el-get" "cssh" "switch-window" "vkill" "google-maps" "nxhtml" "xcscope" "yasnippet" "tidy" "smex" "rainbow-delimiters" "org-mode" "android-mode" "rst-mode" "magit" "project-root"
-;;"ac-dabbrev" "ack" "active-menu" "ahg" "ant" "asciidoc" "auctex" "auto-complete-clang" "babel" "bbcode-mode" "circe" "clevercss" "color-theme-tango-2" "csv-mode" "darcsum" "diff-git" "dig" "dired-plus" "dired-sync" "django-mode" "doxymacs" "dtrt-indent" "durendal" "dvc" "elein" "elunit" "eol-conversion" "erc-track-score" "ergoemacs-keybindings" "erlware-mode" "escreen" "ess"
-
-;;"ethan-wspace"
-
-;;"fic-ext-mode" "filladapt" "fit-frame" "flex-mode" "flim" "flyguess" "flymake-fringe-icons" "flymake-point" "folding" "frame-fns" "frame-cmds" "fringe-helper" "fsharp-mode" "full-ack" "fuzzy-format" "g-client" "geiser" "git-blame" "git-emacs" "gnuplot-mode" "gnus-identities" "go-mode" "google-weather" "goto-last-change" "gravatar" "grep+" "haml-mode" "highlight-indentation" "highlight-parentheses" "highlight-symbol" "hl-sexp" "hs-lint" "html-script-src" "icomplete+" "ido-hacks" "iedit" "imaxima" "initsplit" "io-mode" "ioccur" "java-mode-indent-annotations" "keats" "keywiz" "kpm-list" "levenshtein" "list-processes+" "lively" "loc-changes" "magithub" "mailcrypt" "mailq" "markdown-mode" "matlab-mode" "maxframe" "mediawiki" "mingus" "minimap" "mmm-mode" "mo-git-blame" "mode-compile" "moz-repl" "multi-term" "mwe-log-commands" "n3-mode" "nagios-mode" "naquadah-theme" "nav" "notify" "nsis-mode" "nterm" "oauth" "offlineimap" "openwith" "org-buffers" "org-fstree" "org-website" "osc" "package" "package24" "paredit" "pastebin" "pg" "pgsql-linum-format" "php-mode-improved" "php-mode" "pkgbuild-mode" "planner" "po-mode" "point-stack" "pointback" "popup-kill-ring" "pos-tip" "pov-mode" "predictive" "processing-mode" "project-local-variables" "prolog-el" "psvn" "puppet-mode" "quack" "rainbow-mode" "rcirc-groups" "rdebug" "rect-mark" "reftex" "regex-tool" "remember" "revive" "rhtml-mode" "ri-emacs" "rinari" "rspec-mode" "rt-liberation" "rudel" "sass-mode" "scratch" "scss-mode" "semi" "session" "shell-current-directory" "sicp" "smart-tab" "smartchr" "smarttabs" "smarty-mode" "sml-mode" "sml-modeline" "smooth-scroll" "smooth-scrolling" "ssh-config" "string-template" "sudo-save" "swank-clojure" "tablature-mode" "tail" "textile-mode" "tuareg-mode" "txt2tags-mode" "undo-tree" "vc-darcs" "verbiste" "virtualenv" "weblogger-el" "whole-line-or-region" "wikipedia-mode" "workgroups" "wrap-region" "wwtime" "xclip" "xcscope+" "xml-parse" "xml-rpc-el" "yaml-mode")))
 
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -46,7 +47,15 @@ variable. Automatically applies expand-file-name to `path`."
 (setq el-get-verbose t)
 (setq el-get-sources
 
-      '(rainbow-mode autopair predictive highlight-symbol highlight-parentheses git-emacs git-blame mo-git-blame virtualenv flymake-point flymake-fringe-icons folding js2-mode js-comint json fic-ext-mode eol-conversion doxymacs dired-plus diff-git clevercss auto-complete auto-complete-clang auctex active-menu fringe-helper csv-mode apel el-get cssh switch-window vkill google-maps nxhtml xcscope yasnippet tidy smex rainbow-delimiters org-mode android-mode rst-mode pylookup python-pep8
+      '(rainbow-mode autopair predictive highlight-symbol
+      highlight-parentheses git-emacs git-blame mo-git-blame
+      virtualenv flymake-point flymake-fringe-icons folding
+      js2-mode js-comint json fic-ext-mode eol-conversion
+      doxymacs dired-plus diff-git clevercss auto-complete
+      auto-complete-clang auctex active-menu fringe-helper
+      csv-mode apel el-get cssh switch-window vkill google-maps
+      nxhtml xcscope yasnippet tidy smex rainbow-delimiters
+      org-mode android-mode rst-mode pylookup python-pep8
 	(:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
