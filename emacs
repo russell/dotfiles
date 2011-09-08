@@ -222,6 +222,10 @@ variable. Automatically applies expand-file-name to `path`."
 ;; content to reflect what's on-disk.
 (global-auto-revert-mode 1)
 
+; Remember position in buffers
+(setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
+(setq-default save-place t)                   ;; activate it for all buffers
+(require 'saveplace)                          ;; get the package
 
 ; Speedbar
 
