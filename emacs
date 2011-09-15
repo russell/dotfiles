@@ -93,6 +93,7 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://bitbucket.org/agr/ropemacs/get/tip.tar.gz"
 	       :depends (pymacs rope ropemode)
                :after (lambda ()
+			(add-hook 'python-mode-hook '(lambda ()
                         (add-to-pythonpath (concat el-get-dir "ropemacs/ropemacs"))
                         (setq ropemacs-local-prefix "C-c C-p")
                         (require 'pymacs)
@@ -101,11 +102,18 @@ variable. Automatically applies expand-file-name to `path`."
 						  "~/.emacs.d/el-get/ropemacs"
 						  "~/.emacs.d/el-get/python-mode"))
 
-			  ;; Stops from erroring if there's a syntax err
+			;; Stops from erroring if there's a syntax err
 			(setq ropemacs-codeassist-maxfixes 3)
 			(setq ropemacs-guess-project t)
 			(setq ropemacs-enable-autoimport t)
-                        (pymacs-load "ropemacs" "rope-")))
+                        (pymacs-load "ropemacs" "rope-")
+
+			;; Rope
+			(ropemacs-mode)
+			(setq ropemacs-enable-autoimport t)
+			(with-project-root (rope-open-project (cdr project-details)))
+			(setq ac-sources '(ac-source-rope ac-source-yasnippet))
+			))))
 
 	(:name python-mode
 	       :type emacsmirror
@@ -115,7 +123,9 @@ variable. Automatically applies expand-file-name to `path`."
 	       :post-init (lambda ()
 			    (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 			    (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-			    (autoload 'python-mode "python-mode" "Python editing mode." t)))
+			    (autoload 'python-mode "python-mode" "Python editing mode." t)
+			    (define-key py-mode-map [f4] 'speedbar-get-focus)
+			    ))
         (:name ipython
 	       :depends (python-mode))
 
@@ -330,22 +340,12 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Always end a file with a newline
     (setq require-final-newline nil)
 
-    (eval-after-load 'python
-      '(progn
-	 ;; Rope
-	 (ropemacs-mode)
-	 (setq ropemacs-enable-autoimport t)
-	 ))
-
-    (with-project-root (rope-open-project (cdr project-details)))
 
     ;; Autocomplete
     (auto-complete-mode)
 
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
-
-    (define-key py-mode-map [f4] 'speedbar-get-focus)
 
     (defun ac-python-find ()
       "Python `ac-find-function'."
