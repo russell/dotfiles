@@ -108,11 +108,12 @@ variable. Automatically applies expand-file-name to `path`."
 			(setq ropemacs-enable-autoimport t)
                         (pymacs-load "ropemacs" "rope-")
 
-			;; Rope
-			(ropemacs-mode)
-			(setq ropemacs-enable-autoimport t)
-			(with-project-root (rope-open-project (cdr project-details)))
-			(setq ac-sources '(ac-source-rope ac-source-yasnippet))
+			;; Rope Mode - Only enable when editing local files
+			(when (not (subsetp (list (current-buffer)) (tramp-list-remote-buffers)))
+			  (ropemacs-mode)
+			  (setq ropemacs-enable-autoimport t)
+			  (with-project-root (rope-open-project (cdr project-details)))
+			  (setq ac-sources '(ac-source-rope ac-source-yasnippet)))
 			))))
 
 	(:name python-mode
