@@ -310,6 +310,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type git
 	       :url "https://github.com/antonj/Highlight-Indentation-for-Emacs")
 
+	(:name flymake-python
+	       :type git
+	       :url "git://github.com/rpatterson/flymake-python.git")
+
 	(:name pycheckers
 	       :type hg
 	       :url "https://bitbucket.org/jek/sandbox")
@@ -457,9 +461,11 @@ variable. Automatically applies expand-file-name to `path`."
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "~/.emacs.d/el-get/pycheckers/pycheckers" (list local-file))))
+      (list "~/.emacs.d/el-get/flymake-python/pyflymake.py" (list local-file))))
+
    (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pycheckers-init)))
+
 (load-library "flymake-cursor")
 (global-set-key [f10] 'flymake-goto-prev-error)
 (global-set-key [f11] 'flymake-goto-next-error)
