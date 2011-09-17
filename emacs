@@ -64,8 +64,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "http://hg.piranha.org.ua/project-root/"
 	       :features project-root)
 
-        (:name django-html
-	       :features (django-mode django-html-mode)
+        (:name django-mode
                :type git
                :url "https://github.com/myfreeweb/django-mode.git")
 
