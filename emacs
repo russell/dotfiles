@@ -97,14 +97,6 @@ variable. Automatically applies expand-file-name to `path`."
 (require 'saveplace)                          ;; get the package
 
 
-; Skeleton pair
-(setq skeleton-pair t)
-(global-set-key "(" 'skeleton-pair-insert-maybe)
-(global-set-key "[" 'skeleton-pair-insert-maybe)
-(global-set-key "{" 'skeleton-pair-insert-maybe)
-(global-set-key "\"" 'skeleton-pair-insert-maybe)
-
-
 ; IBuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
@@ -189,7 +181,7 @@ variable. Automatically applies expand-file-name to `path`."
 (setq el-get-verbose t)
 (setq el-get-sources
 
-      '(rainbow-mode autopair predictive highlight-symbol
+      '(rainbow-mode predictive highlight-symbol
       highlight-parentheses git-emacs git-blame mo-git-blame
       virtualenv flymake-point flymake-fringe-icons folding
       js2-mode js-comint json fic-ext-mode eol-conversion
@@ -231,6 +223,16 @@ variable. Automatically applies expand-file-name to `path`."
 			    ;; Do What I Mean mode
 			    (setq ac-dwim t)
 			    ))
+
+	(:name autopair
+	       :website "http://code.google.com/p/autopair/"
+	       :description "Autopair is an extension to the Emacs text editor that automatically pairs braces and quotes."
+	       :type http
+	       :url "http://autopair.googlecode.com/svn/trunk/autopair.el"
+	       :features autopair
+	       :after (lambda ()
+			(require 'autopair)
+			(autopair-global-mode)))
 
 	(:name cedet
 	       :website "http://cedet.sourceforge.net/"
