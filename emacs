@@ -37,6 +37,10 @@ variable. Automatically applies expand-file-name to `path`."
     (concat (expand-file-name path) ":" (getenv "PYTHONPATH"))))
 
 
+; title format
+(setq frame-title-format "%b - emacs")
+
+
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
 (setq el-get-verbose t)
