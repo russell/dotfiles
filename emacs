@@ -179,7 +179,7 @@ variable. Automatically applies expand-file-name to `path`."
       doxymacs dired-plus diff-git clevercss auto-complete
       auto-complete-clang auctex active-menu fringe-helper
       csv-mode apel el-get cssh switch-window vkill google-maps
-      nxhtml xcscope yasnippet tidy smex rainbow-delimiters
+      nxhtml xcscope yasnippet tidy rainbow-delimiters
       org-mode android-mode rst-mode pylookup python-pep8
 
 	(:name magit
