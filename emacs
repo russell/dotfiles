@@ -80,6 +80,12 @@ variable. Automatically applies expand-file-name to `path`."
 			    (define-key ac-complete-mode-map "\r" 'ac-complete)
 			    (define-key ac-complete-mode-map "\M-n" 'ac-next)
 			    (define-key ac-complete-mode-map "\M-p" 'ac-previous)
+
+			    ;; Live completion with auto-complete
+			    ;; (see http://cx4a.org/software/auto-complete/)
+			    (require 'auto-complete-config nil t)
+			    ;; Do What I Mean mode
+			    (setq ac-dwim t)
 			    ))
 
         (:name django-mode
@@ -261,13 +267,6 @@ variable. Automatically applies expand-file-name to `path`."
 ; close speedbar when selecting something from it
 ;(add-hook 'speedbar-visiting-tag-hook '(lambda () (speedbar)))
 ;(add-hook 'speedbar-visiting-file-hook '(lambda () (speedbar)))
-
-;; Live completion with auto-complete
-;; (see http://cx4a.org/software/auto-complete/)
-(require 'auto-complete-config nil t)
-;; Do What I Mean mode
-(setq ac-dwim t)
-
 
 ; Skeleton pair
 (setq skeleton-pair t)
