@@ -105,11 +105,12 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://bitbucket.org/agr/ropemode/get/tip.tar.gz"
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "ropemode/ropemode"))))
+
         (:name ropemacs
                :type http-tar
                :options ("zxf")
                :url "http://bitbucket.org/agr/ropemacs/get/tip.tar.gz"
-	       :depends (pymacs rope ropemode)
+	       :depends (pymacs rope ropemode auto-complete)
                :after (lambda ()
 			(add-hook 'python-mode-hook '(lambda ()
                         (add-to-pythonpath (concat el-get-dir "ropemacs/ropemacs"))
@@ -407,23 +408,23 @@ variable. Automatically applies expand-file-name to `path`."
 (add-hook 'python-mode-hook 'lconfig-python-mode)
 
 
-;; ropemacs Integration with auto-completion
-(defun ac-ropemacs-candidates ()
-  (mapcar (lambda (completion)
-	    (concat ac-prefix completion))
-	  (rope-completions)))
-
-(ac-define-source nropemacs
-  '((candidates . ac-ropemacs-candidates)
-    (symbol . "p")))
-
-(ac-define-source nropemacs-dot
-  '((candidates . ac-ropemacs-candidates)
-    (symbol . "p")
-    (prefix . c-dot)
-    (requires . 0)))
-
+; ropemacs Integration with auto-completion
 (defun ac-nropemacs-setup ()
+
+  (defun ac-ropemacs-candidates ()
+    (mapcar (lambda (completion)
+	      (concat ac-prefix completion))
+	    (rope-completions)))
+
+  (ac-define-source nropemacs
+    '((candidates . ac-ropemacs-candidates)
+      (symbol . "p")))
+
+  (ac-define-source nropemacs-dot
+    '((candidates . ac-ropemacs-candidates)
+      (symbol . "p")
+      (prefix . c-dot)
+      (requires . 0)))
   (setq ac-sources (append '(ac-source-nropemacs
                              ac-source-nropemacs-dot) ac-sources)))
 
