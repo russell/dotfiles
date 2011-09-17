@@ -241,23 +241,20 @@ variable. Automatically applies expand-file-name to `path`."
                         (add-to-pythonpath (concat el-get-dir "pymacs"))))
 
         (:name rope
-               :type http-tar
-               :options ("zxf")
-               :url "http://bitbucket.org/agr/rope/get/tip.tar.gz"
+               :type hg
+               :url "http://bitbucket.org/agr/rope/"
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "rope/rope"))))
 
         (:name ropemode
-               :type http-tar
-               :options ("zxf")
-               :url "http://bitbucket.org/agr/ropemode/get/tip.tar.gz"
+               :type hg
+               :url "http://bitbucket.org/agr/ropemode/"
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "ropemode/ropemode"))))
 
         (:name ropemacs
-               :type http-tar
-               :options ("zxf")
-               :url "http://bitbucket.org/agr/ropemacs/get/tip.tar.gz"
+               :type hg
+               :url "http://bitbucket.org/agr/ropemacs/"
 	       :depends (pymacs rope ropemode auto-complete)
                :after (lambda ()
 			(add-hook 'python-mode-hook '(lambda ()
