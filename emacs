@@ -335,6 +335,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features dirvars
 	       :type emacswiki)
 
+	(:name sr-speedbar
+	       :features sr-speedbar
+	       :type emacswiki)
+
 	(:name popup-kill-ring
 	       :type emacswiki
                :after (lambda ()
