@@ -41,6 +41,123 @@ variable. Automatically applies expand-file-name to `path`."
 (setq frame-title-format "%b - emacs")
 
 
+;; Terminal color config
+(setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
+;;(setq ansi-term-color-vector ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
+
+; recompile hot key
+(global-set-key (kbd "<f9>") 'recompile)
+
+
+(setq ispell-program-name "aspell")
+(setq ispell-list-command "list")
+(setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
+
+
+;; When turning on flyspell-mode, automatically check the entire buffer.
+(defadvice flyspell-mode (after advice-flyspell-check-buffer-on-start activate)
+  (flyspell-buffer))
+
+
+;; Dynamic Abbreviations C-<tab>
+(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
+
+
+; TRAMP
+(setq password-cache-expiry 1000)
+
+
+;; follow symlinks to version controlled files
+(setq vc-follow-symlinks t)
+
+
+;; Hilight the current line
+(global-hl-line-mode 1)
+
+
+;; Navigate windows with M-<arrows>
+(windmove-default-keybindings 'meta)
+(setq windmove-wrap-around t)
+
+
+; winner-mode provides C-<left> to get back to previous window layout
+(winner-mode 1)
+
+
+;; whenever an external process changes a file underneath emacs, and there
+;; was no unsaved changes in the corresponding buffer, just revert its
+;; content to reflect what's on-disk.
+(global-auto-revert-mode 1)
+
+
+; Remember position in buffers
+(setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
+(setq-default save-place t)                   ;; activate it for all buffers
+(require 'saveplace)                          ;; get the package
+
+
+; Skeleton pair
+(setq skeleton-pair t)
+(global-set-key "(" 'skeleton-pair-insert-maybe)
+(global-set-key "[" 'skeleton-pair-insert-maybe)
+(global-set-key "{" 'skeleton-pair-insert-maybe)
+(global-set-key "\"" 'skeleton-pair-insert-maybe)
+
+
+; IBuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
+
+; IDO
+(require 'ido)
+(ido-mode)
+(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
+(setq ido-enable-flex-matching t) ;; enable fuzzy matching
+(setq ido-use-filename-at-point 'guess)
+
+
+; SMEX
+(eval-after-load "smex"
+  '(progn
+    (smex-initialize)
+    (global-set-key (kbd "M-x") 'smex)
+    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
+
+
+; store temporary files in home directory
+(defvar user-temporary-file-directory
+  (concat temporary-file-directory user-login-name "/"))
+(make-directory user-temporary-file-directory t)
+(setq backup-by-copying t)
+(setq backup-directory-alist
+      `(("." . ,user-temporary-file-directory)
+        (,tramp-file-name-regexp nil)))
+(setq auto-save-list-file-prefix
+      (concat user-temporary-file-directory ".auto-saves-"))
+(setq auto-save-file-name-transforms
+      `((".*" ,user-temporary-file-directory t)))
+
+
+;; C-x C-j opens dired with the cursor right on the file you're editing
+(require 'dired-x)
+
+
+;; full screen
+(defun fullscreen ()
+  (interactive)
+  (set-frame-parameter nil 'fullscreen
+(if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+(global-set-key [f11] 'fullscreen)
+
+
+; Flymake
+(setq flymake-start-syntax-check-on-find-file nil)
+
+
+; el-get configuration
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
 (setq el-get-verbose t)
@@ -213,117 +330,6 @@ variable. Automatically applies expand-file-name to `path`."
 ))
 
 (el-get 'wait)
-
-;; Terminal color config
-(setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
-;;(setq ansi-term-color-vector ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
-(global-set-key (kbd "<f9>") 'recompile)
-
-(setq ispell-program-name "aspell")
-(setq ispell-list-command "list")
-(setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
-
-;; When turning on flyspell-mode, automatically check the entire buffer.
-(defadvice flyspell-mode (after advice-flyspell-check-buffer-on-start activate)
-  (flyspell-buffer))
-
-;; Dynamic Abbreviations C-<tab>
-(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
-
-
-; TRAMP
-(setq password-cache-expiry 1000)
-
-
-;; follow symlinks to version controlled files
-(setq vc-follow-symlinks t)
-
-;; Hilight the current line
-(global-hl-line-mode 1)
-
-
-;; Navigate windows with M-<arrows>
-(windmove-default-keybindings 'meta)
-(setq windmove-wrap-around t)
-
-
-; winner-mode provides C-<left> to get back to previous window layout
-(winner-mode 1)
-
-
-;; whenever an external process changes a file underneath emacs, and there
-;; was no unsaved changes in the corresponding buffer, just revert its
-;; content to reflect what's on-disk.
-(global-auto-revert-mode 1)
-
-; Remember position in buffers
-(setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
-(setq-default save-place t)                   ;; activate it for all buffers
-(require 'saveplace)                          ;; get the package
-
-; Speedbar
-
-; close speedbar when selecting something from it
-;(add-hook 'speedbar-visiting-tag-hook '(lambda () (speedbar)))
-;(add-hook 'speedbar-visiting-file-hook '(lambda () (speedbar)))
-
-; Skeleton pair
-(setq skeleton-pair t)
-(global-set-key "(" 'skeleton-pair-insert-maybe)
-(global-set-key "[" 'skeleton-pair-insert-maybe)
-(global-set-key "{" 'skeleton-pair-insert-maybe)
-(global-set-key "\"" 'skeleton-pair-insert-maybe)
-
-
-; IBuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(autoload 'ibuffer "ibuffer" "List buffers." t)
-
-
-; IDO
-(require 'ido)
-(ido-mode)
-(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
-(setq ido-enable-flex-matching t) ;; enable fuzzy matching
-(setq ido-use-filename-at-point 'guess)
-
-
-; SMEX
-(eval-after-load "smex"
-  '(progn
-    (smex-initialize)
-    (global-set-key (kbd "M-x") 'smex)
-    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
-
-; store temporary files in home directory
-(defvar user-temporary-file-directory
-  (concat temporary-file-directory user-login-name "/"))
-(make-directory user-temporary-file-directory t)
-(setq backup-by-copying t)
-(setq backup-directory-alist
-      `(("." . ,user-temporary-file-directory)
-        (,tramp-file-name-regexp nil)))
-(setq auto-save-list-file-prefix
-      (concat user-temporary-file-directory ".auto-saves-"))
-(setq auto-save-file-name-transforms
-      `((".*" ,user-temporary-file-directory t)))
-
-;; C-x C-j opens dired with the cursor right on the file you're editing
-(require 'dired-x)
-
-
-;; full screen
-(defun fullscreen ()
-  (interactive)
-  (set-frame-parameter nil 'fullscreen
-(if (frame-parameter nil 'fullscreen) nil 'fullboth)))
-(global-set-key [f11] 'fullscreen)
-
-; Flymake
-(setq flymake-start-syntax-check-on-find-file nil)
-
 
 ; Project Config
 (setq project-roots
