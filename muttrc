@@ -67,4 +67,4 @@ macro index I   "<change-folder>!<enter>"   "go to Inbox"
 macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
 # quick-sync ~/Mail immediately with offlineimap
-macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+macro index Z   "<shell-escape>offlineimap -q -o<enter>" "sync IMAP"

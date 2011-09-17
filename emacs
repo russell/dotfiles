@@ -1,14 +1,6 @@
 ;; -*- Mode: Emacs-Lisp -*-
 
-;(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-;    (let* ((my-lisp-dir "~/.emacs.d/")
-;	   (default-directory my-lisp-dir))
-;      (setq load-path (cons my-lisp-dir load-path))
-;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
-
-; Hide the pymacs buffer
-(setq process-connection-type t)
 
 (tool-bar-mode 0) ; disable the toolbar set to 0 for OSX
 (scroll-bar-mode -1) ; no scroll bars
@@ -30,26 +22,166 @@
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
+;(unless (require 'el-get nil t)
+;  (url-retrieve
+;   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+;   (lambda (s)
+;     (end-of-buffer)
+;     (eval-print-last-sexp))))
+
+
 (defun add-to-pythonpath (path)
   "Adds a directory to the PYTHONPATH environment
 variable. Automatically applies expand-file-name to `path`."
   (setenv "PYTHONPATH"
     (concat (expand-file-name path) ":" (getenv "PYTHONPATH"))))
 
-;; '(el-get-standard-packages (quote ("theme-roller" "color-theme" "apel" "el-get" "cssh" "switch-window" "vkill" "google-maps" "nxhtml" "xcscope" "yasnippet" "tidy" "smex" "rainbow-delimiters" "org-mode" "android-mode" "rst-mode" "magit" "project-root"
-;;"ac-dabbrev" "ack" "active-menu" "ahg" "ant" "asciidoc" "auctex" "auto-complete-clang" "babel" "bbcode-mode" "circe" "clevercss" "color-theme-tango-2" "csv-mode" "darcsum" "diff-git" "dig" "dired-plus" "dired-sync" "django-mode" "doxymacs" "dtrt-indent" "durendal" "dvc" "elein" "elunit" "eol-conversion" "erc-track-score" "ergoemacs-keybindings" "erlware-mode" "escreen" "ess"
 
-;;"ethan-wspace"
-
-;;"fic-ext-mode" "filladapt" "fit-frame" "flex-mode" "flim" "flyguess" "flymake-fringe-icons" "flymake-point" "folding" "frame-fns" "frame-cmds" "fringe-helper" "fsharp-mode" "full-ack" "fuzzy-format" "g-client" "geiser" "git-blame" "git-emacs" "gnuplot-mode" "gnus-identities" "go-mode" "google-weather" "goto-last-change" "gravatar" "grep+" "haml-mode" "highlight-indentation" "highlight-parentheses" "highlight-symbol" "hl-sexp" "hs-lint" "html-script-src" "icomplete+" "ido-hacks" "iedit" "imaxima" "initsplit" "io-mode" "ioccur" "java-mode-indent-annotations" "keats" "keywiz" "kpm-list" "levenshtein" "list-processes+" "lively" "loc-changes" "magithub" "mailcrypt" "mailq" "markdown-mode" "matlab-mode" "maxframe" "mediawiki" "mingus" "minimap" "mmm-mode" "mo-git-blame" "mode-compile" "moz-repl" "multi-term" "mwe-log-commands" "n3-mode" "nagios-mode" "naquadah-theme" "nav" "notify" "nsis-mode" "nterm" "oauth" "offlineimap" "openwith" "org-buffers" "org-fstree" "org-website" "osc" "package" "package24" "paredit" "pastebin" "pg" "pgsql-linum-format" "php-mode-improved" "php-mode" "pkgbuild-mode" "planner" "po-mode" "point-stack" "pointback" "popup-kill-ring" "pos-tip" "pov-mode" "predictive" "processing-mode" "project-local-variables" "prolog-el" "psvn" "puppet-mode" "quack" "rainbow-mode" "rcirc-groups" "rdebug" "rect-mark" "reftex" "regex-tool" "remember" "revive" "rhtml-mode" "ri-emacs" "rinari" "rspec-mode" "rt-liberation" "rudel" "sass-mode" "scratch" "scss-mode" "semi" "session" "shell-current-directory" "sicp" "smart-tab" "smartchr" "smarttabs" "smarty-mode" "sml-mode" "sml-modeline" "smooth-scroll" "smooth-scrolling" "ssh-config" "string-template" "sudo-save" "swank-clojure" "tablature-mode" "tail" "textile-mode" "tuareg-mode" "txt2tags-mode" "undo-tree" "vc-darcs" "verbiste" "virtualenv" "weblogger-el" "whole-line-or-region" "wikipedia-mode" "workgroups" "wrap-region" "wwtime" "xclip" "xcscope+" "xml-parse" "xml-rpc-el" "yaml-mode")))
+; title format
+(setq frame-title-format "%b - emacs")
 
 
+;; Terminal color config
+(setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
+;;(setq ansi-term-color-vector ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
+
+; recompile hot key
+(global-set-key (kbd "<f9>") 'recompile)
+
+
+(setq ispell-program-name "aspell")
+(setq ispell-list-command "list")
+(setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
+
+
+;; When turning on flyspell-mode, automatically check the entire buffer.
+(defadvice flyspell-mode (after advice-flyspell-check-buffer-on-start activate)
+  (flyspell-buffer))
+
+
+;; Dynamic Abbreviations C-<tab>
+(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
+
+
+; TRAMP
+(setq password-cache-expiry 1000)
+
+
+;; follow symlinks to version controlled files
+(setq vc-follow-symlinks t)
+
+
+;; Hilight the current line
+(global-hl-line-mode 1)
+
+
+;; Navigate windows with M-<arrows>
+(windmove-default-keybindings 'meta)
+(setq windmove-wrap-around t)
+
+
+; winner-mode provides C-<left> to get back to previous window layout
+(winner-mode 1)
+
+
+;; whenever an external process changes a file underneath emacs, and there
+;; was no unsaved changes in the corresponding buffer, just revert its
+;; content to reflect what's on-disk.
+(global-auto-revert-mode 1)
+
+
+; Remember position in buffers
+(setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
+(setq-default save-place t)                   ;; activate it for all buffers
+(require 'saveplace)                          ;; get the package
+
+
+; IBuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
+
+; IDO
+(require 'ido)
+(ido-mode)
+(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
+(setq ido-enable-flex-matching t) ;; enable fuzzy matching
+(setq ido-use-filename-at-point 'guess)
+
+
+; store temporary files in home directory
+(defvar user-temporary-file-directory
+  (concat temporary-file-directory user-login-name "/"))
+(make-directory user-temporary-file-directory t)
+(setq backup-by-copying t)
+(setq backup-directory-alist
+      `(("." . ,user-temporary-file-directory)
+        (,tramp-file-name-regexp nil)))
+(setq auto-save-list-file-prefix
+      (concat user-temporary-file-directory ".auto-saves-"))
+(setq auto-save-file-name-transforms
+      `((".*" ,user-temporary-file-directory t)))
+
+
+;; C-x C-j opens dired with the cursor right on the file you're editing
+(require 'dired-x)
+
+
+;; full screen
+(defun fullscreen ()
+  (interactive)
+  (set-frame-parameter nil 'fullscreen
+(if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+(global-set-key [f11] 'fullscreen)
+
+
+; Flymake
+(setq flymake-start-syntax-check-on-find-file nil)
+
+
+; Scrolling
+(require 'smooth-scrolling)
+;; scroll one line at a time (less "jumpy" than defaults)
+;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
+
+;; match parenthisis
+(show-paren-mode 1)
+
+
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
+
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
+ '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
+
+
+; el-get configuration
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
 (setq el-get-verbose t)
 (setq el-get-sources
 
-      '(rainbow-mode autopair predictive highlight-symbol highlight-parentheses git-emacs git-blame mo-git-blame virtualenv flymake-point flymake-fringe-icons folding js2-mode js-comint json fic-ext-mode eol-conversion doxymacs dired-plus diff-git clevercss auto-complete auto-complete-clang auctex active-menu fringe-helper csv-mode apel el-get cssh switch-window vkill google-maps nxhtml xcscope yasnippet tidy smex rainbow-delimiters org-mode android-mode rst-mode pylookup python-pep8
+      '(rainbow-mode predictive highlight-symbol
+      highlight-parentheses git-emacs git-blame mo-git-blame
+      virtualenv flymake-point flymake-fringe-icons folding
+      js2-mode js-comint json fic-ext-mode eol-conversion
+      doxymacs dired-plus diff-git clevercss auto-complete
+      auto-complete-clang auctex active-menu fringe-helper
+      csv-mode apel el-get cssh switch-window vkill google-maps
+      nxhtml xcscope yasnippet tidy rainbow-delimiters
+      org-mode android-mode rst-mode pylookup python-pep8
+
 	(:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
@@ -58,8 +190,55 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "http://hg.piranha.org.ua/project-root/"
 	       :features project-root)
 
-        (:name django-html
-	       :features (django-mode django-html-mode)
+	(:name auto-complete
+	       :website "http://cx4a.org/software/auto-complete/"
+	       :description "The most intelligent auto-completion extension."
+	       :type git
+	       :url "http://github.com/m2ym/auto-complete.git"
+	       :load-path "."
+	       :post-init (lambda ()
+			    (require 'auto-complete)
+			    (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
+			    (require 'auto-complete-config)
+			    (ac-config-default)
+
+			    ;; custom keybindings to use tab, enter and up and down arrows
+			    (define-key ac-complete-mode-map "\t" 'ac-expand)
+			    (define-key ac-complete-mode-map "\r" 'ac-complete)
+			    (define-key ac-complete-mode-map "\M-n" 'ac-next)
+			    (define-key ac-complete-mode-map "\M-p" 'ac-previous)
+
+			    ;; Live completion with auto-complete
+			    ;; (see http://cx4a.org/software/auto-complete/)
+			    (require 'auto-complete-config nil t)
+			    ;; Do What I Mean mode
+			    (setq ac-dwim t)
+			    ))
+
+	(:name autopair
+	       :website "http://code.google.com/p/autopair/"
+	       :description "Autopair is an extension to the Emacs text editor that automatically pairs braces and quotes."
+	       :type http
+	       :url "http://autopair.googlecode.com/svn/trunk/autopair.el"
+	       :features autopair
+	       :after (lambda ()
+			(require 'autopair)
+			(autopair-global-mode)))
+
+	(:name cedet
+	       :website "http://cedet.sourceforge.net/"
+	       :description "CEDET is a Collection of Emacs Development Environment Tools written with the end goal of creating an advanced development environment in Emacs."
+	       :type bzr
+	       :url "bzr://cedet.bzr.sourceforge.net/bzrroot/cedet/code/trunk"
+	       :before (lambda ()
+			 (require 'inversion))
+	       :build ("touch `find . -name Makefile`" "make")
+	       :build/windows-nt ("echo #!/bin/sh > tmp.sh & echo touch `/usr/bin/find . -name Makefile` >> tmp.sh & echo make FIND=/usr/bin/find >> tmp.sh"
+				  "sed 's/^M$//' tmp.sh  > tmp2.sh"
+				  "sh ./tmp2.sh" "rm ./tmp.sh ./tmp2.sh")
+	       :load-path ("./common" "speedbar"))
+
+        (:name django-mode
                :type git
                :url "https://github.com/myfreeweb/django-mode.git")
 
@@ -69,24 +248,28 @@ variable. Automatically applies expand-file-name to `path`."
                :build ("make")
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "pymacs"))))
+
         (:name rope
                :type http-tar
                :options ("zxf")
                :url "http://bitbucket.org/agr/rope/get/tip.tar.gz"
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "rope/rope"))))
+
         (:name ropemode
                :type http-tar
                :options ("zxf")
                :url "http://bitbucket.org/agr/ropemode/get/tip.tar.gz"
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "ropemode/ropemode"))))
+
         (:name ropemacs
                :type http-tar
                :options ("zxf")
                :url "http://bitbucket.org/agr/ropemacs/get/tip.tar.gz"
-	       :depends (pymacs rope ropemode)
+	       :depends (pymacs rope ropemode auto-complete)
                :after (lambda ()
+			(add-hook 'python-mode-hook '(lambda ()
                         (add-to-pythonpath (concat el-get-dir "ropemacs/ropemacs"))
                         (setq ropemacs-local-prefix "C-c C-p")
                         (require 'pymacs)
@@ -95,11 +278,19 @@ variable. Automatically applies expand-file-name to `path`."
 						  "~/.emacs.d/el-get/ropemacs"
 						  "~/.emacs.d/el-get/python-mode"))
 
-			  ;; Stops from erroring if there's a syntax err
+			;; Stops from erroring if there's a syntax err
 			(setq ropemacs-codeassist-maxfixes 3)
 			(setq ropemacs-guess-project t)
 			(setq ropemacs-enable-autoimport t)
-                        (pymacs-load "ropemacs" "rope-")))
+                        (pymacs-load "ropemacs" "rope-")
+
+			;; Rope Mode - Only enable when editing local files
+			(when (not (subsetp (list (current-buffer)) (tramp-list-remote-buffers)))
+			  (ropemacs-mode)
+			  (setq ropemacs-enable-autoimport t)
+			  (with-project-root (rope-open-project (cdr project-details)))
+			  (setq ac-sources '(ac-source-rope ac-source-yasnippet)))
+			))))
 
 	(:name python-mode
 	       :type emacsmirror
@@ -109,7 +300,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :post-init (lambda ()
 			    (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 			    (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-			    (autoload 'python-mode "python-mode" "Python editing mode." t)))
+			    (autoload 'python-mode "python-mode" "Python editing mode." t)
+			    (define-key py-mode-map [f4] 'speedbar-get-focus)
+			    ))
+
         (:name ipython
 	       :depends (python-mode))
 
@@ -139,6 +333,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type git
 	       :url "https://github.com/antonj/Highlight-Indentation-for-Emacs")
 
+	(:name flymake-python
+	       :type git
+	       :url "git://github.com/rpatterson/flymake-python.git")
+
 	(:name pycheckers
 	       :type hg
 	       :url "https://bitbucket.org/jek/sandbox")
@@ -160,6 +358,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features dirvars
 	       :type emacswiki)
 
+	(:name sr-speedbar
+	       :features sr-speedbar
+	       :type emacswiki)
+
 	(:name popup-kill-ring
 	       :type emacswiki
                :after (lambda ()
@@ -169,120 +371,20 @@ variable. Automatically applies expand-file-name to `path`."
 			(global-set-key "\M-y" 'popup-kill-ring)
 			))
 
+	(:name smex
+	       :description "M-x interface with Ido-style fuzzy matching."
+	       :type git
+	       :url "http://github.com/nonsequitur/smex.git"
+	       :features smex
+	       :post-init (lambda ()
+			    (smex-initialize)
+			    (global-set-key (kbd "M-x") 'smex)
+			    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
 ))
 
+
 (el-get 'wait)
-
-
-; General
-(server-start)
-
-;; Terminal color config
-(setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
-;;(setq ansi-term-color-vector ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
-(global-set-key (kbd "<f9>") 'recompile)
-
-(setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
-
-;; When turning on flyspell-mode, automatically check the entire buffer.
-(defadvice flyspell-mode (after advice-flyspell-check-buffer-on-start activate)
-  (flyspell-buffer))
-
-;; Dynamic Abbreviations C-<tab>
-(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-(define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
-
-
-; TRAMP
-(setq password-cache-expiry 1000)
-
-
-;; follow symlinks to version controlled files
-(setq vc-follow-symlinks t)
-
-;; Hilight the current line
-(global-hl-line-mode 1)
-
-
-;; Navigate windows with M-<arrows>
-(windmove-default-keybindings 'meta)
-(setq windmove-wrap-around t)
-
-
-; winner-mode provides C-<left> to get back to previous window layout
-(winner-mode 1)
-
-
-;; whenever an external process changes a file underneath emacs, and there
-;; was no unsaved changes in the corresponding buffer, just revert its
-;; content to reflect what's on-disk.
-(global-auto-revert-mode 1)
-
-
-; Speedbar
-
-; close speedbar when selecting something from it
-;(add-hook 'speedbar-visiting-tag-hook '(lambda () (speedbar)))
-;(add-hook 'speedbar-visiting-file-hook '(lambda () (speedbar)))
-
-;; Live completion with auto-complete
-;; (see http://cx4a.org/software/auto-complete/)
-(require 'auto-complete-config nil t)
-;; Do What I Mean mode
-(setq ac-dwim t)
-(ac-config-default)
-
-;; custom keybindings to use tab, enter and up and down arrows
-(define-key ac-complete-mode-map "\t" 'ac-expand)
-(define-key ac-complete-mode-map "\r" 'ac-complete)
-(define-key ac-complete-mode-map "\M-n" 'ac-next)
-(define-key ac-complete-mode-map "\M-p" 'ac-previous)
-
-
-; Skeleton pair
-(setq skeleton-pair t)
-(global-set-key "(" 'skeleton-pair-insert-maybe)
-(global-set-key "[" 'skeleton-pair-insert-maybe)
-(global-set-key "{" 'skeleton-pair-insert-maybe)
-(global-set-key "\"" 'skeleton-pair-insert-maybe)
-
-
-; IBuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(autoload 'ibuffer "ibuffer" "List buffers." t)
-
-
-; IDO
-(require 'ido)
-(ido-mode)
-(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
-(setq ido-enable-flex-matching t) ;; enable fuzzy matching
-(setq ido-use-filename-at-point 'guess)
-
-
-; SMEX
-(eval-after-load "smex"
-  '(progn
-    (smex-initialize)
-    (global-set-key (kbd "M-x") 'smex)
-    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
-
-
-;; C-x C-j opens dired with the cursor right on the file you're editing
-(require 'dired-x)
-
-
-;; full screen
-(defun fullscreen ()
-  (interactive)
-  (set-frame-parameter nil 'fullscreen
-(if (frame-parameter nil 'fullscreen) nil 'fullboth)))
-(global-set-key [f11] 'fullscreen)
-
-; Flymake
-(setq flymake-start-syntax-check-on-find-file nil)
-
 
 ; Project Config
 (setq project-roots
@@ -297,7 +399,6 @@ variable. Automatically applies expand-file-name to `path`."
 ; Python
 
 ;; Autofill inside of comments
-
 (defun python-auto-fill-comments-only ()
   (auto-fill-mode 1)
   (set (make-local-variable 'fill-nobreak-predicate)
@@ -322,22 +423,8 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Always end a file with a newline
     (setq require-final-newline nil)
 
-    (eval-after-load 'python
-      '(progn
-	 ;; Rope
-	 (ropemacs-mode)
-	 (setq ropemacs-enable-autoimport t)
-	 ))
-
-    (with-project-root (rope-open-project (cdr project-details)))
-
-    ;; Autocomplete
-    (auto-complete-mode)
-
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
-
-    (define-key py-mode-map [f4] 'speedbar-get-focus)
 
     (defun ac-python-find ()
       "Python `ac-find-function'."
@@ -379,23 +466,23 @@ variable. Automatically applies expand-file-name to `path`."
 (add-hook 'python-mode-hook 'lconfig-python-mode)
 
 
-;; ropemacs Integration with auto-completion
-(defun ac-ropemacs-candidates ()
-  (mapcar (lambda (completion)
-	    (concat ac-prefix completion))
-	  (rope-completions)))
-
-(ac-define-source nropemacs
-  '((candidates . ac-ropemacs-candidates)
-    (symbol . "p")))
-
-(ac-define-source nropemacs-dot
-  '((candidates . ac-ropemacs-candidates)
-    (symbol . "p")
-    (prefix . c-dot)
-    (requires . 0)))
-
+; ropemacs Integration with auto-completion
 (defun ac-nropemacs-setup ()
+
+  (defun ac-ropemacs-candidates ()
+    (mapcar (lambda (completion)
+	      (concat ac-prefix completion))
+	    (rope-completions)))
+
+  (ac-define-source nropemacs
+    '((candidates . ac-ropemacs-candidates)
+      (symbol . "p")))
+
+  (ac-define-source nropemacs-dot
+    '((candidates . ac-ropemacs-candidates)
+      (symbol . "p")
+      (prefix . c-dot)
+      (requires . 0)))
   (setq ac-sources (append '(ac-source-nropemacs
                              ac-source-nropemacs-dot) ac-sources)))
 
@@ -407,13 +494,15 @@ variable. Automatically applies expand-file-name to `path`."
 (when (load "flymake" t)
   (defun flymake-pycheckers-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
+                       'flymake-create-temp-with-folder-structure))
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "~/.emacs.d/el-get/pycheckers/pycheckers" (list local-file))))
+      (list "~/.emacs.d/el-get/flymake-python/pyflymake.py" (list local-file))))
+
    (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pycheckers-init)))
+
 (load-library "flymake-cursor")
 (global-set-key [f10] 'flymake-goto-prev-error)
 (global-set-key [f11] 'flymake-goto-next-error)
@@ -439,8 +528,8 @@ variable. Automatically applies expand-file-name to `path`."
          ))
 (add-hook 'c-mode-common-hook 'lconfig-c-mode)
 
-; PO Mode
 
+; PO Mode
 (setq auto-mode-alist
       (cons '("\\.po\\'\\|\\.po\\." . po-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.po$" . flyspell-mode) auto-mode-alist))
@@ -453,11 +542,12 @@ variable. Automatically applies expand-file-name to `path`."
      (setq po-auto-replace-revision-date nil)
      (setq po-default-file-header "")))
 
+
 ; RST Mode
 (add-hook 'rst-mode-hook '(lambda () (flyspell-mode)))
 
-; XML Modes
 
+; XML Modes
 (add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode))
 
 ;(setq auto-mode-alist (cons '("\\.html$" . sgml-mode) auto-mode-alist))
@@ -470,8 +560,8 @@ variable. Automatically applies expand-file-name to `path`."
 ;(setq auto-mode-alist (cons '("\\.rdf$" . nxml-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.php3$" . html-mode) auto-mode-alist))
 
-;; Flymake XML
 
+; Flymake XML
 (when (load "flymake" t)
 (defun flymake-xml-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -491,27 +581,7 @@ variable. Automatically applies expand-file-name to `path`."
 ;(add-hook 'xml-mode-hook (lambda () (flymake-mode 1)))
 ;(add-hook 'html-mode-hook (lambda () (flymake-mode 1)))
 
-; Scrolling
 
-(require 'smooth-scrolling)
-
-;; scroll one line at a time (less "jumpy" than defaults)
-;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
-
-;; match parenthisis
-(show-paren-mode 1)
-
-
-(put 'upcase-region 'disabled nil)
-
-(put 'narrow-to-region 'disabled nil)
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
- '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
+;Flymake latex
+(defun flymake-get-tex-args (file-name)
+    (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
