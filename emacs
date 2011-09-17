@@ -198,6 +198,7 @@ variable. Automatically applies expand-file-name to `path`."
       csv-mode apel el-get cssh switch-window vkill google-maps
       nxhtml xcscope yasnippet tidy smex rainbow-delimiters
       org-mode android-mode rst-mode pylookup python-pep8
+
 	(:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
@@ -254,12 +255,14 @@ variable. Automatically applies expand-file-name to `path`."
                :build ("make")
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "pymacs"))))
+
         (:name rope
                :type http-tar
                :options ("zxf")
                :url "http://bitbucket.org/agr/rope/get/tip.tar.gz"
                :after (lambda ()
                         (add-to-pythonpath (concat el-get-dir "rope/rope"))))
+
         (:name ropemode
                :type http-tar
                :options ("zxf")
@@ -307,6 +310,7 @@ variable. Automatically applies expand-file-name to `path`."
 			    (autoload 'python-mode "python-mode" "Python editing mode." t)
 			    (define-key py-mode-map [f4] 'speedbar-get-focus)
 			    ))
+
         (:name ipython
 	       :depends (python-mode))
 
@@ -391,7 +395,6 @@ variable. Automatically applies expand-file-name to `path`."
 ; Python
 
 ;; Autofill inside of comments
-
 (defun python-auto-fill-comments-only ()
   (auto-fill-mode 1)
   (set (make-local-variable 'fill-nobreak-predicate)
@@ -521,8 +524,8 @@ variable. Automatically applies expand-file-name to `path`."
          ))
 (add-hook 'c-mode-common-hook 'lconfig-c-mode)
 
-; PO Mode
 
+; PO Mode
 (setq auto-mode-alist
       (cons '("\\.po\\'\\|\\.po\\." . po-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.po$" . flyspell-mode) auto-mode-alist))
@@ -535,11 +538,12 @@ variable. Automatically applies expand-file-name to `path`."
      (setq po-auto-replace-revision-date nil)
      (setq po-default-file-header "")))
 
+
 ; RST Mode
 (add-hook 'rst-mode-hook '(lambda () (flyspell-mode)))
 
-; XML Modes
 
+; XML Modes
 (add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode))
 
 ;(setq auto-mode-alist (cons '("\\.html$" . sgml-mode) auto-mode-alist))
@@ -552,8 +556,8 @@ variable. Automatically applies expand-file-name to `path`."
 ;(setq auto-mode-alist (cons '("\\.rdf$" . nxml-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.php3$" . html-mode) auto-mode-alist))
 
-;; Flymake XML
 
+; Flymake XML
 (when (load "flymake" t)
 (defun flymake-xml-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -573,7 +577,7 @@ variable. Automatically applies expand-file-name to `path`."
 ;(add-hook 'xml-mode-hook (lambda () (flymake-mode 1)))
 ;(add-hook 'html-mode-hook (lambda () (flymake-mode 1)))
 
-; Flymake latex
 
+;Flymake latex
 (defun flymake-get-tex-args (file-name)
     (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
