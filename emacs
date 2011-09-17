@@ -110,15 +110,6 @@ variable. Automatically applies expand-file-name to `path`."
 (setq ido-use-filename-at-point 'guess)
 
 
-; SMEX
-(eval-after-load "smex"
-  '(progn
-    (smex-initialize)
-    (global-set-key (kbd "M-x") 'smex)
-    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
-
-
 ; store temporary files in home directory
 (defvar user-temporary-file-directory
   (concat temporary-file-directory user-login-name "/"))
@@ -380,7 +371,18 @@ variable. Automatically applies expand-file-name to `path`."
 			(global-set-key "\M-y" 'popup-kill-ring)
 			))
 
+	(:name smex
+	       :description "M-x interface with Ido-style fuzzy matching."
+	       :type git
+	       :url "http://github.com/nonsequitur/smex.git"
+	       :features smex
+	       :post-init (lambda ()
+			    (smex-initialize)
+			    (global-set-key (kbd "M-x") 'smex)
+			    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
 ))
+
 
 (el-get 'wait)
 
