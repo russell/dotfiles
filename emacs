@@ -64,6 +64,25 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "http://hg.piranha.org.ua/project-root/"
 	       :features project-root)
 
+	(:name auto-complete
+	       :website "http://cx4a.org/software/auto-complete/"
+	       :description "The most intelligent auto-completion extension."
+	       :type git
+	       :url "http://github.com/m2ym/auto-complete.git"
+	       :load-path "."
+	       :post-init (lambda ()
+			    (require 'auto-complete)
+			    (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
+			    (require 'auto-complete-config)
+			    (ac-config-default)
+
+			    ;; custom keybindings to use tab, enter and up and down arrows
+			    (define-key ac-complete-mode-map "\t" 'ac-expand)
+			    (define-key ac-complete-mode-map "\r" 'ac-complete)
+			    (define-key ac-complete-mode-map "\M-n" 'ac-next)
+			    (define-key ac-complete-mode-map "\M-p" 'ac-previous)
+			    ))
+
         (:name django-mode
                :type git
                :url "https://github.com/myfreeweb/django-mode.git")
@@ -248,13 +267,6 @@ variable. Automatically applies expand-file-name to `path`."
 (require 'auto-complete-config nil t)
 ;; Do What I Mean mode
 (setq ac-dwim t)
-(ac-config-default)
-
-;; custom keybindings to use tab, enter and up and down arrows
-(define-key ac-complete-mode-map "\t" 'ac-expand)
-(define-key ac-complete-mode-map "\r" 'ac-complete)
-(define-key ac-complete-mode-map "\M-n" 'ac-next)
-(define-key ac-complete-mode-map "\M-p" 'ac-previous)
 
 
 ; Skeleton pair
@@ -351,10 +363,6 @@ variable. Automatically applies expand-file-name to `path`."
 
     ;; Always end a file with a newline
     (setq require-final-newline nil)
-
-
-    ;; Autocomplete
-    (auto-complete-mode)
 
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
