@@ -22,12 +22,13 @@
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
-;(unless (require 'el-get nil t)
-;  (url-retrieve
-;   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
-;   (lambda (s)
-;     (end-of-buffer)
-;     (eval-print-last-sexp))))
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+   (lambda (s)
+     (end-of-buffer)
+     (eval-print-last-sexp))))
 
 
 (defun add-to-pythonpath (path)
@@ -172,17 +173,7 @@ variable. Automatically applies expand-file-name to `path`."
 (setq el-get-verbose t)
 (setq el-get-sources
 
-      '(rainbow-mode predictive highlight-symbol
-      highlight-parentheses git-emacs git-blame mo-git-blame
-      virtualenv flymake-point flymake-fringe-icons folding
-      js2-mode js-comint json fic-ext-mode eol-conversion
-      doxymacs dired-plus diff-git clevercss auto-complete
-      auto-complete-clang auctex active-menu fringe-helper
-      csv-mode apel el-get cssh switch-window vkill google-maps
-      nxhtml xcscope yasnippet tidy rainbow-delimiters
-      org-mode android-mode rst-mode pylookup python-pep8
-
-	(:name magit
+      '((:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
         (:name project-root
@@ -371,6 +362,12 @@ variable. Automatically applies expand-file-name to `path`."
 			(global-set-key "\M-y" 'popup-kill-ring)
 			))
 
+	(:name predictive
+	       :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
+	       :type git
+	       :url "https://github.com/emacsmirror/predictive.git"
+	       :features predictive)
+
 	(:name smex
 	       :description "M-x interface with Ido-style fuzzy matching."
 	       :type git
@@ -383,8 +380,22 @@ variable. Automatically applies expand-file-name to `path`."
 			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
 ))
 
-
-(el-get 'wait)
+(setq my-packages
+      (append '(rainbow-mode predictive highlight-symbol
+       highlight-parentheses git-emacs git-blame mo-git-blame
+       virtualenv flymake-point flymake-fringe-icons folding
+       js2-mode js-comint json fic-ext-mode eol-conversion
+       doxymacs dired-plus diff-git clevercss auto-complete
+       auto-complete-clang auctex active-menu fringe-helper
+       csv-mode apel el-get cssh switch-window vkill google-maps
+       nxhtml xcscope yasnippet tidy rainbow-delimiters org-mode
+       android-mode rst-mode pylookup python-pep8 smex
+       popup-kill-ring sr-speedbar dirvars po-mode+ po-mode
+       pycheckers flymake-python highlight-indentation
+       color-theme-tangotango color-theme ipython python-mode
+       ropemacs ropemode rope pymacs django-mode cedet autopair
+       auto-complete project-root magit)))
+(el-get 'sync my-packages)
 
 ; Project Config
 (setq project-roots
