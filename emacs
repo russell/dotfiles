@@ -157,6 +157,32 @@ variable. Automatically applies expand-file-name to `path`."
 (setq flymake-start-syntax-check-on-find-file nil)
 
 
+; Scrolling
+(require 'smooth-scrolling)
+;; scroll one line at a time (less "jumpy" than defaults)
+;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
+
+;; match parenthisis
+(show-paren-mode 1)
+
+
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
+
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
+ '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
+
+
 ; el-get configuration
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
@@ -551,28 +577,3 @@ variable. Automatically applies expand-file-name to `path`."
 
 (defun flymake-get-tex-args (file-name)
     (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
-
-; Scrolling
-
-(require 'smooth-scrolling)
-
-;; scroll one line at a time (less "jumpy" than defaults)
-;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
-
-;; match parenthisis
-(show-paren-mode 1)
-
-
-(put 'upcase-region 'disabled nil)
-
-(put 'narrow-to-region 'disabled nil)
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
- '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
