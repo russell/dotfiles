@@ -1,10 +1,5 @@
 ;; -*- Mode: Emacs-Lisp -*-
 
-;(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-;    (let* ((my-lisp-dir "~/.emacs.d/")
-;	   (default-directory my-lisp-dir))
-;      (setq load-path (cons my-lisp-dir load-path))
-;      (normal-top-level-add-subdirs-to-load-path)))
 (add-to-list 'load-path "~/.emacs.d/")
 
 (tool-bar-mode 0) ; disable the toolbar set to 0 for OSX
