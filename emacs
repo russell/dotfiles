@@ -353,8 +353,13 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features sr-speedbar
 	       :type emacswiki)
 
+	(:name popup
+	       :type git
+	       :url "https://github.com/m2ym/popup-el.git")
+
 	(:name popup-kill-ring
 	       :type emacswiki
+	       :depends (popup)
                :after (lambda ()
 			(require 'popup)
 			(require 'pos-tip)
