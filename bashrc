@@ -150,12 +150,10 @@ e () {
 		exec $EMACS --eval "(server-start)" "$@" &
 	    fi
 	else
-	    exec $EMACS --eval "(server-start)" --nw  &
-	    while [ ! -e "$EMACSSERVER" ]; do
-		sleep 1
-	    done
 	    if [ -e "$EMACSSERVER" ]; then
 		exec $EMACSCLIENT -n "$@"
+	    else
+		exec $EMACS --eval "(server-start)" "$@" &
 	    fi
 	fi
     fi
