@@ -214,6 +214,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features autopair
 	       :after (lambda ()
 			(require 'autopair)
+			(setq autopair-blink t)
 			(autopair-global-mode)))
 
 	(:name cedet
@@ -388,6 +389,21 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "https://github.com/emacsmirror/active-menu.git"
 	       :features "active-menu")
 
+	(:name fill-column-indicator
+	       :type git
+	       :url "https://github.com/alpaker/Fill-Column-Indicator.git"
+	       :features "fill-column-indicator")
+
+	(:name deft
+	       :description "Deft is an Emacs mode for quickly browsing, filtering, and editing directories of plain text notes, inspired by Notational Velocity."
+	       :type http
+	       :url "http://jblevins.org/projects/deft/deft.el"
+	       :features deft
+	       :post-init (lambda ()
+			    (setq deft-text-mode 'org-mode)
+			    (setq deft-extension "org")
+			    (global-set-key [f1] 'deft)
+			    ))
 ))
 
 (setq my-packages
@@ -403,8 +419,9 @@ variable. Automatically applies expand-file-name to `path`."
        popup-kill-ring sr-speedbar dirvars po-mode+ po-mode
        pycheckers flymake-python highlight-indentation
        color-theme-tangotango color-theme ipython python-mode
-       ropemacs ropemode rope pymacs django-mode cedet autopair
-       auto-complete project-root magit)))
+       ropemacs ropemode rope pymacs django-mode autopair
+       auto-complete project-root magit fill-column-indicator
+       cedet deft)))
 (el-get 'sync my-packages)
 
 ; Project Config
