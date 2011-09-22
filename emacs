@@ -177,8 +177,8 @@ variable. Automatically applies expand-file-name to `path`."
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
 
         (:name project-root
-	       :type hg
-	       :url "http://hg.piranha.org.ua/project-root/"
+	       :type git
+	       :url "https://github.com/emacsmirror/project-root.git"
 	       :features project-root)
 
 	(:name auto-complete
@@ -323,7 +323,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 	(:name flymake-python
 	       :type git
-	       :url "git://github.com/rpatterson/flymake-python.git")
+	       :url "git@github.com:russell/flymake-python.git")
 
 	(:name pycheckers
 	       :type hg
@@ -380,6 +380,14 @@ variable. Automatically applies expand-file-name to `path`."
 			    (global-set-key (kbd "M-x") 'smex)
 			    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
+
+	(:name active-menu
+	       :website "http://www.emacswiki.org/emacs/ActiveMenu"
+	       :description "Active Menu toggles the display of the menu bar automatically when the mouse comes close to it. Otherwise you get one more line of code."
+	       :type git
+	       :url "https://github.com/emacsmirror/active-menu.git"
+	       :features "active-menu")
+
 ))
 
 (setq my-packages
