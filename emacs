@@ -461,6 +461,10 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Always end a file with a newline
     (setq require-final-newline nil)
 
+    ;; show column 80 in python files
+    (fci-mode)
+    (set-fill-column 80)
+
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
 
@@ -499,6 +503,8 @@ variable. Automatically applies expand-file-name to `path`."
     (setq ac-sources '(ac-source-rope ac-source-yasnippet))
     (set (make-local-variable 'ac-find-function) 'ac-python-find)
     (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
+
+    (with-project-root (rope-open-project (cdr project-details)))
 
     ))
 (add-hook 'python-mode-hook 'lconfig-python-mode)
