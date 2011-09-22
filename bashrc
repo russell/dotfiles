@@ -151,7 +151,7 @@ e () {
 	    fi
 	else
 	    if [ -e "$EMACSSERVER" ]; then
-		exec $EMACSCLIENT -n "$@"
+		$EMACSCLIENT -n "$@"
 	    else
 		exec $EMACS --eval "(server-start)" "$@" &
 	    fi
