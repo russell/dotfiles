@@ -43,8 +43,11 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 ;; Terminal color config
-(setq ansi-term-color-vector ["black" "red3" "lime green" "yellow3" "DeepSkyBlue3" "magenta3" "cyan3" "white"])
-;;(setq ansi-term-color-vector ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
+(setq ansi-term-color-vector [unspecified "black" "red3" "green3" "yellow3"
+					  "DeepSkyBlue3" "magenta3" "cyan3" "white"])
+(setq term-default-bg-color "#2e3434")
+(setq term-default-fg-color "#eeeeec")
+
 
 ; recompile hot key
 (global-set-key (kbd "<f9>") 'recompile)
@@ -75,6 +78,9 @@ variable. Automatically applies expand-file-name to `path`."
 
 ;; Hilight the current line
 (global-hl-line-mode 1)
+(add-hook 'term-mode-hook
+	  '(lambda()
+	     (set (make-local-variable 'global-hl-line-mode) nil)))
 
 
 ;; Navigate windows with M-<arrows>
@@ -215,7 +221,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :after (lambda ()
 			(require 'autopair)
 			(setq autopair-blink t)
-			(autopair-global-mode)))
+			(autopair-global-mode)
+			(add-hook 'term-mode-hook '(lambda ()
+						     (setq autopair-dont-activate t))))
+	       )
 
 	(:name cedet
 	       :website "http://cedet.sourceforge.net/"
