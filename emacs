@@ -224,9 +224,9 @@ variable. Automatically applies expand-file-name to `path`."
 			(require 'autopair)
 			(setq autopair-blink t)
 			(autopair-global-mode)
-			(add-hook 'term-mode-hook '(lambda ()
-						     (setq autopair-dont-activate t))))
-	       )
+			(add-hook 'term-mode-hook
+				  '(lambda ()
+				     (setq autopair-dont-activate t)))))
 
 	(:name cedet
 	       :website "http://cedet.sourceforge.net/"
@@ -285,10 +285,12 @@ variable. Automatically applies expand-file-name to `path`."
                         (pymacs-load "ropemacs" "rope-")
 
 			;; Rope Mode - Only enable when editing local files
-			(when (not (subsetp (list (current-buffer)) (tramp-list-remote-buffers)))
+			(when (not (subsetp (list (current-buffer))
+					    (tramp-list-remote-buffers)))
 			  (ropemacs-mode)
 			  (setq ropemacs-enable-autoimport t)
-			  (with-project-root (rope-open-project (cdr project-details)))
+			  (with-project-root (rope-open-project
+					      (cdr project-details)))
 			  (setq ac-sources '(ac-source-rope ac-source-yasnippet)))
 			))))
 
@@ -632,4 +634,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 ;Flymake latex
 (defun flymake-get-tex-args (file-name)
-    (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
+    (list "pdflatex" (list "-file-line-error"
+			   "-draftmode"
+			   "-interaction=nonstopmode"
+			   file-name)))
