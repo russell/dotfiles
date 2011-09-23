@@ -461,10 +461,6 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Always end a file with a newline
     (setq require-final-newline nil)
 
-    ;; show column 80 in python files
-    (fci-mode)
-    (set-fill-column 80)
-
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
 
