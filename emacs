@@ -421,7 +421,7 @@ variable. Automatically applies expand-file-name to `path`."
        color-theme-tangotango color-theme ipython python-mode
        ropemacs ropemode rope pymacs django-mode autopair
        auto-complete project-root magit fill-column-indicator
-       cedet deft)))
+       cedet deft markdown-mode)))
 (el-get 'sync my-packages)
 
 ; Project Config
