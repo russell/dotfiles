@@ -22,7 +22,9 @@
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+; el-get
+(if (file-exists-p "~/.emacs.d/el-get/el-get")
+    (add-to-list 'load-path "~/.emacs.d/el-get/el-get"))
 (unless (require 'el-get nil t)
   (url-retrieve
    "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
