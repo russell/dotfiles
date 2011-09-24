@@ -226,10 +226,13 @@ variable. Automatically applies expand-file-name to `path`."
 	       :after (lambda ()
 			(require 'autopair)
 			(setq autopair-blink t)
-			(autopair-global-mode)
-			(add-hook 'term-mode-hook
+			(add-hook 'python-mode-hook
 				  '(lambda ()
-				     (setq autopair-dont-activate t)))))
+				     (autopair-mode)))
+			(add-hook 'emacs-lisp-mode-hook
+				  '(lambda ()
+				     (autopair-mode)))
+			))
 
 	(:name cedet
 	       :website "http://cedet.sourceforge.net/"
@@ -480,6 +483,9 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
 
+    ; trim whitespace
+    (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
     (defun ac-python-find ()
       "Python `ac-find-function'."
       (require 'thingatpt)
@@ -559,8 +565,6 @@ variable. Automatically applies expand-file-name to `path`."
 (load-library "flymake-cursor")
 (global-set-key [f10] 'flymake-goto-prev-error)
 (global-set-key [f11] 'flymake-goto-next-error)
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 ; C Mode
