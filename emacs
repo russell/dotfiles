@@ -45,7 +45,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 ;; Terminal color config
-(setq ansi-term-color-vector [unspecified "black" "red" "#8ae234" "#edd400"
+(setq ansi-term-color-vector [unspecified "black" "tomato" "#8ae234" "#edd400"
 					  "#729fcf" "#ad7fa8" "light cyan" "white"])
 (setq term-default-bg-color "#2e3434")
 (setq term-default-fg-color "#eeeeec")
