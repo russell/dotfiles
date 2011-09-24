@@ -13,7 +13,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(el-get-standard-packages (quote ("markdown-mode" "po-mode+" "auto-complete" "popup-kill-ring" "color-theme-tangotango" "rainbow-mode" "autopair" "po-mode" "predictive" "highlight-symbol" "highlight-parentheses" "highlight-indentation" "git-emacs" "git-blame" "flymake-point" "flymake-fringe-icons" "folding" "js2-mode" "js-comint" "json" "fic-ext-mode" "eol-conversion" "doxymacs" "dired-plus" "diff-git" "clevercss" "auto-complete-clang" "auctex" "active-menu" "django-mode" "fringe-helper" "csv-mode" "python-mode" "ropemode" "project-root" "color-theme" "apel" "el-get" "cssh" "switch-window" "vkill" "google-maps" "nxhtml" "xcscope" "yasnippet" "tidy" "smex" "rainbow-delimiters" "org-mode" "android-mode" "rst-mode" "magit" "pymacs" "rope" "ropemacs" "ipython" "pylookup" "python-pep8")))
+ '(ecb-options-version "2.40")
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
