@@ -419,28 +419,42 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "http://jblevins.org/projects/deft/deft.el"
 	       :features deft
 	       :post-init (lambda ()
-			    (setq deft-text-mode 'org-mode)
-			    (setq deft-extension "org")
+			    (setq deft-text-mode 'muse-mode)
+			    (setq deft-extension "muse")
 			    (global-set-key [f1] 'deft)
 			    ))
+
+	(:name muse
+	       :description "An authoring and publishing tool for Emacs"
+	       :type git
+	       :url "https://github.com/alexott/muse.git"
+	       :load-path ("./lisp")
+	       :build `(,(concat "make EMACS=" el-get-emacs))
+	       :autoloads "muse-autoloads"
+	       :post-init (lambda ()
+			    (add-hook 'muse-mode-hook
+				      '(lambda ()
+					 (color-theme-tangotango)))
+			    ))
+
 ))
 
 (setq my-packages
-      (append '(rainbow-mode predictive highlight-symbol
-       highlight-parentheses git-emacs git-blame mo-git-blame
-       virtualenv flymake-point flymake-fringe-icons folding
-       js2-mode js-comint json fic-ext-mode eol-conversion
-       doxymacs dired-plus diff-git clevercss auto-complete
-       auto-complete-clang auctex active-menu fringe-helper
-       csv-mode apel el-get cssh switch-window vkill google-maps
-       nxhtml xcscope yasnippet tidy rainbow-delimiters org-mode
-       android-mode rst-mode pylookup python-pep8 smex
-       popup-kill-ring sr-speedbar dirvars po-mode+ po-mode
-       pycheckers flymake-python highlight-indentation
-       color-theme-tangotango color-theme ipython python-mode
-       ropemacs ropemode rope pymacs django-mode autopair
-       auto-complete project-root magit fill-column-indicator
-       cedet deft markdown-mode)))
+      (append '(color-theme-tangotango muse rainbow-mode
+       predictive highlight-symbol highlight-parentheses
+       git-emacs git-blame mo-git-blame virtualenv flymake-point
+       flymake-fringe-icons folding js2-mode js-comint json
+       fic-ext-mode eol-conversion doxymacs dired-plus diff-git
+       clevercss auto-complete auto-complete-clang auctex
+       active-menu fringe-helper csv-mode apel el-get cssh
+       switch-window vkill google-maps nxhtml xcscope yasnippet
+       tidy rainbow-delimiters org-mode android-mode rst-mode
+       pylookup python-pep8 smex popup-kill-ring sr-speedbar
+       dirvars po-mode+ po-mode pycheckers flymake-python
+       highlight-indentation ipython python-mode ropemacs
+       ropemode rope pymacs django-mode autopair auto-complete
+       project-root magit fill-column-indicator cedet deft
+       markdown-mode)))
 (el-get 'sync my-packages)
 
 ; Project Config
