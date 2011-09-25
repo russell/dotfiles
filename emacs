@@ -449,6 +449,26 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features predictive
 	       :build ("make"))
 
+	(:name ical2org
+	       :type git
+	       :url "https://github.com/cofi/ical2org.git")
+
+	(:name breadcrumb
+	       :website "http://breadcrumbemacs.sourceforge.net/"
+	       :description "Breadcrumb is an add-on module for Emacs that allows you to set a series of quick bookmarks in the file buffers, and jump back to them quickly."
+	       :type http
+	       :url "http://downloads.sourceforge.net/project/breadcrumbemacs/Breadcrumb%20for%20Emacs/1.1.3/breadcrumb-1.1.3.zip"
+	       :build ("unzip breadcrumb-1.1.3.zip")
+	       :post-init (lambda () 
+			    (require 'breadcrumb)
+			    (global-set-key [?\S-\ ] 'bc-set) ;; Shift-SPACE for set bookmark
+			    (global-set-key [(meta j)] 'bc-previous) ;; M-j for jump to previous
+			    (global-set-key [(shift meta j)] 'bc-next) ;; Shift-M-j for jump to next
+			    (global-set-key [(meta up)] 'bc-local-previous) ;; M-up-arrow for local previous
+			    (global-set-key [(meta down)] 'bc-local-next) ;; M-down-arrow for local next
+			    (global-set-key [(control c)(j)] 'bc-goto-current) ;; C-c j for jump to current bookmark
+			    (global-set-key [(control x)(meta j)] 'bc-list) ;; C-x M-j for the bookmark menu list
+			    ))
 
 ))
 
@@ -467,7 +487,7 @@ variable. Automatically applies expand-file-name to `path`."
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator cedet deft
-       markdown-mode)))
+       markdown-mode breadcrumb)))
 (el-get 'sync my-packages)
 
 ; Project Config
