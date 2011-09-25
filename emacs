@@ -13,12 +13,16 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(auto-completion-syntax-alist (quote (accept . word)))
+ '(completion-auto-show (quote completion-show-menu))
+ '(completion-auto-show-delay 0)
  '(ecb-options-version "2.40")
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(inhibit-startup-screen t)
- '(mac-option-modifier (quote meta))
+ '(ns-alternate-modifier (quote meta))
+ '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
@@ -57,6 +61,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 (setq ispell-program-name "aspell")
 (setq ispell-list-command "list")
+(setq ispell-dictionary "english")
 (setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
 
 
@@ -419,8 +424,8 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "http://jblevins.org/projects/deft/deft.el"
 	       :features deft
 	       :post-init (lambda ()
-			    (setq deft-text-mode 'muse-mode)
-			    (setq deft-extension "muse")
+			    (setq deft-text-mode 'org-mode)
+			    (setq deft-extension "org")
 			    (global-set-key [f1] 'deft)
 			    ))
 
@@ -436,6 +441,14 @@ variable. Automatically applies expand-file-name to `path`."
 				      '(lambda ()
 					 (color-theme-tangotango)))
 			    ))
+
+	(:name predictive
+	       :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
+	       :type git
+	       :url "http://www.dr-qubit.org/git/predictive.git"
+	       :features predictive
+	       :build ("make"))
+
 
 ))
 
@@ -665,5 +678,7 @@ variable. Automatically applies expand-file-name to `path`."
   (progn
     (auto-fill-mode)
     (flyspell-mode)
+    (predictive-mode)
+    (auto-complete-mode)
     ))
 (add-hook 'markdown-mode-hook 'lconfig-markdown-mode)
