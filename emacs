@@ -682,3 +682,13 @@ variable. Automatically applies expand-file-name to `path`."
     (auto-complete-mode)
     ))
 (add-hook 'markdown-mode-hook 'lconfig-markdown-mode)
+
+; Org Mode
+(defun lconfig-org-mode ()
+  (progn
+    (auto-fill-mode)
+    (flyspell-mode)
+    (predictive-mode)
+    (auto-complete-mode)
+    ))
+(add-hook 'org-mode-hook 'lconfig-org-mode)
