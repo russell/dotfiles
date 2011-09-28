@@ -3,6 +3,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Debian doesn't seem to have a TMPDIR variable any more :(
+[ -z "$TMPDIR" ] && TMPDIR=/tmp/
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
@@ -24,6 +27,7 @@ shopt -s checkwinsize
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Detect OSX
+DARWIN=0
 if [ $(uname) == "Darwin" ]; then
   DARWIN=1;
 fi
