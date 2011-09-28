@@ -69,11 +69,6 @@ variable. Automatically applies expand-file-name to `path`."
 (setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
 
 
-;; When turning on flyspell-mode, automatically check the entire buffer.
-(defadvice flyspell-mode (after advice-flyspell-check-buffer-on-start activate)
-  (flyspell-buffer))
-
-
 ;; Dynamic Abbreviations C-<tab>
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
