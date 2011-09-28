@@ -169,6 +169,13 @@ variable. Automatically applies expand-file-name to `path`."
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
 
+; Remember Recent Files
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+
 ;; match parenthisis
 (show-paren-mode 1)
 
@@ -301,7 +308,7 @@ variable. Automatically applies expand-file-name to `path`."
 			;; Rope Mode - Only enable when editing local files
 			(when (not (subsetp (list (current-buffer))
 					    (tramp-list-remote-buffers)))
-			  (ropemacs-mode)
+			  (ropemacs-mode 1)
 			  (setq ropemacs-enable-autoimport t)
 			  (with-project-root (rope-open-project
 					      (cdr project-details)))
@@ -378,6 +385,16 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features sr-speedbar
 	       :type emacswiki)
 
+	(:name sticky-windows
+	       :features sticky-windows
+	       :type emacswiki
+               :post-init (lambda ()
+			    (global-set-key [(control x) (?0)] 'sticky-window-delete-window)
+			    (global-set-key [(control x) (?1)] 'sticky-window-delete-other-windows)
+			    ; In addition, `sticky-window-keep-window-visible' might be bound to the currently unused C-x 9 key binding:
+			    (global-set-key [(control x) (?9)] 'sticky-window-keep-window-visible)
+			    ))
+
 	(:name popup
 	       :type git
 	       :url "https://github.com/m2ym/popup-el.git")
@@ -441,7 +458,9 @@ variable. Automatically applies expand-file-name to `path`."
 			    (add-hook 'muse-mode-hook
 				      '(lambda ()
 					 (color-theme-tangotango)))
-			    ))
+			    )
+	       :before (lambda ()
+			 (require 'inversion)))
 
 	(:name predictive
 	       :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
@@ -460,6 +479,8 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type http
 	       :url "http://downloads.sourceforge.net/project/breadcrumbemacs/Breadcrumb%20for%20Emacs/1.1.3/breadcrumb-1.1.3.zip"
 	       :build ("unzip breadcrumb-1.1.3.zip")
+	       :before (lambda ()
+			 (require 'inversion))
 	       :post-init (lambda ()
 			    (require 'breadcrumb)
 			    (global-set-key [?\S-\ ] 'bc-set) ;; Shift-SPACE for set bookmark
@@ -471,10 +492,15 @@ variable. Automatically applies expand-file-name to `path`."
 			    (global-set-key [(control x)(meta j)] 'bc-list) ;; C-x M-j for the bookmark menu list
 			    ))
 
+	(:name elscreen
+	       :type http-tar
+	       :features elscreen
+	       :options ("xzf")
+	       :url "ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-1.4.6.tar.gz")
 ))
 
 (setq my-packages
-      (append '(color-theme-tangotango muse rainbow-mode
+      (append '(color-theme-tangotango rainbow-mode
        predictive highlight-symbol highlight-parentheses
        git-emacs git-blame mo-git-blame virtualenv flymake-point
        flymake-fringe-icons folding js2-mode js-comint json
@@ -487,8 +513,8 @@ variable. Automatically applies expand-file-name to `path`."
        dirvars po-mode+ po-mode pycheckers flymake-python
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
-       project-root magit fill-column-indicator cedet deft
-       markdown-mode breadcrumb)))
+       project-root magit fill-column-indicator deft
+       markdown-mode breadcrumb sticky-windows elscreen)))
 (el-get 'sync my-packages)
 
 ; Project Config
@@ -532,7 +558,10 @@ variable. Automatically applies expand-file-name to `path`."
     ;;(python-auto-fill-comments-only)
 
     ; trim whitespace
-    (add-hook 'before-save-hook 'delete-trailing-whitespace)
+    (add-hook 'local-write-file-hooks
+	      '(lambda()
+		 (save-excursion
+		   (delete-trailing-whitespace))))
 
     (defun ac-python-find ()
       "Python `ac-find-function'."
@@ -611,8 +640,8 @@ variable. Automatically applies expand-file-name to `path`."
              '("\\.py\\'" flymake-pycheckers-init)))
 
 (load-library "flymake-cursor")
-(global-set-key [f10] 'flymake-goto-prev-error)
-(global-set-key [f11] 'flymake-goto-next-error)
+(global-set-key [f2] 'flymake-goto-prev-error)
+(global-set-key [f3] 'flymake-goto-next-error)
 
 
 ; C Mode

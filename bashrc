@@ -149,7 +149,7 @@ e () {
     else
 	if [ $DARWIN -eq 1 ]; then
 	    if [ -e "$EMACSSERVER" ]; then
-		exec $EMACSCLIENT -n "$@"
+		exec $EMACSCLIENT -n "$@" &
 	    else
 		exec $EMACS --eval "(server-start)" "$@" &
 	    fi
