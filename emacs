@@ -18,6 +18,7 @@
  '(completion-auto-show-delay 0)
  '(deft-auto-save-interval 30.0)
  '(ecb-options-version "2.40")
+ '(elmo-localdir-folder-path "~/Mail/GMail")
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
@@ -27,7 +28,9 @@
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
  '(org-todo-keywords (quote ((type "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))))
- '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
+ '(uniquify-buffer-name-style (quote reverse) nil (uniquify))
+ '(user-mail-address "russell.sim@gmail.com")
+ '(wl-from "Russell Sim <russell.sim@gmail.com>"))
 
 
 ; el-get
@@ -486,7 +489,7 @@ variable. Automatically applies expand-file-name to `path`."
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator cedet deft
-       markdown-mode breadcrumb)))
+       markdown-mode breadcrumb wanderlust)))
 (el-get 'sync my-packages)
 
 ; Project Config
