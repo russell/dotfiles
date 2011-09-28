@@ -16,13 +16,17 @@
  '(auto-completion-syntax-alist (quote (accept . word)))
  '(completion-auto-show (quote completion-show-menu))
  '(completion-auto-show-delay 0)
+ '(deft-auto-save-interval 30.0)
  '(ecb-options-version "2.40")
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(inhibit-startup-screen t)
  '(ns-alternate-modifier (quote meta))
+ '(org-agenda-files (quote ("~/.deft/")))
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
+ '(org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
+ '(org-todo-keywords (quote ((type "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))))
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
@@ -91,7 +95,9 @@ variable. Automatically applies expand-file-name to `path`."
 (add-hook 'eshell-mode-hook
 	  '(lambda()
 	     (set (make-local-variable 'global-hl-line-mode) nil)))
-
+(add-hook 'calendar-mode-hook
+	  '(lambda()
+	     (set (make-local-variable 'global-hl-line-mode) nil)))
 
 ;; Navigate windows with M-<arrows>
 (windmove-default-keybindings 'meta)
@@ -182,7 +188,7 @@ variable. Automatically applies expand-file-name to `path`."
  '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
  '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
 
-
+(require 'inversion)
 ; el-get configuration
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
@@ -381,13 +387,11 @@ variable. Automatically applies expand-file-name to `path`."
 
 	(:name popup-kill-ring
 	       :type emacswiki
-	       :depends (popup)
-               :after (lambda ()
-			(require 'popup)
-			(require 'pos-tip)
-			(require 'popup-kill-ring)
-			(global-set-key "\M-y" 'popup-kill-ring)
-			))
+	       :depends (popup pos-tip)
+	       :features popup-kill-ring
+	       :post-init (lambda ()
+			    (global-set-key "\M-y" 'popup-kill-ring)
+			    ))
 
 	(:name predictive
 	       :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
@@ -459,7 +463,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type http
 	       :url "http://downloads.sourceforge.net/project/breadcrumbemacs/Breadcrumb%20for%20Emacs/1.1.3/breadcrumb-1.1.3.zip"
 	       :build ("unzip breadcrumb-1.1.3.zip")
-	       :post-init (lambda () 
+	       :post-init (lambda ()
 			    (require 'breadcrumb)
 			    (global-set-key [?\S-\ ] 'bc-set) ;; Shift-SPACE for set bookmark
 			    (global-set-key [(meta j)] 'bc-previous) ;; M-j for jump to previous
