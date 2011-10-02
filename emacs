@@ -166,7 +166,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 ; Scrolling
-(require 'smooth-scrolling)
+;(require 'smooth-scrolling)
 ;; scroll one line at a time (less "jumpy" than defaults)
 ;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 ;(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
@@ -179,6 +179,92 @@ variable. Automatically applies expand-file-name to `path`."
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+
+; gnus
+(setq gnus-select-method '(nnimap "Mail"
+				  (nnimap-address "localhost")
+				  (nnimap-stream network)
+				  (nnimap-authenticator login)))
+;(setq gnus-select-method '(nnimap "gmail"
+;				  (nnimap-address "imap.gmail.com")
+;				  (nnimap-server-port 993)
+;				  (nnimap-stream ssl)))
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587)
+;; Make Gnus NOT ignore [Gmail] mailboxes
+(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+
+(setq gnus-secondary-select-methods
+      '((nnml "")
+        (nntp "news.gmane.org")))
+
+(defun gnus-user-format-function-@ (header)
+  "Display @ for message with attachment in summary line.
+You need to add `Content-Type' to `nnmail-extra-headers' and
+`gnus-extra-headers', see Info node `(gnus)To From Newsgroups'."
+  (let ((case-fold-search t)
+	(ctype (or (cdr (assq 'Content-Type (mail-header-extra header)))
+		   "text/plain"))
+	indicator)
+    (when (string-match "^multipart/mixed" ctype)
+      (setq indicator "@"))
+    (if indicator
+	indicator
+      " ")))
+
+(defalias 'gnus-user-format-function-score 'rs-gnus-summary-line-score)
+
+(defun rs-gnus-summary-line-score (head)
+  "Return pretty-printed version of article score.
+
+See (info \"(gnus)Group Line Specification\")."
+  (let ((c (gnus-summary-article-score (mail-header-number head))))
+    ;; (gnus-message 9 "c=%s chars in article %s" c (mail-header-number head))
+    (cond ((< c -1000)     "vv")
+          ((< c  -100)     " v")
+          ((< c   -10)     "--")
+          ((< c     0)     " -")
+          ((= c     0)     "  ")
+          ((< c    10)     " +")
+          ((< c   100)     "++")
+          ((< c  1000)     " ^")
+          (t               "^^")))) 
+
+;; http://groups.google.com/group/gnu.emacs.gnus/browse_thread/thread/a673a74356e7141f
+(when window-system
+  (setq gnus-sum-thread-tree-indent "  ")
+  (setq gnus-sum-thread-tree-root "") ;; "● ")
+  (setq gnus-sum-thread-tree-false-root "") ;; "◯ ")
+  (setq gnus-sum-thread-tree-single-indent "") ;; "◎ ")
+  (setq gnus-sum-thread-tree-vertical        "│")
+  (setq gnus-sum-thread-tree-leaf-with-other "├─► ")
+  (setq gnus-sum-thread-tree-single-leaf     "╰─► "))
+(setq gnus-face-9 'font-lock-warning-face)
+(setq gnus-face-10 'shadow) 
+(setq gnus-summary-line-format
+        (concat
+         "%0{%U%R%z%}" "%10{|%}" "%1{%d%}" "%10{|%}"
+         "%9{%u&@;%}" "%(%-15,15f %)" "%10{│%}" "%4k" "%10{|%}"
+         "%2u&score;" "%10{|%}" "%10{%B%}" "%s\n"))
+(setq gnus-summary-display-arrow t)
+(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+
+; w3m
+(setq gnus-mime-display-multipart-related-as-mixed nil)
+(setq mm-text-html-renderer 'w3m)
+(setq mm-inline-text-html-with-images t)
+(setq mm-inline-text-html-with-w3m-keymap nil)
+
+; gravater
+(defun th-gnus-article-prepared ()
+  (gnus-treat-from-gravatar)
+  (gnus-treat-mail-gravatar))
+
+(add-hook 'gnus-article-prepare-hook 'th-gnus-article-prepared)
 
 
 ;; match parenthisis
@@ -197,7 +283,7 @@ variable. Automatically applies expand-file-name to `path`."
  '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
  '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
 
-(require 'inversion)
+
 ; el-get configuration
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
@@ -259,8 +345,6 @@ variable. Automatically applies expand-file-name to `path`."
 	       :description "CEDET is a Collection of Emacs Development Environment Tools written with the end goal of creating an advanced development environment in Emacs."
 	       :type bzr
 	       :url "bzr://cedet.bzr.sourceforge.net/bzrroot/cedet/code/trunk"
-	       :before (lambda ()
-			 (require 'inversion))
 	       :build ("touch `find . -name Makefile`" "make")
 	       :build/windows-nt ("echo #!/bin/sh > tmp.sh & echo touch `/usr/bin/find . -name Makefile` >> tmp.sh & echo make FIND=/usr/bin/find >> tmp.sh"
 				  "sed 's/^M$//' tmp.sh  > tmp2.sh"
@@ -293,6 +377,7 @@ variable. Automatically applies expand-file-name to `path`."
         (:name ropemacs
                :type hg
                :url "http://bitbucket.org/agr/ropemacs/"
+	       :depends (pymacs rope ropemode auto-complete)
 	       :depends (pymacs rope ropemode auto-complete)
                :after (lambda ()
 			(add-hook 'python-mode-hook '(lambda ()
@@ -388,6 +473,9 @@ variable. Automatically applies expand-file-name to `path`."
 
 	(:name sr-speedbar
 	       :features sr-speedbar
+	       :depends (cedet)
+	       :before (lambda ()
+			 (require 'speedbar))
 	       :type emacswiki)
 
 	(:name sticky-windows
@@ -415,6 +503,7 @@ variable. Automatically applies expand-file-name to `path`."
 	(:name predictive
 	       :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
 	       :type git
+	       :depends (cedet)
 	       :url "https://github.com/emacsmirror/predictive.git"
 	       :features predictive)
 
@@ -463,16 +552,7 @@ variable. Automatically applies expand-file-name to `path`."
 			    (add-hook 'muse-mode-hook
 				      '(lambda ()
 					 (color-theme-tangotango)))
-			    )
-	       :before (lambda ()
-			 (require 'inversion)))
-
-	(:name predictive
-	       :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
-	       :type git
-	       :url "http://www.dr-qubit.org/git/predictive.git"
-	       :features predictive
-	       :build ("make"))
+			    ))
 
 	(:name ical2org
 	       :type git
@@ -505,8 +585,8 @@ variable. Automatically applies expand-file-name to `path`."
 ))
 
 (setq my-packages
-      (append '(color-theme-tangotango rainbow-mode
-       predictive highlight-symbol highlight-parentheses
+      (append '(color-theme-tangotango rainbow-mode cedet
+       highlight-symbol highlight-parentheses gravatar
        git-emacs git-blame mo-git-blame virtualenv flymake-point
        flymake-fringe-icons folding js2-mode js-comint json
        fic-ext-mode eol-conversion doxymacs dired-plus diff-git
@@ -518,8 +598,8 @@ variable. Automatically applies expand-file-name to `path`."
        dirvars po-mode+ po-mode pycheckers flymake-python
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
-       project-root magit fill-column-indicator deft
-       markdown-mode breadcrumb sticky-windows elscreen)))
+       project-root magit fill-column-indicator deft gnus-gravatar
+       markdown-mode breadcrumb sticky-windows emacs-w3m)))
 (el-get 'sync my-packages)
 
 ; Project Config
@@ -733,8 +813,6 @@ variable. Automatically applies expand-file-name to `path`."
   (progn
     (auto-fill-mode)
     (flyspell-mode)
-    (predictive-mode)
-    (auto-complete-mode)
     ))
 (add-hook 'markdown-mode-hook 'lconfig-markdown-mode)
 
@@ -743,7 +821,6 @@ variable. Automatically applies expand-file-name to `path`."
   (progn
     (auto-fill-mode)
     (flyspell-mode)
-    (predictive-mode)
-    (auto-complete-mode)
     ))
 (add-hook 'org-mode-hook 'lconfig-org-mode)
+
