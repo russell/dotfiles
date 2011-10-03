@@ -774,7 +774,7 @@ variable. Automatically applies expand-file-name to `path`."
         (progn
           (message "Setting up local hook for %s (in %s)"
                    (file-name-nondirectory fn) dn)
-          (autocommit-setup-save-hook))))
+          (autocommit-setup-save-hook)))))
 
 (add-hook 'find-file-hook 'dustin-visiting-a-file)
 
