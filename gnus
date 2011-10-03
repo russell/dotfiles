@@ -89,8 +89,8 @@ See (info \"(gnus)Group Line Specification\")."
 
 ; w3m
 (setq gnus-mime-display-multipart-related-as-mixed nil)
-(setq gnus-article-wash-function 'w3)
-(setq mm-text-html-renderer 'w3)
+(setq gnus-article-wash-function 'w3m)
+(setq mm-text-html-renderer 'w3m)
 (setq mm-inline-text-html-with-images t)
 ;(setq mm-inline-text-html-with-w3m-keymap nil)
 
