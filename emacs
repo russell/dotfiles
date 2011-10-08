@@ -500,8 +500,8 @@ variable. Automatically applies expand-file-name to `path`."
 
 (setq my-packages
       (append '(color-theme-tangotango rainbow-mode cedet
-       highlight-symbol highlight-parentheses gravatar
-       git-emacs git-blame mo-git-blame virtualenv flymake-point
+       highlight-symbol highlight-parentheses gravatar git-emacs
+       git-blame mo-git-blame virtualenv flymake-point
        flymake-fringe-icons folding js2-mode js-comint json
        fic-ext-mode eol-conversion doxymacs dired-plus diff-git
        clevercss auto-complete auto-complete-clang auctex
@@ -512,8 +512,9 @@ variable. Automatically applies expand-file-name to `path`."
        dirvars po-mode+ po-mode pycheckers flymake-python
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
-       project-root magit fill-column-indicator deft gnus-gravatar
-       markdown-mode breadcrumb sticky-windows emacs-w3m)))
+       project-root magit fill-column-indicator deft
+       gnus-gravatar markdown-mode breadcrumb sticky-windows
+       emacs-w3m)))
 (el-get 'sync my-packages)
 
 ; Project Config
@@ -750,6 +751,18 @@ variable. Automatically applies expand-file-name to `path`."
         dn)
        (setq autocommit-dir-set (cons dn autocommit-dir-set)))))
 
+(defun autocommit-schedule-pull (dn)
+  "Schedule a pull if one is not already scheduled for the given dir."
+  (if (null (member dn autocommit-dir-set))
+      (progn
+       (run-with-idle-timer
+        10 nil
+        (lambda (dn)
+          (setq autocommit-dir-set (remove dn autocommit-dir-set))
+          (shell-command (concat "cd " dn " && git pull & /usr/bin/true")))
+        dn)
+       (setq autocommit-dir-set (cons dn autocommit-dir-set)))))
+
 (defun autocommit-after-save-hook ()
   "After-save-hook to 'git add' the modified file and schedule a commit and push in the idle loop."
   (let ((fn (buffer-file-name)))
@@ -777,6 +790,17 @@ variable. Automatically applies expand-file-name to `path`."
           (autocommit-setup-save-hook)))))
 
 (add-hook 'find-file-hook 'dustin-visiting-a-file)
+
+
+;; Deft mode hook
+(defun deft-sync-pull ()
+  (let* ((dn deft-directory))
+    (progn
+      (message "schedualed pull for %s" dn)
+      (autocommit-schedule-pull dn))))
+
+(add-hook 'deft-mode-hook 'deft-sync-pull)
+
 
 ; Org Mode
 (defun lconfig-org-mode ()
