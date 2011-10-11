@@ -104,7 +104,6 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 ;; Check for new mail once in every this many minutes.
 ;;
-(gnus-demon-add-handler 'gnus-demon-add-scanmail 5 t)
-(gnus-demon-add-handler 'gnus-demon-add-rescan 10 t)
+(gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
 (gnus-demon-add-handler 'gnus-demon-close-connections 30 t)
 (gnus-demon-init)
