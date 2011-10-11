@@ -496,12 +496,29 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features elscreen
 	       :options ("xzf")
 	       :url "ftp://ftp.morishima.net/pub/morishima.net/naoto/ElScreen/elscreen-1.4.6.tar.gz")
+
+	(:name js2-mode
+	       :type git
+	       :description "An improved JavaScript editing mode"
+	       :url "https://github.com/mooz/js2-mode.git"
+	       :post-init (lambda ()
+			    (autoload 'js2-mode "js2-mode" nil t)))
+
+	(:name workgroups
+	       :description "Workgroups for windows (for Emacs)"
+	       :type git
+	       :url "https://github.com/tlh/workgroups.el.git"
+	       :features "workgroups"
+	       :post-init (lambda ()
+			    (workgroups-mode 1)))
+
+
 ))
 
 (setq my-packages
       (append '(color-theme-tangotango rainbow-mode cedet
-       highlight-symbol highlight-parentheses gravatar
-       git-emacs git-blame mo-git-blame virtualenv flymake-point
+       highlight-symbol highlight-parentheses gravatar git-emacs
+       git-blame mo-git-blame virtualenv flymake-point
        flymake-fringe-icons folding js2-mode js-comint json
        fic-ext-mode eol-conversion doxymacs dired-plus diff-git
        clevercss auto-complete auto-complete-clang auctex
