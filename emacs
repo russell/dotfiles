@@ -30,6 +30,7 @@
  '(org-startup-folded (quote content))
  '(org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
  '(org-todo-keywords (quote ((type "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))))
+ '(org-mobile-directory "~/public_html/mobile.org")
  '(predictive-dict-autosave nil)
  '(predictive-dict-autosave-on-kill-buffer nil)
  '(predictive-dict-autosave-on-mode-disable nil)
