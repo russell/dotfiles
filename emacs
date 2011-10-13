@@ -2,8 +2,11 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 
-(tool-bar-mode 0) ; disable the toolbar set to 0 for OSX
-(scroll-bar-mode -1) ; no scroll bars
+;; disable the toolbar, scroll bar and menu bar
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
 
 ; set font
 (set-default-font "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
@@ -197,6 +200,12 @@ variable. Automatically applies expand-file-name to `path`."
   ;; If there is more than one, they won't work right.
  '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
  '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
+
+
+;; custom keybindings
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key "\C-c\C-k" 'kill-region)
 
 
 ; el-get configuration
@@ -431,7 +440,9 @@ variable. Automatically applies expand-file-name to `path`."
 			    (smex-initialize)
 			    (global-set-key (kbd "M-x") 'smex)
 			    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)))
+			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
+			    (global-set-key "\C-x\C-m" 'execute-extended-command)
+			    (global-set-key "\C-c\C-m" 'execute-extended-command)))
 
 	(:name active-menu
 	       :website "http://www.emacswiki.org/emacs/ActiveMenu"
