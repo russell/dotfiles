@@ -779,7 +779,7 @@ variable. Automatically applies expand-file-name to `path`."
   "After-save-hook to 'git add' the modified file and schedule a commit and push in the idle loop."
   (let ((fn (buffer-file-name)))
     (message "git adding %s" fn)
-    (shell-command (concat "git add " fn))
+    (shell-command (concat "git add " (shell-quote-argument fn)))
     (autocommit-schedule-commit (file-name-directory fn))))
 
 (defun autocommit-setup-save-hook ()
