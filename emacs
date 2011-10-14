@@ -441,8 +441,8 @@ variable. Automatically applies expand-file-name to `path`."
 			    (global-set-key (kbd "M-x") 'smex)
 			    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
-			    (global-set-key "\C-x\C-m" 'execute-extended-command)
-			    (global-set-key "\C-c\C-m" 'execute-extended-command)))
+			    (global-set-key "\C-x\C-m" 'smex)
+			    (global-set-key "\C-c\C-m" 'smex)))
 
 	(:name active-menu
 	       :website "http://www.emacswiki.org/emacs/ActiveMenu"
