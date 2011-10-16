@@ -29,6 +29,8 @@
  '(inhibit-startup-screen t)
  '(ns-alternate-modifier (quote meta))
  '(org-agenda-files (quote ("~/.deft/")))
+ '(org-directory "~/.deft/")
+ '(org-mobile-inbox-for-pull "~/.deft/flagged.org")
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(org-startup-folded (quote content))
  '(org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
@@ -441,8 +443,8 @@ variable. Automatically applies expand-file-name to `path`."
 			    (global-set-key (kbd "M-x") 'smex)
 			    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
-			    (global-set-key "\C-x\C-m" 'execute-extended-command)
-			    (global-set-key "\C-c\C-m" 'execute-extended-command)))
+			    (global-set-key "\C-x\C-m" 'smex)
+			    (global-set-key "\C-c\C-m" 'smex)))
 
 	(:name active-menu
 	       :website "http://www.emacswiki.org/emacs/ActiveMenu"
@@ -796,7 +798,7 @@ variable. Automatically applies expand-file-name to `path`."
   "After-save-hook to 'git add' the modified file and schedule a commit and push in the idle loop."
   (let ((fn (buffer-file-name)))
     (message "git adding %s" fn)
-    (shell-command (concat "git add " fn))
+    (shell-command (concat "git add " (shell-quote-argument fn)))
     (autocommit-schedule-commit (file-name-directory fn))))
 
 (defun autocommit-setup-save-hook ()
