@@ -29,6 +29,8 @@
  '(inhibit-startup-screen t)
  '(ns-alternate-modifier (quote meta))
  '(org-agenda-files (quote ("~/.deft/")))
+ '(org-directory "~/.deft/")
+ '(org-mobile-inbox-for-pull "~/.deft/flagged.org")
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(org-startup-folded (quote content))
  '(org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
