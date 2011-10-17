@@ -397,6 +397,10 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features dirvars
 	       :type emacswiki)
 
+	(:name ctags-update
+	       :features ctags-update
+	       :type emacswiki)
+
 	(:name sr-speedbar
 	       :features sr-speedbar
 	       :depends (cedet)
@@ -528,7 +532,7 @@ variable. Automatically applies expand-file-name to `path`."
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft
        gnus-gravatar markdown-mode breadcrumb sticky-windows
-       emacs-w3m)))
+       emacs-w3m ctags-update)))
 (el-get 'sync my-packages)
 
 ; Project Config
@@ -570,6 +574,9 @@ variable. Automatically applies expand-file-name to `path`."
 
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
+
+    ;; ctags
+    (ctags-update-minor-mode 1)
 
     ; trim whitespace
     (add-hook 'local-write-file-hooks
@@ -825,3 +832,29 @@ variable. Automatically applies expand-file-name to `path`."
     ))
 (add-hook 'org-mode-hook 'lconfig-org-mode)
 
+
+;;
+;; Google Contact Sync
+;;
+(setq google-contacts-user "russell.sim@gmail.com")
+(setq google-contacts-code-directory "~/.emacs.d/el-get/google-contacts/code")
+(setq google-contacts-directory "~/tmp")
+(setq google-contacts-auto-update t)
+
+;;
+;; etags
+;;
+(setq path-to-ctags "ctags")
+
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (shell-command
+   (format "%s -f %s/TAGS -e -R %s" path-to-ctags dir-name (directory-file-name dir-name))))
+
+(defun project-root-create-tags ()
+  "Create tags file using the curret project root."
+  (interactive)
+  (with-project-root
+      (shell-command
+       (format "%s -eR" path-to-ctags))))
