@@ -447,8 +447,7 @@ variable. Automatically applies expand-file-name to `path`."
 			    (global-set-key (kbd "M-x") 'smex)
 			    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 			    (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
-			    (global-set-key "\C-x\C-m" 'smex)
-			    (global-set-key "\C-c\C-m" 'smex)))
+			    (global-set-key "\C-x\C-m" 'smex)))
 
 	(:name active-menu
 	       :website "http://www.emacswiki.org/emacs/ActiveMenu"
@@ -555,7 +554,7 @@ variable. Automatically applies expand-file-name to `path`."
          (not (python-in-string/comment)))))
 
 
-(defun compile-project ()
+(defun project-root-compile ()
   "Compile the project, using the project root as the cwd."
   (interactive)
   (with-project-root (compile)))
@@ -583,6 +582,8 @@ variable. Automatically applies expand-file-name to `path`."
 	      '(lambda()
 		 (save-excursion
 		   (delete-trailing-whitespace))))
+
+    (define-key py-mode-map [(meta q)] 'py-fill-paragraph)
 
     (defun ac-python-find ()
       "Python `ac-find-function'."
