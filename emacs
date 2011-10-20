@@ -204,11 +204,14 @@ variable. Automatically applies expand-file-name to `path`."
  '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
 
 
+;; pymacs
+(setq pymacs-reload nil) ; change nil to t to force a reload.
+
+
 ;; custom keybindings
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
-
 
 ; el-get configuration
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -319,7 +322,12 @@ variable. Automatically applies expand-file-name to `path`."
 			(setq ropemacs-codeassist-maxfixes 3)
 			(setq ropemacs-guess-project t)
 			(setq ropemacs-enable-autoimport t)
-                        (pymacs-load "ropemacs" "rope-")
+
+			(if (or pymacs-reload (not (boundp 'ropePymacs)))
+			    (setq ropePymacs (pymacs-load "ropemacs" "rope-"))
+			  (message "ropePymacs already loaded")
+			  )
+
 
 			;; Rope Mode - Only enable when editing local files
 			(when (not (subsetp (list (current-buffer))
@@ -390,8 +398,13 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features po-mode+
 	       :depends po-mode
 	       :post-init (lambda ()
-			    (add-to-list 'auto-mode-alist '("\\.po$" . po-mode+))
-			    (add-to-list 'auto-mode-alist '("\\.pot$" . po-mode+))))
+			   (autoload 'po-mode "po-mode+"
+			     "Major mode for translators to edit PO files" t)
+			   ))
+
+	(:name tsql-indent
+	       :type emacswiki
+	       :features tsql-indent)
 
 	(:name dirvars
 	       :features dirvars
@@ -521,13 +534,19 @@ variable. Automatically applies expand-file-name to `path`."
 	       :post-init (lambda ()
 			    (autoload 'js2-mode "js2-mode" nil t)))
 
+	(:name hideshow-org
+	       :features hideshow-org
+	       :type git
+	       :url "https://github.com/secelis/hideshow-org.git")
+
 	(:name workgroups
 	       :description "Workgroups for windows (for Emacs)"
 	       :type git
 	       :url "https://github.com/tlh/workgroups.el.git"
 	       :features "workgroups"
 	       :post-init (lambda ()
-			    (workgroups-mode 1)))
+			    (workgroups-mode 1)
+			    ))
 
 
 ))
@@ -548,8 +567,20 @@ variable. Automatically applies expand-file-name to `path`."
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft
        gnus-gravatar markdown-mode breadcrumb sticky-windows
-       emacs-w3m ctags-update)))
+       emacs-w3m ctags-update hideshow-org workgroups)))
 (el-get 'sync my-packages)
+
+;; Compile Current Buffer
+(defun compile-current-buffer (&optional comint)
+  (interactive (list (consp current-prefix-arg)))
+   (setq command (concat (eval compile-command)
+	      " " (buffer-file-name)))
+  (save-some-buffers (not compilation-ask-about-save) nil)
+  (setq-default compilation-directory default-directory)
+  (compilation-start command comint))
+(global-set-key [f6] 'compile-current-buffer)
+
+(wg-load "~/.emacs-workgroups")
 
 ; Project Config
 (setq project-roots
@@ -588,14 +619,27 @@ variable. Automatically applies expand-file-name to `path`."
     ;; Always end a file with a newline
     (setq require-final-newline nil)
 
+    ;; show column 80 in python files
+    ;(fci-mode)
+    ;(set-fill-column 80)
+
     ;; Auto Fill
     ;;(python-auto-fill-comments-only)
 
     ;; ctags
-    (ctags-update-minor-mode 1)
+    ;;(ctags-update-minor-mode 1)
+
+    ;; hideshow
+    (global-set-key (kbd "C-c h") 'hs-org/minor-mode)
+    (hs-org/minor-mode)
+
+    (defadvice goto-line (after expand-after-goto-line activate compile)
+      "hideshow-expand affected block when using goto-line in a collapsed buffer"
+      (save-excursion
+	(hs-show-block)))
 
     ; trim whitespace
-    (add-hook 'local-write-file-hooks
+    (add-hook 'write-file-functions
 	      '(lambda()
 		 (save-excursion
 		   (delete-trailing-whitespace))))
@@ -633,8 +677,8 @@ variable. Automatically applies expand-file-name to `path`."
 	    (setq candidates (append candidates cand))))
 	(delete-dups candidates)))
 
-    (ac-set-trigger-key "TAB")
-    (setq ac-sources '(ac-source-rope ac-source-yasnippet))
+    ;;(ac-set-trigger-key "TAB")
+    ;;(setq ac-sources '(ac-source-rope ac-source-yasnippet))
     (set (make-local-variable 'ac-find-function) 'ac-python-find)
     (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
     ))
@@ -703,20 +747,28 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 ; PO Mode
-(setq auto-mode-alist
-      (cons '("\\.po\\'\\|\\.po\\." . po-mode) auto-mode-alist))
+;(setq auto-mode-alist
+;      (cons '("\\.po\\'\\|\\.po\\." . po-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.po$" . flyspell-mode) auto-mode-alist))
-(autoload 'po-mode "po-mode" "Major mode for translators to edit PO files" t)
-(add-hook 'po-mode-hook '(lambda () (flyspell-mode)))
+;(autoload 'po-mode "po-mode" "Major mode for translators to edit PO files" t)
+;(add-hook 'po-mode-hook '(lambda () (flyspell-mode)))
 
 (eval-after-load "po-mode+"
   '(progn
      (setq po-auto-replace-file-header nil)
      (setq po-auto-replace-revision-date nil)
-     (setq po-default-file-header "")))
-
+     (setq po-default-file-header "\
+msgid \"\"
+msgstr \"\"
+\"MIME-Version: 1.0\\n\"
+\"Content-Type: text/plain; charset=UTF-8\\n\"
+\"Content-Transfer-Encoding: 8bit\\n\"
+")))
+;(eval-after-load "po-mode"
+;  '(load "gb-po-mode"))
 
 ; RST Mode
+
 (add-hook 'rst-mode-hook '(lambda () (flyspell-mode)))
 
 
@@ -726,6 +778,7 @@ variable. Automatically applies expand-file-name to `path`."
 ;(setq auto-mode-alist (cons '("\\.html$" . sgml-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.html\.raw$" . sgml-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.dtml$" . sgml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.html$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zpt$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pt$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zcml$" . nxml-mode) auto-mode-alist))
@@ -786,7 +839,7 @@ variable. Automatically applies expand-file-name to `path`."
           (setq autocommit-dir-set (remove dn autocommit-dir-set))
           (message (concat "Committing org files in " dn))
           (shell-command (concat "cd " dn " && git commit -m 'Updated org files.'"))
-          (shell-command (concat "cd " dn " && git push & /usr/bin/true")))
+          (shell-command (concat "cd " dn " && git push & true")))
         dn)
        (setq autocommit-dir-set (cons dn autocommit-dir-set)))))
 
@@ -798,7 +851,7 @@ variable. Automatically applies expand-file-name to `path`."
         10 nil
         (lambda (dn)
           (setq autocommit-dir-set (remove dn autocommit-dir-set))
-          (shell-command (concat "cd " dn " && git pull & /usr/bin/true")))
+          (shell-command (concat "cd " dn " && git pull & true")))
         dn)
        (setq autocommit-dir-set (cons dn autocommit-dir-set)))))
 
@@ -806,7 +859,7 @@ variable. Automatically applies expand-file-name to `path`."
   "After-save-hook to 'git add' the modified file and schedule a commit and push in the idle loop."
   (let ((fn (buffer-file-name)))
     (message "git adding %s" fn)
-    (shell-command (concat "git add " (shell-quote-argument fn)))
+    (shell-command (mapconcat 'shell-quote-argument (list "git" "add" fn) " "))
     (autocommit-schedule-commit (file-name-directory fn))))
 
 (defun autocommit-setup-save-hook ()
@@ -828,7 +881,7 @@ variable. Automatically applies expand-file-name to `path`."
                    (file-name-nondirectory fn) dn)
           (autocommit-setup-save-hook)))))
 
-(add-hook 'find-file-hook 'dustin-visiting-a-file)
+;;(add-hook 'find-file-hook 'dustin-visiting-a-file)
 
 
 ;; Deft mode hook
@@ -875,4 +928,8 @@ variable. Automatically applies expand-file-name to `path`."
   (interactive)
   (with-project-root
       (shell-command
-       (format "%s -eR" path-to-ctags))))
+       (format "%s -eR --extra=+q" path-to-ctags))))
+
+
+(put 'narrow-to-region 'disabled nil)
+
