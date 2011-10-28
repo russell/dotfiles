@@ -653,7 +653,7 @@ variable. Automatically applies expand-file-name to `path`."
 
     ;; hideshow
     (global-set-key (kbd "C-c h") 'hs-org/minor-mode)
-    (hs-org/minor-mode)
+    ;;(hs-org/minor-mode)
 
     (defadvice goto-line (after expand-after-goto-line activate compile)
       "hideshow-expand affected block when using goto-line in a collapsed buffer"
