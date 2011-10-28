@@ -131,7 +131,7 @@ g () {
 # EMACS launcher
 e () {
     if [ $DARWIN -eq 1 ]; then
-	EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs
+	EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
     else
 	EMACS=emacs
     fi
