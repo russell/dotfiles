@@ -548,6 +548,33 @@ variable. Automatically applies expand-file-name to `path`."
 			    (workgroups-mode 1)
 			    ))
 
+	(:name google-contacts
+	       :type http-tar
+	       :options ("xzf")
+	       :depends bbdb
+	       :features (google-contacts)
+	       :url "http://emacs-google.googlecode.com/files/google-emacs-0.0.3.tgz")
+
+	(:name gdata-python-client
+	       :type hg
+	       :url "https://code.google.com/p/gdata-python-client/"
+               :after (lambda ()
+                        (add-to-pythonpath (concat el-get-dir "gdata-python-client/src"))
+                        ))
+
+	(:name slime
+	       :description "Superior Lisp Interaction Mode for Emacs"
+	       :type git
+	       :module "slime"
+	       :info "doc"
+	       :features slime
+	       :url "https://github.com/nablaone/slime.git"
+	       :load-path ("." "contrib")
+	       :compile (".")
+	       :build ("make -C doc")
+	       :after (lambda ()
+			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
+			(slime-setup '(inferior-slime))))
 
 ))
 
@@ -567,7 +594,8 @@ variable. Automatically applies expand-file-name to `path`."
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft
        gnus-gravatar markdown-mode breadcrumb sticky-windows
-       emacs-w3m ctags-update hideshow-org workgroups)))
+       emacs-w3m ctags-update hideshow-org workgroups
+       google-contacts scss-mode slime ac-slime)))
 (el-get 'sync my-packages)
 
 ;; Compile Current Buffer
@@ -580,7 +608,8 @@ variable. Automatically applies expand-file-name to `path`."
   (compilation-start command comint))
 (global-set-key [f6] 'compile-current-buffer)
 
-(wg-load "~/.emacs-workgroups")
+(if (file-exists-p "~/.emacs-workgroups")
+    (wg-load "~/.emacs-workgroups"))
 
 ; Project Config
 (setq project-roots
@@ -618,13 +647,6 @@ variable. Automatically applies expand-file-name to `path`."
 
     ;; Always end a file with a newline
     (setq require-final-newline nil)
-
-    ;; show column 80 in python files
-    ;(fci-mode)
-    ;(set-fill-column 80)
-
-    ;; Auto Fill
-    ;;(python-auto-fill-comments-only)
 
     ;; ctags
     ;;(ctags-update-minor-mode 1)
@@ -823,6 +845,16 @@ msgstr \"\"
     ))
 (add-hook 'markdown-mode-hook 'lconfig-markdown-mode)
 
+
+; Lisp
+;(require 'inferior-slime)
+;(slime-setup '(inferior-slime))
+;(add-hook 'slime-load-hook (lambda () (require 'inferior-slime)
+;                                        (inferior-slime-init)))
+
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'inferior-lisp-mode-hook (lambda () (auto-complete-mode 1)))
+;(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
 ;; Automatically add, commit, and push when files change.
 ;; https://gist.github.com/449668 && https://gist.github.com/397971

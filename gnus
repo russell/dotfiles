@@ -29,7 +29,8 @@
 
 (setq gnus-secondary-select-methods
       '((nnml "")
-        (nntp "news.gmane.org")))
+        (nntp "news.gmane.org")
+	(nntp "news.eternal-september.org")))
 
 ;; don't bugger me with dribbles
 (setq gnus-always-read-dribble-file t)
@@ -66,7 +67,7 @@ See (info \"(gnus)Group Line Specification\")."
           ((< c    10)     " +")
           ((< c   100)     "++")
           ((< c  1000)     " ^")
-          (t               "^^")))) 
+          (t               "^^"))))
 
 ;; http://groups.google.com/group/gnu.emacs.gnus/browse_thread/thread/a673a74356e7141f
 (when window-system
@@ -78,7 +79,7 @@ See (info \"(gnus)Group Line Specification\")."
   (setq gnus-sum-thread-tree-leaf-with-other "├─► ")
   (setq gnus-sum-thread-tree-single-leaf     "╰─► "))
 (setq gnus-face-9 'font-lock-warning-face)
-(setq gnus-face-10 'shadow) 
+(setq gnus-face-10 'shadow)
 (setq gnus-summary-line-format
         (concat
          "%0{%U%R%z%}" "%10{|%}" "%1{%d%}" "%10{|%}"
@@ -88,11 +89,17 @@ See (info \"(gnus)Group Line Specification\")."
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ; w3m
-(setq gnus-mime-display-multipart-related-as-mixed nil)
-(setq gnus-article-wash-function 'w3m)
-(setq mm-text-html-renderer 'w3m)
+;(setq gnus-mime-display-multipart-related-as-mixed nil)
+;(setq w3m-display-inline-image t)
+(setq w3m-default-display-inline-images t)
+;(setq gnus-article-wash-function 'w3m)
+(setq mm-text-html-renderer 'w3m51)
 (setq mm-inline-text-html-with-images t)
 ;(setq mm-inline-text-html-with-w3m-keymap nil)
+(setq mm-w3m-safe-url-regexp nil)
+(setq gnus-mime-display-multipart-related-as-mixed nil)
+
+
 
 ; gravater
 (defun th-gnus-article-prepared ()
@@ -107,3 +114,25 @@ See (info \"(gnus)Group Line Specification\")."
 (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
 (gnus-demon-add-handler 'gnus-demon-close-connections 30 t)
 (gnus-demon-init)
+
+
+;;(info "(emacs-w3m) Gnus")
+(defun gnus-summary-w3m-safe-toggle-inline-images (&optional arg)
+  "Toggle displaying of all images in the article buffer.
+          If the prefix arg is given, force displaying of images."
+  (interactive "P")
+  (with-current-buffer gnus-article-buffer
+    (let ((st (point-min))
+	  (nd (point-max))
+	  (w3m-async-exec w3m-async-exec))
+      (save-restriction
+	(widen)
+	(if (or (> st (point-min)) (< nd (point-max)))
+	    (setq w3m-async-exec nil))
+	(article-goto-body)
+	(goto-char (or (text-property-not-all (point) (point-max)
+					      'w3m-safe-url-regexp nil)
+		       (point)))
+	(if (interactive-p)
+	    (call-interactively 'w3m-toggle-inline-images)
+	  (w3m-toggle-inline-images arg))))))
