@@ -570,12 +570,11 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features slime
 	       :url "https://github.com/nablaone/slime.git"
 	       :load-path ("." "contrib")
-	       :compile (".")
+	       :compile ("." "contrib")
 	       :build ("make -C doc")
 	       :after (lambda ()
 			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
-			(slime-setup '(inferior-slime))))
-
+			(slime-setup '(inferior-slime slime-fancy))))
 ))
 
 (setq my-packages
