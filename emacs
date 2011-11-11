@@ -30,18 +30,19 @@
  '(ns-alternate-modifier (quote meta))
  '(org-agenda-files (quote ("~/.deft/")))
  '(org-directory "~/.deft/")
+ '(org-hide-leading-stars t)
+ '(org-mobile-directory "~/public_html/mobile.org")
  '(org-mobile-inbox-for-pull "~/.deft/flagged.org")
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(org-startup-folded (quote content))
  '(org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
  '(org-todo-keywords (quote ((type "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))))
- '(org-mobile-directory "~/public_html/mobile.org")
  '(predictive-dict-autosave nil)
  '(predictive-dict-autosave-on-kill-buffer nil)
  '(predictive-dict-autosave-on-mode-disable nil)
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify))
- '(user-mail-address "russell.sim@gmail.com")
- '(user-full-name "Russell Sim"))
+ '(user-full-name "Russell Sim")
+ '(user-mail-address "russell.sim@gmail.com"))
 
 
 ; el-get
@@ -852,6 +853,12 @@ msgstr \"\"
 ;                                        (inferior-slime-init)))
 
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-mode-hook
+	  '(lambda ()
+	     (add-hook 'write-file-functions
+		       '(lambda()
+			  (save-excursion
+			    (delete-trailing-whitespace))))))
 (add-hook 'inferior-lisp-mode-hook (lambda () (auto-complete-mode 1)))
 ;(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
