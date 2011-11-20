@@ -595,7 +595,8 @@ variable. Automatically applies expand-file-name to `path`."
        project-root magit fill-column-indicator deft
        gnus-gravatar markdown-mode breadcrumb sticky-windows
        emacs-w3m ctags-update hideshow-org workgroups
-       google-contacts scss-mode slime ac-slime)))
+       google-contacts scss-mode slime ac-slime erc
+       erc-highlight-nicknames)))
 (el-get 'sync my-packages)
 
 ;; Compile Current Buffer
@@ -862,6 +863,16 @@ msgstr \"\"
 (add-hook 'inferior-lisp-mode-hook (lambda () (auto-complete-mode 1)))
 ;(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
+; elisp
+
+(add-hook 'emacs-lisp-mode-hook
+	  '(lambda ()
+	     (add-hook 'write-file-functions
+		       '(lambda()
+			  (save-excursion
+			    (delete-trailing-whitespace))))))
+
+
 ;; Automatically add, commit, and push when files change.
 ;; https://gist.github.com/449668 && https://gist.github.com/397971
 (defvar autocommit-dir-set '()
@@ -971,3 +982,29 @@ msgstr \"\"
 
 (put 'narrow-to-region 'disabled nil)
 
+;; ERC
+
+(load "~/.ercpass")
+
+(require 'erc-services)
+(erc-services-mode 1)
+
+(setq erc-prompt-for-nickserv-password nil)
+(setq erc-nickserv-identify-mode 'autodetect)
+(defun start-irc ()
+  "Connect to IRC."
+  (interactive)
+  (erc-tls :server "irc.oftc.net" :port 6697
+	   :nick "arrsim" :full-name "Russell Sim"
+	   :password oftc-pass)
+  (erc-tls :server "irc.freenode.net" :port 6667
+	   :nick "arrsim" :full-name "Russell Sim"
+	   :password freenode-pass)
+  (setq erc-autojoin-channels-alist
+	'(("freenode.net" "#emacs" "#python"
+	   "#twisted" "#twisted.web" "#pylons"
+	   "#pyramid")
+	  ("oftc.net" "#debian" "#debian-montors"
+	   "#debian-python" "#debian-gname"))))
+
+(setq erc-autojoin-channels-alist '())
