@@ -178,10 +178,13 @@ m () {
     offlineimap -o -u basic
 }
 
-export PYTHONDONTWRITEBYTECODE=true
+#export PYTHONDONTWRITEBYTECODE=true
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+if [ -f "$HOME/.bashrc.local" ]; then
+    . "$HOME/.bashrc.local"
+fi
