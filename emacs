@@ -9,8 +9,8 @@
 
 
 ; set font
-(set-default-font "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true"))
+(set-default-font "DejaVu Sans Mono:pixelsize=12:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=12:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true"))
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -23,6 +23,7 @@
  '(ecb-options-version "2.40")
  '(elmo-localdir-folder-path "~/Mail")
  '(elscreen-tab-display-control nil)
+ '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp spelling track highlight-nicknames)))
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
