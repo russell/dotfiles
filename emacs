@@ -1063,11 +1063,11 @@ msgstr \"\"
 (require 'erc-services)
 (erc-services-mode 1)
 
-;; change this to what you like.. default is 30,000
 (setq erc-max-buffer-size 30000)
-(setq erc-truncate-buffer-on-save t)
-(add-hook 'erc-insert-post-hook
-	  'erc-truncate-buffer)
+(add-hook 'erc-mode-hook
+	  '(lambda ()
+	     (erc-truncate-mode t)))
+
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
 (defun start-irc ()
