@@ -9,7 +9,6 @@
 ;;
 (setq message-from-style 'angles)
 
-
 ; gnus
 (setq gnus-select-method '(nnimap "Mail"
 				  (nnimap-address "localhost")
@@ -89,16 +88,16 @@ See (info \"(gnus)Group Line Specification\")."
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ; w3m
+;(setq w3m-default-display-inline-images t)
+(setq mm-text-html-renderer 'w3m)
+;(setq mm-inline-text-html-with-images t)
+;(setq mm-w3m-safe-url-regexp nil)
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
-;(setq w3m-display-inline-image t)
-(setq w3m-default-display-inline-images t)
-;(setq gnus-article-wash-function 'w3m)
-(setq mm-text-html-renderer 'w3m51)
-(setq mm-inline-text-html-with-images t)
-;(setq mm-inline-text-html-with-w3m-keymap nil)
-(setq mm-w3m-safe-url-regexp nil)
-(setq gnus-mime-display-multipart-related-as-mixed nil)
 
+
+;; Mailing list support
+(setq message-subscribed-address-functions
+      '(gnus-find-subscribed-addresses))
 
 
 ; gravater
@@ -136,3 +135,6 @@ See (info \"(gnus)Group Line Specification\")."
 	(if (interactive-p)
 	    (call-interactively 'w3m-toggle-inline-images)
 	  (w3m-toggle-inline-images arg))))))
+
+(define-key gnus-summary-mode-map (kbd ">") 'gnus-summary-show-thread)
+(define-key gnus-summary-mode-map (kbd "<") 'gnus-summary-hide-thread)
