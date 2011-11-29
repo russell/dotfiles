@@ -1076,7 +1076,7 @@ msgstr \"\"
   (erc-tls :server "irc.oftc.net" :port 6697
 	   :nick "arrsim" :full-name "Russell Sim"
 	   :password oftc-pass)
-  (erc-tls :server "irc.freenode.net" :port 6667
+  (erc-tls :server "irc.freenode.net" :port 6697
 	   :nick "arrsim" :full-name "Russell Sim"
 	   :password freenode-pass)
   (setq erc-autojoin-channels-alist
