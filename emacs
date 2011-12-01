@@ -628,13 +628,14 @@ variable. Automatically applies expand-file-name to `path`."
 	       :module "slime"
 	       :info "doc"
 	       :features slime
-	       :url "https://github.com/nablaone/slime.git"
+	       :url "https://github.com/emacsmirror/slime.git"
 	       :load-path ("." "contrib")
 	       :compile ("." "contrib")
 	       :build ("make -C doc")
 	       :after (lambda ()
 			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
-			(slime-setup '(inferior-slime slime-fancy))))
+			(slime-setup '(inferior-slime slime-fancy))
+			))
 ))
 
 (setq my-packages
@@ -922,11 +923,6 @@ msgstr \"\"
 
 
 ; Lisp
-;(require 'inferior-slime)
-;(slime-setup '(inferior-slime))
-;(add-hook 'slime-load-hook (lambda () (require 'inferior-slime)
-;                                        (inferior-slime-init)))
-
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-mode-hook
 	  '(lambda ()
