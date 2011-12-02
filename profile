@@ -26,5 +26,7 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export DEBEMAIL="Russell Sim <russell.sim@gmail.com>"
+export DEBEMAIL="russell.sim@gmail.com"
 export MAIL="russell.sim@gmail.com"
+
+export GPGKEY=0x27E94A1A
