@@ -1022,6 +1022,7 @@ msgstr \"\"
     ))
 (add-hook 'org-mode-hook 'lconfig-org-mode)
 
+(setq org-completion-use-ido t)
 
 ;;
 ;; Google Contact Sync
