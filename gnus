@@ -10,10 +10,18 @@
 (setq message-from-style 'angles)
 
 ; gnus
-(setq gnus-select-method '(nnimap "Mail"
-				  (nnimap-address "localhost")
-				  (nnimap-stream network)
-				  (nnimap-authenticator login)))
+
+(setq gnus-select-method
+      '(nnmaildir "GMail"
+		  (directory "~/Mail/GMail/")
+		  (directory-files nnheader-directory-files-safe)
+		  (get-new-mail nil)))
+;; Dovecat IMAP server
+;(setq gnus-select-method '(nnimap "Mail"
+;				  (nnimap-address "localhost")
+;				  (nnimap-stream network)
+;				  (nnimap-authenticator login)))
+;; Gmail IMAP server
 ;(setq gnus-select-method '(nnimap "gmail"
 ;				  (nnimap-address "imap.gmail.com")
 ;				  (nnimap-server-port 993)
@@ -94,6 +102,9 @@ See (info \"(gnus)Group Line Specification\")."
 ;(setq mm-w3m-safe-url-regexp nil)
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
 
+
+(setq gnus-sync-backend '(lesync "http://oneill.home:5984/gnus")
+      gnus-sync-newsrc-groups '("nntp" "nnrss"))
 
 ;; Mailing list support
 (setq message-subscribed-address-functions
