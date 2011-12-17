@@ -1,5 +1,6 @@
 ;; -*- Mode: Emacs-Lisp -*-
 
+(setq load-path (cons (expand-file-name "~/.emacs.d/el-get/nognus/lisp") load-path))
 (add-to-list 'load-path "~/.emacs.d/")
 
 ;; disable the toolbar, scroll bar and menu bar
@@ -32,7 +33,7 @@
  '(org-agenda-files (quote ("~/.deft/")))
  '(org-directory "~/.deft/")
  '(org-hide-leading-stars t)
- '(org-mobile-directory "~/public_html/mobile.org")
+ '(org-mobile-directory "~/public_html/org")
  '(org-mobile-inbox-for-pull "~/.deft/flagged.org")
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(org-startup-folded (quote content))
@@ -656,7 +657,7 @@ variable. Automatically applies expand-file-name to `path`."
        gnus-gravatar markdown-mode breadcrumb sticky-windows
        emacs-w3m ctags-update hideshow-org workgroups
        google-contacts scss-mode slime ac-slime erc
-       erc-highlight-nicknames apache-mode)))
+       erc-highlight-nicknames apache-mode nognus)))
 (el-get 'sync my-packages)
 
 ;; Compile Current Buffer
