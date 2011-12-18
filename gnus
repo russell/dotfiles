@@ -96,15 +96,17 @@ See (info \"(gnus)Group Line Specification\")."
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ; w3m
-;(setq w3m-default-display-inline-images t)
 (setq mm-text-html-renderer 'w3m)
-;(setq mm-inline-text-html-with-images t)
-;(setq mm-w3m-safe-url-regexp nil)
+(setq mm-inline-text-html-with-images t)
+(setq mm-w3m-safe-url-regexp nil)
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
 
-
-(setq gnus-sync-backend '(lesync "http://oneill.home:5984/gnus")
-      gnus-sync-newsrc-groups '("nntp" "nnrss"))
+(require 'gnus-sync)
+(setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")
+      gnus-sync-newsrc-groups '("nntp" "nnrss")
+      gnus-sync-lesync-install-topics 't
+      gnus-sync-lesync-name "marvin.home")
+(gnus-sync-initialize)
 
 ;; Mailing list support
 (setq message-subscribed-address-functions
