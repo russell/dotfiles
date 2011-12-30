@@ -638,7 +638,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :build ("make -C doc")
 	       :after (lambda ()
 			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
-			(slime-setup '(inferior-slime slime-fancy))
+			(slime-setup '(inferior-slime slime-fancy slime-asdf))
 			))
 ))
 
