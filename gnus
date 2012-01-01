@@ -44,6 +44,8 @@
 ;; don't bugger me with session password
 (setq imap-store-password t)
 
+(setq gnus-agent-synchronize-flags t)
+
 (defun gnus-user-format-function-@ (header)
   "Display @ for message with attachment in summary line.
 You need to add `Content-Type' to `nnmail-extra-headers' and
@@ -100,6 +102,8 @@ See (info \"(gnus)Group Line Specification\")."
 (setq mm-inline-text-html-with-images t)
 (setq mm-w3m-safe-url-regexp nil)
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
+
+(require 'gnus-gravatar)
 
 (require 'gnus-sync)
 (setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")

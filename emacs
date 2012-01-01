@@ -613,18 +613,14 @@ variable. Automatically applies expand-file-name to `path`."
 			    ))
 
 	(:name google-contacts
-	       :type http-tar
-	       :options ("xzf")
-	       :depends bbdb
-	       :features (google-contacts)
-	       :url "http://emacs-google.googlecode.com/files/google-emacs-0.0.3.tgz")
+	       :features (google-contacts google-contacts-gnus google-contacts-message)
+	       :depends oauth2
+	       :type git
+	       :url "git://git.naquadah.org/google-contacts.el.git")
 
-	(:name gdata-python-client
-	       :type hg
-	       :url "https://code.google.com/p/gdata-python-client/"
-               :after (lambda ()
-                        (add-to-pythonpath (concat el-get-dir "gdata-python-client/src"))
-                        ))
+	(:name oauth2
+	       :features oauth2
+	       :type elpa)
 
 	(:name slime
 	       :description "Superior Lisp Interaction Mode for Emacs"
@@ -634,7 +630,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features slime
 	       :url "https://github.com/emacsmirror/slime.git"
 	       :load-path ("." "contrib")
-	       :compile ("." "contrib")
+	       :compile (".")
 	       :build ("make -C doc")
 	       :after (lambda ()
 			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
@@ -644,7 +640,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 (setq my-packages
       (append '(color-theme-tangotango cedet
-       highlight-symbol highlight-parentheses gravatar git-emacs
+       highlight-symbol highlight-parentheses git-emacs
        git-blame mo-git-blame virtualenv flymake-point
        flymake-fringe-icons folding js2-mode js-comint json
        fic-ext-mode eol-conversion doxymacs dired-plus diff-git
@@ -657,10 +653,10 @@ variable. Automatically applies expand-file-name to `path`."
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft
-       gnus-gravatar markdown-mode breadcrumb sticky-windows
+       markdown-mode breadcrumb sticky-windows
        emacs-w3m ctags-update hideshow-org workgroups
-       google-contacts scss-mode slime ac-slime erc
-       erc-highlight-nicknames apache-mode nognus)))
+       scss-mode slime ac-slime erc twittering-mode
+       erc-highlight-nicknames apache-mode nognus google-contacts)))
 (el-get 'sync my-packages)
 
 ;; Compile Current Buffer
@@ -1111,6 +1107,16 @@ msgstr \"\"
 
 
 (put 'narrow-to-region 'disabled nil)
+
+
+;;
+;; twitter
+;;
+(setq twittering-use-master-password t)
+(setq twittering-icon-mode t)                ; Show icons
+(setq twittering-timer-interval 300)         ; Update your timeline each 300 seconds (5 minutes)
+(setq twittering-url-show-status nil)        ; Keeps the echo area from showing all the http processes
+
 
 ;; ERC
 
