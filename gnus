@@ -10,14 +10,22 @@
 (setq message-from-style 'angles)
 
 ; gnus
-(setq gnus-select-method '(nnimap "Mail"
-				  (nnimap-address "localhost")
-				  (nnimap-stream network)
-				  (nnimap-authenticator login)))
-;(setq gnus-select-method '(nnimap "gmail"
-;				  (nnimap-address "imap.gmail.com")
-;				  (nnimap-server-port 993)
-;				  (nnimap-stream ssl)))
+
+;(setq gnus-select-method
+;      '(nnmaildir "GMail"
+;		  (directory "~/Mail/GMail/")
+;		  (directory-files nnheader-directory-files-safe)
+;		  (get-new-mail nil)))
+;; Dovecat IMAP server
+;(setq gnus-select-method '(nnimap "Mail"
+;				  (nnimap-address "localhost")
+;				  (nnimap-stream network)
+;				  (nnimap-authenticator login)))
+;; Gmail IMAP server
+(setq gnus-select-method '(nnimap "gmail"
+				  (nnimap-address "imap.gmail.com")
+				  (nnimap-server-port 993)
+				  (nnimap-stream ssl)))
 (setq message-send-mail-function 'smtpmail-send-it
       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
       smtpmail-default-smtp-server "smtp.gmail.com"
@@ -35,6 +43,8 @@
 (setq gnus-always-read-dribble-file t)
 ;; don't bugger me with session password
 (setq imap-store-password t)
+
+(setq gnus-agent-synchronize-flags t)
 
 (defun gnus-user-format-function-@ (header)
   "Display @ for message with attachment in summary line.
@@ -88,12 +98,19 @@ See (info \"(gnus)Group Line Specification\")."
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ; w3m
-;(setq w3m-default-display-inline-images t)
 (setq mm-text-html-renderer 'w3m)
-;(setq mm-inline-text-html-with-images t)
-;(setq mm-w3m-safe-url-regexp nil)
+(setq mm-inline-text-html-with-images t)
+(setq mm-w3m-safe-url-regexp nil)
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
 
+(require 'gnus-gravatar)
+
+(require 'gnus-sync)
+(setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")
+      gnus-sync-newsrc-groups '("nntp" "nnrss")
+      gnus-sync-lesync-install-topics 't
+      gnus-sync-lesync-name "marvin.home")
+(gnus-sync-initialize)
 
 ;; Mailing list support
 (setq message-subscribed-address-functions

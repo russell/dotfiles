@@ -1,5 +1,6 @@
 ;; -*- Mode: Emacs-Lisp -*-
 
+(setq load-path (cons (expand-file-name "~/.emacs.d/el-get/nognus/lisp") load-path))
 (add-to-list 'load-path "~/.emacs.d/")
 
 ;; disable the toolbar, scroll bar and menu bar
@@ -32,7 +33,7 @@
  '(org-agenda-files (quote ("~/.deft/")))
  '(org-directory "~/.deft/")
  '(org-hide-leading-stars t)
- '(org-mobile-directory "~/public_html/mobile.org")
+ '(org-mobile-directory "~/public_html/org")
  '(org-mobile-inbox-for-pull "~/.deft/flagged.org")
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(org-startup-folded (quote content))
@@ -97,6 +98,9 @@ variable. Automatically applies expand-file-name to `path`."
 ;; follow symlinks to version controlled files
 (setq vc-follow-symlinks t)
 
+
+;; intergrate copy and paste
+(setq x-select-enable-clipboard t)
 
 ;; Hilight the current line
 (global-hl-line-mode 1)
@@ -609,18 +613,14 @@ variable. Automatically applies expand-file-name to `path`."
 			    ))
 
 	(:name google-contacts
-	       :type http-tar
-	       :options ("xzf")
-	       :depends bbdb
-	       :features (google-contacts)
-	       :url "http://emacs-google.googlecode.com/files/google-emacs-0.0.3.tgz")
+	       :features (google-contacts google-contacts-gnus google-contacts-message)
+	       :depends oauth2
+	       :type git
+	       :url "git://git.naquadah.org/google-contacts.el.git")
 
-	(:name gdata-python-client
-	       :type hg
-	       :url "https://code.google.com/p/gdata-python-client/"
-               :after (lambda ()
-                        (add-to-pythonpath (concat el-get-dir "gdata-python-client/src"))
-                        ))
+	(:name oauth2
+	       :features oauth2
+	       :type elpa)
 
 	(:name slime
 	       :description "Superior Lisp Interaction Mode for Emacs"
@@ -630,17 +630,17 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features slime
 	       :url "https://github.com/emacsmirror/slime.git"
 	       :load-path ("." "contrib")
-	       :compile ("." "contrib")
+	       :compile (".")
 	       :build ("make -C doc")
 	       :after (lambda ()
 			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
-			(slime-setup '(inferior-slime slime-fancy))
+			(slime-setup '(inferior-slime slime-fancy slime-asdf))
 			))
 ))
 
 (setq my-packages
       (append '(color-theme-tangotango cedet
-       highlight-symbol highlight-parentheses gravatar git-emacs
+       highlight-symbol highlight-parentheses git-emacs
        git-blame mo-git-blame virtualenv flymake-point
        flymake-fringe-icons folding js2-mode js-comint json
        fic-ext-mode eol-conversion doxymacs dired-plus diff-git
@@ -653,10 +653,10 @@ variable. Automatically applies expand-file-name to `path`."
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft puppet-mode
-       gnus-gravatar markdown-mode breadcrumb sticky-windows
+       markdown-mode breadcrumb sticky-windows
        emacs-w3m ctags-update hideshow-org workgroups
-       google-contacts scss-mode slime ac-slime erc
-       erc-highlight-nicknames apache-mode)))
+       scss-mode slime ac-slime erc twittering-mode
+       erc-highlight-nicknames apache-mode nognus google-contacts)))
 (el-get 'sync my-packages)
 
 ;; Compile Current Buffer
@@ -696,6 +696,61 @@ variable. Automatically applies expand-file-name to `path`."
       (rename-buffer new-name)
       (set-visited-file-name new-name)
       (set-buffer-modified-p nil))))))
+
+
+;;;; mailto-compose-mail.el (2010-08-15)
+;;;; from http://www.emacswiki.org/emacs/MailtoHandler
+;;;###autoload
+(defun mailto-compose-mail (mailto-url)
+  "Parse MAILTO-URL and start composing mail."
+  (if (and (stringp mailto-url)
+           (string-match "\\`mailto:" mailto-url))
+      (progn
+        (require 'rfc2368)
+        (require 'rfc2047)
+        (require 'mailheader)
+
+        (let ((hdr-alist (rfc2368-parse-mailto-url mailto-url))
+              (body "")
+              to subject
+              ;; In addition to To, Subject and Body these headers are
+              ;; allowed:
+              (allowed-xtra-hdrs '(cc bcc in-reply-to)))
+
+          (with-temp-buffer
+            ;; Extract body if it's defined
+            (when (assoc "Body" hdr-alist)
+              (dolist (hdr hdr-alist)
+                (when (equal "Body" (car hdr))
+                  (insert (format "%s\n" (cdr hdr)))))
+              (rfc2047-decode-region (point-min) (point-max))
+              (setq body (buffer-substring-no-properties
+                          (point-min) (point-max)))
+              (erase-buffer))
+
+            ;; Extract headers
+            (dolist (hdr hdr-alist)
+              (unless (equal "Body" (car hdr))
+                (insert (format "%s: %s\n" (car hdr) (cdr hdr)))))
+            (rfc2047-decode-region (point-min) (point-max))
+            (goto-char (point-min))
+            (setq hdr-alist (mail-header-extract-no-properties)))
+
+          (setq to (or (cdr (assq 'to hdr-alist)) "")
+                subject (or (cdr (assq 'subject hdr-alist)) "")
+                hdr-alist
+                (remove nil (mapcar
+                             #'(lambda (item)
+                                 (when (memq (car item) allowed-xtra-hdrs)
+                                   (cons (capitalize (symbol-name (car item)))
+                                         (cdr item))))
+                             hdr-alist)))
+
+          (compose-mail to subject hdr-alist nil nil
+                        (list (lambda (string)
+                                (insert string))
+                              body))))
+    (compose-mail)))
 
 ; Python
 
@@ -1052,6 +1107,16 @@ msgstr \"\"
 
 
 (put 'narrow-to-region 'disabled nil)
+
+
+;;
+;; twitter
+;;
+(setq twittering-use-master-password t)
+(setq twittering-icon-mode t)                ; Show icons
+(setq twittering-timer-interval 300)         ; Update your timeline each 300 seconds (5 minutes)
+(setq twittering-url-show-status nil)        ; Keeps the echo area from showing all the http processes
+
 
 ;; ERC
 
