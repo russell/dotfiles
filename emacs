@@ -652,7 +652,7 @@ variable. Automatically applies expand-file-name to `path`."
        dirvars po-mode+ po-mode pycheckers flymake-python
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
-       project-root magit fill-column-indicator deft
+       project-root magit fill-column-indicator deft puppet-mode
        gnus-gravatar markdown-mode breadcrumb sticky-windows
        emacs-w3m ctags-update hideshow-org workgroups
        google-contacts scss-mode slime ac-slime erc
