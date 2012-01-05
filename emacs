@@ -35,7 +35,7 @@
  '(org-hide-leading-stars t)
  '(org-mobile-directory "~/public_html/org")
  '(org-mobile-inbox-for-pull "~/.deft/flagged.org")
- '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
+ '(org-modules (quote (org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
  '(org-startup-folded (quote content))
  '(org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
  '(org-todo-keywords (quote ((type "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))))
@@ -148,12 +148,10 @@ variable. Automatically applies expand-file-name to `path`."
 			 (name . "^\\*Messages\\*$")))
 	       ("gnus" (or
 			(mode . message-mode)
-			(mode . bbdb-mode)
 			(mode . mail-mode)
 			(mode . gnus-group-mode)
 			(mode . gnus-summary-mode)
 			(mode . gnus-article-mode)
-			(name . "^\\.bbdb$")
 			(name . "^\\.newsrc-dribble")))))))
 
 (add-hook 'ibuffer-mode-hook
@@ -332,7 +330,6 @@ variable. Automatically applies expand-file-name to `path`."
         (:name ropemacs
                :type hg
                :url "http://bitbucket.org/agr/ropemacs/"
-	       :depends (pymacs rope ropemode auto-complete)
 	       :depends (pymacs rope ropemode auto-complete)
                :after (lambda ()
 			(add-hook 'python-mode-hook '(lambda ()
@@ -639,7 +636,7 @@ variable. Automatically applies expand-file-name to `path`."
 ))
 
 (setq my-packages
-      (append '(color-theme-tangotango cedet
+      (append '(color-theme-tangotango cedet oauth2
        highlight-symbol highlight-parentheses git-emacs
        git-blame mo-git-blame virtualenv flymake-point
        flymake-fringe-icons folding js2-mode js-comint json
