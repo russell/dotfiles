@@ -116,8 +116,9 @@ See (info \"(gnus)Group Line Specification\")."
 (setq message-subscribed-address-functions
       '(gnus-find-subscribed-addresses))
 
-
-; gravater
+;;
+;; Gravatar
+;;
 (defun th-gnus-article-prepared ()
   (gnus-treat-from-gravatar)
   (gnus-treat-mail-gravatar))
@@ -155,3 +156,47 @@ See (info \"(gnus)Group Line Specification\")."
 
 (define-key gnus-summary-mode-map (kbd ">") 'gnus-summary-show-thread)
 (define-key gnus-summary-mode-map (kbd "<") 'gnus-summary-hide-thread)
+
+;;
+;; Window config
+;;
+(gnus-add-configuration
+ '(article
+   (horizontal 1.0
+	       (vertical 0.40
+			 (group 1.0))
+	       (vertical 1.0
+			 (summary 0.25 point)
+			 (article 1.0)))))
+(gnus-add-configuration
+ '(summary
+   (horizontal 1.0
+	       (vertical 0.40
+			 (group 1.0))
+	       (vertical 1.0
+			 (summary 1.0 point)))))
+
+(setq
+ ;; %S   The native news server.
+ ;; %M   The native select method.
+ ;; %:   ":" if %S isn't "".
+ ;; Gnus: pixmap if in X.
+ ;; Default: "Gnus: %%b {%M%:%S}"  (%b buffer-name?)
+ gnus-group-mode-line-format "Gnus: {%M%:%S}"
+
+ ;; %M marked articles.
+ ;; %S subscribed.
+ ;; %p process mark.
+ ;; %P topic indent.
+ ;; %y number unread, unticked
+ ;; %I number dormant.
+ ;; %T ticked.
+ ;; %D description.
+ ;; %L level.
+ ;; Note if add descriptions here (%D), startup is slow. No way to cache.
+ ;; %c shorter than %G shorter than %g, for group name.
+ ;; %G hides the method (nnfolder, etc).
+ ;; %c preserves the method and last n elements of the name unexpanded,
+ ;; where n is set by `gnus-group-uncollapsed-levels'.
+ gnus-group-line-format "%M%S%p%P%5y: %(%-40,40G%)%l %4I\n"
+)
