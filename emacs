@@ -332,35 +332,35 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://bitbucket.org/agr/ropemacs/"
 	       :depends (pymacs rope ropemode auto-complete)
                :after (lambda ()
-			(add-hook 'python-mode-hook '(lambda ()
-                        (add-to-pythonpath (concat el-get-dir "ropemacs/ropemacs"))
-                        (setq ropemacs-local-prefix "C-c C-p")
-                        (require 'pymacs)
-			(setq pymacs-load-path '( "~/.emacs.d/el-get/rope"
-						  "~/.emacs.d/el-get/ropemode"
-						  "~/.emacs.d/el-get/ropemacs"
-						  "~/.emacs.d/el-get/python-mode"))
+			(add-hook 'python-mode-hook
+				  '(lambda ()
+				     (add-to-pythonpath (concat el-get-dir "ropemacs/ropemacs"))
+				     (setq ropemacs-local-prefix "C-c C-p")
+				     (require 'pymacs)
+				     (setq pymacs-load-path '( "~/.emacs.d/el-get/rope"
+							       "~/.emacs.d/el-get/ropemode"
+							       "~/.emacs.d/el-get/ropemacs"
+							       "~/.emacs.d/el-get/python-mode"))
 
-			;; Stops from erroring if there's a syntax err
-			(setq ropemacs-codeassist-maxfixes 3)
-			(setq ropemacs-guess-project t)
-			(setq ropemacs-enable-autoimport t)
+				     ;; Stops from erroring if there's a syntax err
+				     (setq ropemacs-codeassist-maxfixes 3)
+				     (setq ropemacs-guess-project t)
+				     (setq ropemacs-enable-autoimport t)
 
-			(if (or pymacs-reload (not (boundp 'ropePymacs)))
-			    (setq ropePymacs (pymacs-load "ropemacs" "rope-"))
-			  (message "ropePymacs already loaded")
-			  )
+				     (if (or pymacs-reload (not (boundp 'ropePymacs)))
+					 (setq ropePymacs (pymacs-load "ropemacs" "rope-"))
+				       (message "ropePymacs already loaded")
+				       )
 
-
-			;; Rope Mode - Only enable when editing local files
-			(when (not (subsetp (list (current-buffer))
-					    (tramp-list-remote-buffers)))
-			  (ropemacs-mode 1)
-			  (setq ropemacs-enable-autoimport t)
-			  (with-project-root (rope-open-project
-					      (cdr project-details)))
-			  (setq ac-sources '(ac-source-rope ac-source-yasnippet)))
-			))))
+				     (require 'tramp-cmds)
+				     ;; Rope Mode - Only enable when editing local files
+				     (when (not (subsetp (list (current-buffer))
+							 (tramp-list-remote-buffers)))
+				       (ropemacs-mode 1)
+				       (setq ropemacs-enable-autoimport t)
+				       (with-project-root (rope-open-project
+							   (cdr project-details)))
+				       (setq ac-sources '(ac-source-rope ac-source-yasnippet)))))))
 
 	(:name python-mode
 	       :type git
