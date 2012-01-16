@@ -999,6 +999,9 @@ msgstr \"\"
 		       '(lambda()
 			  (save-excursion
 			    (delete-trailing-whitespace))))))
+(add-hook 'emacs-lisp-mode-hook
+	  '(lambda ()
+	     (eldoc-mode)))
 
 
 ;; Automatically add, commit, and push when files change.
