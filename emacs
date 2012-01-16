@@ -633,6 +633,12 @@ variable. Automatically applies expand-file-name to `path`."
 			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
 			(slime-setup '(inferior-slime slime-fancy slime-asdf))
 			))
+
+	(:name hyperspec-info
+	       :description "info lookup for hyperspec"
+	       :type http
+	       :features hyperspec-info
+	       :url "http://www.pentaside.org/code/hyperspec-info.el")
 ))
 
 (setq my-packages
