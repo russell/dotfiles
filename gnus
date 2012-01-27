@@ -11,16 +11,19 @@
 
 ; gnus
 
+;; Offline IMAP
 ;(setq gnus-select-method
 ;      '(nnmaildir "GMail"
 ;		  (directory "~/Mail/GMail/")
 ;		  (directory-files nnheader-directory-files-safe)
 ;		  (get-new-mail nil)))
+
 ;; Dovecat IMAP server
 ;(setq gnus-select-method '(nnimap "Mail"
 ;				  (nnimap-address "localhost")
 ;				  (nnimap-stream network)
 ;				  (nnimap-authenticator login)))
+
 ;; Gmail IMAP server
 (setq gnus-select-method '(nnimap "gmail"
 				  (nnimap-address "imap.gmail.com")
@@ -31,6 +34,7 @@
       smtpmail-default-smtp-server "smtp.gmail.com"
       smtpmail-smtp-server "smtp.gmail.com"
       smtpmail-smtp-service 587)
+
 ;; Make Gnus NOT ignore [Gmail] mailboxes
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
