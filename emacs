@@ -630,11 +630,28 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "https://github.com/emacsmirror/slime.git"
 	       :load-path ("." "contrib")
 	       :compile (".")
-	       :build ("make -C doc")
+	       :build ((mapcar (lambda (path)
+				   (byte-compile-file (concat el-get-dir path)))
+				 (list
+				  "/slime/contrib/slime-parse.el"
+				  "/slime/contrib/slime-fancy-inspector.el"
+				  "/slime/contrib/slime-asdf.el"
+				  "/slime/contrib/inferior-slime.el"
+				  "/slime/contrib/slime-autodoc.el"
+				  "/slime/contrib/slime-editing-commands.el"
+				  "/slime/contrib/slime-c-p-c.el"
+				  "/slime/contrib/slime-repl.el"
+				  "/slime/contrib/slime-fuzzy.el"
+				  "/slime/contrib/slime-presentations.el"
+				  "/slime/contrib/slime-scratch.el"
+				  "/slime/contrib/slime-references.el"
+				  "/slime/contrib/slime-package-fu.el"
+				  "/slime/contrib/slime-fontifying-fu.el"
+				  "/slime/contrib/slime-fancy.el"))
+		       (list "make -C doc"))
 	       :after (lambda ()
 			(setq inferior-lisp-program "sbcl --noinform --no-linedit")
-			(slime-setup '(inferior-slime slime-fancy slime-asdf))
-			))
+			(slime-setup '(inferior-slime slime-fancy slime-asdf))))
 
 	(:name hyperspec-info
 	       :description "info lookup for hyperspec"
