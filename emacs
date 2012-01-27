@@ -354,7 +354,7 @@ variable. Automatically applies expand-file-name to `path`."
 				       (message "ropePymacs already loaded")
 				       )
 
-				     (require 'tramp-cmds)
+				     (require 'tramp-cmds) ;; required for list remote buffers
 				     ;; Rope Mode - Only enable when editing local files
 				     (when (not (subsetp (list (current-buffer))
 							 (tramp-list-remote-buffers)))
@@ -363,6 +363,11 @@ variable. Automatically applies expand-file-name to `path`."
 				       (with-project-root (rope-open-project
 							   (cdr project-details)))
 				       (setq ac-sources '(ac-source-rope ac-source-yasnippet)))))))
+
+        (:name pydoc-info
+               :type hg
+               :url "http://bitbucket.org/jonwaltman/pydoc-info/"
+	       :feature pydoc-info)
 
 	(:name python-mode
 	       :type git
