@@ -130,6 +130,7 @@ variable. Automatically applies expand-file-name to `path`."
 ;; content to reflect what's on-disk.
 (global-auto-revert-mode 1)
 
+(delete-selection-mode t)
 
 ; Remember position in buffers
 (setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
@@ -448,6 +449,13 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type git
 	       :url "https://github.com/antonj/Highlight-Indentation-for-Emacs")
 
+	(:name expand-region
+	       :features expand-region
+	       :type git
+	       :url "git://github.com/magnars/expand-region.el.git"
+	       :post-init (lambda ()
+			    (global-set-key (kbd "C-@") 'er/expand-region)))
+
 	(:name flymake-python
 	       :type git
 	       :url "git@github.com:russell/flymake-python.git")
@@ -680,7 +688,7 @@ variable. Automatically applies expand-file-name to `path`."
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft puppet-mode
-       markdown-mode breadcrumb sticky-windows
+       markdown-mode breadcrumb sticky-windows expand-region
        emacs-w3m ctags-update hideshow-org workgroups
        scss-mode slime ac-slime erc twittering-mode
        erc-highlight-nicknames apache-mode nognus google-contacts)))
