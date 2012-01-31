@@ -483,6 +483,20 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type emacswiki
 	       :features tsql-indent)
 
+	(:name mysql
+	       :type emacswiki
+	       :features mysql)
+
+	(:name sql-completion
+	       :type emacswiki
+	       :depends mysql
+	       :features sql-completion
+	       :post-init (lambda ()
+			    (add-hook 'sql-interactive-mode-hook
+				  '(lambda ()
+				    (define-key sql-interactive-mode-map "\t" 'comint-dynamic-complete)
+				    (sql-mysql-completion-init)))))
+
 	(:name dirvars
 	       :features dirvars
 	       :type emacswiki)
