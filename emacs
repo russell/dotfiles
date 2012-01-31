@@ -1030,11 +1030,16 @@ msgstr \"\"
 ; Lisp
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-mode-hook
-	  '(lambda ()
-	     (add-hook 'write-file-functions
-		       '(lambda()
-			  (save-excursion
-			    (delete-trailing-whitespace))))))
+	  (lambda ()
+	    (add-hook 'write-contents-functions
+		      '(lambda()
+			 (save-excursion
+			   (delete-trailing-whitespace))))))
+(add-hook 'slime-mode-hook
+	  (lambda ()
+	    (add-hook 'write-contents-functions
+		      'check-parens)))
+
 (add-hook 'inferior-lisp-mode-hook (lambda () (auto-complete-mode 1)))
 ;(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
@@ -1042,14 +1047,18 @@ msgstr \"\"
 
 (add-hook 'emacs-lisp-mode-hook
 	  '(lambda ()
-	     (add-hook 'write-file-functions
+	     (add-hook 'write-contents-functions
 		       '(lambda()
 			  (save-excursion
 			    (delete-trailing-whitespace))))))
 (add-hook 'emacs-lisp-mode-hook
-	  '(lambda ()
-	     (eldoc-mode)))
-
+	  (lambda ()
+	    (eldoc-mode)))
+; could be bad, will not let you save at all, until you correct the error
+(add-hook 'emacs-lisp-mode-hook
+	  (lambda ()
+	    (add-hook 'write-contents-functions
+		      'check-parens)))
 
 ;; Automatically add, commit, and push when files change.
 ;; https://gist.github.com/449668 && https://gist.github.com/397971
