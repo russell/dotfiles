@@ -25,6 +25,7 @@
  '(elmo-localdir-folder-path "~/Mail")
  '(elscreen-tab-display-control nil)
  '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp spelling track highlight-nicknames)))
+ '(flymake-gui-warnings-enabled nil)
  '(frame-background-mode (quote dark))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
