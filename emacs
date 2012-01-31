@@ -107,13 +107,13 @@ variable. Automatically applies expand-file-name to `path`."
 
 ;; Hilight the current line
 (global-hl-line-mode 1)
-(add-hook 'term-mode-hook
-	  '(lambda()
-	     (set (make-local-variable 'global-hl-line-mode) nil)))
 (add-hook 'eshell-mode-hook
 	  '(lambda()
 	     (set (make-local-variable 'global-hl-line-mode) nil)))
 (add-hook 'calendar-mode-hook
+	  '(lambda()
+	     (set (make-local-variable 'global-hl-line-mode) nil)))
+(add-hook 'comint-mode-hook
 	  '(lambda()
 	     (set (make-local-variable 'global-hl-line-mode) nil)))
 
