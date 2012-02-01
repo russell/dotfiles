@@ -704,7 +704,7 @@ variable. Automatically applies expand-file-name to `path`."
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft puppet-mode
        markdown-mode breadcrumb sticky-windows expand-region
-       emacs-w3m ctags-update hideshow-org workgroups
+       emacs-w3m ctags-update hideshow-org
        scss-mode slime ac-slime erc twittering-mode
        erc-highlight-nicknames apache-mode nognus google-contacts)))
 (el-get 'sync my-packages)
@@ -719,8 +719,6 @@ variable. Automatically applies expand-file-name to `path`."
   (compilation-start command comint))
 (global-set-key [f6] 'compile-current-buffer)
 
-(if (file-exists-p "~/.emacs-workgroups")
-    (wg-load "~/.emacs-workgroups"))
 
 ; Project Config
 (setq project-roots
