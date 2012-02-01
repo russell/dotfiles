@@ -1169,6 +1169,14 @@ msgstr \"\"
 (put 'narrow-to-region 'disabled nil)
 
 
+;; Sudo
+
+(defun sudo-edit-current-file ()
+  (interactive)
+  (find-alternate-file
+   (concat "/sudo:root@localhost:"
+	   (buffer-file-name (current-buffer)))))
+
 ;;
 ;; twitter
 ;;
