@@ -95,7 +95,7 @@ variable. Automatically applies expand-file-name to `path`."
 ; TRAMP
 (setq password-cache-expiry 1000)
 (set-default 'tramp-default-proxies-alist
-	     (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+	     (quote ((".*[.].*" "\\`root\\'" "/ssh:%h:"))))
 
 
 ;; follow symlinks to version controlled files
