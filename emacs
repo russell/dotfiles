@@ -1217,8 +1217,8 @@ msgstr \"\"
   (setq erc-autojoin-channels-alist
 	'(("freenode.net" "#emacs" "#python"
 	   "#twisted" "#twisted.web" "#pylons"
-	   "#pyramid" "#openstack")
-	  ("oftc.net" "#debian" "#debian-montors"
+	   "#pyramid" "#openstack" "#lisp" "#lispcafe")
+	  ("oftc.net" "#debian" "#debian-mentors"
 	   "#debian-python" "#debian-gname"))))
 
 (setq erc-autojoin-channels-alist '())
