@@ -94,9 +94,14 @@ variable. Automatically applies expand-file-name to `path`."
 
 ; TRAMP
 (setq password-cache-expiry 1000)
-(set-default 'tramp-default-proxies-alist
-	     (quote ((".*[.].*" "\\`root\\'" "/ssh:%h:"))))
-
+(add-to-list 'tramp-default-proxies-alist
+	     '(nil "\\`root\\'" "/ssh:%h:"))
+(add-to-list 'tramp-default-proxies-alist
+	     '("\\.nectar\\.org\\.au" nil nil))
+(add-to-list 'tramp-default-proxies-alist
+             '((regexp-quote (system-name)) nil nil))
+(add-to-list 'tramp-default-proxies-alist
+             '((regexp-quote "localhost") nil nil))
 
 ;; follow symlinks to version controlled files
 (setq vc-follow-symlinks t)
