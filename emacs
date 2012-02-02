@@ -94,6 +94,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 ; TRAMP
 (setq password-cache-expiry 1000)
+(set-default 'tramp-default-proxies-alist '())
 (add-to-list 'tramp-default-proxies-alist
 	     '(nil "\\`root\\'" "/ssh:%h:"))
 (add-to-list 'tramp-default-proxies-alist
