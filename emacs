@@ -126,6 +126,8 @@ variable. Automatically applies expand-file-name to `path`."
 (winner-mode 1)
 
 
+(yas/global-mode 1)
+
 ;; whenever an external process changes a file underneath emacs, and there
 ;; was no unsaved changes in the corresponding buffer, just revert its
 ;; content to reflect what's on-disk.
