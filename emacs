@@ -94,9 +94,15 @@ variable. Automatically applies expand-file-name to `path`."
 
 ; TRAMP
 (setq password-cache-expiry 1000)
-(set-default 'tramp-default-proxies-alist
-	     (quote ((".*[.].*" "\\`root\\'" "/ssh:%h:"))))
-
+(set-default 'tramp-default-proxies-alist '())
+(add-to-list 'tramp-default-proxies-alist
+	     '(nil "\\`root\\'" "/ssh:%h:"))
+(add-to-list 'tramp-default-proxies-alist
+	     '("\\.nectar\\.org\\.au" nil nil))
+(add-to-list 'tramp-default-proxies-alist
+             '((regexp-quote (system-name)) nil nil))
+(add-to-list 'tramp-default-proxies-alist
+             '((regexp-quote "localhost") nil nil))
 
 ;; follow symlinks to version controlled files
 (setq vc-follow-symlinks t)
@@ -1214,8 +1220,8 @@ msgstr \"\"
   (setq erc-autojoin-channels-alist
 	'(("freenode.net" "#emacs" "#python"
 	   "#twisted" "#twisted.web" "#pylons"
-	   "#pyramid" "#openstack")
-	  ("oftc.net" "#debian" "#debian-montors"
+	   "#pyramid" "#openstack" "#lisp" "#lispcafe")
+	  ("oftc.net" "#debian" "#debian-mentors"
 	   "#debian-python" "#debian-gname"))))
 
 (setq erc-autojoin-channels-alist '())
