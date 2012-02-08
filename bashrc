@@ -163,6 +163,11 @@ e () {
     fi
 }
 
+# edit file with root privs
+function E() {
+         emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
+}
+
 # Mutt launcher
 m () {
     offlineimap -1 -u quiet > /dev/null &
