@@ -127,6 +127,12 @@ variable. Automatically applies expand-file-name to `path`."
 (add-hook 'term-mode-hook
 	  '(lambda()
 	     (set (make-local-variable 'global-hl-line-mode) nil)))
+(add-hook 'slime-repl-mode-hook
+	  '(lambda()
+	     (set (make-local-variable 'global-hl-line-mode) nil)))
+(add-hook 'erc-mode-hook
+	  '(lambda()
+	     (set (make-local-variable 'global-hl-line-mode) nil)))
 
 ;; Navigate windows with M-<arrows>
 (windmove-default-keybindings 'meta)
