@@ -845,7 +845,7 @@ variable. Automatically applies expand-file-name to `path`."
 	(hs-show-block)))
 
     ; trim whitespace
-    (add-hook 'write-file-functions
+    (add-hook 'write-contents-functions
 	      '(lambda()
 		 (save-excursion
 		   (delete-trailing-whitespace))))
