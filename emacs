@@ -285,6 +285,13 @@ variable. Automatically applies expand-file-name to `path`."
 			    ;; Do What I Mean mode
 			    (setq ac-dwim t)))
 
+        (:name bash-completion
+               :type git
+               :url "https://github.com/szermatt/emacs-bash-completion.git"
+	       :features bash-completion
+               :post-init (lambda ()
+			    (bash-completion-setup)))
+
 	(:name autopair
 	       :website "http://code.google.com/p/autopair/"
 	       :description "Autopair is an extension to the Emacs text editor that automatically pairs braces and quotes."
@@ -708,7 +715,7 @@ variable. Automatically applies expand-file-name to `path`."
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft puppet-mode
        markdown-mode breadcrumb sticky-windows expand-region
-       emacs-w3m ctags-update hideshow-org
+       emacs-w3m ctags-update hideshow-org bash-completion
        scss-mode slime ac-slime erc twittering-mode
        erc-highlight-nicknames apache-mode nognus google-contacts)))
 (el-get 'sync my-packages)
