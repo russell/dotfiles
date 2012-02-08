@@ -132,8 +132,6 @@ variable. Automatically applies expand-file-name to `path`."
 (winner-mode 1)
 
 
-(yas/global-mode 1)
-
 ;; whenever an external process changes a file underneath emacs, and there
 ;; was no unsaved changes in the corresponding buffer, just revert its
 ;; content to reflect what's on-disk.
@@ -426,7 +424,8 @@ variable. Automatically applies expand-file-name to `path`."
 				 ;; whose car evaluates to the standard
 				 ;; value"
 				 (list (list 'quote
-					     (list (concat el-get-dir (file-name-as-directory "yasnippet") "snippets"))))))
+					     (list (concat el-get-dir (file-name-as-directory "yasnippet") "snippets")))))
+			    (yas/global-mode 1))
 	       ;; byte-compile load vc-svn and that fails
 	       ;; see https://github.com/dimitri/el-get/issues/200
 	       :compile nil)
