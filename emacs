@@ -13,10 +13,10 @@
 (set-default-font "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true"))
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(auto-completion-syntax-alist (quote (accept . word)))
  '(completion-auto-show (quote completion-show-menu))
  '(completion-auto-show-delay 0)
@@ -232,10 +232,10 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
  '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue")))))
 
@@ -285,8 +285,7 @@ variable. Automatically applies expand-file-name to `path`."
 			    ;; (see http://cx4a.org/software/auto-complete/)
 			    (require 'auto-complete-config nil t)
 			    ;; Do What I Mean mode
-			    (setq ac-dwim t)
-			    ))
+			    (setq ac-dwim t)))
 
 	(:name autopair
 	       :website "http://code.google.com/p/autopair/"
@@ -527,8 +526,7 @@ variable. Automatically applies expand-file-name to `path`."
 			    (global-set-key [(control x) (?0)] 'sticky-window-delete-window)
 			    (global-set-key [(control x) (?1)] 'sticky-window-delete-other-windows)
 			    ; In addition, `sticky-window-keep-window-visible' might be bound to the currently unused C-x 9 key binding:
-			    (global-set-key [(control x) (?9)] 'sticky-window-keep-window-visible)
-			    ))
+			    (global-set-key [(control x) (?9)] 'sticky-window-keep-window-visible)))
 
 	(:name popup
 	       :type git
@@ -539,8 +537,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :depends (popup pos-tip)
 	       :features popup-kill-ring
 	       :post-init (lambda ()
-			    (global-set-key "\M-y" 'popup-kill-ring)
-			    ))
+			    (global-set-key "\M-y" 'popup-kill-ring)))
 
 	(:name predictive
 	       :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
