@@ -1029,6 +1029,16 @@ msgstr \"\"
     ))
 (add-hook 'markdown-mode-hook 'lconfig-markdown-mode)
 
+;; CSS
+(add-hook 'css-mode-hook
+	  '(lambda ()
+	     (add-hook 'write-contents-functions
+		       '(lambda()
+			  (save-excursion
+			    (delete-trailing-whitespace))))))
+(add-hook 'css-mode-hook
+	  '(lambda ()
+	     (css-color-mode t)))
 
 ; Lisp
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
