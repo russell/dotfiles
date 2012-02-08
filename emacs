@@ -721,7 +721,7 @@ variable. Automatically applies expand-file-name to `path`."
        project-root magit fill-column-indicator deft puppet-mode
        markdown-mode breadcrumb sticky-windows expand-region
        emacs-w3m ctags-update hideshow-org bash-completion
-       scss-mode slime ac-slime erc twittering-mode
+       scss-mode slime ac-slime erc twittering-mode multi-term
        erc-highlight-nicknames apache-mode nognus google-contacts)))
 (el-get 'sync my-packages)
 
@@ -1197,9 +1197,15 @@ msgstr \"\"
 ;; Shell
 
 (defun add-mode-line-dirtrack ()
-      (add-to-list 'mode-line-buffer-identification
-                   '(:propertize (" " default-directory " ") face dired-directory)))
+  (add-to-list 'mode-line-buffer-identification
+	       '(:propertize (" " default-directory " ") face dired-directory)))
 (add-hook 'shell-mode-hook 'add-mode-line-dirtrack)
+
+;; Term
+(add-hook 'term-mode-hook (lambda ()
+                            (define-key term-raw-map (kbd "C-y") 'term-paste)))
+(add-hook 'term-mode-hook 'add-mode-line-dirtrack)
+
 
 ;; Sudo
 
