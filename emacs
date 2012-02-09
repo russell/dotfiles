@@ -18,7 +18,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-completion-syntax-alist (quote (accept . word)))
- '(bmkp-last-as-first-bookmark-file "/home/russell/.emacs.bmk")
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.bmk")
  '(browse-kill-ring-highlight-current-entry t)
  '(completion-auto-show (quote completion-show-menu))
  '(completion-auto-show-delay 0)
