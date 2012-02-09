@@ -722,7 +722,7 @@ variable. Automatically applies expand-file-name to `path`."
        vkill google-maps nxhtml xcscope yasnippet tidy
        rainbow-delimiters org-mode android-mode rst-mode pylookup
        python-pep8 smex popup-kill-ring sr-speedbar dirvars
-       po-mode+ po-mode pycheckers flymake-python bookmark+
+       po-mode+ po-mode pycheckers flymake-python hyperspec-info
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft puppet-mode
