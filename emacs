@@ -18,6 +18,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-completion-syntax-alist (quote (accept . word)))
+ '(bmkp-last-as-first-bookmark-file "/home/russell/.emacs.bmk")
+ '(browse-kill-ring-highlight-current-entry t)
  '(completion-auto-show (quote completion-show-menu))
  '(completion-auto-show-delay 0)
  '(deft-auto-save-interval 30.0)
@@ -404,9 +406,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :post-init (lambda ()
 			    (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 			    (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-			    (autoload 'python-mode "python-mode" "Python editing mode." t)
-			    (define-key py-mode-map [f4] 'speedbar-get-focus)
-			    ))
+			    (autoload 'python-mode "python-mode" "Python editing mode." t)))
 
         (:name ipython
 	       :depends (python-mode))
@@ -713,23 +713,24 @@ variable. Automatically applies expand-file-name to `path`."
 
 (setq my-packages
       (append '(color-theme-tangotango cedet oauth2
-       highlight-symbol highlight-parentheses git-emacs
-       git-blame mo-git-blame virtualenv flymake-point
-       flymake-fringe-icons folding js2-mode js-comint json
-       fic-ext-mode eol-conversion doxymacs dired-plus diff-git
-       clevercss auto-complete auto-complete-clang auctex
-       active-menu fringe-helper csv-mode apel el-get cssh
-       switch-window vkill google-maps nxhtml xcscope yasnippet
-       tidy rainbow-delimiters org-mode android-mode rst-mode
-       pylookup python-pep8 smex popup-kill-ring sr-speedbar
-       dirvars po-mode+ po-mode pycheckers flymake-python
+       highlight-symbol highlight-parentheses git-emacs git-blame
+       mo-git-blame virtualenv flymake-point flymake-fringe-icons
+       folding js2-mode js-comint json fic-ext-mode dired+
+       eol-conversion doxymacs dired-plus diff-git clevercss
+       auto-complete auto-complete-clang auctex active-menu
+       fringe-helper csv-mode apel el-get cssh switch-window
+       vkill google-maps nxhtml xcscope yasnippet tidy
+       rainbow-delimiters org-mode android-mode rst-mode pylookup
+       python-pep8 smex popup-kill-ring sr-speedbar dirvars
+       po-mode+ po-mode pycheckers flymake-python bookmark+
        highlight-indentation ipython python-mode ropemacs
        ropemode rope pymacs django-mode autopair auto-complete
        project-root magit fill-column-indicator deft puppet-mode
        markdown-mode breadcrumb sticky-windows expand-region
        emacs-w3m ctags-update hideshow-org bash-completion
        scss-mode slime ac-slime erc twittering-mode multi-term
-       erc-highlight-nicknames apache-mode nognus google-contacts)))
+       erc-highlight-nicknames apache-mode nognus
+       google-contacts)))
 (el-get 'sync my-packages)
 
 ;; Compile Current Buffer
