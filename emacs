@@ -390,7 +390,24 @@ variable. Automatically applies expand-file-name to `path`."
 				       (setq ropemacs-enable-autoimport t)
 				       (with-project-root (rope-open-project
 							   (cdr project-details)))
-				       (setq ac-sources '(ac-source-rope ac-source-yasnippet)))))))
+
+				       (defun ac-ropemacs-candidates ()
+					 (mapcar (lambda (completion)
+						   (concat ac-prefix completion))
+						 (rope-completions)))
+
+				       (ac-define-source nropemacs
+					 '((candidates . ac-ropemacs-candidates)
+					   (symbol . "p")))
+
+				       (ac-define-source nropemacs-dot
+					 '((candidates . ac-ropemacs-candidates)
+					   (symbol . "p")
+					   (prefix . c-dot)
+					   (requires . 0)))
+				       (setq ac-sources (append '(ac-source-nropemacs
+								  ac-source-nropemacs-dot) ac-sources))
+				       )))))
 
         (:name pydoc-info
                :type hg
@@ -908,29 +925,6 @@ variable. Automatically applies expand-file-name to `path`."
     (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
     ))
 (add-hook 'python-mode-hook 'lconfig-python-mode)
-
-
-; ropemacs Integration with auto-completion
-(defun ac-nropemacs-setup ()
-
-  (defun ac-ropemacs-candidates ()
-    (mapcar (lambda (completion)
-	      (concat ac-prefix completion))
-	    (rope-completions)))
-
-  (ac-define-source nropemacs
-    '((candidates . ac-ropemacs-candidates)
-      (symbol . "p")))
-
-  (ac-define-source nropemacs-dot
-    '((candidates . ac-ropemacs-candidates)
-      (symbol . "p")
-      (prefix . c-dot)
-      (requires . 0)))
-  (setq ac-sources (append '(ac-source-nropemacs
-                             ac-source-nropemacs-dot) ac-sources)))
-
-(add-hook 'rope-open-project-hook 'ac-nropemacs-setup)
 
 
 ;; Flymake Python
