@@ -704,6 +704,11 @@ variable. Automatically applies expand-file-name to `path`."
 	       :autoloads nil :post-init (lambda () (icy-mode))
 	       )
 
+	(:name recover-buffers
+	       :features recover-buffers
+	       :type darcs
+	       :url "http://porkmail.org/elisp/recover-buffers/")
+
 	(:name slime
 	       :description "Superior Lisp Interaction Mode for Emacs"
 	       :type git
@@ -741,17 +746,29 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type http
 	       :features hyperspec-info
 	       :url "http://www.pentaside.org/code/hyperspec-info.el")
+
+	(:name anything
+	       :website "http://www.emacswiki.org/emacs/Anything"
+	       :description "Open anything / QuickSilver-like candidate-selection framework"
+	       :type git
+	       :url "http://repo.or.cz/r/anything-config.git"
+	       :load-path ("." "extensions")
+	       :depends (cedet)
+	       :features anything
+	       :after (lambda ()
+			(require 'anything-config)))
+
 ))
 
 (setq my-packages
-      (append '(color-theme-tangotango cedet oauth2
+      (append '(cedet color-theme-tangotango oauth2
        highlight-symbol highlight-parentheses git-emacs git-blame
        mo-git-blame virtualenv flymake-point flymake-fringe-icons
        folding js2-mode js-comint json fic-ext-mode dired+
        eol-conversion doxymacs dired-plus diff-git clevercss
        auto-complete auto-complete-clang auctex active-menu
        fringe-helper csv-mode apel el-get cssh switch-window
-       vkill google-maps nxhtml xcscope yasnippet tidy
+       vkill google-maps nxhtml xcscope yasnippet tidy recover-buffers
        rainbow-delimiters org-mode android-mode rst-mode pylookup
        python-pep8 smex popup-kill-ring sr-speedbar dirvars
        po-mode+ po-mode pycheckers flymake-python hyperspec-info
