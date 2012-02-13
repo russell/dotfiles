@@ -605,6 +605,11 @@ variable. Automatically applies expand-file-name to `path`."
 	       :url "https://github.com/alpaker/Fill-Column-Indicator.git"
 	       :features "fill-column-indicator")
 
+	(:name artbollocks-mode
+	       :type git
+	       :url "git://gitorious.org/robmyers/scripts.git"
+	       :features "artbollocks-mode")
+
 	(:name deft
 	       :description "Deft is an Emacs mode for quickly browsing, filtering, and editing directories of plain text notes, inspired by Notational Velocity."
 	       :type http
@@ -685,6 +690,12 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type git
 	       :url "git://git.naquadah.org/google-contacts.el.git")
 
+
+	(:name highlight-sexp
+	       :features highlight-sexp
+	       :type git
+	       :url "git://github.com/daimrod/highlight-sexp.git")
+
 	(:name oauth2
 	       :features oauth2
 	       :type elpa)
@@ -763,8 +774,8 @@ variable. Automatically applies expand-file-name to `path`."
        markdown-mode breadcrumb sticky-windows expand-region
        emacs-w3m ctags-update hideshow-org bash-completion
        scss-mode slime ac-slime erc twittering-mode multi-term
-       erc-highlight-nicknames apache-mode nognus
-       google-contacts)))
+       erc-highlight-nicknames apache-mode nognus artbollocks-mode
+       google-contacts highlight-sexp)))
 (el-get 'sync my-packages)
 
 ;; Compile Current Buffer
@@ -857,6 +868,10 @@ variable. Automatically applies expand-file-name to `path`."
                                 (insert string))
                               body))))
     (compose-mail)))
+
+(add-hook 'message-mode-hook
+	  'turn-on-artbollocks-mode)
+
 
 ; Python
 
