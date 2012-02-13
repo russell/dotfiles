@@ -696,6 +696,14 @@ variable. Automatically applies expand-file-name to `path`."
 	       :features oauth2
 	       :type elpa)
 
+	(:name icicles
+	       :type http-tar
+	       :options ("xzf")
+	       :url "http://www.emacswiki.org/emacs/download/Icicles.tar.gz"
+	       :library icicles :features icicles
+	       :autoloads nil :post-init (lambda () (icy-mode))
+	       )
+
 	(:name slime
 	       :description "Superior Lisp Interaction Mode for Emacs"
 	       :type git
