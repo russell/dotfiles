@@ -18,10 +18,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-completion-syntax-alist (quote (accept . word)))
- '(bmkp-last-as-first-bookmark-file "~/.emacs.bmk")
- '(browse-kill-ring-highlight-current-entry t)
  '(completion-auto-show (quote completion-show-menu))
  '(completion-auto-show-delay 0)
+ '(confirm-kill-emacs (quote yes-or-no-p))
  '(deft-auto-save-interval 30.0)
  '(ecb-options-version "2.40")
  '(elmo-localdir-folder-path "~/Mail")
@@ -29,6 +28,7 @@
  '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp spelling track highlight-nicknames)))
  '(flymake-gui-warnings-enabled nil)
  '(frame-background-mode (quote dark))
+ '(hl-sexp-background-color "gray16")
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(inhibit-startup-screen t)
