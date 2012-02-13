@@ -142,10 +142,6 @@ variable. Automatically applies expand-file-name to `path`."
 (setq windmove-wrap-around t)
 
 
-; winner-mode provides C-<left> to get back to previous window layout
-(winner-mode 1)
-
-
 ;; whenever an external process changes a file underneath emacs, and there
 ;; was no unsaved changes in the corresponding buffer, just revert its
 ;; content to reflect what's on-disk.
