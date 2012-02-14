@@ -165,7 +165,9 @@ variable. Automatically applies expand-file-name to `path`."
 	       ("erc" (mode . erc-mode))
 	       ("emacs" (or
 			 (name . "^\\*scratch\\*$")
+			 (name . "^\\*.*\\*$")
 			 (name . "^\\*Messages\\*$")))
+	       ("org" (mode . org-mode))
 	       ("gnus" (or
 			(mode . message-mode)
 			(mode . mail-mode)
