@@ -28,10 +28,7 @@
  '(flymake-gui-warnings-enabled nil)
  '(frame-background-mode (quote dark))
  '(hl-sexp-background-color "gray16")
- '(ns-alternate-modifier (quote meta))
- '(predictive-dict-autosave nil)
- '(predictive-dict-autosave-on-kill-buffer nil)
- '(predictive-dict-autosave-on-mode-disable nil))
+ '(ns-alternate-modifier (quote meta)))
 
 
 ; recompile hot key

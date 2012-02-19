@@ -333,13 +333,6 @@ variable. Automatically applies expand-file-name to `path`."
                :post-init (lambda ()
                             (global-set-key "\M-y" 'popup-kill-ring)))
 
-        (:name predictive
-               :description "The Emacs Predictive Completion package adds a new minor-mode to the GNU Emacs editor."
-               :type git
-               :depends (cedet)
-               :url "https://github.com/emacsmirror/predictive.git"
-               :features predictive)
-
         (:name smex
                :description "M-x interface with Ido-style fuzzy matching."
                :type git
