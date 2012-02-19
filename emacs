@@ -235,6 +235,9 @@ variable. Automatically applies expand-file-name to `path`."
 (show-paren-mode 1)
 
 
+;;; Don't show dialogs
+(setq use-dialog-box nil)
+
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
