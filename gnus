@@ -43,12 +43,15 @@
         (nntp "news.gmane.org")
 	(nntp "news.eternal-september.org")))
 
-;; don't bugger me with dribbles
-(setq gnus-always-read-dribble-file t)
-;; don't bugger me with session password
-(setq imap-store-password t)
+;; don't bother me with dribbles
+;(setq gnus-always-read-dribble-file t)
+;; don't bother me with session password
+;(setq imap-store-password t)
 
-(setq gnus-agent-synchronize-flags t)
+;(setq gnus-agent-synchronize-flags t)
+
+;; turn on mail icon
+(setq display-time-use-mail-icon t)
 
 (defun gnus-user-format-function-@ (header)
   "Display @ for message with attachment in summary line.
@@ -108,12 +111,14 @@ See (info \"(gnus)Group Line Specification\")."
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
 
 (require 'gnus-gravatar)
+(require 'google-contacts-gnus)
+(require 'google-contacts-message)
 
 (require 'gnus-sync)
 (setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")
       gnus-sync-newsrc-groups '("nntp" "nnrss")
-      gnus-sync-lesync-install-topics 't
-      gnus-sync-lesync-name "marvin.home")
+      gnus-sync-lesync-install-topics 't)
+;      gnus-sync-lesync-name "marvin.home")
 (gnus-sync-initialize)
 
 ;; Mailing list support
@@ -132,7 +137,7 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 ;; Check for new mail once in every this many minutes.
 ;;
-(gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
+(gnus-demon-add-handler 'gnus-group-get-new-news 10 t)
 (gnus-demon-add-handler 'gnus-demon-close-connections 30 t)
 (gnus-demon-init)
 
