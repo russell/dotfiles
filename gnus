@@ -209,3 +209,19 @@ See (info \"(gnus)Group Line Specification\")."
  ;; where n is set by `gnus-group-uncollapsed-levels'.
  gnus-group-line-format "%M%S%p%P%5y: %(%-40,40G%)%l %4I\n"
 )
+
+(setq gnus-use-adaptive-scoring t)
+(setq gnus-score-expiry-days 60)
+(setq gnus-default-adaptive-score-alist
+      '((gnus-unread-mark)
+        (gnus-ticked-mark (from 4))
+        (gnus-dormant-mark (from 5))
+        (gnus-saved-mark (from 20) (subject 5))
+        (gnus-del-mark (from -2) (subject -5))
+        (gnus-read-mark (from 2) (subject 1))
+        (gnus-killed-mark (from -1) (subject -3))
+        (gnus-kill-file-mark)
+        (gnus-ancient-mark)
+        (gnus-low-score-mark)
+        (gnus-catchup-mark (from -1) (subject -1))))
+(setq gnus-use-adaptive-scoring '(word line))
