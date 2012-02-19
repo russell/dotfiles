@@ -37,7 +37,6 @@
 ; recompile hot key
 (global-set-key (kbd "<f9>") 'recompile)
 
-
 ; Flymake
 (setq flymake-start-syntax-check-on-find-file nil)
 
