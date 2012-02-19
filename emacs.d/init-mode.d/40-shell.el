@@ -1,6 +1,7 @@
 ;; Terminal color config
 (setq ansi-color-names-vector ["black" "tomato" "#8ae234" "#edd400"
 			       "#729fcf" "#ad7fa8" "light cyan" "white"])
+(setf ansi-color-map (ansi-color-make-color-map))
 (setq ansi-term-color-vector [unspecified "black" "tomato" "#8ae234" "#edd400"
 					  "#729fcf" "#ad7fa8" "light cyan" "white"])
 
