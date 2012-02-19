@@ -25,7 +25,6 @@
  '(ecb-options-version "2.40")
  '(elmo-localdir-folder-path "~/Mail")
  '(elscreen-tab-display-control nil)
- '(flymake-gui-warnings-enabled nil)
  '(frame-background-mode (quote dark))
  '(hl-sexp-background-color "gray16")
  '(ns-alternate-modifier (quote meta)))
@@ -33,9 +32,6 @@
 
 ; recompile hot key
 (global-set-key (kbd "<f9>") 'recompile)
-
-; Flymake
-(setq flymake-start-syntax-check-on-find-file nil)
 
 
 ; Scrolling
