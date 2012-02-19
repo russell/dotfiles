@@ -98,17 +98,18 @@ variable. Automatically applies expand-file-name to `path`."
         (:name pymacs
                :type git
                :url "http://github.com/pinard/Pymacs.git"
+               :features pymacs
                :build ("make")
-               :after (lambda ()
-                        (add-to-pythonpath (concat el-get-dir "pymacs"))
-                        (setq pymacs-load-path (list (concat el-get-dir "pymacs")))))
+               :post-init (lambda ()
+                            (add-to-pythonpath (concat el-get-dir "pymacs"))
+                            (unless pymacs-load-path
+                              (setq pymacs-load-path (list (concat el-get-dir "pymacs"))))))
 
         (:name rope
                :type hg
                :url "http://bitbucket.org/agr/rope/"
                :depends (pymacs)
                :after (lambda ()
-                        (add-to-pythonpath (concat el-get-dir "rope"))
                         (add-to-list 'pymacs-load-path
                                      (concat el-get-dir "rope"))))
 
@@ -117,7 +118,6 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://bitbucket.org/agr/ropemode/"
                :depends (pymacs)
                :after (lambda ()
-                        (add-to-pythonpath (concat el-get-dir "ropemode"))
                         (add-to-list 'pymacs-load-path
                                      (concat el-get-dir "ropemode"))))
 
@@ -126,19 +126,10 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://bitbucket.org/agr/ropemacs/"
                :depends (pymacs rope ropemode auto-complete)
                :after (lambda ()
-                        (add-to-pythonpath (concat el-get-dir "ropemacs"))
                         (add-to-list 'pymacs-load-path (concat el-get-dir "ropemacs"))
-                        (add-to-list 'pymacs-load-path (concat el-get-dir "python-mode"))
                         (add-hook 'python-mode-hook
                                   '(lambda ()
                                      (setq ropemacs-local-prefix "C-c C-p")
-                                     (require 'pymacs)
-                                     (setq pymacs-load-path
-                                           '("~/.emacs.d/el-get/pymacs"
-                                             "~/.emacs.d/el-get/rope"
-                                             "~/.emacs.d/el-get/ropemode"
-                                             "~/.emacs.d/el-get/ropemacs"
-                                             "~/.emacs.d/el-get/python-mode"))
 
                                      ;; Stops from erroring if there's a syntax err
                                      (setq ropemacs-codeassist-maxfixes 3)
