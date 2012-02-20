@@ -284,6 +284,10 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :features tsql-indent)
 
+        (:name idomenu
+               :type emacswiki
+               :features idomenu)
+
         (:name mysql
                :type emacswiki
                :features mysql)
@@ -518,29 +522,23 @@ variable. Automatically applies expand-file-name to `path`."
 
 (setq my-packages
       (append '(cedet color-theme-tangotango oauth2
-                      highlight-symbol highlight-parentheses
-                      git-emacs git-blame mo-git-blame virtualenv
-                      flymake-point flymake-fringe-icons folding
-                      js2-mode js-comint json fic-ext-mode dired+
-                      eol-conversion doxymacs dired-plus diff-git
-                      clevercss auto-complete auto-complete-clang
-                      auctex active-menu fringe-helper csv-mode
-                      apel el-get cssh switch-window vkill
-                      google-maps nxhtml xcscope yasnippet tidy
-                      recover-buffers rainbow-delimiters org-mode
-                      android-mode rst-mode pylookup python-pep8
-                      smex popup-kill-ring sr-speedbar dirvars
-                      po-mode+ po-mode pycheckers flymake-python
-                      hyperspec-info highlight-indentation
-                      ipython python-mode ropemacs ropemode rope
-                      pymacs django-mode autopair auto-complete
-                      project-root magit fill-column-indicator
-                      deft puppet-mode markdown-mode breadcrumb
-                      sticky-windows expand-region emacs-w3m
-                      ctags-update hideshow-org bash-completion
-                      scss-mode slime ac-slime erc
-                      twittering-mode multi-term
-                      erc-highlight-nicknames apache-mode nognus
-                      artbollocks-mode google-contacts
-                      highlight-sexp)))
+       highlight-symbol highlight-parentheses git-emacs git-blame
+       mo-git-blame virtualenv flymake-point flymake-fringe-icons
+       folding js2-mode js-comint json fic-ext-mode dired+
+       eol-conversion doxymacs dired-plus diff-git clevercss
+       auto-complete auto-complete-clang auctex active-menu
+       fringe-helper csv-mode apel el-get cssh switch-window
+       vkill google-maps nxhtml xcscope yasnippet tidy
+       recover-buffers rainbow-delimiters org-mode android-mode
+       rst-mode pylookup python-pep8 smex popup-kill-ring
+       sr-speedbar dirvars po-mode+ po-mode pycheckers
+       flymake-python hyperspec-info highlight-indentation
+       ipython python-mode ropemacs ropemode rope pymacs
+       django-mode autopair auto-complete project-root magit
+       fill-column-indicator deft puppet-mode markdown-mode
+       breadcrumb sticky-windows expand-region emacs-w3m
+       ctags-update hideshow-org bash-completion scss-mode slime
+       ac-slime erc idomenu twittering-mode multi-term
+       erc-highlight-nicknames apache-mode nognus
+       artbollocks-mode google-contacts highlight-sexp)))
 (el-get 'sync my-packages)
