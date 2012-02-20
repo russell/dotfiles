@@ -7,6 +7,10 @@
 (setq org-startup-folded (quote content))
 (setq org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
 (setq org-todo-keywords (quote ((type "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))))
+(setq org-babel-load-languages (quote ((emacs-lisp . t) (sh . t) (python . t))))
+(setq org-src-fontify-natively t)
+(setq org-return-follows-link t)
+(setq org-completion-use-ido t)
 
 ; Org Mode
 (defun lconfig-org-mode ()
@@ -16,5 +20,3 @@
     (autocommit-setup-save-hook)
     ))
 (add-hook 'org-mode-hook 'lconfig-org-mode)
-
-(setq org-completion-use-ido t)

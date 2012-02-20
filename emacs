@@ -4,6 +4,8 @@
   "Load an entire DIRECTORY of elisp files."
   (dolist (f (directory-files directory t ".el"))
     (load-library (file-name-sans-extension f))))
+
+(load-file (expand-file-name "~/.emacs.d/el-get/cedet/common/cedet.el"))
 (setq load-path (cons (expand-file-name "~/.emacs.d/el-get/nognus/lisp") load-path))
 (load-directory (concat user-emacs-directory "init.d"))
 (load-directory (concat user-emacs-directory "init-mode.d"))
