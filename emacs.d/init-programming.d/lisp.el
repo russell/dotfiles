@@ -10,6 +10,10 @@
 	  (lambda ()
 	    (add-hook 'write-contents-functions
 		      'check-parens)))
+(add-hook 'slime-mode-hook
+          '(lambda ()
+             (autopair-mode)))
+
 
 (add-hook 'inferior-lisp-mode-hook (lambda () (auto-complete-mode 1)))
 
@@ -28,3 +32,7 @@
 	  (lambda ()
 	    (add-hook 'write-contents-functions
 		      'check-parens)))
+
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (autopair-mode)))

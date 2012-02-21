@@ -70,15 +70,7 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://autopair.googlecode.com/svn/trunk/autopair.el"
                :features autopair
                :after (lambda ()
-                        (require 'autopair)
-                        (setq autopair-blink t)
-                        (add-hook 'python-mode-hook
-                                  '(lambda ()
-                                     (autopair-mode)))
-                        (add-hook 'emacs-lisp-mode-hook
-                                  '(lambda ()
-                                     (autopair-mode)))
-                        ))
+                        (setq autopair-blink t)))
 
         (:name cedet
                :website "http://cedet.sourceforge.net/"

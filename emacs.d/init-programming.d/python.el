@@ -92,3 +92,16 @@
 
    (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pycheckers-init)))
+
+;; autopair mode
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (autopair-mode)))
+
+(add-hook 'python-mode-hook
+          #'(lambda ()
+              (push '(?' . ?')
+                    (getf autopair-extra-pairs :code))
+              (setq autopair-handle-action-fns
+                    (list #'autopair-default-handle-action
+                          #'autopair-python-triple-quote-action))))
