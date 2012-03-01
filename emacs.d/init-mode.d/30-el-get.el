@@ -510,6 +510,10 @@ variable. Automatically applies expand-file-name to `path`."
                :after (lambda ()
                         (require 'anything-config)))
 
+        (:name openstack-mode
+               :type git
+               :features openstack-mode
+               :url "git@github.com:russell/openstack-mode.git")
         ))
 
 (setq my-packages
@@ -531,6 +535,6 @@ variable. Automatically applies expand-file-name to `path`."
        breadcrumb sticky-windows expand-region emacs-w3m
        ctags-update hideshow-org bash-completion scss-mode slime
        ac-slime erc idomenu twittering-mode multi-term
-       erc-highlight-nicknames apache-mode nognus
+       erc-highlight-nicknames apache-mode nognus openstack-mode
        artbollocks-mode google-contacts highlight-sexp)))
 (el-get 'sync my-packages)
