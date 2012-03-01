@@ -1,11 +1,6 @@
 ;; follow symlinks to version controlled files
 (setq vc-follow-symlinks t)
 
-;; whenever an external process changes a file underneath emacs, and there
-;; was no unsaved changes in the corresponding buffer, just revert its
-;; content to reflect what's on-disk.
-(global-auto-revert-mode 1)
-
 ;;; Set tab width to 4 spaces
 (setq default-tab-width 4)
 
