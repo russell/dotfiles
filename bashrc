@@ -183,6 +183,13 @@ m () {
     offlineimap -o -u basic
 }
 
+case "$TERM" in
+    xterm)
+        export GIT_EDITOR="emacsclient";;
+    *)
+        export GIT_EDITOR="emacs";;
+esac
+
 #export PYTHONDONTWRITEBYTECODE=true
 
 # set PATH so it includes user's private bin if it exists
