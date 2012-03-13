@@ -369,19 +369,6 @@ variable. Automatically applies expand-file-name to `path`."
                             (global-set-key [f1] 'deft)
                             ))
 
-        (:name muse
-               :description "An authoring and publishing tool for Emacs"
-               :type git
-               :url "https://github.com/alexott/muse.git"
-               :load-path ("./lisp")
-               :build `(,(concat "make EMACS=" el-get-emacs))
-               :autoloads "muse-autoloads"
-               :post-init (lambda ()
-                            (add-hook 'muse-mode-hook
-                                      '(lambda ()
-                                         (color-theme-tangotango)))
-                            ))
-
         (:name ical2org
                :type git
                :url "https://github.com/cofi/ical2org.git")
