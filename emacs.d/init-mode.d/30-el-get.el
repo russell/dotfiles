@@ -521,7 +521,7 @@ variable. Automatically applies expand-file-name to `path`."
        fill-column-indicator deft puppet-mode markdown-mode
        breadcrumb sticky-windows expand-region emacs-w3m
        ctags-update hideshow-org bash-completion scss-mode slime
-       ac-slime erc idomenu twittering-mode multi-term
+       ac-slime erc idomenu twittering-mode multi-term yaml-mode
        erc-highlight-nicknames apache-mode nognus openstack-mode
        artbollocks-mode google-contacts highlight-sexp)))
 (el-get 'sync my-packages)
