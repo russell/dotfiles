@@ -523,5 +523,5 @@ variable. Automatically applies expand-file-name to `path`."
        ctags-update hideshow-org bash-completion scss-mode slime
        ac-slime erc idomenu twittering-mode multi-term yaml-mode
        erc-highlight-nicknames apache-mode nognus openstack-mode
-       artbollocks-mode google-contacts highlight-sexp)))
+       artbollocks-mode google-contacts highlight-sexp mailcrypt)))
 (el-get 'sync my-packages)
