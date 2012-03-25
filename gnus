@@ -171,19 +171,9 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 (gnus-add-configuration
  '(article
-   (horizontal 1.0
-	       (vertical 0.40
-			 (group 1.0))
-	       (vertical 1.0
+   (vertical 1.0
 			 (summary 0.25 point)
-			 (article 1.0)))))
-(gnus-add-configuration
- '(summary
-   (horizontal 1.0
-	       (vertical 0.40
-			 (group 1.0))
-	       (vertical 1.0
-			 (summary 1.0 point)))))
+			 (article 1.0))))
 
 (setq
  ;; %S   The native news server.
