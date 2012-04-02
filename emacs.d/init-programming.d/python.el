@@ -27,6 +27,9 @@
     (global-set-key (kbd "C-c h") 'hs-org/minor-mode)
     ;;(hs-org/minor-mode)
 
+    (highlight-indentation-on)
+    (highlight-symbol-mode 1)
+
     (defadvice goto-line (after expand-after-goto-line activate compile)
       "hideshow-expand affected block when using goto-line in a collapsed buffer"
       (save-excursion
