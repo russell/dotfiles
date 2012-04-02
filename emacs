@@ -29,7 +29,8 @@
  '(elscreen-tab-display-control nil)
  '(frame-background-mode (quote dark))
  '(hl-sexp-background-color "gray16")
- '(ns-alternate-modifier (quote meta)))
+ '(ns-alternate-modifier (quote meta))
+ '(woman-fill-frame t))
 
 
 ; recompile hot key

@@ -497,6 +497,11 @@ variable. Automatically applies expand-file-name to `path`."
                :after (lambda ()
                         (require 'anything-config)))
 
+        (:name restclient-mode
+               :type git
+               :features restclient
+               :url "git://github.com/pashky/restclient.el.git")
+
         (:name openstack-mode
                :type git
                :features openstack-mode
@@ -523,5 +528,6 @@ variable. Automatically applies expand-file-name to `path`."
        ctags-update hideshow-org bash-completion scss-mode slime
        ac-slime erc idomenu twittering-mode multi-term yaml-mode
        erc-highlight-nicknames apache-mode nognus openstack-mode
-       artbollocks-mode google-contacts highlight-sexp mailcrypt)))
+       artbollocks-mode google-contacts highlight-sexp mailcrypt
+       restclient-mode)))
 (el-get 'sync my-packages)

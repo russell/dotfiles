@@ -192,6 +192,9 @@ esac
 
 #export PYTHONDONTWRITEBYTECODE=true
 
+export PDSH_RCMD_TYPE="ssh"
+export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
