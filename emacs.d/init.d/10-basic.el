@@ -6,7 +6,8 @@
 
 (setq inhibit-startup-screen t)
 
-(setq uniquify-buffer-name-style '((quote reverse) nil (uniquify)))
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)
 
 ; title format
 (setq frame-title-format "%b - emacs")
