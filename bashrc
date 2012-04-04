@@ -1,4 +1,7 @@
 # -*- mode: sh -*-
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -38,6 +41,11 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
+# http://stackoverflow.com/questions/2465425/how-do-i-determine-if-a-terminal-is-color-capable
+if [ -x /usr/bin/tput ] && [ `tput colors 2> /dev/null` -gt 2 ]; then
+    color_prompt=yes;
+fi
+
 case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
@@ -45,7 +53,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+# force_color_prompt=yes
 
 # git prompt
 function parse_git_branch {
