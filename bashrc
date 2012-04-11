@@ -40,14 +40,10 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-# http://stackoverflow.com/questions/2465425/how-do-i-determine-if-a-terminal-is-color-capable
-if [ -x /usr/bin/tput ] && [ `tput colors 2> /dev/null` -gt 2 ]; then
-    color_prompt=yes;
-fi
-
 case "$TERM" in
+    dumb) ;;
     xterm-color) color_prompt=yes;;
+    xterm) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
