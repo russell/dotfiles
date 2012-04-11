@@ -300,7 +300,8 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name ctags-update
                :features ctags-update
-               :type emacswiki)
+               :type git
+               :url "https://github.com/jixiuf/helm-etags-plus")
 
         (:name sr-speedbar
                :features sr-speedbar
