@@ -21,11 +21,15 @@
   (erc-tls :server "irc.freenode.net" :port 6697
 	   :nick "arrsim" :full-name "Russell Sim"
 	   :password freenode-pass)
+  (erc-tls :server "scoutlan.qld.au.austnet.org" :port 6697
+           :nick "arrsim" :full-name "Russell Sim"
+           :password austnet-pass)
   (setq erc-autojoin-channels-alist
 	'(("freenode.net" "#emacs" "#python"
 	   "#twisted" "#twisted.web" "#pylons"
 	   "#pyramid" "#openstack" "#lisp" "#lispcafe")
 	  ("oftc.net" "#debian" "#debian-mentors"
-	   "#debian-python" "#debian-gname"))))
+	   "#debian-python" "#debian-gname")
+      ("austnet.org" "#nectar"))))
 
 (setq erc-autojoin-channels-alist '())
