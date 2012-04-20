@@ -50,7 +50,8 @@
 (setq gnus-secondary-select-methods
       '((nnml "")
         (nntp "news.gmane.org")
-	(nntp "news.eternal-september.org")))
+        (nntp "news.eternal-september.org")
+        (nntp "news.gnus.org")))
 
 ;; don't bother me with dribbles
 ;(setq gnus-always-read-dribble-file t)
