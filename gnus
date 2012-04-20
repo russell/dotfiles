@@ -9,9 +9,10 @@
 ;;
 (setq message-from-style 'angles)
 
-(setq gnus-buttonized-mime-types '("multipart/signed"))
+(setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"))
 (setq gnus-visible-headers '("^From:" "^Newsgroups:" "^Subject:" "^Date:" "^Followup-To:" "^Reply-To:" "^Organization:" "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:" "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:" "^Apparently-To:" "^Gnus-Warning:" "^Resent-From:" "^User-Agent:"))
 (setq mm-verify-option 'known)
+(setq mm-decrypt-option 'known)
 
 
 (require 'nnir)
@@ -218,10 +219,27 @@ See (info \"(gnus)Group Line Specification\")."
         (gnus-dormant-mark (from 5))
         (gnus-saved-mark (from 20) (subject 5))
         (gnus-del-mark (from -2) (subject -5))
-        (gnus-read-mark (from 2) (subject 1))
+        (gnus-read-mark (from 2) (subject 2))
         (gnus-killed-mark (from -1) (subject -3))
         (gnus-kill-file-mark)
         (gnus-ancient-mark)
         (gnus-low-score-mark)
         (gnus-catchup-mark (from -1) (subject -1))))
 (setq gnus-use-adaptive-scoring '(word line))
+
+(setq plstore-cache-passphrase-for-symmetric-encryption t)
+
+;; gpg
+
+;; regexp of groups from which new messages are mime signed by default
+(setq my-sign-mime-group-regexp "^\\(INBOX\\|gmane.linux.debian.\\*\\)$")
+
+;; hook to setup message
+(defun my-mml-secure-message-sign-mime ()
+  (when (string-match
+    	 my-sign-mime-group-regexp
+    	 gnus-newsgroup-name)
+    (mml-secure-message-sign-pgpmime)))
+
+;; plug this into message-setup-hook
+(add-hook 'message-setup-hook 'my-mml-secure-message-sign-mime)
