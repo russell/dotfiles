@@ -1,0 +1,196 @@
+;; Hey, Emacs! This is a -*- lisp -*- file!
+;debian=sbcl
+
+(in-package :stumpwm)
+
+(asdf:oos 'asdf:load-op 'swank)
+
+;; load Swank so we can connect with SLIME
+(swank-loader:init)
+(defvar *swank-p* nil)
+
+;; define swank command to start swank server on port 4005
+(defcommand swank () ()
+  "Starts a swank server on port 4000 and notifies the user."
+  (setf stumpwm:*top-level-error-action* :break)
+  (if *swank-p*
+      (message "Swank server already running.")
+    (progn
+      (swank:create-server :port 4000
+                           :style swank:*communication-style*
+                           :dont-close t)
+      (setf *swank-p* t)
+      (message "Starting swank on port 4000."))))
+
+(setf stumpwm::*debug-level* 1)
+(setf *debug-stream* (open "~/.stumpwm.log" :direction :output :if-exists :supersede))
+;; from http://en.wikipedia.org/wiki/User:Gwern/.stumpwmrc
+(defun cat (&rest strings) "A shortcut for (concatenate 'string foo bar)."
+  (apply 'concatenate 'string strings))
+
+(setf *time-modeline-string* "%Y-%m-%d %a ^B%l:%M^b")
+(setf *screen-mode-line-format* (list "[^B%n^b]%W" "^>[%d]"))
+(defparameter *screen-mode-line-formats* (list (list "[^B%n^b] %W")
+                                               (list "[^B%n^b] %W" "^>[%d]")))
+
+;; Turn on the modeline for each head with different mode lines
+(flet ((mode-line-on (args)
+                  (let ((head (car args))
+                        (mode-line-format (cadr args)))
+                    (enable-mode-line (current-screen) head t mode-line-format))))
+  (mapcar #'mode-line-on
+          (mapcar #'list (screen-heads (current-screen)) *screen-mode-line-formats*)))
+
+;;** 2 (info "(stumpwm)Key Bindings")
+
+;; `*top-map*' is the top level key map. This is where you'll find the
+;; binding for the prefix map.
+;;
+;; `*root-map*' is the keymap by default bound to `C-t'. It is known as the
+;; prefix map.
+
+(define-key *root-map* (kbd "I") "show-window-properties")
+
+; launch Web browser
+(defcommand iceweasel () ()
+  "Start Firefox or switch to it, if it is already running."
+  (run-or-raise "iceweasel" '(:class "Iceweasel")))
+(define-key *root-map* (kbd "f") "iceweasel")
+
+
+;; ask the user for a search string and search for it in Wikipedia
+(defcommand wikipedia (search)
+  ((:string "Search in Wikipedia for: "))
+  "prompt the user for a search term and look it up in the English Wikipedia"
+  (check-type search string)
+  (let ((uri (format nil "http://en.wikipedia.org/wiki/Special:Search?search=~a" search)))
+    (run-shell-command
+     (cat "iceweasel -new-tab \"" uri "\""))))
+
+;; ask the user for a search string and search for it in Google
+(defcommand google (search)
+  ((:string "Search in Google for: "))
+  "prompt the user for a search term and look it up in Google "
+  (check-type search string)
+  (let ((uri (format nil "http://www.google.com/search?q=~a" search)))
+    (run-shell-command
+     (cat "iceweasel -new-tab \"" uri "\""))))
+
+;; log out
+(define-key *root-map* (kbd "^") "quit")
+
+(defcommand reinit () ()
+  "reload the stumpwm config file"
+  (run-commands "reload" "loadrc"))
+
+(defcommand emacs () ()
+  "Start emacs unless it is already running, in which case focus it."
+  (run-or-raise "exec /usr/bin/emacs --name emacs-primary-server --eval '(server-start)'"
+                '(:class "Emacs" :instance "emacs-primary-server")))
+(define-key *root-map* (kbd "e") "emacs")
+
+(defcommand emacs-irc () ()
+  "Start erc unless it is already running, in which case focus it."
+  (run-or-raise "exec /usr/bin/emacs --name emacs-erc --eval '(start-irc)'"
+                '(:class "Emacs" :instance "emacs-erc")))
+(define-key *root-map* (kbd "p") "emacs-irc")
+
+(defcommand emacs-gnus () ()
+  "Start erc unless it is already running, in which case focus it."
+  (run-or-raise "exec /usr/bin/emacs --name emacs-gnus --eval '(gnus)'"
+                '(:class "Emacs" :instance "emacs-gnus")))
+(define-key *root-map* (kbd "m") "emacs-gnus")
+
+(defcommand gnome-terminal () ()
+  "Start gnome-terminal unless it is already running, in which case
+focus it."
+  (run-or-raise "exec /usr/bin/gnome-terminal" '(:class "Gnome-terminal")))
+(define-key *root-map* (kbd "c")   "gnome-terminal")
+(define-key *root-map* (kbd "C-c") "gnome-terminal")
+
+
+;;;;
+;;;; Menu
+;;;;
+
+(defparameter *start-menu*
+  '(
+    ("Accessories"
+     ("Password and Keys"            "revelation"))
+
+    ("Graphics"
+     ("Color Picker"   "gcolor2")
+     ("GIMP"           "gimp")
+     ("Inkscape"       "inkscape")
+     ("Picasa"         "picasa")
+     ("Scanner"        "xsane"))
+
+    ("Internet"
+     ("Iceweasel"   "iceweasel")
+     )
+
+    ("Office"
+     ("LibreOffice"  "libreoffice"))
+
+    ("Sound and Video"
+     ("Totem"  "totem")
+     ("Rhythmbox" "rhythmbox"))
+
+    ("System Tools"
+     ("Calculator"        "speedcrunch")
+     ("Disk space"        "filelight")
+     ("File Manager"      "nautilus")  ; thunar
+     ("Nvidia X Server"   "nvidia-settings")
+     ("Power Preferences" "gnome-power-preferences")
+     ("Printers"          "system-config-printer")
+     ("Terminal Server"   "tsclient")
+         ; Turn on "Enable window manager's key bindings" for prefix key to
+         ; be passed seamlessly (when *not* in full screen).
+         ; Toggle between full screen and not full screen using
+         ; `Ctrl-Alt-Enter'.
+
+     ;; > In the case of Rdesktop you have to launch the app with the option
+     ;; > '-K' so Stump can retain control over the key combinations that you
+     ;; > input inside the remote session.
+
+     ("VirtualBox"       "VirtualBox"))
+
+    ("X Windows Tools"
+     ("Clipboard"  "xclipboard")
+     ("Fonts"      "xfontsel")
+     ("Ruler"      "kruler")
+     ("Events"     "xev"))
+    ))
+
+(defcommand menu () ()
+  "docstring"
+  (labels ((pick (options)
+                 (let ((selection (stumpwm::select-from-menu
+                                   (current-screen) options "")))
+                   (cond
+                    ((null selection)
+                     (throw 'stumpwm::error "Abort."))
+                    ((stringp (second selection))
+                     (second selection))
+                    (t
+                     (pick (cdr selection)))))))
+    (let ((choice (pick *start-menu*)))
+      (run-shell-command choice))))
+
+(define-key *root-map* (kbd ".") "menu")
+
+
+;;;; Groups
+
+(gnew "Communication")
+
+(define-frame-preference "Communication"
+  ;; frame raise lock (lock AND raise == jumpto)
+  (0 t   t :class "Emacs" :title "^ERC: .*$"))
+
+;;;; Applications startup
+
+(run-shell-command "/usr/bin/gnome-settings-daemon")
+(run-shell-command "/usr/bin/gnome-keyring-daemon")
+(run-shell-command "/usr/bin/gnome-screensaver")
+(run-shell-command "/usr/bin/setxkbmap dvorak")
