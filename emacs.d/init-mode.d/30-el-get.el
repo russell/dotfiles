@@ -509,5 +509,5 @@ variable. Automatically applies expand-file-name to `path`."
        ac-slime erc idomenu twittering-mode multi-term yaml-mode
        erc-highlight-nicknames apache-mode nognus openstack-mode
        artbollocks-mode google-contacts highlight-sexp mailcrypt
-       restclient-mode ace-jump-mode)))
+       restclient-mode ace-jump-mode auto-capitalize)))
 (el-get 'sync my-packages)
