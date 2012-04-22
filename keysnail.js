@@ -495,4 +495,5 @@ key.setViewKey(['C-c', 'C-e'], function (aEvent, aArg) {
 }, 'Start continuous HaH', true);
 
 plugins.options["kkk.sites"] = ["^https?://wiki\\.github\\.com/",
-                                "^https?://encrypted\\.google\\.com/"];
+                                "^https?://encrypted\\.google\\.com/",
+                                "^https?://www\\.google\\.com/"];
