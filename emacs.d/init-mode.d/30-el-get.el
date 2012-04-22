@@ -486,6 +486,19 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :features openstack-mode
                :url "git@github.com:russell/openstack-mode.git")
+
+        (:name nognus
+               :description "A newsreader for GNU Emacs"
+               :type git
+               :url "git@github.com:russell/gnus.git"
+               :build ("./configure" "make")
+               :build/windows-nt `(,(concat "\"make.bat " invocation-directory "\""))
+               :build/darwin `(,(concat "./configure --with-emacs=" el-get-emacs) "make")
+               :info "texi"
+               :load-path ("lisp")
+               :autoloads nil
+               :features gnus-load)
+
         ))
 
 (setq my-packages
