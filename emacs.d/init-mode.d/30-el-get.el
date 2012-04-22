@@ -499,6 +499,11 @@ variable. Automatically applies expand-file-name to `path`."
                :autoloads nil
                :features gnus-load)
 
+        (:name auto-capitalize
+               :type emacswiki
+               :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
+               :features auto-capitalize)
+
         ))
 
 (setq my-packages
