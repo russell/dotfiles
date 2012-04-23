@@ -5,6 +5,11 @@
 // ========================================================================= //
 //{{%PRESERVE%
 // Put your codes here
+plugins.options["kkk.sites"] = ["^https?://([0-9a-zA-Z]+\\.)?github\\.com/",
+                                "^https?://([0-9a-zA-Z]+\\.)?google\\.com/",
+                                "^https?://([0-9a-zA-Z]+\\.)?google\\.com.au/"
+                               ];
+
 //}}%PRESERVE%
 // ========================================================================= //
 
@@ -510,7 +515,3 @@ key.setViewKey(';', function (aEvent, aArg) {
 key.setViewKey(['C-c', 'C-e'], function (aEvent, aArg) {
     ext.exec("hok-start-continuous-mode", aArg);
 }, 'Start continuous HaH', true);
-
-plugins.options["kkk.sites"] = ["^https?://wiki\\.github\\.com/",
-                                "^https?://encrypted\\.google\\.com/",
-                                "^https?://www\\.google\\.com/"];
