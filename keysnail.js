@@ -227,6 +227,15 @@ key.setViewKey('M-n', function (ev) {
     command.walkInputElement(command.elementsRetrieverButton, false, true);
 }, 'Focus to the previous button');
 
+key.setViewKey(['C-c', 'i'], function (ev, arg) {
+    //stolen from keysnail's vi-style configuration
+    children = document.getElementById("nav-bar").children;
+    for (i = 0; i < children.length; i++) {
+        children[i].style.backgroundColor = "pink";
+    }
+    util.setBoolPref("accessibility.browsewithcaret", !util.getBoolPref("accessibility.browsewithcaret"));
+}, 'Enter caret mode');
+
 key.setEditKey(['C-x', 'h'], function (ev) {
     command.selectAll(ev);
 }, 'Select whole text', true);
@@ -375,6 +384,14 @@ key.setEditKey('M-n', function (ev) {
 key.setEditKey('M-p', function (ev) {
     command.walkInputElement(command.elementsRetrieverTextarea, false, true);
 }, 'Focus to the previous text area');
+
+key.setCaretKey([['C-c', 'i'], ['ESC']], function (ev, arg) {
+    children = document.getElementById("nav-bar").children;
+    for (i = 0; i < children.length; i++) {
+        children[i].style.backgroundColor = "transparent";
+    }
+    util.setBoolPref("accessibility.browsewithcaret", false);
+}, 'Exit caret mode');
 
 key.setCaretKey([['C-a'], ['^']], function (ev) {
     ev.target.ksMarked ? goDoCommand("cmd_selectBeginLine") : goDoCommand("cmd_beginLine");
