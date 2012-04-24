@@ -1,0 +1,14 @@
+Xft*antialias:          true
+Xft*autohint:           true
+XTerm*background:   black
+XTerm*foreground:   grey
+XTerm*cursorColor:  grey
+XTerm.vt100.geometry:   79x25
+XTerm*scrollBar:    false
+XTerm*rightScrollBar:   true
+XTerm*saveLines:    10000
+XTerm*faceName:     DejaVu Sans Mono
+XTerm*faceSize:     10
+XTerm*toolBar:      off
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
