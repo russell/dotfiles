@@ -349,6 +349,12 @@ variable. Automatically applies expand-file-name to `path`."
                :url "https://github.com/emacsmirror/active-menu.git"
                :features "active-menu")
 
+        (:name json
+               :description "JavaScript Object Notation parser / generator"
+               :type http
+               :url "http://cvs.savannah.gnu.org/viewvc/*checkout*/emacs/lisp/json.el?root=emacs"
+               :features json)
+
         (:name fill-column-indicator
                :type git
                :url "https://github.com/alpaker/Fill-Column-Indicator.git"
