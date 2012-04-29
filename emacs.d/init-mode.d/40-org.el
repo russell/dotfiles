@@ -12,11 +12,15 @@
 (setq org-return-follows-link t)
 (setq org-completion-use-ido t)
 
-; Org Mode
+;; Org Mode
 (defun lconfig-org-mode ()
   (progn
     (auto-fill-mode)
     (flyspell-mode)
     (autocommit-setup-save-hook)
     ))
-(add-hook 'org-mode-hook 'lconfig-org-mode)
+(add-hook 'org-mode-hook
+          'lconfig-org-mode)
+
+(add-hook 'org-mode-hook
+          'turn-on-artbollocks-mode)

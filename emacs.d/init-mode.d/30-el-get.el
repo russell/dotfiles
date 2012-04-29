@@ -493,6 +493,11 @@ variable. Automatically applies expand-file-name to `path`."
                :features openstack-mode
                :url "git@github.com:russell/openstack-mode.git")
 
+        (:name jabber
+               :type git
+               :features jabber-autoloads
+               :url "git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber")
+
         (:name nognus
                :description "A newsreader for GNU Emacs"
                :type git
