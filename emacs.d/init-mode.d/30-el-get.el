@@ -1,4 +1,4 @@
-                                        ; el-get
+;; el-get
 (if (file-exists-p "~/.emacs.d/el-get/el-get")
     (add-to-list 'load-path "~/.emacs.d/el-get/el-get"))
 (unless (require 'el-get nil t)
@@ -75,13 +75,13 @@ variable. Automatically applies expand-file-name to `path`."
         (:name cedet
                :website "http://cedet.sourceforge.net/"
                :description "CEDET is a Collection of Emacs Development Environment Tools written with the end goal of creating an advanced development environment in Emacs."
-               :type bzr
-               :url "bzr://cedet.bzr.sourceforge.net/bzrroot/cedet/code/trunk"
+               :type git
+               :url "git://git.randomsample.de/cedet.git"
                :build ("touch `find . -name Makefile`" "make")
                :build/windows-nt ("echo #!/bin/sh > tmp.sh & echo touch `/usr/bin/find . -name Makefile` >> tmp.sh & echo make FIND=/usr/bin/find >> tmp.sh"
                                   "sed 's/^M$//' tmp.sh  > tmp2.sh"
                                   "sh ./tmp2.sh" "rm ./tmp.sh ./tmp2.sh")
-               :load-path ("./common" "speedbar"))
+               )
 
         (:name django-mode
                :type git
@@ -515,7 +515,24 @@ variable. Automatically applies expand-file-name to `path`."
                :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
                :features auto-capitalize)
 
+	(:name apel
+	       :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
+	       :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
+	       :type git
+	       :module "apel"
+	       :url "git://github.com/emacsmirror/apel.git"
+	       :build 
+	       (mapcar
+		(lambda (target)
+		  (list el-get-emacs
+			(split-string "-batch -q -no-site-file -l APEL-MK -f")
+			target
+			"prefix" "site-lisp" "site-lisp"))
+		'("compile-apel" "install-apel"))
+	       :load-path ("site-lisp/apel" "site-lisp/emu"))
+
         ))
+
 
 (setq my-packages
       (append '(cedet color-theme-tangotango oauth2
@@ -533,7 +550,7 @@ variable. Automatically applies expand-file-name to `path`."
        ipython python-mode ropemacs ropemode rope pymacs
        django-mode autopair auto-complete project-root magit
        fill-column-indicator deft puppet-mode markdown-mode
-       breadcrumb sticky-windows expand-region emacs-w3m
+       sticky-windows expand-region emacs-w3m
        ctags-update hideshow-org bash-completion scss-mode slime
        ac-slime erc idomenu twittering-mode multi-term yaml-mode
        erc-highlight-nicknames apache-mode nognus openstack-mode
