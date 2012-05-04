@@ -188,7 +188,7 @@ m () {
 }
 
 case "$TERM" in
-    xterm)
+    xterm*)
         export GIT_EDITOR="emacsclient";;
     *)
         export GIT_EDITOR="emacs";;
