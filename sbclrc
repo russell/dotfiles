@@ -1,3 +1,6 @@
+; -*- mode: Lisp;-*-
+
+#-:asdf (load (merge-pathnames "quicklisp/asdf.lisp" (user-homedir-pathname)))
 
 ;;; The following lines added by ql:add-to-init-file:
 #-quicklisp
