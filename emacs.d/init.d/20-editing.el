@@ -91,3 +91,9 @@
       (rename-buffer new-name)
       (set-visited-file-name new-name)
       (set-buffer-modified-p nil))))))
+
+
+(defun enable-editing-modes ()
+  (interactive)
+  (auto-capitalize-mode t)
+  (flyspell-mode t))

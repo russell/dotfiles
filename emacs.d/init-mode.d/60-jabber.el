@@ -8,3 +8,5 @@
       '(("russell.sim@gmail.com"
          (:network-server . "talk.google.com")
          (:connection-type . ssl))))
+
+(add-hook 'jabber-chat-mode-hook 'enable-editing-modes)

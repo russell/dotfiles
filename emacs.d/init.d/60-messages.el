@@ -52,9 +52,5 @@
                               body))))
     (compose-mail)))
 
-(add-hook 'message-mode-hook
-	  'turn-on-artbollocks-mode)
-(add-hook 'message-mode-hook
-	  'auto-capitalize-mode)
-(add-hook 'message-mode-hook
-	  'flyspell-mode)
+(add-hook 'message-mode-hook 'turn-on-artbollocks-mode)
+(add-hook 'message-mode-hook 'enable-editing-modes)
