@@ -11,6 +11,7 @@ python setup.py install
 
 # emacs
 apt-get install python-ropemacs bzr subversion git-core links2
+apt-get install debian-el devscripts-el  # adds debian modes
 
 # mutt
 apt-get install urlview
