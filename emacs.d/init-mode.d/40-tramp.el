@@ -6,11 +6,17 @@
 (add-to-list 'tramp-default-proxies-alist
 	     '("\\.nectar\\.org\\.au" nil nil))
 (add-to-list 'tramp-default-proxies-alist
+	     '("115\\.146\\.83" nil nil))
+(add-to-list 'tramp-default-proxies-alist
+	     '("115\\.146\\.90" nil nil))
+(add-to-list 'tramp-default-proxies-alist
 	     '("115\\.146\\.92" nil nil))
 (add-to-list 'tramp-default-proxies-alist
 	     '("115\\.146\\.93" nil nil))
 (add-to-list 'tramp-default-proxies-alist
 	     '("115\\.146\\.94" nil nil))
+(add-to-list 'tramp-default-proxies-alist
+	     '("115\\.146\\.95" nil nil))
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
 (add-to-list 'tramp-default-proxies-alist
