@@ -13,6 +13,7 @@
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
 
+(add-hook 'erc-join-hook 'enable-editing-modes)
 
 (defun start-irc ()
   "Connect to IRC."
