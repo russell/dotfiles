@@ -6,6 +6,8 @@
 (add-to-list 'tramp-default-proxies-alist
 	     '("\\.nectar\\.org\\.au" nil nil))
 (add-to-list 'tramp-default-proxies-alist
+	     '("10\\.42\\.33\\.1" nil nil))
+(add-to-list 'tramp-default-proxies-alist
 	     '("115\\.146\\.92" nil nil))
 (add-to-list 'tramp-default-proxies-alist
 	     '("115\\.146\\.93" nil nil))
