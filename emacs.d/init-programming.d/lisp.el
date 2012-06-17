@@ -2,9 +2,7 @@
 ;; Lisp
 ;;
 
-
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
-
 (slime-setup '(inferior-slime slime-fancy slime-asdf))
 
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
@@ -23,8 +21,12 @@
              (autopair-mode)))
 (add-hook 'slime-mode-hook
           '(lambda ()
+             (flyspell-prog-mode)))
+(add-hook 'slime-mode-hook
+          '(lambda ()
              (highlight-symbol-mode)))
 
+(setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
 
 (add-hook 'inferior-lisp-mode-hook
           (lambda ()
