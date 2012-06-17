@@ -49,16 +49,22 @@
 ;; Integration
 ;;
 
+(defun string/starts-with (s arg)
+  "returns non-nil if string S starts with ARG.  Else nil."
+  (cond ((>= (length s) (length arg))
+         (string-equal (substring s 0 (length arg)) arg))
+        (t nil)))
+
 (defun dustin-visiting-a-file ()
   (let* ((fn (buffer-file-name))
          (dn (file-name-directory fn)))
-    (if (equal dn (expand-file-name "~/org/"))
+    (if (string/starts-with dn (expand-file-name "~/.deft/"))
         (progn
           (message "Setting up local hook for %s (in %s)"
                    (file-name-nondirectory fn) dn)
           (autocommit-setup-save-hook)))))
 
-;;(add-hook 'find-file-hook 'dustin-visiting-a-file)
+(add-hook 'find-file-hook 'dustin-visiting-a-file)
 
 
 ;; Deft mode hook

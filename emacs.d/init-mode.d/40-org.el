@@ -16,9 +16,8 @@
 (defun lconfig-org-mode ()
   (progn
     (auto-fill-mode)
-    (flyspell-mode)
-    (autocommit-setup-save-hook)
-    ))
+    (flyspell-mode)))
+
 (add-hook 'org-mode-hook
           'lconfig-org-mode)
 
