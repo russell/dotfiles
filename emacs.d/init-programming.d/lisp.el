@@ -18,7 +18,7 @@
                       'check-parens)))
 (add-hook 'slime-mode-hook
           '(lambda ()
-             (autopair-mode)))
+             (paredit-mode)))
 (add-hook 'slime-mode-hook
           '(lambda ()
              (flyspell-prog-mode)))
@@ -53,7 +53,7 @@
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
-             (autopair-mode)))
+             (paredit-mode)))
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (highlight-symbol-mode)))

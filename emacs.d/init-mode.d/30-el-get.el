@@ -550,7 +550,7 @@ variable. Automatically applies expand-file-name to `path`."
        ipython python-mode ropemacs ropemode rope pymacs
        django-mode autopair auto-complete project-root magit
        fill-column-indicator deft puppet-mode markdown-mode
-       sticky-windows expand-region emacs-w3m
+       sticky-windows expand-region emacs-w3m paredit git-commit-mode
        ctags-update hideshow-org bash-completion scss-mode slime
        ac-slime erc idomenu twittering-mode multi-term yaml-mode
        erc-highlight-nicknames apache-mode nognus openstack-mode
