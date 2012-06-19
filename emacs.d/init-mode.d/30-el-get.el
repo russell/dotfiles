@@ -521,7 +521,7 @@ variable. Automatically applies expand-file-name to `path`."
 	       :type git
 	       :module "apel"
 	       :url "git://github.com/emacsmirror/apel.git"
-	       :build 
+	       :build
 	       (mapcar
 		(lambda (target)
 		  (list el-get-emacs
@@ -542,7 +542,7 @@ variable. Automatically applies expand-file-name to `path`."
        eol-conversion doxymacs dired-plus diff-git clevercss
        auto-complete auto-complete-clang auctex active-menu
        fringe-helper csv-mode apel el-get cssh switch-window
-       vkill google-maps nxhtml xcscope yasnippet tidy
+       vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
        recover-buffers rainbow-delimiters org-mode android-mode
        rst-mode pylookup python-pep8 smex popup-kill-ring
        sr-speedbar dirvars po-mode+ po-mode pycheckers
@@ -550,10 +550,11 @@ variable. Automatically applies expand-file-name to `path`."
        ipython python-mode ropemacs ropemode rope pymacs
        django-mode autopair auto-complete project-root magit
        fill-column-indicator deft puppet-mode markdown-mode
-       sticky-windows expand-region emacs-w3m paredit git-commit-mode
-       ctags-update hideshow-org bash-completion scss-mode slime
-       ac-slime erc idomenu twittering-mode multi-term yaml-mode
-       erc-highlight-nicknames apache-mode nognus openstack-mode
-       artbollocks-mode google-contacts highlight-sexp mailcrypt
-       restclient-mode ace-jump-mode auto-capitalize)))
+       sticky-windows expand-region emacs-w3m paredit
+       git-commit-mode ctags-update hideshow-org bash-completion
+       scss-mode slime ac-slime erc idomenu twittering-mode
+       multi-term yaml-mode erc-highlight-nicknames apache-mode
+       nognus openstack-mode artbollocks-mode google-contacts
+       highlight-sexp mailcrypt restclient-mode ace-jump-mode
+       auto-capitalize)))
 (el-get 'sync my-packages)
