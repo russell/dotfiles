@@ -2,8 +2,11 @@
 ;; Lisp
 ;;
 
+
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
-(slime-setup '(inferior-slime slime-fancy slime-asdf))
+
+(slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation slime-tramp))
+;;                              slime-proxy slime-parenscript))
 
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-mode-hook

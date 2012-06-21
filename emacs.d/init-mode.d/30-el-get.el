@@ -447,8 +447,7 @@ variable. Automatically applies expand-file-name to `path`."
                :options ("xzf")
                :url "http://www.emacswiki.org/emacs/download/Icicles.tar.gz"
                :library icicles :features icicles
-               :autoloads nil :post-init (lambda () (icy-mode))
-               )
+               :autoloads nil :post-init (lambda () (icy-mode)))
 
         (:name recover-buffers
                :features recover-buffers
@@ -545,7 +544,7 @@ variable. Automatically applies expand-file-name to `path`."
        vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
        recover-buffers rainbow-delimiters org-mode android-mode
        rst-mode pylookup python-pep8 smex popup-kill-ring
-       sr-speedbar dirvars po-mode+ po-mode pycheckers
+       sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
        flymake-python hyperspec-info highlight-indentation
        ipython python-mode ropemacs ropemode rope pymacs
        django-mode autopair auto-complete project-root magit

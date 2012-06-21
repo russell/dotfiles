@@ -1,4 +1,5 @@
 
+(setq jabber-show-resources nil)
 (setq jabber-alert-presence-hooks nil)
 (setq jabber-history-enable-rotation t)
 (setq jabber-history-enabled t)

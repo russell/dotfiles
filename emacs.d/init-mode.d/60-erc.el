@@ -12,6 +12,12 @@
 (setq erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring services stamp spelling highlight-nicknames)))
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
+(setq erc-server-reconnect-attempts 5)
+(setq erc-server-reconnect-timeout 5)
+
+;; try and prevent ERC from flooding the connection when trying to
+;; reconnect
+(setq erc-server-send-ping-timeout nil)
 
 (add-hook 'erc-join-hook 'enable-editing-modes)
 
@@ -22,7 +28,8 @@
   (setq erc-autojoin-channels-alist
 	'(("freenode.net" "#emacs" "#python"
 	   "#twisted" "#twisted.web" "#pylons"
-	   "#pyramid" "#openstack" "#lisp" "#lispcafe")
+	   "#pyramid" "#openstack" "#lisp" "#lispcafe"
+       "#clnoobs")
 	  ("oftc.net" "#debian" "#debian-mentors"
 	   "#debian-python" "#debian-gnome")
       ("austnet.org" "#nectar")))

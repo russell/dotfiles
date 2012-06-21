@@ -20,6 +20,8 @@
 (add-to-list 'tramp-default-proxies-alist
 	     '("115\\.146\\.95" nil nil))
 (add-to-list 'tramp-default-proxies-alist
+	     '("10\\.42\\.33\\.1" nil nil))
+(add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote "localhost") nil nil))
