@@ -390,13 +390,20 @@ variable. Automatically applies expand-file-name to `path`."
                          (require 'inversion))
                :post-init (lambda ()
                             (require 'breadcrumb)
-                            (global-set-key [?\S-\ ] 'bc-set) ;; Shift-SPACE for set bookmark
-                            (global-set-key [(meta j)] 'bc-previous) ;; M-j for jump to previous
-                            (global-set-key [(shift meta j)] 'bc-next) ;; Shift-M-j for jump to next
-                            (global-set-key [(meta up)] 'bc-local-previous) ;; M-up-arrow for local previous
-                            (global-set-key [(meta down)] 'bc-local-next) ;; M-down-arrow for local next
-                            (global-set-key [(control c)(j)] 'bc-goto-current) ;; C-c j for jump to current bookmark
-                            (global-set-key [(control x)(meta j)] 'bc-list) ;; C-x M-j for the bookmark menu list
+                            ;; Shift-SPACE for set bookmark
+                            (global-set-key [?\S-\ ] 'bc-set)
+                            ;; M-j for jump to previous
+                            (global-set-key [(meta j)] 'bc-previous)
+                            ;; Shift-M-j for jump to next
+                            (global-set-key [(shift meta j)] 'bc-next)
+                            ;; M-up-arrow for local previous
+                            (global-set-key [(meta up)] 'bc-local-previous)
+                            ;; M-down-arrow for local next
+                            (global-set-key [(meta down)] 'bc-local-next)
+                            ;; C-c j for jump to current bookmark
+                            (global-set-key [(control c)(j)] 'bc-goto-current)
+                            ;; C-x M-j for the bookmark menu list
+                            (global-set-key [(control x)(meta j)] 'bc-list)
                             ))
 
         (:name elscreen
