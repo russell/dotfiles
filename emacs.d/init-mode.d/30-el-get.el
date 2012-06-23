@@ -504,6 +504,11 @@ variable. Automatically applies expand-file-name to `path`."
                :features jabber-autoloads
                :url "git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber")
 
+        (:name puppet-flymake
+               :type git
+               :features flymake-puppet
+               :url "git://github.com/grimradical/puppet-flymake.git")
+
         (:name nognus
                :description "A newsreader for GNU Emacs"
                :type git
@@ -562,5 +567,5 @@ variable. Automatically applies expand-file-name to `path`."
        multi-term yaml-mode erc-highlight-nicknames apache-mode
        nognus openstack-mode artbollocks-mode google-contacts
        highlight-sexp mailcrypt restclient-mode ace-jump-mode
-       auto-capitalize)))
+       auto-capitalize puppet-flymake)))
 (el-get 'sync my-packages)
