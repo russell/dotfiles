@@ -57,6 +57,15 @@
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (paredit-mode)))
+
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (highlight-symbol-mode)))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (elisp-slime-nav-mode t)))
+
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)))

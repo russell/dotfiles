@@ -494,6 +494,11 @@ variable. Automatically applies expand-file-name to `path`."
                :features restclient
                :url "git://github.com/pashky/restclient.el.git")
 
+        (:name elisp-slime-nav
+               :type git
+               :features elisp-slime-nav
+               :url "git://github.com/purcell/elisp-slime-nav.git")
+
         (:name openstack-mode
                :type git
                :features openstack-mode
@@ -567,5 +572,5 @@ variable. Automatically applies expand-file-name to `path`."
        multi-term yaml-mode erc-highlight-nicknames apache-mode
        nognus openstack-mode artbollocks-mode google-contacts
        highlight-sexp mailcrypt restclient-mode ace-jump-mode
-       auto-capitalize puppet-flymake)))
+       auto-capitalize puppet-flymake elisp-slime-nav)))
 (el-get 'sync my-packages)
