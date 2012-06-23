@@ -167,7 +167,7 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name python-mode
                :type git
-               :url "git://github.com/russell/python-mode.git"
+               :url "git://github.com/emacsmirror/python-mode.git"
                :features (python-mode)
                :depends pymacs
                :compile nil
