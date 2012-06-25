@@ -243,6 +243,11 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/antonj/Highlight-Indentation-for-Emacs")
 
+        (:name nginx-mode
+               :features nginx-mode
+               :type git
+               :url "git://github.com/ajc/nginx-mode.git")
+
         (:name expand-region
                :features expand-region
                :type git
@@ -556,7 +561,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 (setq my-packages
-      (append '(cedet color-theme-tangotango oauth2
+      (append '(cedet color-theme-tangotango oauth2 nginx-mode
        highlight-symbol highlight-parentheses git-emacs git-blame
        mo-git-blame virtualenv flymake-point flymake-fringe-icons
        folding js2-mode js-comint json fic-ext-mode dired+
