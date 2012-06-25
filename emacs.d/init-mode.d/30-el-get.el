@@ -445,6 +445,11 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "git://github.com/daimrod/highlight-sexp.git")
 
+        (:name bookmark+
+               :features bookmark+
+               :type git
+               :url "git@github.com:russell/bookmark-plus.git")
+
         (:name oauth2
                :features oauth2
                :type elpa)
