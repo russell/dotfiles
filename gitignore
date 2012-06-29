@@ -1,5 +1,6 @@
 *.[ao]
 *.pyc
+*.elc
 *~
 .ropeproject
 .emacs-dirvars

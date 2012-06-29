@@ -152,6 +152,15 @@ See (info \"(gnus)Group Line Specification\")."
 (gnus-demon-add-handler 'gnus-demon-close-connections 30 t)
 (gnus-demon-init)
 
+(defun gmail-delete ()
+  "Move the current message to the bin."
+  (interactive)
+  (gnus-summary-move-article nil "[Google Mail]/Bin"))
+
+(defun gmail-report-spam ()
+  "Mark the current message as spam."
+  (interactive)
+  (gnus-summary-move-article nil "[Google Mail]/Spam"))
 
 ;;(info "(emacs-w3m) Gnus")
 (defun gnus-summary-w3m-safe-toggle-inline-images (&optional arg)
@@ -212,7 +221,7 @@ See (info \"(gnus)Group Line Specification\")."
 )
 
 (setq gnus-use-adaptive-scoring t)
-(setq gnus-score-expiry-days 60)
+(setq gnus-score-expiry-days 30)
 (setq gnus-default-adaptive-score-alist
       '((gnus-unread-mark)
         (gnus-ticked-mark (from 4))
