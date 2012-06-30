@@ -217,8 +217,7 @@ See (info \"(gnus)Group Line Specification\")."
  ;; %G hides the method (nnfolder, etc).
  ;; %c preserves the method and last n elements of the name unexpanded,
  ;; where n is set by `gnus-group-uncollapsed-levels'.
- gnus-group-line-format "%M%S%p%P%5y: %(%-40,40G%)%l %4I\n"
-)
+ gnus-group-line-format "%M%S%p%P%5y: %(%-40,40G%)%l %4I\n")
 
 (setq gnus-use-adaptive-scoring t)
 (setq gnus-score-expiry-days 30)
@@ -238,7 +237,9 @@ See (info \"(gnus)Group Line Specification\")."
 
 (setq plstore-cache-passphrase-for-symmetric-encryption t)
 
-;; gpg
+;;
+;; GPG
+;;
 
 ;; regexp of groups from which new messages are mime signed by default
 (setq my-sign-mime-group-regexp "^\\(INBOX\\|gmane.linux.debian.\\*\\)$")
@@ -252,3 +253,24 @@ See (info \"(gnus)Group Line Specification\")."
 
 ;; plug this into message-setup-hook
 (add-hook 'message-setup-hook 'my-mml-secure-message-sign-mime)
+
+;;
+;; RSS
+;;
+
+;; convert atom to rss
+(require 'mm-url)
+(defadvice mm-url-insert (after DE-convert-atom-to-rss () )
+  "Converts atom to RSS by calling xsltproc."
+  (when (re-search-forward "xmlns=\"http://www.w3.org/.*/Atom\""
+			   nil t)
+    (goto-char (point-min))
+    (message "Converting Atom to RSS... ")
+    (call-process-region (point-min) (point-max)
+			 "xsltproc"
+			 t t nil
+			 (expand-file-name "~/.emacs.d/atom2rss.xsl") "-")
+    (goto-char (point-min))
+    (message "Converting Atom to RSS... done")))
+
+(ad-activate 'mm-url-insert)
