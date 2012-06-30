@@ -1,5 +1,5 @@
 (deftheme tango-plus
-  "Created 2012-06-30.")
+  "A theme that extends the tango-dark theme with some details from tangotango.")
 
 (custom-theme-set-variables
  'tango-plus
@@ -81,6 +81,8 @@
  '(eshell-ls-clutter ((((class color) (background light)) (:weight bold :foreground "OrangeRed")) (((class color) (background dark)) (:weight bold :foreground "OrangeRed"))))
  '(eshell-ls-backup ((t (:foreground "gold"))))
  '(eshell-ls-missing ((t (:weight bold :foreground "dark red"))))
- '(eshell-ls-symlink ((t (:weight bold :foreground "lightCyan")))))
+ '(eshell-ls-symlink ((t (:weight bold :foreground "lightCyan"))))
+ '(magit-item-highlight ((t (:inverse-video t :weight extra-bold))))
+ '(magit-header ((t (:foreground "#edd400")))))
 
 (provide-theme 'tango-plus)
