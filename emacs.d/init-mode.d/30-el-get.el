@@ -321,7 +321,10 @@ variable. Automatically applies expand-file-name to `path`."
                :post-init (lambda ()
                             (global-set-key [(control x) (?0)] 'sticky-window-delete-window)
                             (global-set-key [(control x) (?1)] 'sticky-window-delete-other-windows)
-                                        ; In addition, `sticky-window-keep-window-visible' might be bound to the currently unused C-x 9 key binding:
+                            ;; In addition,
+                            ;; `sticky-window-keep-window-visible'
+                            ;; might be bound to the currently unused
+                            ;; C-x 9 key binding:
                             (global-set-key [(control x) (?9)] 'sticky-window-keep-window-visible)))
 
         (:name popup
@@ -561,7 +564,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 (setq my-packages
-      (append '(cedet color-theme-tangotango oauth2 nginx-mode
+      (append '(cedet oauth2 nginx-mode
        highlight-symbol highlight-parentheses git-emacs git-blame
        mo-git-blame virtualenv flymake-point flymake-fringe-icons
        folding js2-mode js-comint json fic-ext-mode dired+
