@@ -373,17 +373,6 @@ variable. Automatically applies expand-file-name to `path`."
                :url "git://gitorious.org/robmyers/scripts.git"
                :features "artbollocks-mode")
 
-        (:name deft
-               :description "Deft is an Emacs mode for quickly browsing, filtering, and editing directories of plain text notes, inspired by Notational Velocity."
-               :type http
-               :url "http://jblevins.org/projects/deft/deft.el"
-               :features deft
-               :post-init (lambda ()
-                            (setq deft-text-mode 'org-mode)
-                            (setq deft-extension "org")
-                            (global-set-key [f1] 'deft)
-                            ))
-
         (:name ical2org
                :type git
                :url "https://github.com/cofi/ical2org.git")
@@ -578,7 +567,7 @@ variable. Automatically applies expand-file-name to `path`."
        flymake-python hyperspec-info highlight-indentation
        ipython python-mode ropemacs ropemode rope pymacs
        django-mode autopair auto-complete project-root magit
-       fill-column-indicator deft puppet-mode markdown-mode
+       fill-column-indicator puppet-mode markdown-mode
        sticky-windows expand-region emacs-w3m paredit
        git-commit-mode ctags-update hideshow-org bash-completion
        scss-mode slime ac-slime erc idomenu twittering-mode

@@ -23,3 +23,8 @@
 
 (add-hook 'org-mode-hook
           'turn-on-artbollocks-mode)
+
+(global-set-key [f1]
+                (lambda ()
+                  (interactive)
+                  (dired "~/.deft")))
