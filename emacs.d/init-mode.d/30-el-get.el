@@ -501,6 +501,11 @@ variable. Automatically applies expand-file-name to `path`."
                :features elisp-slime-nav
                :url "git://github.com/purcell/elisp-slime-nav.git")
 
+        (:name elisp-slime-expand
+               :type git
+               :features elisp-slime-expand
+               :url "git@github.com:russell/elisp-slime-expand.git")
+
         (:name openstack-mode
                :type git
                :features openstack-mode
@@ -553,7 +558,7 @@ variable. Automatically applies expand-file-name to `path`."
 
 
 (setq my-packages
-      (append '(cedet oauth2 nginx-mode
+      (append '(cedet oauth2 nginx-mode elisp-slime-expand
        highlight-symbol highlight-parentheses git-emacs git-blame
        mo-git-blame virtualenv flymake-point flymake-fringe-icons
        folding js2-mode js-comint json fic-ext-mode dired+
