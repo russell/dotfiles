@@ -1,5 +1,5 @@
 (deftheme tango-plus
-  "Created 2012-06-30.")
+  "Created 2012-07-01.")
 
 (custom-theme-set-variables
  'tango-plus
@@ -76,11 +76,19 @@
  '(mumamo-background-chunk-submode2 ((t (:background "grey30"))))
  '(mumamo-background-chunk-submode3 ((t (:background "grey30"))))
  '(mumamo-background-chunk-submode4 ((t (:background "grey30"))))
- '(default ((((class color) (min-colors 4096)) (:foreground "#eeeeec" :background "#2e3436")) (((class color) (min-colors 256)) (:foreground "#eeeeec" :background "#222")) (((class color) (min-colors 89)) (:foreground "#eeeeec" :background "black"))))
  '(eshell-ls-executable ((t (:weight bold :foreground "lime green"))))
  '(eshell-ls-clutter ((((class color) (background light)) (:weight bold :foreground "OrangeRed")) (((class color) (background dark)) (:weight bold :foreground "OrangeRed"))))
  '(eshell-ls-backup ((t (:foreground "gold"))))
  '(eshell-ls-missing ((t (:weight bold :foreground "dark red"))))
- '(eshell-ls-symlink ((t (:weight bold :foreground "lightCyan")))))
+ '(eshell-ls-symlink ((t (:weight bold :foreground "lightCyan"))))
+ '(magit-item-highlight ((t (:inherit nil :inverse-video t :weight extra-bold))))
+ '(magit-header ((t (:foreground "#edd400"))))
+ '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
+ '(flyspell-incorrect ((t (:inherit nil :underline t :weight bold))))
+ '(font-lock-passive-voice-face ((t (:stipple nil :inverse-video nil :overline "gold" :slant italic))))
+ '(font-lock-lexical-illusions-face ((t (:overline "limegreen" :weight bold :slant italic :inverse-video nil :stipple nil))))
+ '(font-lock-weasel-words-face ((t (:weight bold :slant italic :inverse-video nil :overline "Brown" :stipple nil))))
+ '(font-lock-artbollocks-face ((t (:stipple nil :overline "Purple" :inverse-video nil :slant italic :weight bold))))
+ '(highlight-symbol-face ((t (:background "default" :weight extra-bold)))))
 
 (provide-theme 'tango-plus)
