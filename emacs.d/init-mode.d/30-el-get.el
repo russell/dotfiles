@@ -165,6 +165,11 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://bitbucket.org/jonwaltman/pydoc-info/"
                :feature pydoc-info)
 
+        (:name python
+               :type git
+               :url "git://github.com/fgallina/python.el.git"
+               :features (python))
+
         (:name python-mode
                :type git
                :url "git://github.com/emacsmirror/python-mode.git"
@@ -569,15 +574,15 @@ variable. Automatically applies expand-file-name to `path`."
        recover-buffers rainbow-delimiters org-mode android-mode
        rst-mode pylookup python-pep8 smex popup-kill-ring
        sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
-       flymake-python hyperspec-info highlight-indentation
-       ipython python-mode ropemacs ropemode rope pymacs
-       django-mode autopair auto-complete project-root magit
-       fill-column-indicator puppet-mode markdown-mode
-       sticky-windows expand-region emacs-w3m paredit
-       git-commit-mode ctags-update hideshow-org bash-completion
-       scss-mode slime ac-slime erc idomenu twittering-mode
-       multi-term yaml-mode erc-highlight-nicknames apache-mode
-       nognus openstack-mode artbollocks-mode google-contacts
-       highlight-sexp mailcrypt restclient-mode ace-jump-mode
-       auto-capitalize puppet-flymake elisp-slime-nav)))
+       flymake-python hyperspec-info highlight-indentation python
+       python-mode django-mode autopair auto-complete
+       project-root magit fill-column-indicator puppet-mode
+       markdown-mode sticky-windows expand-region emacs-w3m
+       paredit git-commit-mode ctags-update hideshow-org
+       bash-completion scss-mode slime ac-slime erc idomenu
+       twittering-mode multi-term yaml-mode
+       erc-highlight-nicknames apache-mode nognus openstack-mode
+       artbollocks-mode google-contacts highlight-sexp mailcrypt
+       restclient-mode ace-jump-mode auto-capitalize
+       puppet-flymake elisp-slime-nav)))
 (el-get 'sync my-packages)
