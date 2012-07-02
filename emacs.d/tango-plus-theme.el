@@ -1,5 +1,5 @@
 (deftheme tango-plus
-  "Created 2012-07-01.")
+  "Created 2012-07-02.")
 
 (custom-theme-set-variables
  'tango-plus
@@ -20,8 +20,8 @@
  '(isearch ((((class color) (min-colors 89)) (:foreground "#eeeeec" :background "#ce5c00"))))
  '(lazy-highlight ((((class color) (min-colors 89)) (:background "#8f5902"))))
  '(trailing-whitespace ((((class color) (min-colors 89)) (:background "#a40000"))))
- '(mode-line ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#d3d7cf" :foreground "#2e3436"))))
- '(mode-line-inactive ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#555753" :foreground "#eeeeec"))))
+ '(mode-line ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#222222" :foreground "#bbbbbc"))))
+ '(mode-line-inactive ((((class color) (min-colors 89)) (:foreground "#eeeeec" :background "#555753" :box (:line-width -1 :style released-button)))))
  '(compilation-mode-line-fail ((((class color) (min-colors 89)) (:foreground "#a40000"))))
  '(compilation-mode-line-run ((((class color) (min-colors 89)) (:foreground "#ce5c00"))))
  '(compilation-mode-line-exit ((((class color) (min-colors 89)) (:foreground "#4e9a06"))))
@@ -83,12 +83,13 @@
  '(eshell-ls-symlink ((t (:weight bold :foreground "lightCyan"))))
  '(magit-item-highlight ((t (:inherit nil :inverse-video t :weight extra-bold))))
  '(magit-header ((t (:foreground "#edd400"))))
- '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
  '(flyspell-incorrect ((t (:inherit nil :underline t :weight bold))))
  '(font-lock-passive-voice-face ((t (:stipple nil :inverse-video nil :overline "gold" :slant italic))))
  '(font-lock-lexical-illusions-face ((t (:overline "limegreen" :weight bold :slant italic :inverse-video nil :stipple nil))))
  '(font-lock-weasel-words-face ((t (:weight bold :slant italic :inverse-video nil :overline "Brown" :stipple nil))))
  '(font-lock-artbollocks-face ((t (:stipple nil :overline "Purple" :inverse-video nil :slant italic :weight bold))))
- '(highlight-symbol-face ((t (:background "default" :weight extra-bold)))))
+ '(highlight-symbol-face ((t (:background "default" :weight extra-bold))))
+ '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
+ '(mode-line-buffer-id ((t (:foreground "orange" :weight bold)))))
 
 (provide-theme 'tango-plus)
