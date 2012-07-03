@@ -2,8 +2,15 @@
 
 
 (setq py-python-command-args '("-i" "--colors=Linux"))
-(setq py-shell-name "ipython")
+(setq py-shell-name "python")
 (setq py-split-windows-on-execute-function 'split-window-horizontally)
+(setq py-complete-function (quote py-shell-complete))
+(setq py-shell-switch-buffers-on-execute-p t)
+(setq py-split-windows-on-execute-function (quote split-window-horizontally))
+(setq py-split-windows-on-execute-p t)
+(setq py-switch-buffers-on-execute-p t)
+(setq python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))n")
+
 
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
@@ -61,18 +68,18 @@
 
 
 ;; Flymake Python
-;; (add-hook 'find-file-hook 'flymake-find-file-hook)
-;; (when (load "flymake" t)
-;;   (defun flymake-pycheckers-init ()
-;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                        'flymake-create-temp-with-folder-structure))
-;;            (local-file (file-relative-name
-;;                         temp-file
-;;                         (file-name-directory buffer-file-name))))
-;;       (list "~/.emacs.d/el-get/flymake-python/pyflymake.py" (list local-file))))
+(add-hook 'find-file-hook 'flymake-find-file-hook)
+(when (load "flymake" t)
+  (defun flymake-pycheckers-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-with-folder-structure))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "~/.emacs.d/el-get/flymake-python/pyflymake.py" (list local-file))))
 
-;;    (add-to-list 'flymake-allowed-file-name-masks
-;;              '("\\.py\\'" flymake-pycheckers-init)))
+   (add-to-list 'flymake-allowed-file-name-masks
+             '("\\.py\\'" flymake-pycheckers-init)))
 
 ;; force indentation with spaces
 (add-hook 'python-mode-hook
