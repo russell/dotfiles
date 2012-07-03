@@ -518,6 +518,7 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name jabber
                :type git
+               :load-path ("." "compat")
                :features jabber-autoloads
                :url "git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber")
 
