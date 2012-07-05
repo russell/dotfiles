@@ -59,7 +59,7 @@
 ;; don't bother me with session password
 ;(setq imap-store-password t)
 
-;(setq gnus-agent-synchronize-flags t)
+(setq gnus-asynchronous t)
 
 ;; turn on mail icon
 (setq display-time-use-mail-icon t)
