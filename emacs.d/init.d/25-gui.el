@@ -16,3 +16,11 @@
 
 ;;; Display file size in Modeline
 (size-indication-mode 1)
+
+(setq custom-enabled-themes (quote (tango-plus)))
+(setq custom-safe-themes t)
+
+(defun tango-plus ()
+  "re-init the tango plus theme."
+  (interactive)
+  (load-theme 'tango-plus))
