@@ -69,3 +69,7 @@
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (elisp-slime-expand-mode t)))

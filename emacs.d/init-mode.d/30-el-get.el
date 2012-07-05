@@ -165,6 +165,11 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://bitbucket.org/jonwaltman/pydoc-info/"
                :feature pydoc-info)
 
+        (:name python
+               :type git
+               :url "git://github.com/fgallina/python.el.git"
+               :features (python))
+
         (:name python-mode
                :type git
                :url "git://github.com/emacsmirror/python-mode.git"
@@ -513,6 +518,7 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name jabber
                :type git
+               :load-path ("." "compat")
                :features jabber-autoloads
                :url "git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber")
 
@@ -538,46 +544,45 @@ variable. Automatically applies expand-file-name to `path`."
                :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
                :features auto-capitalize)
 
-	(:name apel
-	       :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
-	       :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
-	       :type git
-	       :module "apel"
-	       :url "git://github.com/emacsmirror/apel.git"
-	       :build
-	       (mapcar
-		(lambda (target)
-		  (list el-get-emacs
-			(split-string "-batch -q -no-site-file -l APEL-MK -f")
-			target
-			"prefix" "site-lisp" "site-lisp"))
-		'("compile-apel" "install-apel"))
-	       :load-path ("site-lisp/apel" "site-lisp/emu"))
-
-        ))
+        (:name apel
+               :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
+               :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
+               :type git
+               :module "apel"
+               :url "git://github.com/emacsmirror/apel.git"
+               :build
+               (mapcar
+                (lambda (target)
+                  (list el-get-emacs
+                        (split-string "-batch -q -no-site-file -l APEL-MK -f")
+                        target
+                        "prefix" "site-lisp" "site-lisp"))
+                '("compile-apel" "install-apel"))
+               :load-path ("site-lisp/apel" "site-lisp/emu"))))
 
 
 (setq my-packages
-      (append '(cedet oauth2 nginx-mode elisp-slime-expand
-       highlight-symbol highlight-parentheses git-emacs git-blame
-       mo-git-blame virtualenv flymake-point flymake-fringe-icons
-       folding js2-mode js-comint json fic-ext-mode dired+
-       eol-conversion doxymacs dired-plus diff-git clevercss
-       auto-complete auto-complete-clang auctex active-menu
-       fringe-helper csv-mode apel el-get cssh switch-window
-       vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
-       recover-buffers rainbow-delimiters org-mode android-mode
-       rst-mode pylookup python-pep8 smex popup-kill-ring
-       sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
-       flymake-python hyperspec-info highlight-indentation
-       ipython python-mode ropemacs ropemode rope pymacs
-       django-mode autopair auto-complete project-root magit
-       fill-column-indicator puppet-mode markdown-mode
-       sticky-windows expand-region emacs-w3m paredit
-       git-commit-mode ctags-update hideshow-org bash-completion
-       scss-mode slime ac-slime erc idomenu twittering-mode
-       multi-term yaml-mode erc-highlight-nicknames apache-mode
-       nognus openstack-mode artbollocks-mode google-contacts
-       highlight-sexp mailcrypt restclient-mode ace-jump-mode
-       auto-capitalize puppet-flymake elisp-slime-nav)))
+      (append
+       '(cedet oauth2 nginx-mode elisp-slime-expand
+               highlight-symbol highlight-parentheses git-emacs git-blame
+               mo-git-blame virtualenv flymake-point flymake-fringe-icons
+               folding js2-mode js-comint json fic-ext-mode dired+
+               eol-conversion doxymacs dired-plus diff-git clevercss
+               auto-complete auto-complete-clang auctex active-menu
+               fringe-helper csv-mode apel el-get cssh switch-window
+               vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
+               recover-buffers rainbow-delimiters org-mode android-mode
+               rst-mode pylookup python-pep8 smex popup-kill-ring
+               sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
+               flymake-python hyperspec-info highlight-indentation python
+               python-mode django-mode autopair auto-complete
+               project-root magit fill-column-indicator puppet-mode
+               markdown-mode sticky-windows expand-region emacs-w3m
+               paredit git-commit-mode ctags-update hideshow-org
+               bash-completion scss-mode slime ac-slime erc idomenu
+               twittering-mode multi-term yaml-mode
+               erc-highlight-nicknames apache-mode nognus openstack-mode
+               artbollocks-mode google-contacts highlight-sexp mailcrypt
+               restclient-mode ace-jump-mode auto-capitalize
+               puppet-flymake elisp-slime-nav)))
 (el-get 'sync my-packages)
