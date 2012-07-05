@@ -17,3 +17,8 @@ apt-get install debian-el devscripts-el  # adds debian modes
 apt-get install urlview
 
 from the directory containing this file run.
+
+
+# emacs - flymake-js
+sudo apt-get install npm
+sudo npm install -g jshint
