@@ -149,7 +149,7 @@ e () {
     fi
 
     if [ -z "$DISPLAY" ]; then
-	exec $EMACS "$@"
+	exec $EMACS -n "$@"
     else
 	if [ $DARWIN -eq 1 ]; then
 	    if [ -e "$EMACSSERVER" ]; then
