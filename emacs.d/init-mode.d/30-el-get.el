@@ -228,7 +228,9 @@ variable. Automatically applies expand-file-name to `path`."
                                  ;; value"
                                  (list (list 'quote
                                              (list (concat el-get-dir (file-name-as-directory "yasnippet") "snippets")))))
-                            (yas/global-mode 1))
+                            (yas/reload-all)
+                            ;; (yas/global-mode 1)
+                            )
                ;; byte-compile load vc-svn and that fails
                ;; see https://github.com/dimitri/el-get/issues/200
                :compile nil)
