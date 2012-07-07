@@ -18,6 +18,12 @@ variable. Automatically applies expand-file-name to `path`."
 ;; pymacs
 (setq pymacs-reload nil) ; change nil to t to force a reload.
 
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ;; el-get configuration
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
@@ -183,6 +189,11 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name ipython
                :depends (python-mode))
+
+        (:name helm
+               :type git
+               :url "git://github.com/emacs-helm/helm.git"
+               :features (helm helm-config))
 
         (:name yasnippet
                :website "http://code.google.com/p/yasnippet/"
@@ -426,6 +437,10 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/secelis/hideshow-org.git")
 
+        (:name find-file-in-project
+               :features find-file-in-project
+               :type elpa)
+
         (:name workgroups
                :description "Workgroups for windows (for Emacs)"
                :type git
@@ -544,6 +559,10 @@ variable. Automatically applies expand-file-name to `path`."
                :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
                :features auto-capitalize)
 
+        (:name powerline
+               :type emacswiki
+               :features powerline)
+
         (:name apel
                :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
                :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
@@ -578,9 +597,9 @@ variable. Automatically applies expand-file-name to `path`."
                python-mode django-mode autopair auto-complete
                project-root magit fill-column-indicator puppet-mode
                markdown-mode sticky-windows expand-region emacs-w3m
-               paredit git-commit-mode ctags-update hideshow-org
+               paredit git-commit-mode ctags-update hideshow-org helm
                bash-completion scss-mode slime ac-slime erc idomenu
-               twittering-mode multi-term yaml-mode
+               twittering-mode multi-term yaml-mode find-file-in-project
                erc-highlight-nicknames apache-mode nognus openstack-mode
                artbollocks-mode google-contacts highlight-sexp mailcrypt
                restclient-mode ace-jump-mode auto-capitalize
