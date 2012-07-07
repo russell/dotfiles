@@ -14,6 +14,24 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+(setq mode-line-format
+      '("%e"
+        mode-line-front-space
+        mode-line-mule-info
+        mode-line-client
+        mode-line-modified
+        mode-line-remote
+        mode-line-frame-identification
+        mode-line-buffer-identification
+        "   "
+        (po-mode-flag ("  " po-mode-line-string))
+        mode-line-position
+        (vc-mode vc-mode)
+        "  "
+        mode-line-misc-info
+        mode-line-modes
+        mode-line-end-spaces))
+
 ;;; Display file size in Modeline
 (size-indication-mode 1)
 
