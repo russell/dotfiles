@@ -1,5 +1,5 @@
 (deftheme tango-plus
-  "Created 2012-07-02.")
+  "Created 2012-07-07.")
 
 (custom-theme-set-variables
  'tango-plus
@@ -15,7 +15,7 @@
  '(cursor ((((class color) (min-colors 89)) (:background "#fce94f"))))
  '(fringe ((((class color) (min-colors 89)) (:background "#212526"))))
  '(highlight ((t (:background "gray10"))))
- '(region ((((class color) (min-colors 89)) (:background "#555753"))))
+ '(region ((t (:background "#555753"))))
  '(secondary-selection ((((class color) (min-colors 89)) (:background "#204a87"))))
  '(isearch ((((class color) (min-colors 89)) (:foreground "#eeeeec" :background "#ce5c00"))))
  '(lazy-highlight ((((class color) (min-colors 89)) (:background "#8f5902"))))
@@ -89,7 +89,9 @@
  '(font-lock-weasel-words-face ((t (:weight bold :slant italic :inverse-video nil :underline "Brown" :stipple nil))))
  '(font-lock-artbollocks-face ((t (:stipple nil :underline "Purple" :inverse-video nil :slant italic :weight bold))))
  '(highlight-symbol-face ((t (:background "default" :weight extra-bold))))
+ '(mode-line-buffer-id ((t (:foreground "orange" :weight bold))))
  '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
- '(mode-line-buffer-id ((t (:foreground "orange" :weight bold)))))
+ '(helm-selection ((((background dark)) (:underline nil :background "#555753")) (((background light)) (:underline t :background "#b5ffd1"))))
+ '(helm-source-header ((t (:background "#22083397778B" :underline nil :height 1.2)))))
 
 (provide-theme 'tango-plus)
