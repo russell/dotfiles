@@ -1,4 +1,4 @@
-; IBuffer
+;; IBuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
@@ -19,9 +19,20 @@
 			(mode . gnus-article-mode)
 			(name . "^\\.newsrc-dribble")))))))
 
+(setq ibuffer-formats
+      '((mark modified read-only vc-status-mini " "
+              (name 28 28 :left :elide)
+              " "
+              (size 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " "
+              (vc-status 16 16 :left))))
+
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
-	    (ibuffer-switch-to-saved-filter-groups "default")))
+	    (ibuffer-vc-set-filter-groups-by-vc-root)
+        (ibuffer-do-sort-by-alphabetic)))
 
 (defun ibuffer-ido-find-file ()
   "Like `ido-find-file', but default to the directory of the buffer at point."
@@ -33,7 +44,4 @@
 				default-directory))))
      (ido-find-file-in-dir default-directory))))
 
-(add-hook 'ibuffer-mode-hook
-          (lambda ()
-            (define-key ibuffer-mode-map "\C-x\C-f"
-              'ibuffer-ido-find-file)))
+(define-key ibuffer-mode-map "\C-x\C-f" 'ibuffer-ido-find-file)

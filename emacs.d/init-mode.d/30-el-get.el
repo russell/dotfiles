@@ -531,6 +531,16 @@ variable. Automatically applies expand-file-name to `path`."
                :features openstack-mode
                :url "git@github.com:russell/openstack-mode.git")
 
+        (:name ibuffer-vc
+               :type git
+               :features ibuffer-vc
+               :url "git://github.com/purcell/ibuffer-vc.git")
+
+        (:name ibuffer-tramp
+               :type git
+               :features ibuffer-tramp
+               :url "git://github.com/svend/ibuffer-tramp.git")
+
         (:name jabber
                :type git
                :load-path ("." "compat")
@@ -594,7 +604,7 @@ variable. Automatically applies expand-file-name to `path`."
                rst-mode pylookup python-pep8 smex popup-kill-ring
                sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
                flymake-python hyperspec-info highlight-indentation python
-               python-mode django-mode autopair auto-complete
+               python-mode django-mode autopair auto-complete ibuffer-vc
                project-root magit fill-column-indicator puppet-mode
                markdown-mode sticky-windows expand-region emacs-w3m
                paredit git-commit-mode ctags-update hideshow-org helm
