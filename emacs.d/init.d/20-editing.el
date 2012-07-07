@@ -9,7 +9,7 @@
 (setq indent-tabs-mode nil)
 
 ;; enable override selection
-(delete-selection-mode t)
+;; (delete-selection-mode t)
 
 ;;; auto-insert newline at eof
 (setq require-final-newline t)
@@ -63,17 +63,17 @@
 
 
 ; store temporary files in home directory
-(defvar user-temporary-file-directory
-  (concat temporary-file-directory user-login-name "/"))
-(make-directory user-temporary-file-directory t)
+;; (defvar user-temporary-file-directory
+;;   (concat temporary-file-directory user-login-name "/"))
+;; (make-directory user-temporary-file-directory t)
 (setq backup-by-copying t)
-(setq backup-directory-alist
-      `(("." . ,user-temporary-file-directory)
-        (,tramp-file-name-regexp nil)))
-(setq auto-save-list-file-prefix
-      (concat user-temporary-file-directory ".auto-saves-"))
-(setq auto-save-file-name-transforms
-      `((".*" ,user-temporary-file-directory t)))
+;; (setq backup-directory-alist
+;;       `(("." . ,user-temporary-file-directory)
+;;         (,tramp-file-name-regexp ,user-temporary-file-directory)))
+;; (setq auto-save-list-file-prefix
+;;       (concat user-temporary-file-directory ".auto-saves-"))
+;; (setq auto-save-file-name-transforms
+;;       `((".*" ,user-temporary-file-directory t)))
 
 
 ;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
@@ -81,16 +81,16 @@
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
   (let ((name (buffer-name))
-    (filename (buffer-file-name)))
+        (filename (buffer-file-name)))
     (if (not filename)
-    (message "Buffer '%s' is not visiting a file!" name)
+        (message "Buffer '%s' is not visiting a file!" name)
       (if (get-buffer new-name)
-      (message "A buffer named '%s' already exists!" new-name)
-    (progn
-      (rename-file name new-name 1)
-      (rename-buffer new-name)
-      (set-visited-file-name new-name)
-      (set-buffer-modified-p nil))))))
+          (message "A buffer named '%s' already exists!" new-name)
+        (progn
+          (rename-file name new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
 
 
 (defun enable-editing-modes ()
