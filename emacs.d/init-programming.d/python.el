@@ -1,7 +1,7 @@
-; Python
 
+;; Ipython dark color theme
+;;(setq py-python-command-args '("-i" "--colors=Linux"))
 
-(setq py-python-command-args '("-i" "--colors=Linux"))
 (setq py-shell-name "python")
 (setq py-split-windows-on-execute-function 'split-window-horizontally)
 (setq py-complete-function (quote py-shell-complete))
@@ -9,7 +9,7 @@
 (setq py-split-windows-on-execute-function (quote split-window-horizontally))
 (setq py-split-windows-on-execute-p t)
 (setq py-switch-buffers-on-execute-p t)
-(setq python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))n")
+(setq python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n")
 
 
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
@@ -26,7 +26,6 @@
 (defun lconfig-python-mode ()
   (progn
     ;; (define-key python-mode-map [(meta q)] 'py-fill-paragraph)
-
     (defun ac-python-find ()
       "Python `ac-find-function'."
       (require 'thingatpt)
@@ -66,6 +65,27 @@
     ))
 ;;(add-hook 'python-mode-hook 'lconfig-python-mode)
 
+(defun ac-python-candidates ()
+  (let* (py-split-windows-on-execute-p
+         py-switch-buffers-on-execute-p
+         (shell (py-choose-shell))
+         (proc (or (get-buffer-process shell)
+                   (get-buffer-process (py-shell nil nil shell 'noswitch nil)))))
+    (if (processp proc)
+        (with-syntax-table python-dotty-syntax-table
+          (let* ((imports (py-find-imports))
+                 (beg (save-excursion (skip-chars-backward "a-zA-Z0-9_.") (point)))
+                 (end (point))
+                 (word (buffer-substring-no-properties beg end))
+                 (code (if imports
+                           (concat imports python-shell-module-completion-string-code)
+                         python-shell-module-completion-string-code)))
+            (python-shell-completion--get-completions word proc code))))))
+
+(ac-define-source python
+  '((candidates . ac-python-candidates)
+    (symbol . "f")
+    (cache)))
 
 ;; Flymake Python
 (add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -110,6 +130,10 @@
                           (save-excursion
                             (delete-trailing-whitespace))))))
 
+;; auto complete
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-python))))
 
 ;; (add-hook 'python-mode-hook
 ;;           #'(lambda ()
@@ -123,6 +147,12 @@
           (lambda ()
             (defvar py-mode-map python-mode-map)
             (defvar py-shell-map python-shell-map)))
+
+;; Imenu
+(add-hook 'python-mode-hook
+  (lambda ()
+    (setq imenu-create-index-function 'python-imenu-create-index)))
+
 
 ;; disable cedet
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
