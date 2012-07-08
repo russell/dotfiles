@@ -3,12 +3,14 @@
 ;;
 
 (setq eshell-history-size 1000)
-(setq eshell-term-name "ansi")
+(setq eshell-term-name "eterm-color")
 (setq eshell-prompt-function
       (lambda nil
         (concat (abbreviate-file-name (eshell/pwd))
                 (if (= (user-uid) 0) " # " " $ "))))
+
 (setq eshell-visual-commands '("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "aptitude"))
+
 (setq eshell-modules-list
       '(eshell-alias eshell-basic eshell-cmpl
                      eshell-dirs eshell-glob eshell-hist
