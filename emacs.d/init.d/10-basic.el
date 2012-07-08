@@ -12,4 +12,4 @@
 ; title format
 (setq frame-title-format "%b - emacs")
 
-(setq message-log-max 500)
+(setq message-log-max 1000)
