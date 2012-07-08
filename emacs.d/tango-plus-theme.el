@@ -1,5 +1,5 @@
 (deftheme tango-plus
-  "Created 2012-07-07.")
+  "Created 2012-07-08.")
 
 (custom-theme-set-variables
  'tango-plus
@@ -9,7 +9,7 @@
 
 (custom-theme-set-faces
  'tango-plus
- '(eshell-prompt ((t (:foreground "lime Green" :weight bold))))
+ '(eshell-prompt ((t (:foreground "#b4fa70" :weight bold))))
  '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
  '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue"))))
  '(cursor ((((class color) (min-colors 89)) (:background "#fce94f"))))
@@ -104,7 +104,7 @@
  '(mode-line-buffer-id ((t (:foreground "orange" :weight bold))))
  '(helm-selection ((((background dark)) (:underline nil :background "#555753")) (((background light)) (:underline t :background "#b5ffd1"))))
  '(helm-source-header ((t (:background "#22083397778B" :underline nil :height 1.2))))
- '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
- '(which-func ((t (:foreground "#729fcf")))))
+ '(which-func ((t (:foreground "#729fcf"))))
+ '(default ((t (:background "#2e3436" :foreground "#eeeeec")))))
 
 (provide-theme 'tango-plus)
