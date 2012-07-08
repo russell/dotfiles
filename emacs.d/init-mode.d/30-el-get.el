@@ -193,7 +193,7 @@ variable. Automatically applies expand-file-name to `path`."
         (:name helm
                :type git
                :url "git://github.com/emacs-helm/helm.git"
-               :features (helm helm-config))
+               :features (helm))
 
         (:name yasnippet
                :website "http://code.google.com/p/yasnippet/"
