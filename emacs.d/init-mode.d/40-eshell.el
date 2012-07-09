@@ -9,7 +9,8 @@
         (concat (abbreviate-file-name (eshell/pwd))
                 (if (= (user-uid) 0) " # " " $ "))))
 
-(setq eshell-visual-commands '("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "aptitude"))
+(setq eshell-visual-commands '("vi" "screen" "top" "less" "more" "lynx"
+                               "ncftp" "pine" "tin" "trn" "elm" "aptitude" "vim"))
 
 (setq eshell-modules-list
       '(eshell-alias eshell-basic eshell-cmpl
@@ -32,3 +33,18 @@
         (let ((eshell-buffer-name new-buffer-name))
           (eshell))
       (eshell buffer))))
+
+(defvar openstack-rc-directory "~/.os/")
+
+(defun eshell-source-env-file (filename)
+  (interactive
+   (list (ido-read-file-name "Find Openstackrc: " openstack-rc-directory)))
+	 (eshell-do-eval
+      (catch 'eshell-replace-command
+        (eshell-source-file filename))))
+
+(defun eshell/e (file)
+          (find-file file))
+
+
+(global-set-key (kbd "<f2>") 'my-eshell)
