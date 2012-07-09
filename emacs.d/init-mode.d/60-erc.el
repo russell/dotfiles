@@ -4,9 +4,9 @@
 (require 'erc-services)
 (erc-services-mode 1)
 
-(setq erc-max-buffer-size 30000)
+(setq erc-max-buffer-size 10000)
 
-(setq erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly replace ring services stamp smiley spelling truncate track highlight-nicknames)))
+(setq erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly replace ring services stamp smiley spelling truncate highlight-nicknames)))
 
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
