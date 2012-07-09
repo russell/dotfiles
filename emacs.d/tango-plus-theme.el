@@ -1,5 +1,5 @@
 (deftheme tango-plus
-  "Created 2012-07-08.")
+  "Created 2012-07-09.")
 
 (custom-theme-set-variables
  'tango-plus
@@ -105,6 +105,7 @@
  '(helm-selection ((((background dark)) (:underline nil :background "#555753")) (((background light)) (:underline t :background "#b5ffd1"))))
  '(helm-source-header ((t (:background "#22083397778B" :underline nil :height 1.2))))
  '(which-func ((t (:foreground "#729fcf"))))
- '(default ((t (:background "#2e3436" :foreground "#eeeeec")))))
+ '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
+ '(highlight-indentation-face ((t (:background "grey25")))))
 
 (provide-theme 'tango-plus)
