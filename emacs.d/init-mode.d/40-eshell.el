@@ -9,7 +9,7 @@
         (concat (abbreviate-file-name (eshell/pwd))
                 (if (= (user-uid) 0) " # " " $ "))))
 
-(setq eshell-visual-commands '("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "aptitude"))
+(setq eshell-visual-commands '("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "aptitude" "tig"))
 
 (setq eshell-modules-list
       '(eshell-alias eshell-basic eshell-cmpl
