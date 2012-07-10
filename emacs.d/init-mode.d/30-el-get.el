@@ -595,10 +595,10 @@ variable. Automatically applies expand-file-name to `path`."
 (setq my-packages
       (append
        '(cedet oauth2 nginx-mode elisp-slime-expand
-               highlight-symbol highlight-parentheses git-emacs git-blame
+               highlight-symbol highlight-parentheses
                mo-git-blame virtualenv flymake-point flymake-fringe-icons
                folding js2-mode js-comint json fic-ext-mode dired+
-               eol-conversion doxymacs dired-plus diff-git clevercss
+               eol-conversion doxymacs dired-plus clevercss
                auto-complete auto-complete-clang auctex active-menu
                fringe-helper csv-mode apel el-get cssh switch-window
                vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
