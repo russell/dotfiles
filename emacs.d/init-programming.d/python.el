@@ -213,3 +213,9 @@
                                   (last (car spath))
                                 (nth (- (length spath) 2) spath)))))
           (format "*%s: %s*" py-name project-name)))))
+
+;; Use python.el indentation
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (setq indent-region-function #'python-indent-region)
+             (setq indent-line-function #'python-indent-line-function)))
