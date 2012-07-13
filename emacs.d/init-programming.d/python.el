@@ -156,20 +156,23 @@
 ;; Virtual env
 (add-hook 'python-mode-hook
   (lambda ()
-    (with-project-root
-        (if (eq 'python-virtualenv (car project-details))
-            (virtualenv-activate default-directory)))))
+    (unless project-details (project-root-fetch))
+    (when (project-root-p)
+      (if (eq 'python-virtualenv (car project-details))
+          (virtualenv-activate default-directory)))))
 
 ;; FFIP
 (add-hook 'python-mode-hook
   (lambda ()
-    (with-project-root
-        (let ((name (let ((spath (split-string default-directory "/")))
-                      (or (last (car spath))
-                          (nth (1- (length spath)) spath)))))
-          (ffip-set-current-project name default-directory 'python)))))
+    (unless project-details (project-root-fetch))
+     (when (project-root-p)
+         (let* ((default-directory (cdr project-details))
+                (name (let ((spath (split-string default-directory "/")))
+                        (or (last (car spath))
+                            (nth (1- (length spath)) spath)))))
+           (ffip-set-current-project name default-directory 'python)))))
 
-;; disable cedet
+;; Disable cedet
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
 
 (defun my-python (&optional argprompt dedicated switch)
