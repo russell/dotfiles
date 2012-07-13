@@ -101,12 +101,12 @@
    (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pycheckers-init)))
 
-;; force indentation with spaces
+;; Force indentation with spaces.
 (add-hook 'python-mode-hook
           '(lambda ()
              (setq indent-tabs-mode nil)))
 
-;; flyspell mode
+;; Flyspell Mode
 (add-hook 'python-mode-hook
           '(lambda ()
              (flyspell-prog-mode)))
@@ -122,7 +122,7 @@
 ;;           '(lambda ()
 ;;              (autopair-mode)))
 
-;; delete whitespace on save
+;; Delete whitespace on save.
 (add-hook 'python-mode-hook
           '(lambda ()
              (add-hook 'write-contents-functions
@@ -130,7 +130,7 @@
                           (save-excursion
                             (delete-trailing-whitespace))))))
 
-;; auto complete
+;; Auto-Complete
 (add-hook 'python-mode-hook
           '(lambda ()
              (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-python ac-source-yasnippet))))
