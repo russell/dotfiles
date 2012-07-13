@@ -1,7 +1,8 @@
+(require 'ffip)
 (setq ffip-project-root-function 'project-root-current-root)
 
 (defun project-root-current-root ()
-  (cdar (project-root-fetch)))
+  (cdr project-details))
 
 (add-to-list 'ffip-project-file-types
   (list 'python (concat
