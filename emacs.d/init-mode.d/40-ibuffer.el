@@ -29,6 +29,8 @@
               " "
               (vc-status 16 16 :left))))
 
+(setq ibuffer-vc-skip-if-remote nil)
+
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
 	    (ibuffer-vc-set-filter-groups-by-vc-root)

@@ -42,6 +42,7 @@ variable. Automatically applies expand-file-name to `path`."
                :website "http://cx4a.org/software/auto-complete/"
                :description "The most intelligent auto-completion extension."
                :type git
+               :depends (fuzzy)
                :url "http://github.com/m2ym/auto-complete.git"
                :load-path "."
                :post-init (lambda ()
@@ -61,6 +62,11 @@ variable. Automatically applies expand-file-name to `path`."
                             (require 'auto-complete-config nil t)
                             ;; Do What I Mean mode
                             (setq ac-dwim t)))
+
+        (:name fuzzy
+               :type git
+               :url "git://github.com/m2ym/fuzzy-el.git"
+               :features fuzzy)
 
         (:name bash-completion
                :type git
@@ -595,10 +601,10 @@ variable. Automatically applies expand-file-name to `path`."
 (setq my-packages
       (append
        '(cedet oauth2 nginx-mode elisp-slime-expand
-               highlight-symbol highlight-parentheses git-emacs git-blame
+               highlight-symbol highlight-parentheses
                mo-git-blame virtualenv flymake-point flymake-fringe-icons
                folding js2-mode js-comint json fic-ext-mode dired+
-               eol-conversion doxymacs dired-plus diff-git clevercss
+               eol-conversion doxymacs dired-plus clevercss
                auto-complete auto-complete-clang auctex active-menu
                fringe-helper csv-mode apel el-get cssh switch-window
                vkill google-maps nxhtml xcscope yasnippet tidy bookmark+

@@ -10,7 +10,7 @@
                 (if (= (user-uid) 0) " # " " $ "))))
 
 (setq eshell-visual-commands '("vi" "screen" "top" "less" "more" "lynx"
-                               "ncftp" "pine" "tin" "trn" "elm" "aptitude" "vim"))
+                               "ncftp" "pine" "tin" "trn" "elm" "aptitude" "vim" "tig"))
 
 (setq eshell-modules-list
       '(eshell-alias eshell-basic eshell-cmpl

@@ -1,6 +1,8 @@
 ; Project Config
+
 (setq project-roots
-      '((python :root-contains-files (".ropeproject"))
+      '((python-virtualenv :root-contains-files ("setup.py" "lib" "bin"))
+        (python :root-contains-files (".ropeproject"))
         (python :root-contains-files ("setup.py"))))
 
 (defun project-root-compile ()

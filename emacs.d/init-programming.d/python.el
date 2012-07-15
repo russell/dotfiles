@@ -89,24 +89,25 @@
 
 ;; Flymake Python
 (add-hook 'find-file-hook 'flymake-find-file-hook)
+
+(defun flymake-pycheckers-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-with-folder-structure))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list "~/.emacs.d/el-get/flymake-python/pyflymake.py" (list local-file))))
+
 (when (load "flymake" t)
-  (defun flymake-pycheckers-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-with-folder-structure))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "~/.emacs.d/el-get/flymake-python/pyflymake.py" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pycheckers-init)))
 
-   (add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py\\'" flymake-pycheckers-init)))
-
-;; force indentation with spaces
+;; Force indentation with spaces.
 (add-hook 'python-mode-hook
           '(lambda ()
              (setq indent-tabs-mode nil)))
 
-;; flyspell mode
+;; Flyspell Mode
 (add-hook 'python-mode-hook
           '(lambda ()
              (flyspell-prog-mode)))
@@ -122,7 +123,7 @@
 ;;           '(lambda ()
 ;;              (autopair-mode)))
 
-;; delete whitespace on save
+;; Delete whitespace on save.
 (add-hook 'python-mode-hook
           '(lambda ()
              (add-hook 'write-contents-functions
@@ -130,7 +131,7 @@
                           (save-excursion
                             (delete-trailing-whitespace))))))
 
-;; auto complete
+;; Auto-Complete
 (add-hook 'python-mode-hook
           '(lambda ()
              (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-python ac-source-yasnippet))))
@@ -153,6 +154,69 @@
   (lambda ()
     (setq imenu-create-index-function 'python-imenu-create-index)))
 
+;; Virtual env
+(add-hook 'python-mode-hook
+  (lambda ()
+    (unless project-details (project-root-fetch))
+    (when (project-root-p)
+      (if (eq 'python-virtualenv (car project-details))
+          (virtualenv-activate default-directory)))))
 
-;; disable cedet
+;; FFIP
+(add-hook 'python-mode-hook
+  (lambda ()
+    (unless project-details (project-root-fetch))
+     (when (project-root-p)
+         (let* ((default-directory (cdr project-details))
+                (name (let ((spath (split-string default-directory "/")))
+                        (or (last (car spath))
+                            (nth (1- (length spath)) spath)))))
+           (ffip-set-current-project name default-directory 'python)))))
+
+;; Disable cedet
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
+
+(defun my-python (&optional argprompt dedicated switch)
+  (interactive "P")
+  (with-project-root
+      (let ((name (let ((spath (split-string default-directory "/")))
+                    (if (not (equal (last (car spath)) ""))
+                        (last (car spath))
+                        (nth (- (length spath) 2) spath)))))
+        (py-shell argprompt dedicated "python" switch
+                  py-separator-char (format "*Python: %s*" name)))))
+
+;; (defun py-choose-shell (&optional arg pyshell dedicated)
+;;   (with-project-root
+;;       (car (loop for buffer in (buffer-list)
+;;                  when (and
+;;                        (string-match "^\*Python: .*\*$" (buffer-name buffer))
+;;                        (equal (buffer-local-value 'default-directory buffer)
+;;                               default-directory))
+;;                  collect (buffer-name buffer)))))
+
+(defun py-buffer-name-prepare (name &optional sepchar dedicated)
+  (let ((py-file-buffer default-directory)
+        (py-name (cond ((string= "ipython" name)
+                        (replace-regexp-in-string "ipython" "IPython" name))
+                       ((string= "jython" name)
+                        (replace-regexp-in-string "jython" "Jython" name))
+                       ((string= "python" name)
+                        (replace-regexp-in-string "python" "Python" name))
+                       ((string-match "python2" name)
+                        (replace-regexp-in-string "python2" "Python2" name))
+                       ((string-match "python3" name)
+                        (replace-regexp-in-string "python3" "Python3" name))
+                       (t name))))
+    (with-project-root
+        (let ((project-name (let ((spath (split-string default-directory "/")))
+                              (if (not (equal (last (car spath)) ""))
+                                  (last (car spath))
+                                (nth (- (length spath) 2) spath)))))
+          (format "*%s: %s*" py-name project-name)))))
+
+;; Use python.el indentation
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (setq indent-region-function #'python-indent-region)
+             (setq indent-line-function #'python-indent-line-function)))
