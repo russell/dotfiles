@@ -539,6 +539,11 @@ variable. Automatically applies expand-file-name to `path`."
                :features openstack-mode
                :url "git@github.com:russell/openstack-mode.git")
 
+        (:name pyel
+               :type git
+               :features pyel
+               :url "git@github.com:russell/pyel.git")
+
         (:name ibuffer-vc
                :type git
                :features ibuffer-vc
