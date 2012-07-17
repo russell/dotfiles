@@ -1,0 +1,13 @@
+*.a
+*.o
+*.py[co]
+*.so
+*.sw[nop]
+*~
+.#*
+[#]*#
+__pycache__
+bzr-orphans
+# DVC ignore (don't edit !!)
+.tmp-bzr*
+# end DVC ignore

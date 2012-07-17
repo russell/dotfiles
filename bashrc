@@ -189,9 +189,13 @@ m () {
 
 case "$TERM" in
     xterm*)
-        export GIT_EDITOR="emacsclient";;
+        export GIT_EDITOR="emacsclient"
+        export BZR_EDITOR="emacsclient"
+        ;;
     *)
-        export GIT_EDITOR="emacs";;
+        export GIT_EDITOR="emacs"
+        export BZR_EDITOR="emacs"
+        ;;
 esac
 
 #export PYTHONDONTWRITEBYTECODE=true

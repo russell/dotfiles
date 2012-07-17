@@ -5,7 +5,7 @@
   (dolist (f (directory-files directory t ".el"))
     (load-library (file-name-sans-extension f))))
 
-(load-file (expand-file-name "~/.emacs.d/el-get/cedet/cedet-devel-load.el"))
+(load-file (expand-file-name "~/.emacs.d/el-get/cedet/common/cedet.el"))
 (setq load-path (cons (expand-file-name "~/.emacs.d/el-get/nognus/lisp") load-path))
 (load-directory (concat user-emacs-directory "init.d"))
 (load-directory (concat user-emacs-directory "init-mode.d"))
@@ -21,16 +21,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-completion-syntax-alist (quote (accept . word)))
- '(completion-auto-show (quote completion-show-menu))
- '(completion-auto-show-delay 0)
- '(ecb-options-version "2.40")
- '(elmo-localdir-folder-path "~/Mail")
- '(elscreen-tab-display-control nil)
- '(frame-background-mode (quote dark))
- '(hl-sexp-background-color "gray16")
- '(ns-alternate-modifier (quote meta))
- '(woman-fill-frame t))
+ '(custom-enabled-themes (quote (tango-plus))))
 
 
 ; recompile hot key

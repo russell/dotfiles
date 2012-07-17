@@ -21,11 +21,9 @@
 
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs" "#python"
-         "#twisted" "#twisted.web" "#pylons"
-         "#pyramid" "#openstack" "#lisp" "#lispcafe"
+         "#openstack" "#lisp" "#lispcafe"
          "#clnoobs")
-        ("oftc.net" "#debian" "#debian-mentors"
-         "#debian-python" "#debian-gnome")
+        ("oftc.net" "#debian" "#debian-mentors")
         ("austnet.org" "#nectar")))
 
 (defun start-irc ()
