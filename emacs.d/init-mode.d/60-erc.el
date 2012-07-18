@@ -4,9 +4,9 @@
 (require 'erc-services)
 (erc-services-mode 1)
 
-(setq erc-max-buffer-size 30000)
+(setq erc-max-buffer-size 10000)
 
-(setq erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly replace ring services stamp smiley spelling truncate track highlight-nicknames)))
+(setq erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly replace ring services stamp smiley spelling truncate highlight-nicknames)))
 
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
@@ -21,11 +21,9 @@
 
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs" "#python"
-         "#twisted" "#twisted.web" "#pylons"
-         "#pyramid" "#openstack" "#lisp" "#lispcafe"
+         "#openstack" "#lisp" "#lispcafe"
          "#clnoobs")
-        ("oftc.net" "#debian" "#debian-mentors"
-         "#debian-python" "#debian-gnome")
+        ("oftc.net" "#debian" "#debian-mentors")
         ("austnet.org" "#nectar")))
 
 (defun start-irc ()

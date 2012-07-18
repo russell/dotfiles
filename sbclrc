@@ -10,10 +10,16 @@
     (load quicklisp-init)))
 
 ;;; quicklisp projects
-;(push #p"/home/russell/projects/cl-git/" asdf:*central-registry*)
+(push #p"/home/russell/projects/cl-git/" asdf:*central-registry*)
+(push #p"/home/russell/projects/planet-git/" asdf:*central-registry*)
+(push #p"/home/russell/projects/database-migrations/" asdf:*central-registry*)
 (push (merge-pathnames ".emacs.d/el-get/slime/"
 		       (user-homedir-pathname))
       asdf:*central-registry*)
+
+;;; slime stuff
+;(push #P "/home/russell/.emacs.d/el-get/slime-proxy/" swank::*load-path*)
+;(push #P "/home/russell/.emacs.d/el-get/slime-proxy/contrib/slime-parenscript/" swank::*load-path*)
 
 ;; Enable debug
 (sb-ext:restrict-compiler-policy 'debug 3)

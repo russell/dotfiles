@@ -187,6 +187,7 @@ variable. Automatically applies expand-file-name to `path`."
                :url "git://github.com/emacsmirror/python-mode.git"
                :features (python-mode)
                :depends pymacs
+               :load-path ("." "completion")
                :compile nil
                :post-init (lambda ()
                             (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
@@ -479,13 +480,6 @@ variable. Automatically applies expand-file-name to `path`."
                :features oauth2
                :type elpa)
 
-        (:name icicles
-               :type http-tar
-               :options ("xzf")
-               :url "http://www.emacswiki.org/emacs/download/Icicles.tar.gz"
-               :library icicles :features icicles
-               :autoloads nil :post-init (lambda () (icy-mode)))
-
         (:name recover-buffers
                :features recover-buffers
                :type darcs
@@ -497,10 +491,18 @@ variable. Automatically applies expand-file-name to `path`."
                :module "slime"
                :info "doc"
                :features slime
-               :url "https://github.com/emacsmirror/slime.git"
+               :url "git://github.com/3b/slime.git"
                :load-path ("." "contrib")
                :compile (".")
                :build (list "make -C doc"))
+
+        (:name slime-proxy
+               :description "Slime proxy mode for Emacs and parenscript"
+               :type git
+               :depends (slime)
+               :features slime-proxy
+               :url "git://github.com/3b/slime-proxy.git"
+               :load-path ("." "contrib/slime-parenscript"))
 
         (:name hyperspec-info
                :description "info lookup for hyperspec"
