@@ -246,9 +246,10 @@ See (info \"(gnus)Group Line Specification\")."
 
 ;; hook to setup message
 (defun my-mml-secure-message-sign-mime ()
-  (when (string-match
-    	 my-sign-mime-group-regexp
-    	 gnus-newsgroup-name)
+  (when (and gnus-newsgroup-name
+             (string-match
+              my-sign-mime-group-regexp
+              gnus-newsgroup-name))
     (mml-secure-message-sign-pgpmime)))
 
 ;; plug this into message-setup-hook
