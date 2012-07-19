@@ -333,6 +333,17 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/jixiuf/helm-etags-plus")
 
+        (:name multiple-cursors
+               :features multiple-cursors
+               :depends (mark-multiple)
+               :type git
+               :url "git://github.com/magnars/multiple-cursors.el.git")
+
+        (:name mark-multiple
+               :features mark-multiple
+               :type git
+               :url "git://github.com/magnars/mark-multiple.el.git")
+
         (:name sr-speedbar
                :features sr-speedbar
                :depends (cedet)
