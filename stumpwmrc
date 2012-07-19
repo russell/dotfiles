@@ -55,7 +55,7 @@
 (defcommand iceweasel () ()
   "Start Firefox or switch to it, if it is already running."
   (run-or-raise "iceweasel" '(:class "Iceweasel")))
-(define-key *root-map* (kbd "f") "iceweasel")
+(define-key *root-map* (kbd "u") "iceweasel")
 
 
 ;; ask the user for a search string and search for it in Wikipedia
@@ -190,7 +190,26 @@ focus it."
 
 ;;;; Applications startup
 
+;; Gnome Settings
 (run-shell-command "/usr/bin/gnome-settings-daemon")
+;; GNOME Keyring
 (run-shell-command "/usr/bin/gnome-keyring-daemon")
+;; GNOME Keyring: GPG Agent
+(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=gpg")
+;; GNOME Keyring: Secret Service
+(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=secrets")
+;; GNOME Keyring: PKCS#11 Component
+(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=pkcs11")
+;; GNOME Keyring: SSH Agent
+(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=ssh")
+
+;; Currently i have to run these by hand to get a working gpgagent
+;(sb-posix:setenv "GPG_AGENT_INFO" "/tmp/keyring-ssh9yh/gpg:0:1" 0)
+;(sb-posix:setenv "SSH_AUTH_SOCK" "/tmp/keyring-ssh9yh/ssh" 0)
+
+;; Screensaver
 (run-shell-command "/usr/bin/gnome-screensaver")
+;; Enable devorak
 (run-shell-command "/usr/bin/setxkbmap dvorak")
+;; Enable Synergy Server
+(run-shell-command "/usr/bin/synergys")
