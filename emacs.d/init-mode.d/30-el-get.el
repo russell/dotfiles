@@ -622,7 +622,7 @@ variable. Automatically applies expand-file-name to `path`."
                highlight-symbol highlight-parentheses
                mo-git-blame virtualenv flymake-point flymake-fringe-icons
                folding js2-mode js-comint json fic-ext-mode dired+
-               eol-conversion doxymacs dired-plus clevercss
+               eol-conversion doxymacs dired-plus clevercss undo-tree
                auto-complete auto-complete-clang auctex active-menu
                fringe-helper csv-mode apel el-get cssh switch-window
                vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
@@ -638,6 +638,6 @@ variable. Automatically applies expand-file-name to `path`."
                twittering-mode multi-term yaml-mode find-file-in-project
                erc-highlight-nicknames apache-mode nognus openstack-mode
                artbollocks-mode google-contacts highlight-sexp mailcrypt
-               restclient-mode ace-jump-mode auto-capitalize
-               puppet-flymake elisp-slime-nav)))
+               restclient-mode ace-jump-mode auto-capitalize mark-multiple
+               multiple-cursors puppet-flymake elisp-slime-nav)))
 (el-get 'sync my-packages)
