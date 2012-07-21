@@ -13,6 +13,7 @@
 (setq gnus-visible-headers '("^From:" "^Newsgroups:" "^Subject:" "^Date:" "^Followup-To:" "^Reply-To:" "^Organization:" "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:" "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:" "^Apparently-To:" "^Gnus-Warning:" "^Resent-From:" "^User-Agent:"))
 (setq mm-verify-option 'known)
 (setq mm-decrypt-option 'known)
+(setq mml-smime-signers (quote ("27E94A1A")))
 
 
 (require 'nnir)
@@ -245,9 +246,10 @@ See (info \"(gnus)Group Line Specification\")."
 
 ;; hook to setup message
 (defun my-mml-secure-message-sign-mime ()
-  (when (string-match
-    	 my-sign-mime-group-regexp
-    	 gnus-newsgroup-name)
+  (when (and gnus-newsgroup-name
+             (string-match
+              my-sign-mime-group-regexp
+              gnus-newsgroup-name))
     (mml-secure-message-sign-pgpmime)))
 
 ;; plug this into message-setup-hook

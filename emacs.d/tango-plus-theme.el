@@ -106,6 +106,7 @@
  '(helm-source-header ((t (:background "#22083397778B" :underline nil :height 1.2))))
  '(which-func ((t (:foreground "#729fcf"))))
  '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
- '(org-table ((t (:foreground "#e9b96e")))))
+ '(org-table ((t (:foreground "#e9b96e"))))
+ '(highlight-indentation-face ((t (:background "grey25")))))
 
 (provide-theme 'tango-plus)

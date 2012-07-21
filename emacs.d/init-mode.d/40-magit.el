@@ -6,3 +6,5 @@
           'flyspell-mode)
 (add-hook 'magit-log-edit-mode-hook
           'turn-on-artbollocks-mode)
+
+(global-set-key (kbd "C-x m") 'magit-status)
