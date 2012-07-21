@@ -50,8 +50,7 @@
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
 (setq gnus-secondary-select-methods
-      '((nnml "")
-        (nntp "news.gmane.org")
+      '((nntp "news.gmane.org")
         (nntp "news.eternal-september.org")
         (nntp "news.gnus.org")))
 
@@ -61,6 +60,7 @@
 ;(setq imap-store-password t)
 
 (setq gnus-asynchronous t)
+
 
 ;; turn on mail icon
 (setq display-time-use-mail-icon t)
@@ -115,6 +115,14 @@ See (info \"(gnus)Group Line Specification\")."
          "%2u&score;" "%10{|%}" "%10{%B%}" "%s\n"))
 (setq gnus-summary-display-arrow t)
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-number
+	(not gnus-thread-sort-by-most-recent-date)
+	gnus-thread-sort-by-total-score))
+
+(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number
+      (not gnus-thread-sort-by-most-recent-date)))
 
 ; w3m
 (setq mm-text-html-renderer 'w3m)
