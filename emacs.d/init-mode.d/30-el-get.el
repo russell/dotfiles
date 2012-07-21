@@ -273,6 +273,11 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "git://github.com/ajc/nginx-mode.git")
 
+        (:name eproject
+               :features (eproject eproject-extras)
+               :type git
+               :url "https://github.com/jrockway/eproject")
+
         (:name expand-region
                :features expand-region
                :type git
