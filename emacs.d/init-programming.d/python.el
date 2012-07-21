@@ -16,6 +16,12 @@
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
 
+(define-project-type python (generic)
+  (or (look-for "setup.py")
+      (look-for "lib")
+      (look-for "bin/activate"))
+  :irrelevant-files (".*~"))
+
 ;; Autofill inside of comments
 (defun python-auto-fill-comments-only ()
   (auto-fill-mode 1)
