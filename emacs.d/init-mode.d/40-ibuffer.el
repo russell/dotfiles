@@ -19,21 +19,8 @@
 			(mode . gnus-article-mode)
 			(name . "^\\.newsrc-dribble")))))))
 
-(setq ibuffer-formats
-      '((mark modified read-only vc-status-mini " "
-              (name 28 28 :left :elide)
-              " "
-              (size 9 -1 :right)
-              " "
-              (mode 16 16 :left :elide)
-              " "
-              (vc-status 16 16 :left))))
-
-(setq ibuffer-vc-skip-if-remote nil)
-
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
-	    (ibuffer-vc-set-filter-groups-by-vc-root)
         (ibuffer-do-sort-by-alphabetic)))
 
 (defun ibuffer-ido-find-file ()

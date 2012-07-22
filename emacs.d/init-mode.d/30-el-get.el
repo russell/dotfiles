@@ -586,7 +586,7 @@ variable. Automatically applies expand-file-name to `path`."
         (:name nognus
                :description "A newsreader for GNU Emacs"
                :type git
-               :url "git@github.com:russell/gnus.git"
+               :url "http://git.gnus.org/gnus.git"
                :build ("./configure" "make")
                :build/windows-nt `(,(concat "\"make.bat " invocation-directory "\""))
                :build/darwin `(,(concat "./configure --with-emacs=" el-get-emacs) "make")
@@ -623,24 +623,23 @@ variable. Automatically applies expand-file-name to `path`."
 
 (setq my-packages
       (append
-       '(cedet oauth2 nginx-mode elisp-slime-expand
-               highlight-symbol highlight-parentheses
+       '(cedet oauth2 nginx-mode elisp-slime-expand popup
+               highlight-symbol highlight-parentheses eproject
                mo-git-blame virtualenv flymake-point flymake-fringe-icons
                folding js2-mode js-comint json fic-ext-mode dired+
                eol-conversion doxymacs dired-plus clevercss undo-tree
                auto-complete auto-complete-clang auctex active-menu
-               fringe-helper csv-mode apel el-get cssh switch-window
+               fringe-helper csv-mode apel el-get cssh
                vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
-               recover-buffers rainbow-delimiters org-mode android-mode
+               recover-buffers rainbow-delimiters org-mode
                rst-mode pylookup python-pep8 smex popup-kill-ring
                sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
                flymake-python hyperspec-info highlight-indentation python
-               python-mode django-mode autopair auto-complete ibuffer-vc
-               project-root magit fill-column-indicator puppet-mode
+               python-mode django-mode autopair magit puppet-mode
                markdown-mode sticky-windows expand-region emacs-w3m
-               paredit git-commit-mode ctags-update hideshow-org helm
-               bash-completion scss-mode slime ac-slime erc idomenu
-               twittering-mode multi-term yaml-mode find-file-in-project
+               paredit git-commit-mode ctags-update helm
+               bash-completion slime ac-slime erc idomenu
+               twittering-mode yaml-mode find-file-in-project
                erc-highlight-nicknames apache-mode nognus openstack-mode
                artbollocks-mode google-contacts highlight-sexp mailcrypt
                restclient-mode ace-jump-mode auto-capitalize mark-multiple
