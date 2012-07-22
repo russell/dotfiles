@@ -10,6 +10,7 @@
 
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
+(setq erc-server-auto-reconnect nil)
 (setq erc-server-reconnect-attempts 5)
 (setq erc-server-reconnect-timeout 5)
 
