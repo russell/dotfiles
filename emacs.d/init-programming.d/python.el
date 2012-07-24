@@ -20,7 +20,11 @@
   (and (look-for "setup.py")
        (look-for "lib")
        (look-for "bin/activate"))
-  :irrelevant-files (".*~"))
+  :irrelevant-files ("^[.]" "^[#]"))
+
+(define-project-type generic-python (generic)
+  (look-for "setup.py")
+  :irrelevant-files ("^[.]" "^[#]"))
 
 ;; Autofill inside of comments
 (defun python-auto-fill-comments-only ()

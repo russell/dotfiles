@@ -68,7 +68,8 @@
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
-             (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)))
+             (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)
+             (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
