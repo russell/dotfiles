@@ -14,6 +14,11 @@
 	       '(:propertize (" " default-directory " ") face dired-directory)))
 (add-hook 'shell-mode-hook 'add-mode-line-dirtrack)
 
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (set (make-local-variable 'comint-prompt-read-only) t)))
+
+
 (defun my-shell (&optional buffer)
   (interactive)
   (let* ((tramp-path (when (tramp-tramp-file-p default-directory)

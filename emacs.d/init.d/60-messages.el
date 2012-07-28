@@ -54,3 +54,7 @@
 
 (add-hook 'message-mode-hook 'turn-on-artbollocks-mode)
 (add-hook 'message-mode-hook 'enable-editing-modes)
+(setq w3m-minor-mode-hook nil)
+(add-hook 'w3m-minor-mode-hook
+          (lambda ()
+            (define-key w3m-minor-mode-map "\C-m" 'w3m-view-url-with-external-browser)))
