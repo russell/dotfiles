@@ -67,6 +67,10 @@
             (elisp-slime-nav-mode t)))
 
 (add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (flyspell-prog-mode)))
+
+(add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)
              (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
