@@ -26,11 +26,11 @@
             (flymake-puppet-load)
             (flymake-start-syntax-check)))
 
-;; Indent with tabs
+;; Indent without tabs
 (add-hook 'puppet-mode-hook
           (lambda ()
             (make-local-variable 'indent-tabs-mode)
-            (setq indent-tabs-mode t)))
+            (setq indent-tabs-mode nil)))
 
 ;; Trim whitespace
 (add-hook 'puppet-mode-hook
