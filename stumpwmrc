@@ -193,15 +193,30 @@ focus it."
 ;; Gnome Settings
 (run-shell-command "/usr/bin/gnome-settings-daemon")
 ;; GNOME Keyring
-(run-shell-command "/usr/bin/gnome-keyring-daemon")
-;; GNOME Keyring: GPG Agent
-(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=gpg")
-;; GNOME Keyring: Secret Service
-(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=secrets")
-;; GNOME Keyring: PKCS#11 Component
-(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=pkcs11")
-;; GNOME Keyring: SSH Agent
-(run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=ssh")
+
+;; ;; GNOME Keyring: GPG Agent
+;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=gpg")
+;; ;; GNOME Keyring: Secret Service
+;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=secrets")
+;; ;; GNOME Keyring: PKCS#11 Component
+;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=pkcs11")
+;; ;; GNOME Keyring: SSH Agent
+;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=ssh")
+
+
+(let* ((output (run-shell-command "/usr/bin/gnome-keyring-daemon --start" t))
+       (lines (loop :for i = 0 :then (1+ j)
+                    :as j = (position #\linefeed output :start i)
+                    :collect (subseq output i j)
+                    :while j)))
+  (dolist (line lines)
+    (when (> (length line) 0)
+      (let ((env-var (loop :for i = 0 :then (1+ j)
+                           :as j = (position #\= line :start i)
+                           :collect (subseq line i j)
+                           :while j)))
+
+        (sb-posix:setenv (car env-var) (cadr env-var) 1)))))
 
 ;; Currently i have to run these by hand to get a working gpgagent
 ;(sb-posix:setenv "GPG_AGENT_INFO" "/tmp/keyring-ssh9yh/gpg:0:1" 0)
