@@ -25,11 +25,11 @@
  '(custom-enabled-themes (quote (tango-plus))))
 
 
-; recompile hot key
+;; recompile hot key
 (global-set-key (kbd "<f9>") 'recompile)
 
 
-; Scrolling
+;; Scrolling
 ;(require 'smooth-scrolling)
 ;; scroll one line at a time (less "jumpy" than defaults)
 ;(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
