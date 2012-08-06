@@ -16,6 +16,14 @@
         (align-regexp apoint epoint "\\(\\s-*\\)=>" 1 1)
         (puppet-flash-region apoint epoint)))))
 
+(defun flymake-puppet-init ()
+  "Construct a command that flymake can use to check puppetscript source."
+  (list "puppet-lint"
+        (list  "--no-autoloader_layout-check"
+               (flymake-init-create-temp-buffer-copy
+               'flymake-puppet-create-temp-in-system-tempdir))))
+
+
 (add-hook 'puppet-mode-hook
           (lambda ()
             (define-key puppet-mode-map "\C-xr" 'puppet-block-align)))
