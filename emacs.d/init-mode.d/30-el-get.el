@@ -604,6 +604,14 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :features powerline)
 
+        (:name puppet-mode
+               :description "A simple mode for editing puppet manifests"
+               :type git
+               :url "git://github.com/puppetlabs/puppet-syntax-emacs.git"
+               :after (lambda ()
+                        (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests" t)
+                        (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
+
         (:name apel
                :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
                :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
