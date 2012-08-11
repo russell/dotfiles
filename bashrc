@@ -135,9 +135,9 @@ g () {
 # EMACS launcher
 e () {
     if [ $DARWIN -eq 1 ]; then
-	EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+	    EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
     else
-	EMACS=emacs
+	    EMACS=emacs
     fi
     EMACSCLIENT=emacsclient
 
@@ -145,23 +145,23 @@ e () {
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
 
     if [ -f $HOME/.emacsconfig ]; then
-	. $HOME/.emacsconfig
+	    . $HOME/.emacsconfig
     fi
 
     if [ -z "$DISPLAY" ]; then
-	exec $EMACS -n "$@"
+	    exec $EMACS -n "$@"
     else
 	if [ $DARWIN -eq 1 ]; then
 	    if [ -e "$EMACSSERVER" ]; then
-		exec $EMACSCLIENT -n "$@" &
+		    exec $EMACSCLIENT -n "$@" &
 	    else
-		exec $EMACS --eval "(server-start)" "$@" &
+		    exec $EMACS --eval "(server-start)" "$@" &
 	    fi
 	else
 	    if [ -e "$EMACSSERVER" ]; then
-		$EMACSCLIENT -n "$@"
+		    $EMACSCLIENT -n "$@"
 	    else
-		exec $EMACS --eval "(server-start)" "$@" &
+		    exec $EMACS --eval "(server-start)" "$@" &
 	    fi
 	fi
     fi
