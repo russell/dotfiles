@@ -1,5 +1,17 @@
+# -*- mode: sh -*-
+# Path to your oh-my-zsh configuration.
+ZSHDIR=$HOME/.zsh
+source $ZSHDIR/antigen.zsh
+
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
+antigen-apply
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+
+# Debian doesn't seem to have a TMPDIR variable any more :(
+[ -z "$TMPDIR" ] && TMPDIR=/tmp/
 
 # Set up the prompt
 if [[ $TERM == "dumb" ]]; then	# in emacs
@@ -75,6 +87,8 @@ compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
@@ -90,6 +104,8 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -125,7 +141,7 @@ e () {
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
 
     if [ -f $HOME/.emacsconfig ]; then
-	    . $HOME/.emacsconfig
+	    source $HOME/.emacsconfig
     fi
 
     if [ -z "$DISPLAY" ]; then
