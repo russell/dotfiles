@@ -127,6 +127,9 @@ esac
 export PDSH_RCMD_TYPE="ssh"
 export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 
+# git-buildpackage default target.
+export DIST=unstable 
+export ARCH=amd64
 
 # EMACS launcher
 e () {
