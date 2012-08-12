@@ -54,7 +54,7 @@ alias zshconfig="source ~/.zshrc"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git debian gpgagent ssh-agent virtualenvwrapper pip rbenv rvm)
+plugins=(git debian virtualenvwrapper pip rbenv rvm)
 
 if [ ! -e ~/.oh-my-zsh ]; then
     git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
