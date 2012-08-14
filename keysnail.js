@@ -54,6 +54,7 @@ hook.setHook('KeyBoardQuit', function (aEvent) {
 });
 
 
+
 // ============================= Key bindings ============================== //
 
 key.setGlobalKey('C-M-r', function (ev) {
@@ -233,13 +234,28 @@ key.setViewKey('M-n', function (ev) {
 }, 'Focus to the previous button');
 
 key.setViewKey(['C-c', 'i'], function (ev, arg) {
-    //stolen from keysnail's vi-style configuration
     children = document.getElementById("nav-bar").children;
     for (i = 0; i < children.length; i++) {
         children[i].style.backgroundColor = "pink";
     }
     util.setBoolPref("accessibility.browsewithcaret", !util.getBoolPref("accessibility.browsewithcaret"));
 }, 'Enter caret mode');
+
+key.setViewKey(['C-c', 'C-e'], function (aEvent, aArg) {
+    ext.exec("hok-start-continuous-mode", aArg);
+}, 'Start continuous HaH', true);
+
+key.setViewKey('e', function (aEvent, aArg) {
+    ext.exec("hok-start-foreground-mode", aArg);
+}, 'Hok - Foreground hint mode', true);
+
+key.setViewKey('E', function (aEvent, aArg) {
+    ext.exec("hok-start-background-mode", aArg);
+}, 'HoK - Background hint mode', true);
+
+key.setViewKey(';', function (aEvent, aArg) {
+    ext.exec("hok-start-extended-mode", aArg);
+}, 'HoK - Extented hint mode', true);
 
 key.setEditKey(['C-x', 'h'], function (ev) {
     command.selectAll(ev);
@@ -376,7 +392,7 @@ key.setEditKey('C-M-y', function (ev) {
     prompt.selector({message: "Paste:", collection: command.kill.ring, callback: function (i) {if (i >= 0) {key.insertText(command.kill.ring[i]);}}});
 }, 'Show kill-ring and select text to paste', true);
 
-key.setEditKey('C-w', function (ev) {
+key.setEditKey(['C-x', 'C-k'], function (ev) {
     goDoCommand("cmd_copy");
     goDoCommand("cmd_delete");
     command.resetMark(ev);
@@ -500,18 +516,6 @@ key.setCaretKey('M-n', function (ev) {
     command.walkInputElement(command.elementsRetrieverButton, false, true);
 }, 'Focus to the previous button');
 
-key.setViewKey('e', function (aEvent, aArg) {
-    ext.exec("hok-start-foreground-mode", aArg);
-}, 'Hok - Foreground hint mode', true);
-
-key.setViewKey('E', function (aEvent, aArg) {
-    ext.exec("hok-start-background-mode", aArg);
-}, 'HoK - Background hint mode', true);
-
-key.setViewKey(';', function (aEvent, aArg) {
-    ext.exec("hok-start-extended-mode", aArg);
-}, 'HoK - Extented hint mode', true);
-
-key.setViewKey(['C-c', 'C-e'], function (aEvent, aArg) {
-    ext.exec("hok-start-continuous-mode", aArg);
-}, 'Start continuous HaH', true);
+key.setEditKey('C-w', function (ev) {
+    command.deleteBackwardWord(ev);
+}, 'Delete backward word');
