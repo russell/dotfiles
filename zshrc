@@ -111,6 +111,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 
+NOVA_DIR=/usr/local/src/python-novaclient
+if [ -e $NOVA_DIR ]; then
+    autoload -U bashcompinit;bashcompinit;source $NOVA_DIR/tools/nova.bash_completion
+fi
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
