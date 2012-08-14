@@ -24,9 +24,9 @@
                'flymake-puppet-create-temp-in-system-tempdir))))
 
 
-(add-hook 'puppet-mode-hook
-          (lambda ()
-            (define-key puppet-mode-map "\C-xr" 'puppet-block-align)))
+;; (add-hook 'puppet-mode-hook
+;;           (lambda ()
+;;             (define-key puppet-mode-map "\C-xr" 'puppet-block-align)))
 
 ;; Puppet Flymake
 (add-hook 'puppet-mode-hook
