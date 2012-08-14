@@ -1,25 +1,17 @@
 ; -*- mode: Lisp;-*-
 
-#-:asdf (load (merge-pathnames "quicklisp/asdf.lisp" (user-homedir-pathname)))
+#-:asdf
+(load (merge-pathnames ".quicklisp/asdf.lisp" (user-homedir-pathname)))
 
 ;;; The following lines added by ql:add-to-init-file:
 #-quicklisp
-(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+(let ((quicklisp-init (merge-pathnames ".quicklisp/setup.lisp"
                                        (user-homedir-pathname))))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
 ;;; quicklisp projects
-(push #p"/home/russell/projects/cl-git/" asdf:*central-registry*)
-(push #p"/home/russell/projects/planet-git/" asdf:*central-registry*)
-(push #p"/home/russell/projects/database-migrations/" asdf:*central-registry*)
-(push (merge-pathnames ".emacs.d/el-get/slime/"
-		       (user-homedir-pathname))
-      asdf:*central-registry*)
-
-;;; slime stuff
-;(push #P "/home/russell/.emacs.d/el-get/slime-proxy/" swank::*load-path*)
-;(push #P "/home/russell/.emacs.d/el-get/slime-proxy/contrib/slime-parenscript/" swank::*load-path*)
+(asdf:initialize-source-registry)
 
 ;; Enable debug
 (sb-ext:restrict-compiler-policy 'debug 3)

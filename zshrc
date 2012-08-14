@@ -7,6 +7,10 @@ antigen-bundle zsh-users/zsh-syntax-highlighting
 
 antigen-apply
 
+# Disable underline of paths
+ZSH_HIGHLIGHT_STYLES[path]='underline'
+
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -107,6 +111,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 
+NOVA_DIR=/usr/local/src/python-novaclient
+if [ -e $NOVA_DIR ]; then
+    autoload -U bashcompinit;bashcompinit;source $NOVA_DIR/tools/nova.bash_completion
+fi
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -127,13 +136,16 @@ esac
 export PDSH_RCMD_TYPE="ssh"
 export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 
+# git-buildpackage default target.
+export DIST=unstable
+export ARCH=amd64
 
 # EMACS launcher
 e () {
     if [ $DARWIN -eq 1 ]; then
-	    EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
     else
-	    EMACS=emacs
+        EMACS=emacs
     fi
     EMACSCLIENT=emacsclient
 
@@ -141,24 +153,24 @@ e () {
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
 
     if [ -f $HOME/.emacsconfig ]; then
-	    source $HOME/.emacsconfig
+        source $HOME/.emacsconfig
     fi
 
     if [ -z "$DISPLAY" ]; then
-	    exec $EMACS -n "$@"
+        exec $EMACS -n "$@"
     else
-	if [ $DARWIN -eq 1 ]; then
-	    if [ -e "$EMACSSERVER" ]; then
-		    exec $EMACSCLIENT -n "$@" &
-	    else
-		    exec $EMACS --eval "(server-start)" "$@" &
-	    fi
-	else
-	    if [ -e "$EMACSSERVER" ]; then
-		    $EMACSCLIENT -n "$@"
-	    else
-		    exec $EMACS --eval "(server-start)" "$@" &
-	    fi
-	fi
+    if [ $DARWIN -eq 1 ]; then
+        if [ -e "$EMACSSERVER" ]; then
+            exec $EMACSCLIENT -n "$@" &
+        else
+            exec $EMACS --eval "(server-start)" "$@" &
+        fi
+    else
+        if [ -e "$EMACSSERVER" ]; then
+            $EMACSCLIENT -n "$@"
+        else
+            exec $EMACS --eval "(server-start)" "$@" &
+        fi
+    fi
     fi
 }
