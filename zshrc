@@ -5,12 +5,12 @@ source $ZSHDIR/antigen.zsh
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git $fpath)
+
 antigen-bundle git
 antigen-bundle debian
 antigen-bundle pip
 antigen-bundle git
 antigen-bundle virtualenvwrapper
-
 
 antigen-apply
 
@@ -31,7 +31,11 @@ if [[ $TERM == "dumb" ]]; then	# in emacs
     unfunction precmd
     unfunction preexec
 else
+    setopt prompt_subst
+    autoload -U colors
+    colors
     source ~/.zsh/arrsim.zsh-theme
+    source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git/lib/git.zsh
 fi
 
 # Example aliases
