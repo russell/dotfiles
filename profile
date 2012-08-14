@@ -31,3 +31,5 @@ export DEBFULLNAME="Russell Sim"
 export MAIL="russell.sim@gmail.com"
 
 export GPGKEY=0x27E94A1A
+
+export CC="gcc"
