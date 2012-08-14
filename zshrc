@@ -132,15 +132,15 @@ export PDSH_RCMD_TYPE="ssh"
 export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 
 # git-buildpackage default target.
-export DIST=unstable 
+export DIST=unstable
 export ARCH=amd64
 
 # EMACS launcher
 e () {
     if [ $DARWIN -eq 1 ]; then
-	    EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
     else
-	    EMACS=emacs
+        EMACS=emacs
     fi
     EMACSCLIENT=emacsclient
 
@@ -148,24 +148,24 @@ e () {
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
 
     if [ -f $HOME/.emacsconfig ]; then
-	    source $HOME/.emacsconfig
+        source $HOME/.emacsconfig
     fi
 
     if [ -z "$DISPLAY" ]; then
-	    exec $EMACS -n "$@"
+        exec $EMACS -n "$@"
     else
-	if [ $DARWIN -eq 1 ]; then
-	    if [ -e "$EMACSSERVER" ]; then
-		    exec $EMACSCLIENT -n "$@" &
-	    else
-		    exec $EMACS --eval "(server-start)" "$@" &
-	    fi
-	else
-	    if [ -e "$EMACSSERVER" ]; then
-		    $EMACSCLIENT -n "$@"
-	    else
-		    exec $EMACS --eval "(server-start)" "$@" &
-	    fi
-	fi
+    if [ $DARWIN -eq 1 ]; then
+        if [ -e "$EMACSSERVER" ]; then
+            exec $EMACSCLIENT -n "$@" &
+        else
+            exec $EMACS --eval "(server-start)" "$@" &
+        fi
+    else
+        if [ -e "$EMACSSERVER" ]; then
+            $EMACSCLIENT -n "$@"
+        else
+            exec $EMACS --eval "(server-start)" "$@" &
+        fi
+    fi
     fi
 }
