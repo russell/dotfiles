@@ -60,12 +60,12 @@ function parse_git_branch {
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -79,10 +79,10 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
-	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
     *)
-	;;
+    ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -135,9 +135,9 @@ g () {
 # EMACS launcher
 e () {
     if [ $DARWIN -eq 1 ]; then
-	    EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
     else
-	    EMACS=emacs
+        EMACS=emacs
     fi
     EMACSCLIENT=emacsclient
 
@@ -145,25 +145,25 @@ e () {
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
 
     if [ -f $HOME/.emacsconfig ]; then
-	    . $HOME/.emacsconfig
+        . $HOME/.emacsconfig
     fi
 
     if [ -z "$DISPLAY" ]; then
-	    exec $EMACS -n "$@"
+        exec $EMACS -n "$@"
     else
-	if [ $DARWIN -eq 1 ]; then
-	    if [ -e "$EMACSSERVER" ]; then
-		    exec $EMACSCLIENT -n "$@" &
-	    else
-		    exec $EMACS --eval "(server-start)" "$@" &
-	    fi
-	else
-	    if [ -e "$EMACSSERVER" ]; then
-		    $EMACSCLIENT -n "$@"
-	    else
-		    exec $EMACS --eval "(server-start)" "$@" &
-	    fi
-	fi
+    if [ $DARWIN -eq 1 ]; then
+        if [ -e "$EMACSSERVER" ]; then
+            exec $EMACSCLIENT -n "$@" &
+        else
+            exec $EMACS --eval "(server-start)" "$@" &
+        fi
+    else
+        if [ -e "$EMACSSERVER" ]; then
+            $EMACSCLIENT -n "$@"
+        else
+            exec $EMACS --eval "(server-start)" "$@" &
+        fi
+    fi
     fi
 }
 
@@ -180,9 +180,9 @@ m () {
     kill $OPID
     ps $OPID > /dev/null
     while [ $? -eq 0 ]; do
-	kill $OPID
-	sleep 3;
-	ps $OPID > /dev/null
+    kill $OPID
+    sleep 3;
+    ps $OPID > /dev/null
     done
     offlineimap -o -u basic
 }
@@ -204,7 +204,7 @@ export PDSH_RCMD_TYPE="ssh"
 export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 
 # git-buildpackage default target.
-export DIST=unstable 
+export DIST=unstable
 export ARCH=amd64
 
 # set PATH so it includes user's private bin if it exists
