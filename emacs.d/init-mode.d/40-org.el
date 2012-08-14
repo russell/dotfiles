@@ -28,3 +28,11 @@
                 (lambda ()
                   (interactive)
                   (dired "~/.deft")))
+
+;; Delete whitespace on save.
+(add-hook 'org-mode-hook
+          '(lambda ()
+             (add-hook 'write-contents-functions
+                       '(lambda()
+                          (save-excursion
+                            (delete-trailing-whitespace))))))
