@@ -7,6 +7,10 @@ antigen-bundle zsh-users/zsh-syntax-highlighting
 
 antigen-apply
 
+# Disable underline of paths
+ZSH_HIGHLIGHT_STYLES[path]='underline'
+
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
