@@ -9,7 +9,6 @@ gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SL
 antigen-bundle git
 antigen-bundle debian
 antigen-bundle pip
-antigen-bundle git
 antigen-bundle virtualenvwrapper
 
 antigen-apply
