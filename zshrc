@@ -38,6 +38,12 @@ else
     source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git/lib/git.zsh
 fi
 
+case $TERM in
+    *xterm*)
+        precmd () {print -Pn "\e]0;%n@%M: %~\a"}
+        ;;
+esac
+
 # Example aliases
 alias zshconfig="source ~/.zshrc"
 
