@@ -187,3 +187,8 @@ e () {
     fi
     fi
 }
+
+# edit file with root privs
+E () {
+    emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
+}
