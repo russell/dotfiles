@@ -57,7 +57,7 @@ if [[ $(uname) == "Darwin" ]]; then
   DARWIN=1;
 fi
 
-setopt appendhistory histignorealldups sharehistory autocd extendedglob
+setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
