@@ -144,6 +144,33 @@ else
     export BZR_EDITOR="emacsclient"
 fi
 
+#
+# ls colors
+#
+
+autoload colors; colors;
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+#export LS_COLORS
+
+# Enable ls colors
+if [ "$DISABLE_LS_COLORS" != "true" ]
+then
+  # Find the option for using colors in ls, depending on the version: Linux or BSD
+  ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
+fi
+
+#setopt no_beep
+setopt auto_cd
+setopt multios
+setopt cdablevarS
+
+#
+# grep colors
+#
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+
+
 #export PYTHONDONTWRITEBYTECODE=true
 
 export PDSH_RCMD_TYPE="ssh"
