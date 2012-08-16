@@ -136,16 +136,13 @@ fi
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-case "$TERM" in
-    xterm*)
-        export GIT_EDITOR="emacsclient"
-        export BZR_EDITOR="emacsclient"
-        ;;
-    *)
-        export GIT_EDITOR="emacs"
-        export BZR_EDITOR="emacs"
-        ;;
-esac
+if [ $SSH_TTY ]; then
+    export GIT_EDITOR="emacs"
+    export BZR_EDITOR="emacs"
+else
+    export GIT_EDITOR="emacsclient"
+    export BZR_EDITOR="emacsclient"
+fi
 
 #export PYTHONDONTWRITEBYTECODE=true
 
