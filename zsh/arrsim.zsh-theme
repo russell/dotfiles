@@ -1,3 +1,5 @@
+# -*- mode: sh -*-
+
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
@@ -12,8 +14,10 @@ function prompt_char {
             echo '±';;
         hg)
             echo 'Hg';;
+        "")
+            echo "\$";;
         *)
-            echo '$';;
+            echo "${vcs_info_msg_0_} \$";;
     esac
 }
 
