@@ -230,3 +230,43 @@
           '(lambda ()
              (setq indent-region-function #'python-indent-region)
              (setq indent-line-function #'python-indent-line-function)))
+
+
+;; Fix window splitting
+
+(defcustom py-max-split-windows 2
+  "When split windows is enabled the maximum windows to allow
+  before reusing other windows."
+  :type 'number
+  :group 'python-mode)
+
+
+(defun py-shell-manage-windows (switch py-split-windows-on-execute-p py-switch-buffers-on-execute-p oldbuf py-buffer-name)
+  (cond (;; split and switch
+         (unless (eq switch 'noswitch)
+           (and py-split-windows-on-execute-p
+                (or (eq switch 'switch)
+                    py-switch-buffers-on-execute-p)))
+         (if (< (count-windows) py-max-split-windows)
+           (funcall py-split-windows-on-execute-function)
+           (switch-to-buffer-other-window py-buffer-name)))
+        ;; split, not switch
+        ((and py-split-windows-on-execute-p
+              (or (eq switch 'noswitch)
+                  (not (eq switch 'switch))))
+         (if (< (count-windows) py-max-split-windows)
+             (progn
+               (funcall py-split-windows-on-execute-function)
+               (display-buffer py-buffer-name))
+           (display-buffer py-buffer-name 'display-buffer-reuse-window)))
+        ;; no split, switch
+        ((or (eq switch 'switch)
+             (and (not (eq switch 'noswitch))
+                  py-switch-buffers-on-execute-p))
+         (pop-to-buffer py-buffer-name)
+         (goto-char (point-max)))
+        ;; no split, no switch
+        ((or (eq switch 'noswitch)
+             (not py-switch-buffers-on-execute-p))
+         (set-buffer oldbuf)
+         (switch-to-buffer (current-buffer)))))
