@@ -83,3 +83,10 @@
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (elisp-slime-expand-mode t)))
+
+;;
+;; ielm mode
+;;
+(add-hook 'ielm-mode-hook
+          (lambda ()
+            (eldoc-mode)))
