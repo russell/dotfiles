@@ -35,6 +35,11 @@
           (lambda ()
             (auto-complete-mode 1)))
 
+(defun slime-eval-last-expression-in-repl1 (prefix)
+  (interactive "P")
+  (let ((origional-buffer (current-buffer)))
+    (slime-eval-last-expression-in-repl prefix)
+    (pop-to-buffer origional-buffer)))
 ;;
 ;; elisp
 ;;

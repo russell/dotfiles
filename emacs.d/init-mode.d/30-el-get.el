@@ -370,7 +370,7 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name popup
                :type git
-               :url "https://github.com/auto-complete/popup-el")
+               :url "git://github.com/auto-complete/popup-el.git")
 
         (:name popup-kill-ring
                :type emacswiki
@@ -417,6 +417,11 @@ variable. Automatically applies expand-file-name to `path`."
         (:name ical2org
                :type git
                :url "https://github.com/cofi/ical2org.git")
+
+        (:name ldap-mode
+               :type http
+               :features "ldap-mode"
+               :url "http://www.loveshack.ukfsn.org/emacs/ldap-mode.el")
 
         (:name breadcrumb
                :website "http://breadcrumbemacs.sourceforge.net/"

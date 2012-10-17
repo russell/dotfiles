@@ -6,7 +6,7 @@
 (add-to-list 'tramp-default-proxies-alist
 	     '("10\\.42\\.33\\.1" nil nil))
 (add-to-list 'tramp-default-proxies-alist
-	     '("\\.nectar\\.org\\.au" nil nil))
+	     '("\\.rc\\.nectar\\.org\\.au" nil "/ssh:root@ra-np.melbourne.nectar.org.au:"))
 (add-to-list 'tramp-default-proxies-alist
 	     '("115\\.146\\.83" nil nil))
 (add-to-list 'tramp-default-proxies-alist
