@@ -1,6 +1,7 @@
 # -*- mode: sh -*-
 ZSHDIR=$HOME/.zsh
 source $ZSHDIR/antigen.zsh
+fpath=($ZSHDIR/completion $fpath)
 
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
@@ -185,6 +186,10 @@ export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 export DIST=unstable
 export ARCH=amd64
 
+export VIRTUAL_ENV_DISABLE_PROMPT="True"
+
+export PIP_DOWNLOAD_CACHE=~/.egg-cache
+
 # EMACS launcher
 e () {
     if [ $DARWIN -eq 1 ]; then
@@ -224,3 +229,7 @@ e () {
 E () {
     emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
+
+if [ -f "$HOME/.zshrc.local" ]; then
+    . "$HOME/.zshrc.local"
+fi
