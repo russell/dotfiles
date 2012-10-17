@@ -43,7 +43,7 @@ variable. Automatically applies expand-file-name to `path`."
                :description "The most intelligent auto-completion extension."
                :type git
                :depends (fuzzy)
-               :url "http://github.com/m2ym/auto-complete.git"
+               :url "https://github.com/auto-complete/auto-complete"
                :load-path "."
                :post-init (lambda ()
                             (require 'auto-complete)
@@ -65,7 +65,7 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name fuzzy
                :type git
-               :url "git://github.com/m2ym/fuzzy-el.git"
+               :url "https://github.com/auto-complete/fuzzy-el"
                :features fuzzy)
 
         (:name bash-completion
@@ -370,7 +370,7 @@ variable. Automatically applies expand-file-name to `path`."
 
         (:name popup
                :type git
-               :url "https://github.com/m2ym/popup-el.git")
+               :url "https://github.com/auto-complete/popup-el")
 
         (:name popup-kill-ring
                :type emacswiki
@@ -575,6 +575,7 @@ variable. Automatically applies expand-file-name to `path`."
         (:name jabber
                :type git
                :load-path ("." "compat")
+               :build ("autoreconf -f -i -Wall,no-obsolete" "./configure" "make")
                :features jabber-autoloads
                :url "git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber")
 
