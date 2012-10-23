@@ -1,5 +1,5 @@
 (deftheme tango-plus
-  "Created 2012-07-11.")
+  "Created 2012-10-23.")
 
 (custom-theme-set-variables
  'tango-plus
@@ -9,6 +9,8 @@
 
 (custom-theme-set-faces
  'tango-plus
+ '(apropos-symbol-face ((t (:inherit font-lock-keyword-face))))
+ '(apropos-label-face ((t (:inherit font-lock-type-face))))
  '(eshell-prompt ((t (:foreground "#b4fa70" :weight bold))))
  '(flymake-errline ((((class color) (background dark)) (:background "dark red"))))
  '(flymake-warnline ((((class color) (background dark)) (:background "midnight blue"))))
@@ -105,8 +107,14 @@
  '(helm-selection ((((background dark)) (:underline nil :background "#555753")) (((background light)) (:underline t :background "#b5ffd1"))))
  '(helm-source-header ((t (:background "#22083397778B" :underline nil :height 1.2))))
  '(which-func ((t (:foreground "#729fcf"))))
- '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
  '(org-table ((t (:foreground "#e9b96e"))))
- '(highlight-indentation-face ((t (:background "grey25")))))
+ '(highlight-indentation-face ((t (:background "grey25"))))
+ '(default ((t (:background "#2e3436" :foreground "#eeeeec"))))
+ '(term-color-red ((t (:foreground "tomato"))))
+ '(term-color-green ((t (:foreground "#8ae234"))))
+ '(term-color-yellow ((t (:foreground "#edd400"))))
+ '(term-color-blue ((t (:foreground "#729fcf"))))
+ '(term-color-magenta ((t (:foreground "#ad7fa8"))))
+ '(term-color-cyan ((t (:foreground "light cyan")))))
 
 (provide-theme 'tango-plus)
