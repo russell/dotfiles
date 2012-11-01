@@ -172,16 +172,18 @@
 ;;       (if (eq 'python-virtualenv (car project-details))
 ;;           (virtualenv-activate default-directory)))))
 
+
+;; XXX doesn't seem to work at the moment,  void variable project-details?
 ;; FFIP
-(add-hook 'python-mode-hook
-  (lambda ()
-    (unless project-details (project-root-fetch))
-     (when (project-root-p)
-         (let* ((default-directory (cdr project-details))
-                (name (let ((spath (split-string default-directory "/")))
-                        (or (last (car spath))
-                            (nth (1- (length spath)) spath)))))
-           (ffip-set-current-project name default-directory 'python)))))
+;; (add-hook 'python-mode-hook
+;;   (lambda ()
+;;     (unless project-details (project-root-fetch))
+;;      (when (project-root-p)
+;;          (let* ((default-directory (cdr project-details))
+;;                 (name (let ((spath (split-string default-directory "/")))
+;;                         (or (last (car spath))
+;;                             (nth (1- (length spath)) spath)))))
+;;            (ffip-set-current-project name default-directory 'python)))))
 
 ;; Disable cedet
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
