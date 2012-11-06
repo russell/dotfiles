@@ -5,8 +5,10 @@
 
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
 
-(slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation slime-tramp))
+(slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation slime-tramp slime-banner))
 ;;                              slime-proxy slime-parenscript))
+(setq slime-complete-symbol*-fancy t)
+(setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-mode-hook

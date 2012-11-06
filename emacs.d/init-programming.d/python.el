@@ -175,6 +175,8 @@
 ;;       (if (eq 'python-virtualenv (car project-details))
 ;;           (virtualenv-activate default-directory)))))
 
+
+;; XXX doesn't seem to work at the moment,  void variable project-details?
 ;; FFIP
 ;; (add-hook 'python-mode-hook
 ;;   (lambda ()
