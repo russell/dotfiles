@@ -512,7 +512,7 @@ variable. Automatically applies expand-file-name to `path`."
                :module "slime"
                :info "doc"
                :features slime
-               :url "git://github.com/3b/slime.git"
+               :url "git://github.com/russell/slime.git"
                :load-path ("." "contrib")
                :compile (".")
                :build (list "make -C doc"))
@@ -524,6 +524,13 @@ variable. Automatically applies expand-file-name to `path`."
                :features slime-proxy
                :url "git://github.com/3b/slime-proxy.git"
                :load-path ("." "contrib/slime-parenscript"))
+
+        (:name slime-js
+               :description "Slime JS"
+               :type git
+               :depends (slime)
+               :features slime-js
+               :url "git://github.com/swank-js/slime-js.git")
 
         (:name hyperspec-info
                :description "info lookup for hyperspec"
