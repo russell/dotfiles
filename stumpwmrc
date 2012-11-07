@@ -204,6 +204,7 @@ focus it."
 ;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=ssh")
 
 
+;; GNOME Keyring
 (let* ((output (run-shell-command "/usr/bin/gnome-keyring-daemon --start" t))
        (lines (loop :for i = 0 :then (1+ j)
                     :as j = (position #\linefeed output :start i)
