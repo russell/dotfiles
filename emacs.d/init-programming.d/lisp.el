@@ -5,12 +5,12 @@
 
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
 
-(slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation slime-tramp slime-banner))
+(slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation slime-tramp slime-banner slime-compiler-notes-tree))
 ;;                              slime-proxy slime-parenscript))
 (setq slime-complete-symbol*-fancy t)
 (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
+;; (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-mode-hook
           (lambda ()
             (add-hook 'write-contents-functions
@@ -30,12 +30,34 @@
 (add-hook 'slime-mode-hook
           '(lambda ()
              (highlight-symbol-mode)))
+;; Auto-Complete
+(add-hook 'slime-mode-hook
+          '(lambda ()
+             (require 'ac-slime)
+             (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-slime-fuzzy))))
+
+
+(defun slime-quickload (system &rest keyword-args)
+  "Quickload System."
+  (slime-save-some-lisp-buffers)
+  (slime-display-output-buffer)
+  (message "Performing Quicklisp load of system %S" system)
+  (slime-repl-shortcut-eval-async
+   `(ql:quickload ,system)
+   (slime-asdf-operation-finished-function system)))
+
+(defslime-repl-shortcut slime-repl-load-system ("quickload")
+  (:handler (lambda ()
+              (interactive)
+              (slime-quickload (slime-read-system-name))))
+  (:one-liner "Compile (as needed) and load an ASDF system."))
+
 
 (setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
 
-(add-hook 'inferior-lisp-mode-hook
-          (lambda ()
-            (auto-complete-mode 1)))
+;; (add-hook 'inferior-lisp-mode-hook
+;;           (lambda ()
+;;             (auto-complete-mode 1)))
 
 (defun slime-eval-last-expression-in-repl1 (prefix)
   (interactive "P")
