@@ -88,7 +88,7 @@ variable. Automatically applies expand-file-name to `path`."
                :website "http://cedet.sourceforge.net/"
                :description "CEDET is a Collection of Emacs Development Environment Tools written with the end goal of creating an advanced development environment in Emacs."
                :type git
-               :url "git://git.randomsample.de/cedet.git"
+               :url "git://github.com/emacsmirror/cedet.git"
                :build ("touch `find . -name Makefile`" "make")
                :build/windows-nt ("echo #!/bin/sh > tmp.sh & echo touch `/usr/bin/find . -name Makefile` >> tmp.sh & echo make FIND=/usr/bin/find >> tmp.sh"
                                   "sed 's/^M$//' tmp.sh  > tmp2.sh"
@@ -517,13 +517,13 @@ variable. Automatically applies expand-file-name to `path`."
                :compile (".")
                :build (list "make -C doc"))
 
-        (:name slime-proxy
-               :description "Slime proxy mode for Emacs and parenscript"
-               :type git
-               :depends (slime)
-               :features slime-proxy
-               :url "git://github.com/3b/slime-proxy.git"
-               :load-path ("." "contrib/slime-parenscript"))
+        ;; (:name slime-proxy
+        ;;        :description "Slime proxy mode for Emacs and parenscript"
+        ;;        :type git
+        ;;        :depends (slime)
+        ;;        :features slime-proxy
+        ;;        :url "git://github.com/3b/slime-proxy.git"
+        ;;        :load-path ("." "contrib/slime-parenscript"))
 
         (:name slime-js
                :description "Slime JS"
