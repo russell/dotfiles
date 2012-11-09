@@ -144,7 +144,10 @@
 ;; Auto-Complete
 (add-hook 'python-mode-hook
           '(lambda ()
-             (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-python ac-source-yasnippet))))
+             (setq ac-sources '(ac-source-abbrev
+                                ac-source-words-in-same-mode-buffers
+                                ;; ac-source-python
+                                ac-source-yasnippet))))
 
 ;; (add-hook 'python-mode-hook
 ;;           #'(lambda ()
@@ -242,6 +245,24 @@
   :type 'number
   :group 'python-mode)
 
+(defun python-convert-path-to-module (path basedir)
+  (let ((path (substring (file-name-sans-extension path)
+                         (length basedir))))
+    (while (string-match "[/]" path)
+      (setq path (replace-match "." t t path)))
+    path))
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (when (ignore-errors (eproject-root))
+              (let ((default-directory (eproject-root)))
+                (when (and (file-exists-p "./run") (string-equal (eproject-name) "1800respect"))
+                  (set (make-local-variable 'compile-command)
+                       (concat "./test -- " (python-convert-path-to-module buffer-file-name
+                                                                           (concat default-directory "src/")))))
+                (when (and (file-exists-p "./bin/dftrial") (string-equal (eproject-name) "df"))
+                  (set (make-local-variable 'compile-command)
+                       (concat "./bin/dftrial " buffer-file-name)))))))
 
 (defun py-shell-manage-windows (switch py-split-windows-on-execute-p py-switch-buffers-on-execute-p oldbuf py-buffer-name)
   (cond (;; split and switch

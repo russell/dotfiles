@@ -525,6 +525,13 @@ variable. Automatically applies expand-file-name to `path`."
         ;;        :url "git://github.com/3b/slime-proxy.git"
         ;;        :load-path ("." "contrib/slime-parenscript"))
 
+        (:name slime-js
+               :description "Slime JS"
+               :type git
+               :depends (slime)
+               :features slime-js
+               :url "git://github.com/swank-js/slime-js.git")
+
         (:name hyperspec-info
                :description "info lookup for hyperspec"
                :type http
