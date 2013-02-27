@@ -31,7 +31,7 @@ variable. Automatically applies expand-file-name to `path`."
 (setq el-get-sources
 
       '((:name magit
-               :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
+               :after (progn (global-set-key (kbd "C-x C-z") 'magit-status)))
 
         (:name project-root
                :type git
@@ -45,7 +45,7 @@ variable. Automatically applies expand-file-name to `path`."
                :depends (fuzzy)
                :url "https://github.com/auto-complete/auto-complete"
                :load-path "."
-               :post-init (lambda ()
+               :post-init (progn
                             (require 'auto-complete)
                             (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
                             (require 'auto-complete-config)
@@ -72,7 +72,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/szermatt/emacs-bash-completion.git"
                :features bash-completion
-               :post-init (lambda ()
+               :post-init (progn
                             (bash-completion-setup)))
 
         (:name autopair
@@ -81,7 +81,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type http
                :url "http://autopair.googlecode.com/svn/trunk/autopair.el"
                :features autopair
-               :after (lambda ()
+               :after (progn
                         (setq autopair-blink t)))
 
         (:name cedet
@@ -104,7 +104,7 @@ variable. Automatically applies expand-file-name to `path`."
                :url "http://github.com/pinard/Pymacs.git"
                :features pymacs
                :build ("make")
-               :post-init (lambda ()
+               :post-init (progn
                             (add-to-pythonpath (concat el-get-dir "pymacs"))
                             (unless pymacs-load-path
                               (setq pymacs-load-path (list (concat el-get-dir "pymacs"))))))
@@ -113,7 +113,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type hg
                :url "http://bitbucket.org/agr/rope/"
                :depends (pymacs)
-               :after (lambda ()
+               :after (progn
                         (add-to-list 'pymacs-load-path
                                      (concat el-get-dir "rope"))))
 
@@ -121,7 +121,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type hg
                :url "http://bitbucket.org/agr/ropemode/"
                :depends (pymacs)
-               :after (lambda ()
+               :after (progn
                         (add-to-list 'pymacs-load-path
                                      (concat el-get-dir "ropemode"))))
 
@@ -129,10 +129,10 @@ variable. Automatically applies expand-file-name to `path`."
                :type hg
                :url "http://bitbucket.org/agr/ropemacs/"
                :depends (pymacs rope ropemode auto-complete)
-               :after (lambda ()
+               :after (progn
                         (add-to-list 'pymacs-load-path (concat el-get-dir "ropemacs"))
                         (add-hook 'python-mode-hook
-                                  '(lambda ()
+                                  '(progn
                                      (setq ropemacs-local-prefix "C-c C-p")
 
                                      ;; Stops from erroring if there's a syntax err
@@ -189,7 +189,7 @@ variable. Automatically applies expand-file-name to `path`."
                :depends pymacs
                :load-path ("." "completion")
                :compile nil
-               :post-init (lambda ()
+               :post-init (progn
                             (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
                             (add-to-list 'interpreter-mode-alist '("python" . python-mode))
                             (autoload 'python-mode "python-mode" "Python editing mode." t)))
@@ -208,7 +208,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/capitaomorte/yasnippet.git"
                :features "yasnippet"
-               :prepare (lambda ()
+               :prepare (progn
                           ;; Set up the default snippets directory
                           ;;
                           ;; Principle: don't override any user settings
@@ -220,7 +220,7 @@ variable. Automatically applies expand-file-name to `path`."
                             (setq yas/snippet-dirs
                                   (list (concat el-get-dir (file-name-as-directory "yasnippet") "snippets")))))
 
-               :post-init (lambda ()
+               :post-init (progn
                             ;; Trick customize into believing the standard
                             ;; value includes the default snippets.
                             ;; yasnippet would probably do this itself,
@@ -248,7 +248,7 @@ variable. Automatically applies expand-file-name to `path`."
                :url "bzr://bzr.savannah.nongnu.org/color-theme/trunk"
                :load "color-theme.el"
                :features "color-theme"
-               :post-init (lambda ()
+               :post-init (progn
                             (color-theme-initialize)
                             (setq color-theme-is-global t)
                             (setq color-theme-is-cumulative t)
@@ -260,7 +260,7 @@ variable. Automatically applies expand-file-name to `path`."
                :depends (color-theme)
                :features color-theme-tangotango
                :url "git@github.com:russell/color-theme-tangotango.git"
-               :post-init (lambda ()
+               :post-init (progn
                             (color-theme-tangotango)))
 
         (:name highlight-indentation
@@ -282,7 +282,7 @@ variable. Automatically applies expand-file-name to `path`."
                :features expand-region
                :type git
                :url "git://github.com/magnars/expand-region.el.git"
-               :post-init (lambda ()
+               :post-init (progn
                             (global-set-key (kbd "C-@") 'er/expand-region)))
 
         (:name flymake-python
@@ -302,7 +302,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :features po-mode+
                :depends po-mode
-               :post-init (lambda ()
+               :post-init (progn
                             (autoload 'po-mode "po-mode+"
                               "Major mode for translators to edit PO files" t)
                             ))
@@ -323,9 +323,9 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :depends mysql
                :features sql-completion
-               :post-init (lambda ()
+               :post-init (progn
                             (add-hook 'sql-interactive-mode-hook
-                                      '(lambda ()
+                                      '(progn
                                          (define-key sql-interactive-mode-map "\t" 'comint-dynamic-complete)
                                          (sql-mysql-completion-init)))))
 
@@ -352,14 +352,14 @@ variable. Automatically applies expand-file-name to `path`."
         (:name sr-speedbar
                :features sr-speedbar
                :depends (cedet)
-               :before (lambda ()
+               :before (progn
                          (require 'speedbar))
                :type emacswiki)
 
         (:name sticky-windows
                :features sticky-windows
                :type emacswiki
-               :post-init (lambda ()
+               :post-init (progn
                             (global-set-key [(control x) (?0)] 'sticky-window-delete-window)
                             (global-set-key [(control x) (?1)] 'sticky-window-delete-other-windows)
                             ;; In addition,
@@ -376,7 +376,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :depends (popup pos-tip)
                :features popup-kill-ring
-               :post-init (lambda ()
+               :post-init (progn
                             (global-set-key "\M-y" 'popup-kill-ring)))
 
         (:name smex
@@ -384,7 +384,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "http://github.com/nonsequitur/smex.git"
                :features smex
-               :post-init (lambda ()
+               :post-init (progn
                             (smex-initialize)
                             (global-set-key (kbd "M-x") 'smex)
                             (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -429,9 +429,9 @@ variable. Automatically applies expand-file-name to `path`."
                :type http
                :url "http://downloads.sourceforge.net/project/breadcrumbemacs/Breadcrumb%20for%20Emacs/1.1.3/breadcrumb-1.1.3.zip"
                :build ("unzip breadcrumb-1.1.3.zip")
-               :before (lambda ()
+               :before (progn
                          (require 'inversion))
-               :post-init (lambda ()
+               :post-init (progn
                             (require 'breadcrumb)
                             ;; Shift-SPACE for set bookmark
                             (global-set-key [?\S-\ ] 'bc-set)
@@ -459,7 +459,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :description "An improved JavaScript editing mode"
                :url "https://github.com/mooz/js2-mode.git"
-               :post-init (lambda ()
+               :post-init (progn
                             (autoload 'js2-mode "js2-mode" nil t)))
 
         (:name hideshow-org
@@ -476,7 +476,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/tlh/workgroups.el.git"
                :features "workgroups"
-               :post-init (lambda ()
+               :post-init (progn
                             (workgroups-mode 1)
                             ))
 
@@ -546,7 +546,7 @@ variable. Automatically applies expand-file-name to `path`."
                :load-path ("." "extensions")
                :depends (cedet)
                :features anything
-               :after (lambda ()
+               :after (progn
                         (require 'anything-config)))
 
         (:name restclient-mode
@@ -621,7 +621,7 @@ variable. Automatically applies expand-file-name to `path`."
                :description "A simple mode for editing puppet manifests"
                :type git
                :url "git://github.com/puppetlabs/puppet-syntax-emacs.git"
-               :after (lambda ()
+               :after (progn
                         (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests" t)
                         (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
 
