@@ -114,3 +114,20 @@
 (add-hook 'ielm-mode-hook
           (lambda ()
             (eldoc-mode)))
+
+
+;;
+;; scheme
+;;
+
+(add-hook 'geiser-mode-hook
+          '(lambda ()
+             (paredit-mode)))
+
+(add-hook 'geiser-mode-hook
+          '(lambda ()
+             (highlight-symbol-mode)))
+
+(add-hook 'geiser-mode-hook
+          (lambda ()
+            (flyspell-prog-mode)))
