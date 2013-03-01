@@ -1,4 +1,5 @@
 (setq puppet-mode-hook nil)
+(setq puppet-indent-level 4)
 
 (defun puppet-flash-region (start end &optional timeout)
   "Temporarily highlight region from START to END."
