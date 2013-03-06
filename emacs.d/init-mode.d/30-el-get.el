@@ -664,7 +664,7 @@ variable. Automatically applies expand-file-name to `path`."
        '(cedet oauth2 nginx-mode elisp-slime-expand popup
                highlight-symbol highlight-parentheses eproject
                mo-git-blame virtualenv flymake-point flymake-fringe-icons
-               folding js2-mode js-comint json fic-ext-mode dired+
+               js2-mode js-comint json fic-ext-mode dired+
                eol-conversion doxymacs dired-plus clevercss undo-tree
                auto-complete auto-complete-clang auctex active-menu
                fringe-helper csv-mode apel el-get cssh
