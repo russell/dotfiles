@@ -658,11 +658,11 @@ variable. Automatically applies expand-file-name to `path`."
                flymake-python hyperspec-info highlight-indentation python
                python-mode django-mode autopair magit puppet-mode
                markdown-mode sticky-windows expand-region emacs-w3m
-               paredit git-commit-mode ctags-update helm
+               paredit git-commit-mode ctags-update helm bbdb
                bash-completion slime ac-slime erc idomenu
                twittering-mode yaml-mode find-file-in-project
                erc-highlight-nicknames apache-mode nognus openstack-mode
                artbollocks-mode google-contacts highlight-sexp mailcrypt
                restclient-mode ace-jump-mode auto-capitalize mark-multiple
-               multiple-cursors puppet-flymake elisp-slime-nav)))
+               multiple-cursors puppet-flymake elisp-slime-nav lorem-ipsum ido-ubiquitous)))
 (el-get 'sync my-packages)
