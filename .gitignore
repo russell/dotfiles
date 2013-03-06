@@ -8,3 +8,9 @@ emacs.d/el-get/
 /emacs.d/oauth2.plstore
 /emacs.d/url
 /emacs.d/session.*
+/emacs.d/eshell/history
+/emacs.d/eshell/lastdir
+/emacs.d/saveplace
+/emacs.d/tramp
+/emacs.d/.mc-lists.el
+/emacs.d/srecode-map.el

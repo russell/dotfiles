@@ -170,13 +170,21 @@
   (lambda ()
     (setq imenu-create-index-function 'python-imenu-create-index)))
 
+;;
 ;; Virtual env
-;; (add-hook 'python-mode-hook
-;;   (lambda ()
-;;     (unless project-details (project-root-fetch))
-;;     (when (project-root-p)
-;;       (if (eq 'python-virtualenv (car project-details))
-;;           (virtualenv-activate default-directory)))))
+;;
+(setq virtualenv-workon-starts-python nil)
+
+(defun virtualenv-guess-project ()
+  "Guess the current project."
+  (when (eproject-maybe-turn-on)
+    (when (virtualenv-filter (lambda (e) (equal e (eproject-name)))
+                             (virtualenv-workon-complete))
+      (prog1
+          (virtualenv-workon (eproject-name))
+        (virtualenv-update-mode-name)))))
+
+(add-hook 'python-mode-hook 'virtualenv-guess-project)
 
 
 ;; XXX doesn't seem to work at the moment,  void variable project-details?
@@ -265,7 +273,7 @@
                                                                            (concat default-directory "src/")))))
                 (when (and (file-exists-p "./bin/dftrial") (string-equal (eproject-name) "df"))
                   (set (make-local-variable 'compile-command)
-                       (concat "./bin/dftrial " buffer-file-name)))))))
+                       (concat default-directory "bin/dftrial " buffer-file-name)))))))
 
 (defun py-shell-manage-windows (switch py-split-windows-on-execute-p py-switch-buffers-on-execute-p oldbuf py-buffer-name)
   (cond (;; split and switch
@@ -296,3 +304,7 @@
              (not py-switch-buffers-on-execute-p))
          (set-buffer oldbuf)
          (switch-to-buffer (current-buffer)))))
+
+(defun copy-break-point ()
+  (interactive)
+  (kill-new (concat (buffer-file-name) ":" (number-to-string (line-number-at-pos)))))
