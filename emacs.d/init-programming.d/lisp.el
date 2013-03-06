@@ -131,3 +131,19 @@
 (add-hook 'geiser-mode-hook
           (lambda ()
             (flyspell-prog-mode)))
+
+(add-hook 'geiser-mode-hook
+          '(lambda ()
+             (define-key geiser-mode-map "\C-c\C-c" 'geiser-eval-definition)))
+
+(add-hook 'geiser-mode-hook
+          (lambda ()
+            (add-hook 'write-contents-functions
+                      'check-parens)))
+
+(add-hook 'geiser-mode-hook
+          '(lambda ()
+             (add-hook 'write-contents-functions
+                       '(lambda()
+                          (save-excursion
+                            (delete-trailing-whitespace))))))
