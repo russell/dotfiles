@@ -7,3 +7,4 @@ emacs.d/el-get/
 /emacs.d/.project-roots
 /emacs.d/oauth2.plstore
 /emacs.d/url
+/emacs.d/session.*

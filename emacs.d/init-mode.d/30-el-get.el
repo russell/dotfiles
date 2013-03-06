@@ -379,18 +379,6 @@ variable. Automatically applies expand-file-name to `path`."
                :post-init (progn
                             (global-set-key "\M-y" 'popup-kill-ring)))
 
-        (:name smex
-               :description "M-x interface with Ido-style fuzzy matching."
-               :type git
-               :url "http://github.com/nonsequitur/smex.git"
-               :features smex
-               :post-init (progn
-                            (smex-initialize)
-                            (global-set-key (kbd "M-x") 'smex)
-                            (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-                            (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
-                            (global-set-key "\C-x\C-m" 'smex)))
-
         (:name active-menu
                :website "http://www.emacswiki.org/emacs/ActiveMenu"
                :description "Active Menu toggles the display of the menu bar automatically when the mouse comes close to it. Otherwise you get one more line of code."

@@ -1,6 +1,9 @@
 
 ;; Ipython dark color theme
 ;;(setq py-python-command-args '("-i" "--colors=Linux"))
+(eval-when-compile
+  (require 'cl)
+  (require 'auto-complete))
 
 (setq py-shell-name "python")
 (setq py-split-windows-on-execute-function 'split-window-horizontally)
