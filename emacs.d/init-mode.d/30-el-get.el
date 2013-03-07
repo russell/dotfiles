@@ -682,9 +682,10 @@ variable. Automatically applies expand-file-name to `path`."
                markdown-mode sticky-windows expand-region emacs-w3m
                paredit git-commit-mode ctags-update helm geiser bbdb
                bash-completion slime ac-slime erc idomenu diff-hl
-               twittering-mode yaml-mode find-file-in-project
+               twittering-mode yaml-mode find-file-in-project jedi
                erc-highlight-nicknames apache-mode nognus openstack-mode
                artbollocks-mode google-contacts highlight-sexp mailcrypt
                restclient-mode ace-jump-mode auto-capitalize mark-multiple
-               multiple-cursors puppet-flymake elisp-slime-nav lorem-ipsum ido-ubiquitous)))
+               multiple-cursors puppet-flymake elisp-slime-nav
+               lorem-ipsum ido-ubiquitous)))
 (el-get 'sync my-packages)
