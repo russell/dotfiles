@@ -5,13 +5,13 @@
 ;; common lisp mode hooks
 (mapc (lambda (mode)
         ;; force balanced parens on save
-        (add-hook 'slime-mode-hook
+        (add-hook 'mode
                   (lambda ()
                     (add-hook 'write-contents-functions
                               'check-parens)))
 
         ;; paredit mode
-        (add-hook 'slime-mode-hook 'paredit-mode))
+        (add-hook 'mode 'paredit-mode))
 
       '(slime-mode-hook emacs-lisp-mode-hook geiser-mode-hook))
 
