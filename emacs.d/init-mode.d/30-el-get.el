@@ -8,16 +8,6 @@
      (end-of-buffer)
      (eval-print-last-sexp))))
 
-
-(defun add-to-pythonpath (path)
-  "Adds a directory to the PYTHONPATH environment
-variable. Automatically applies expand-file-name to `path`."
-  (setenv "PYTHONPATH"
-          (concat (expand-file-name path) ":" (getenv "PYTHONPATH"))))
-
-;; pymacs
-(setq pymacs-reload nil) ; change nil to t to force a reload.
-
 (require 'package)
 (add-to-list 'package-archives
     '("marmalade" .
@@ -104,79 +94,6 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/myfreeweb/django-mode.git")
 
-        (:name pymacs
-               :type git
-               :url "http://github.com/pinard/Pymacs.git"
-               :features pymacs
-               :build ("make")
-               :post-init (progn
-                            (add-to-pythonpath (concat el-get-dir "pymacs"))
-                            (unless pymacs-load-path
-                              (setq pymacs-load-path (list (concat el-get-dir "pymacs"))))))
-
-        (:name rope
-               :type hg
-               :url "http://bitbucket.org/agr/rope/"
-               :depends (pymacs)
-               :after (progn
-                        (add-to-list 'pymacs-load-path
-                                     (concat el-get-dir "rope"))))
-
-        (:name ropemode
-               :type hg
-               :url "http://bitbucket.org/agr/ropemode/"
-               :depends (pymacs)
-               :after (progn
-                        (add-to-list 'pymacs-load-path
-                                     (concat el-get-dir "ropemode"))))
-
-        (:name ropemacs
-               :type hg
-               :url "http://bitbucket.org/agr/ropemacs/"
-               :depends (pymacs rope ropemode auto-complete)
-               :after (progn
-                        (add-to-list 'pymacs-load-path (concat el-get-dir "ropemacs"))
-                        (add-hook 'python-mode-hook
-                                  '(progn
-                                     (setq ropemacs-local-prefix "C-c C-p")
-
-                                     ;; Stops from erroring if there's a syntax err
-                                     (setq ropemacs-codeassist-maxfixes 3)
-                                     (setq ropemacs-guess-project t)
-                                     (setq ropemacs-enable-autoimport t)
-
-                                     (if (or pymacs-reload (not (boundp 'ropePymacs)))
-                                         (setq ropePymacs (pymacs-load "ropemacs" "rope-"))
-                                       (message "ropePymacs already loaded")
-                                       )
-
-                                     (require 'tramp-cmds) ;; required for list remote buffers
-                                     ;; Rope Mode - Only enable when editing local files
-                                     (when (not (subsetp (list (current-buffer))
-                                                         (tramp-list-remote-buffers)))
-                                       (ropemacs-mode 1)
-                                       (setq ropemacs-enable-autoimport t)
-                                       (with-project-root (rope-open-project
-                                                           (cdr project-details)))
-
-                                       (defun ac-ropemacs-candidates ()
-                                         (mapcar (lambda (completion)
-                                                   (concat ac-prefix completion))
-                                                 (rope-completions)))
-
-                                       (ac-define-source nropemacs
-                                         '((candidates . ac-ropemacs-candidates)
-                                           (symbol . "p")))
-
-                                       (ac-define-source nropemacs-dot
-                                         '((candidates . ac-ropemacs-candidates)
-                                           (symbol . "p")
-                                           (prefix . c-dot)
-                                           (requires . 0)))
-                                       (setq ac-sources (append '(ac-source-nropemacs
-                                                                  ac-source-nropemacs-dot) ac-sources))
-                                       )))))
-
         (:name pydoc-info
                :type hg
                :url "http://bitbucket.org/jonwaltman/pydoc-info/"
@@ -191,7 +108,6 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "git://github.com/emacsmirror/python-mode.git"
                :features (python-mode)
-               :depends pymacs
                :load-path ("." "completion")
                :compile nil
                :post-init (progn
@@ -314,6 +230,25 @@ variable. Automatically applies expand-file-name to `path`."
         (:name pycheckers
                :type hg
                :url "https://bitbucket.org/jek/sandbox")
+
+
+        (:name ctable
+               :description "Table Component for elisp"
+               :type github
+               :pkgname "kiwanami/emacs-ctable")
+
+        (:name epc
+               :description "An RPC stack for Emacs Lisp"
+               :type github
+               :pkgname "kiwanami/emacs-epc"
+               :depends (deferred ctable)) ; concurrent is in deferred package
+
+        (:name jedi
+               :description "An awesome Python auto-completion for Emacs"
+               :type github
+               :pkgname "tkf/emacs-jedi"
+               :build (("make" "requirements"))
+               :depends (epc auto-complete))
 
         (:name po-mode
                :type http
