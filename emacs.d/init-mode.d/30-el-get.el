@@ -18,6 +18,7 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
 (setq el-get-verbose t)
+(setq el-get-user-package-directory "~/.emacs.d/el-get-init/")
 (setq el-get-sources
 
       '((:name magit
@@ -335,18 +336,6 @@
                :features popup-kill-ring
                :post-init (progn
                             (global-set-key "\M-y" 'popup-kill-ring)))
-
-        (:name smex
-               :description "M-x interface with Ido-style fuzzy matching."
-               :type git
-               :url "http://github.com/nonsequitur/smex.git"
-               :features smex
-               :post-init (progn
-                            (smex-initialize)
-                            (global-set-key (kbd "M-x") 'smex)
-                            (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-                            (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
-                            (global-set-key "\C-x\C-m" 'smex)))
 
         (:name active-menu
                :website "http://www.emacswiki.org/emacs/ActiveMenu"
