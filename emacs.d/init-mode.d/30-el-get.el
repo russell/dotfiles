@@ -33,10 +33,10 @@ variable. Automatically applies expand-file-name to `path`."
       '((:name magit
                :after (progn (global-set-key (kbd "C-x C-z") 'magit-status)))
 
-        (:name git-gutter
+        (:name diff-hl
                :type git
-               :features git-gutter
-               :url "git://github.com/syohex/emacs-git-gutter.git")
+               :url "git://github.com/dgutov/diff-hl.git"
+               :features diff-hl)
 
         (:name project-root
                :type git
@@ -681,7 +681,7 @@ variable. Automatically applies expand-file-name to `path`."
                python-mode django-mode autopair magit puppet-mode
                markdown-mode sticky-windows expand-region emacs-w3m
                paredit git-commit-mode ctags-update helm geiser bbdb
-               bash-completion slime ac-slime erc idomenu git-gutter
+               bash-completion slime ac-slime erc idomenu
                twittering-mode yaml-mode find-file-in-project
                erc-highlight-nicknames apache-mode nognus openstack-mode
                artbollocks-mode google-contacts highlight-sexp mailcrypt
