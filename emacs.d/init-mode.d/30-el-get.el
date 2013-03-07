@@ -592,7 +592,7 @@
       (append
        '(cedet oauth2 nginx-mode elisp-slime-expand popup
                highlight-symbol highlight-parentheses eproject
-               mo-git-blame virtualenv flymake-point flymake-fringe-icons
+               virtualenv flymake-point flymake-fringe-icons
                js2-mode js-comint json fic-ext-mode dired+
                eol-conversion doxymacs dired-plus clevercss undo-tree
                auto-complete auto-complete-clang auctex active-menu
