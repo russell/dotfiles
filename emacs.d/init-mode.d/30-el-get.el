@@ -681,7 +681,7 @@ variable. Automatically applies expand-file-name to `path`."
                python-mode django-mode autopair magit puppet-mode
                markdown-mode sticky-windows expand-region emacs-w3m
                paredit git-commit-mode ctags-update helm geiser bbdb
-               bash-completion slime ac-slime erc idomenu
+               bash-completion slime ac-slime erc idomenu diff-hl
                twittering-mode yaml-mode find-file-in-project
                erc-highlight-nicknames apache-mode nognus openstack-mode
                artbollocks-mode google-contacts highlight-sexp mailcrypt
