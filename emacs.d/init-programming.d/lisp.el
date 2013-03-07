@@ -2,40 +2,38 @@
 ;; Lisp
 ;;
 
+;; common lisp mode hooks
+(mapc (lambda (mode)
+        ;; force balanced parens on save
+        (add-hook 'slime-mode-hook
+                  (lambda ()
+                    (add-hook 'write-contents-functions
+                              'check-parens)))
+
+        ;; paredit mode
+        (add-hook 'slime-mode-hook 'paredit-mode))
+
+      '(slime-mode-hook emacs-lisp-mode-hook geiser-mode-hook))
+
 
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
 
-(slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation slime-tramp slime-banner slime-compiler-notes-tree))
+(slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation
+                              slime-tramp slime-banner slime-compiler-notes-tree))
+
 ;;                              slime-proxy slime-parenscript))
+
 (setq slime-complete-symbol*-fancy t)
 (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
 ;; (add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-mode-hook
-          (lambda ()
-            (add-hook 'write-contents-functions
-                      '(lambda()
-                         (save-excursion
-                           (delete-trailing-whitespace))))))
-(add-hook 'slime-mode-hook
-          (lambda ()
-            (add-hook 'write-contents-functions
-                      'check-parens)))
-(add-hook 'slime-mode-hook
-          '(lambda ()
-             (paredit-mode)))
-(add-hook 'slime-mode-hook
-          '(lambda ()
-             (flyspell-prog-mode)))
-(add-hook 'slime-mode-hook
-          '(lambda ()
-             (highlight-symbol-mode)))
+
 ;; Auto-Complete
 (add-hook 'slime-mode-hook
           '(lambda ()
              (require 'ac-slime)
-             (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-slime-fuzzy))))
-
+             (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers
+                                                 ac-source-slime-fuzzy))))
 
 (defun slime-quickload (system &rest keyword-args)
   "Quickload System."
@@ -64,40 +62,17 @@
   (let ((origional-buffer (current-buffer)))
     (slime-eval-last-expression-in-repl prefix)
     (pop-to-buffer origional-buffer)))
+
 ;;
 ;; elisp
 ;;
 (add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (add-hook 'write-contents-functions
-                       '(lambda()
-                          (save-excursion
-                            (delete-trailing-whitespace))))))
-(add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (eldoc-mode)))
-
-;; could be bad, will not let you save at all, until you correct the error
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (add-hook 'write-contents-functions
-                      'check-parens)))
-
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (paredit-mode)))
-
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (highlight-symbol-mode)))
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (elisp-slime-nav-mode t)))
-
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (flyspell-prog-mode)))
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
@@ -122,28 +97,4 @@
 
 (add-hook 'geiser-mode-hook
           '(lambda ()
-             (paredit-mode)))
-
-(add-hook 'geiser-mode-hook
-          '(lambda ()
-             (highlight-symbol-mode)))
-
-(add-hook 'geiser-mode-hook
-          (lambda ()
-            (flyspell-prog-mode)))
-
-(add-hook 'geiser-mode-hook
-          '(lambda ()
              (define-key geiser-mode-map "\C-c\C-c" 'geiser-eval-definition)))
-
-(add-hook 'geiser-mode-hook
-          (lambda ()
-            (add-hook 'write-contents-functions
-                      'check-parens)))
-
-(add-hook 'geiser-mode-hook
-          '(lambda ()
-             (add-hook 'write-contents-functions
-                       '(lambda()
-                          (save-excursion
-                            (delete-trailing-whitespace))))))

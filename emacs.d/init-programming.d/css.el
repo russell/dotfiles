@@ -5,6 +5,7 @@
 		       '(lambda()
 			  (save-excursion
 			    (delete-trailing-whitespace))))))
+
 (add-hook 'css-mode-hook
 	  '(lambda ()
 	     (css-color-mode t)))

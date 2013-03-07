@@ -120,29 +120,13 @@
           '(lambda ()
              (setq indent-tabs-mode nil)))
 
-;; Flyspell Mode
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (flyspell-prog-mode)))
-
 ;; highlight indentation and symbols
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (highlight-indentation-on)
-             (highlight-symbol-mode 1)))
+(add-hook 'python-mode-hook 'highlight-indentation-on)
 
 ;; ;; autopair mode
 ;; (add-hook 'python-mode-hook
 ;;           '(lambda ()
 ;;              (autopair-mode)))
-
-;; Delete whitespace on save.
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (add-hook 'write-contents-functions
-                       '(lambda()
-                          (save-excursion
-                            (delete-trailing-whitespace))))))
 
 ;; Auto-Complete
 (add-hook 'python-mode-hook

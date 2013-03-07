@@ -40,11 +40,3 @@
           (lambda ()
             (make-local-variable 'indent-tabs-mode)
             (setq indent-tabs-mode nil)))
-
-;; Trim whitespace
-(add-hook 'puppet-mode-hook
-          (lambda ()
-            (add-hook 'write-contents-functions
-                      '(lambda()
-                         (save-excursion
-                           (delete-trailing-whitespace))))))

@@ -12,6 +12,5 @@
          (define-key c-mode-base-map [f9] 'insert-breakpoint)
          (define-key c-mode-base-map [f10] 'step-over)
          (define-key c-mode-base-map [f11] 'step-into)
-         (flyspell-prog-mode)
          ))
 (add-hook 'c-mode-common-hook 'lconfig-c-mode)
