@@ -39,25 +39,8 @@
                :description "The most intelligent auto-completion extension."
                :type git
                :depends (fuzzy)
-               :url "https://github.com/auto-complete/auto-complete"
-               :load-path "."
-               :post-init (progn
-                            (require 'auto-complete)
-                            (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
-                            (require 'auto-complete-config)
-                            (ac-config-default)
-
-                            ;; custom keybindings to use tab, enter and up and down arrows
-                            (define-key ac-complete-mode-map "\t" 'ac-expand)
-                            (define-key ac-complete-mode-map "\r" 'ac-complete)
-                            (define-key ac-complete-mode-map "\M-n" 'ac-next)
-                            (define-key ac-complete-mode-map "\M-p" 'ac-previous)
-
-                            ;; Live completion with auto-complete
-                            ;; (see http://cx4a.org/software/auto-complete/)
-                            (require 'auto-complete-config nil t)
-                            ;; Do What I Mean mode
-                            (setq ac-dwim t)))
+               :url "git://github.com/auto-complete/auto-complete.git"
+               :load-path ".")
 
         (:name fuzzy
                :type git
@@ -307,13 +290,6 @@
                :type git
                :url "git://github.com/magnars/mark-multiple.el.git")
 
-        (:name sr-speedbar
-               :features sr-speedbar
-               :depends (cedet)
-               :before (progn
-                         (require 'speedbar))
-               :type emacswiki)
-
         (:name sticky-windows
                :features sticky-windows
                :type emacswiki
@@ -335,6 +311,7 @@
                :depends (popup pos-tip)
                :features popup-kill-ring
                :post-init (progn
+                            (require 'popup)
                             (global-set-key "\M-y" 'popup-kill-ring)))
 
         (:name active-menu
@@ -407,6 +384,16 @@
                :url "https://github.com/mooz/js2-mode.git"
                :post-init (progn
                             (autoload 'js2-mode "js2-mode" nil t)))
+
+        (:name flymake-node-jshint
+               :type git
+               :description "Emacs library providing simple
+               flymake for JavaScript using JSHint through
+               node-jshint."
+               :url "git://github.com/jegbjerg/flymake-node-jshint.git"
+               :post-init (progn
+                            (require 'flymake-node-jshint)
+                            (add-hook 'js-mode-hook (lambda () (flymake-mode 1)))))
 
         (:name hideshow-org
                :features hideshow-org
@@ -600,7 +587,7 @@
                vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
                recover-buffers rainbow-delimiters org-mode
                rst-mode pylookup python-pep8 smex popup-kill-ring
-               sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
+               dirvars po-mode+ po-mode pycheckers redshank
                flymake-python hyperspec-info highlight-indentation python
                python-mode django-mode autopair magit puppet-mode
                markdown-mode sticky-windows expand-region emacs-w3m
