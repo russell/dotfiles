@@ -18,6 +18,9 @@
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
+;; jedi pop mark
+(define-key python-mode-map "\M-," 'pop-global-mark)
+
 ;; jedi
 (setq jedi:setup-keys t)
 (setq jedi:key-goto-definition (kbd "M-."))
@@ -167,7 +170,6 @@
                       :test 'string-equal))
     (virtualenv-workon (eproject-name))))
 
-(add-hook 'python-mode-hook 'virtualenv-guess-project)
 
 (defun python-custom-path ()
   ;; will be used at work where we have custom paths for some
@@ -175,6 +177,7 @@
   )
 
 (defun jedi-server-custom-setup ()
+  (virtualenv-guess-project)
   (let ((cmds (when (python-custom-path)
                 `("--sys-path" ,(python-custom-path))))
         (args (when virtualenv-name
