@@ -18,6 +18,10 @@
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
+;; jedi
+(setq jedi:setup-keys t)
+(setq jedi:key-goto-definition (kbd "M-."))
+
 
 (define-project-type python (generic)
   (and (look-for "setup.py")
@@ -155,18 +159,31 @@
 ;;
 ;; Virtual env
 ;;
-(setq virtualenv-workon-starts-python nil)
 
 (defun virtualenv-guess-project ()
   "Guess the current project."
-  (when (eproject-maybe-turn-on)
-    (when (virtualenv-filter (lambda (e) (equal e (eproject-name)))
-                             (virtualenv-workon-complete))
-      (prog1
-          (virtualenv-workon (eproject-name))
-        (virtualenv-update-mode-name)))))
+  (when (and (eproject-maybe-turn-on)
+             (member* (eproject-name) (virtualenv-workon-complete)
+                      :test 'string-equal))
+    (virtualenv-workon (eproject-name))))
 
 (add-hook 'python-mode-hook 'virtualenv-guess-project)
+
+(defun python-custom-path ()
+  ;; will be used at work where we have custom paths for some
+  ;; projects.
+  )
+
+(defun jedi-server-custom-setup ()
+  (let ((cmds (when (python-custom-path)
+                `("--sys-path" ,(python-custom-path))))
+        (args (when virtualenv-name
+                `("--virtual-env" ,(file-truename virtualenv-name)))))
+    (when cmds (set (make-local-variable 'jedi:server-command) cmds))
+    (when args (set (make-local-variable 'jedi:server-args) args)))
+  (jedi:setup))
+
+(add-hook 'python-mode-hook 'jedi-server-custom-setup)
 
 
 ;; XXX doesn't seem to work at the moment,  void variable project-details?
