@@ -131,9 +131,7 @@
 ;; Auto-Complete
 (add-hook 'python-mode-hook
           '(lambda ()
-             (setq ac-sources '(ac-source-abbrev
-                                ac-source-words-in-same-mode-buffers
-                                ;; ac-source-python
+             (setq ac-sources '(ac-source-jedi-direct
                                 ac-source-yasnippet))))
 
 ;; (add-hook 'python-mode-hook
