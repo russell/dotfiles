@@ -1,20 +1,19 @@
 
-;; Ipython dark color theme
-;;(setq py-python-command-args '("-i" "--colors=Linux"))
 (eval-when-compile
   (require 'cl)
   (require 'auto-complete))
 
-(setq py-shell-name "python")
-(setq py-split-windows-on-execute-function 'split-window-horizontally)
-(setq py-complete-function (quote py-shell-complete))
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-split-windows-on-execute-function (quote split-window-horizontally))
-(setq py-split-windows-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
-(setq python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n")
+(custom-set-variables
+ '(py-shell-name "python")
+ '(py-split-windows-on-execute-function 'split-window-horizontally)
+ '(py-complete-function (quote py-shell-complete))
+ '(py-switch-buffers-on-execute-p t)
+ '(py-split-windows-on-execute-function (quote split-window-horizontally))
+ '(py-split-windows-on-execute-p t)
+ '(py-switch-buffers-on-execute-p t)
+ '(python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n"))
 
-
+;; python-mode keys
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
