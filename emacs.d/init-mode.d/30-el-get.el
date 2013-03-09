@@ -535,10 +535,6 @@
                :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
                :features auto-capitalize)
 
-        (:name powerline
-               :type emacswiki
-               :features powerline)
-
         (:name puppet-mode
                :description "A simple mode for editing puppet manifests"
                :type git
