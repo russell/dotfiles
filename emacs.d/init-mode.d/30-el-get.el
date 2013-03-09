@@ -583,5 +583,5 @@
                artbollocks-mode google-contacts highlight-sexp mailcrypt
                restclient-mode ace-jump-mode auto-capitalize mark-multiple
                multiple-cursors puppet-flymake elisp-slime-nav
-               lorem-ipsum ido-ubiquitous)))
+               lorem-ipsum ido-ubiquitous auto-complete-emacs-lisp)))
 (el-get 'sync my-packages)
