@@ -13,4 +13,8 @@
 ;; (see http://cx4a.org/software/auto-complete/)
 (require 'auto-complete-config nil t)
 ;; Do What I Mean mode
-(setq ac-dwim t)
+
+(custom-set-variables
+ '(ac-trigger-key "TAB")
+ '(ac-use-menu-map t)
+ '(ac-dwim t))
