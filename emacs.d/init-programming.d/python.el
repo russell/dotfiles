@@ -22,9 +22,10 @@
 (define-key python-mode-map "\M-," 'pop-global-mark)
 
 ;; jedi
-(setq jedi:setup-keys t)
-(setq jedi:key-goto-definition (kbd "M-."))
-
+(custom-set-variables
+ '(jedi:setup-keys t)
+ '(jedi:key-goto-definition (kbd "M-."))
+ '(jedi:goto-follow t))
 
 (define-project-type python (generic)
   (and (look-for "setup.py")
