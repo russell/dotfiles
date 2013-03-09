@@ -177,7 +177,7 @@
   )
 
 (defun jedi-server-custom-setup ()
-  (virtualenv-guess-project)
+  (ignore-errors (virtualenv-guess-project))
   (let ((cmds (when (python-custom-path)
                 `("--sys-path" ,(python-custom-path))))
         (args (when virtualenv-name
