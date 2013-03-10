@@ -601,6 +601,7 @@
 
          ;; scheme
          geiser
+         sicp
 
          ;; puppet
          puppet-flymake
