@@ -685,4 +685,4 @@
          recover-buffers
          sticky-windows
          )))
-(el-get 'sync my-packages)
+(el-get nil my-packages)
