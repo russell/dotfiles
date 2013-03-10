@@ -1,8 +1,5 @@
 (require 'ffip)
-(setq ffip-project-root-function 'project-root-current-root)
-
-(defun project-root-current-root ()
-  (cdr project-details))
+(setq ffip-project-root-function 'eproject-root)
 
 (add-to-list 'ffip-project-file-types
   (list 'python (concat
