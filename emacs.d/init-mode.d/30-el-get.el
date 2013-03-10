@@ -384,10 +384,6 @@
                :type git
                :url "https://github.com/secelis/hideshow-org.git")
 
-        (:name find-file-in-project
-               :features find-file-in-project
-               :type elpa)
-
         (:name workgroups
                :description "Workgroups for windows (for Emacs)"
                :type git
@@ -559,87 +555,88 @@
       (append
        '(
          ;; C
+         auto-complete-clang
          cedet
          ctags-update
          xcscope
-         auto-complete-clang
 
          ;; elisp
+         auto-complete-emacs-lisp
          elisp-slime-expand
          elisp-slime-nav
-         auto-complete-emacs-lisp
 
          ;; internet
-         oauth2
          emacs-w3m
          nxhtml
+         oauth2
          restclient-mode
 
          ;; javascript
-         js2-mode
          js-comint
+         js2-mode
          json
 
          ;; python
-         rst-mode
-         pylookup
-         python-pep8
-         flymake-python
-         jedi
-         python
-         pycheckers
-         python-mode
          django-mode
+         flymake-python
          highlight-indentation
+         jedi
+         pycheckers
+         pylookup
+         python
+         python-mode
+         python-pep8
+         rst-mode
 
          ;; latex
          auctex
 
          ;; common lisp
-         paredit
-         slime
          ac-slime
-         redshank
          highlight-sexp
          hyperspec-info
+         paredit
+         redshank
+         slime
 
          ;; scheme
          geiser
 
          ;; puppet
-         puppet-mode
          puppet-flymake
+         puppet-mode
 
          ;; other modes
+         ace-jump-mode
+         android-mode
          apache-mode
-         nginx-mode
-         highlight-symbol
-         highlight-parentheses
-         rainbow-delimiters
+         artbollocks-mode
          auto-capitalize
          csv-mode
-         org-mode
-         markdown-mode
          fic-ext-mode
          git-commit-mode
-         po-mode+
+         highlight-parentheses
+         highlight-symbol
+         markdown-mode
+         nginx-mode
+         openstack-mode
+         org-mode
          po-mode
+         po-mode+
+         rainbow-delimiters
          twittering-mode
          yaml-mode
-         openstack-mode
-         artbollocks-mode
-         ace-jump-mode
 
          ;; gnus
-         nognus
-         google-contacts
          bbdb
+         google-contacts
          mailcrypt
+         nognus
 
          ;; ido
-         smex
-         idomenu
          ido-ubiquitous
+         idomenu
+         smex
 
          ;; erc
          erc
@@ -648,22 +645,21 @@
          ;; project tools
          dirvars
          eproject
-         find-file-in-project
 
          ;; shell
          bash-completion
 
          ;; editing tools
          autopair
+         bookmark+
+         diff-hl
+         expand-region
+         lorem-ipsum
+         magit
          mark-multiple
          multiple-cursors
-         expand-region
          popup-kill-ring
          undo-tree
-         magit
-         bookmark+
-         lorem-ipsum
-         diff-hl
          yasnippet
 
          ;; other tools
