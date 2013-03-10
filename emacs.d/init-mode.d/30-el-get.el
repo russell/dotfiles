@@ -645,6 +645,7 @@
          ;; project tools
          dirvars
          eproject
+         dizzee
 
          ;; shell
          bash-completion
