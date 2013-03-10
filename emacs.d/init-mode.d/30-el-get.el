@@ -29,16 +29,11 @@
                :url "git://github.com/dgutov/diff-hl.git"
                :features diff-hl)
 
-        (:name project-root
-               :type git
-               :url "https://github.com/emacsmirror/project-root.git"
-               :features project-root)
-
         (:name auto-complete
                :website "http://cx4a.org/software/auto-complete/"
                :description "The most intelligent auto-completion extension."
                :type git
-               :depends (fuzzy)
+               :depends (fuzzy popup)
                :url "git://github.com/auto-complete/auto-complete.git"
                :load-path ".")
 
@@ -562,26 +557,132 @@
 
 (setq my-packages
       (append
-       '(cedet oauth2 nginx-mode elisp-slime-expand popup
-               highlight-symbol highlight-parentheses eproject
-               flymake-point flymake-fringe-icons
-               js2-mode js-comint json fic-ext-mode dired+
-               eol-conversion doxymacs dired-plus clevercss undo-tree
-               auto-complete auto-complete-clang auctex active-menu
-               fringe-helper csv-mode apel el-get cssh
-               vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
-               recover-buffers rainbow-delimiters org-mode
-               rst-mode pylookup python-pep8 smex popup-kill-ring
-               dirvars po-mode+ po-mode pycheckers redshank
-               flymake-python hyperspec-info highlight-indentation python
-               python-mode django-mode autopair magit puppet-mode
-               markdown-mode sticky-windows expand-region emacs-w3m
-               paredit git-commit-mode ctags-update helm geiser bbdb
-               bash-completion slime ac-slime erc idomenu diff-hl
-               twittering-mode yaml-mode find-file-in-project jedi
-               erc-highlight-nicknames apache-mode nognus openstack-mode
-               artbollocks-mode google-contacts highlight-sexp mailcrypt
-               restclient-mode ace-jump-mode auto-capitalize mark-multiple
-               multiple-cursors puppet-flymake elisp-slime-nav
-               lorem-ipsum ido-ubiquitous auto-complete-emacs-lisp)))
+       '(
+         ;; C
+         cedet
+         ctags-update
+         xcscope
+         auto-complete-clang
+
+         ;; elisp
+         elisp-slime-expand
+         elisp-slime-nav
+         auto-complete-emacs-lisp
+
+         ;; internet
+         oauth2
+         emacs-w3m
+         nxhtml
+         restclient-mode
+
+         ;; javascript
+         js2-mode
+         js-comint
+         json
+
+         ;; python
+         rst-mode
+         pylookup
+         python-pep8
+         flymake-python
+         jedi
+         python
+         pycheckers
+         python-mode
+         django-mode
+         highlight-indentation
+
+         ;; latex
+         auctex
+
+         ;; common lisp
+         paredit
+         slime
+         ac-slime
+         redshank
+         highlight-sexp
+         hyperspec-info
+
+         ;; scheme
+         geiser
+
+         ;; puppet
+         puppet-mode
+         puppet-flymake
+
+         ;; other modes
+         apache-mode
+         nginx-mode
+         highlight-symbol
+         highlight-parentheses
+         rainbow-delimiters
+         auto-capitalize
+         csv-mode
+         org-mode
+         markdown-mode
+         fic-ext-mode
+         git-commit-mode
+         po-mode+
+         po-mode
+         twittering-mode
+         yaml-mode
+         openstack-mode
+         artbollocks-mode
+         ace-jump-mode
+
+         ;; gnus
+         nognus
+         google-contacts
+         bbdb
+         mailcrypt
+
+         ;; ido
+         smex
+         idomenu
+         ido-ubiquitous
+
+         ;; erc
+         erc
+         erc-highlight-nicknames
+
+         ;; project tools
+         dirvars
+         eproject
+         find-file-in-project
+
+         ;; shell
+         bash-completion
+
+         ;; editing tools
+         autopair
+         mark-multiple
+         multiple-cursors
+         expand-region
+         popup-kill-ring
+         undo-tree
+         magit
+         bookmark+
+         lorem-ipsum
+         diff-hl
+         yasnippet
+
+         ;; other tools
+         vkill
+
+         ;; lookup libraries
+         auto-complete
+         helm
+         popup
+
+         ;; libraries
+         apel
+         dired+
+         dired-plus
+         el-get
+         eol-conversion
+         flymake-point
+         google-maps
+         recover-buffers
+         sticky-windows
+         )))
 (el-get 'sync my-packages)
