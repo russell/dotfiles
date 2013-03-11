@@ -185,7 +185,7 @@
 
 (defun jedi-server-custom-setup ()
   (virtualenv-guess-project)
-  (let* ((args (list "--log-level" "INFO" "--log" "/tmp/jedi.log")))
+  (let* (args)
     (when virtualenv-name (setq args (append args `("--virtual-env" ,(file-truename virtualenv-name)))))
     (when (python-custom-path) (setq args (append args (python-custom-path))))
     (when args (set (make-local-variable 'jedi:server-args) args)))
