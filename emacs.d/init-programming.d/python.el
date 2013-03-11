@@ -1,20 +1,19 @@
 
-;; Ipython dark color theme
-;;(setq py-python-command-args '("-i" "--colors=Linux"))
 (eval-when-compile
   (require 'cl)
   (require 'auto-complete))
 
-(setq py-shell-name "python")
-(setq py-split-windows-on-execute-function 'split-window-horizontally)
-(setq py-complete-function (quote py-shell-complete))
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-split-windows-on-execute-function (quote split-window-horizontally))
-(setq py-split-windows-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
-(setq python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n")
+(custom-set-variables
+ '(py-shell-name "python")
+ '(py-split-windows-on-execute-function 'split-window-horizontally)
+ '(py-complete-function (quote py-shell-complete))
+ '(py-switch-buffers-on-execute-p t)
+ '(py-split-windows-on-execute-function (quote split-window-horizontally))
+ '(py-split-windows-on-execute-p t)
+ '(py-switch-buffers-on-execute-p t)
+ '(python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n"))
 
-
+;; python-mode keys
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
@@ -22,9 +21,10 @@
 (define-key python-mode-map "\M-," 'pop-global-mark)
 
 ;; jedi
-(setq jedi:setup-keys t)
-(setq jedi:key-goto-definition (kbd "M-."))
-
+(custom-set-variables
+ '(jedi:setup-keys t)
+ '(jedi:key-goto-definition (kbd "M-."))
+ '(jedi:goto-follow t))
 
 (define-project-type python (generic)
   (and (look-for "setup.py")
@@ -184,7 +184,7 @@
   )
 
 (defun jedi-server-custom-setup ()
-  (virtualenv-guess-project)
+  (ignore-errors (virtualenv-guess-project))
   (let* (args)
     (when virtualenv-name (setq args (append args `("--virtual-env" ,(file-truename virtualenv-name)))))
     (when (python-custom-path) (setq args (append args (python-custom-path))))
@@ -193,6 +193,15 @@
 
 (add-hook 'python-mode-hook 'jedi-server-custom-setup)
 
+(defun jedi:ac-direct-matches ()
+  (mapcar
+   (lambda (x)
+     (destructuring-bind (&key word doc description symbol)
+         x
+       (popup-make-item word
+                        :symbol symbol
+                        :document (unless (equal doc "") doc))))
+   jedi:complete-reply))
 
 ;; XXX doesn't seem to work at the moment,  void variable project-details?
 ;; FFIP
@@ -282,35 +291,6 @@
                   (set (make-local-variable 'compile-command)
                        (concat default-directory "bin/dftrial " buffer-file-name)))))))
 
-(defun py-shell-manage-windows (switch py-split-windows-on-execute-p py-switch-buffers-on-execute-p oldbuf py-buffer-name)
-  (cond (;; split and switch
-         (unless (eq switch 'noswitch)
-           (and py-split-windows-on-execute-p
-                (or (eq switch 'switch)
-                    py-switch-buffers-on-execute-p)))
-         (if (< (count-windows) py-max-split-windows)
-           (funcall py-split-windows-on-execute-function)
-           (switch-to-buffer-other-window py-buffer-name)))
-        ;; split, not switch
-        ((and py-split-windows-on-execute-p
-              (or (eq switch 'noswitch)
-                  (not (eq switch 'switch))))
-         (if (< (count-windows) py-max-split-windows)
-             (progn
-               (funcall py-split-windows-on-execute-function)
-               (display-buffer py-buffer-name))
-           (display-buffer py-buffer-name 'display-buffer-reuse-window)))
-        ;; no split, switch
-        ((or (eq switch 'switch)
-             (and (not (eq switch 'noswitch))
-                  py-switch-buffers-on-execute-p))
-         (pop-to-buffer py-buffer-name)
-         (goto-char (point-max)))
-        ;; no split, no switch
-        ((or (eq switch 'noswitch)
-             (not py-switch-buffers-on-execute-p))
-         (set-buffer oldbuf)
-         (switch-to-buffer (current-buffer)))))
 
 (defun copy-break-point ()
   (interactive)

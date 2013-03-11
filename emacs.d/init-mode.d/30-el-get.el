@@ -29,16 +29,11 @@
                :url "git://github.com/dgutov/diff-hl.git"
                :features diff-hl)
 
-        (:name project-root
-               :type git
-               :url "https://github.com/emacsmirror/project-root.git"
-               :features project-root)
-
         (:name auto-complete
                :website "http://cx4a.org/software/auto-complete/"
                :description "The most intelligent auto-completion extension."
                :type git
-               :depends (fuzzy)
+               :depends (fuzzy popup)
                :url "git://github.com/auto-complete/auto-complete.git"
                :load-path ".")
 
@@ -87,17 +82,6 @@
                :type git
                :url "git://github.com/fgallina/python.el.git"
                :features (python))
-
-        (:name python-mode
-               :type git
-               :url "git://github.com/emacsmirror/python-mode.git"
-               :features (python-mode)
-               :load-path ("." "completion")
-               :compile nil
-               :post-init (progn
-                            (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-                            (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-                            (autoload 'python-mode "python-mode" "Python editing mode." t)))
 
         (:name ipython
                :depends (python-mode))
@@ -400,10 +384,6 @@
                :type git
                :url "https://github.com/secelis/hideshow-org.git")
 
-        (:name find-file-in-project
-               :features find-file-in-project
-               :type elpa)
-
         (:name workgroups
                :description "Workgroups for windows (for Emacs)"
                :type git
@@ -546,10 +526,6 @@
                :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
                :features auto-capitalize)
 
-        (:name powerline
-               :type emacswiki
-               :features powerline)
-
         (:name puppet-mode
                :description "A simple mode for editing puppet manifests"
                :type git
@@ -577,26 +553,134 @@
 
 (setq my-packages
       (append
-       '(cedet oauth2 nginx-mode elisp-slime-expand popup
-               highlight-symbol highlight-parentheses eproject
-               flymake-point flymake-fringe-icons
-               js2-mode js-comint json fic-ext-mode dired+
-               eol-conversion doxymacs dired-plus clevercss undo-tree
-               auto-complete auto-complete-clang auctex active-menu
-               fringe-helper csv-mode apel el-get cssh
-               vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
-               recover-buffers rainbow-delimiters org-mode
-               rst-mode pylookup python-pep8 smex popup-kill-ring
-               dirvars po-mode+ po-mode pycheckers redshank
-               flymake-python hyperspec-info highlight-indentation python
-               python-mode django-mode autopair magit puppet-mode
-               markdown-mode sticky-windows expand-region emacs-w3m
-               paredit git-commit-mode ctags-update helm geiser bbdb
-               bash-completion slime ac-slime erc idomenu diff-hl
-               twittering-mode yaml-mode find-file-in-project jedi
-               erc-highlight-nicknames apache-mode nognus openstack-mode
-               artbollocks-mode google-contacts highlight-sexp mailcrypt
-               restclient-mode ace-jump-mode auto-capitalize mark-multiple
-               multiple-cursors puppet-flymake elisp-slime-nav
-               lorem-ipsum ido-ubiquitous)))
-(el-get 'sync my-packages)
+       '(
+         ;; C
+         auto-complete-clang
+         cedet
+         ctags-update
+         xcscope
+
+         ;; elisp
+         auto-complete-emacs-lisp
+         elisp-slime-expand
+         elisp-slime-nav
+
+         ;; internet
+         emacs-w3m
+         nxhtml
+         oauth2
+         restclient-mode
+
+         ;; javascript
+         js-comint
+         js2-mode
+         json
+
+         ;; python
+         django-mode
+         flymake-python
+         highlight-indentation
+         jedi
+         pycheckers
+         pylookup
+         python
+         python-mode
+         python-pep8
+         rst-mode
+
+         ;; latex
+         auctex
+
+         ;; common lisp
+         ac-slime
+         highlight-sexp
+         hyperspec-info
+         paredit
+         redshank
+         slime
+
+         ;; scheme
+         geiser
+         sicp
+
+         ;; puppet
+         puppet-flymake
+         puppet-mode
+
+         ;; other modes
+         ace-jump-mode
+         android-mode
+         apache-mode
+         artbollocks-mode
+         auto-capitalize
+         csv-mode
+         fic-ext-mode
+         git-commit-mode
+         highlight-parentheses
+         highlight-symbol
+         markdown-mode
+         nginx-mode
+         openstack-mode
+         org-mode
+         po-mode
+         po-mode+
+         rainbow-delimiters
+         twittering-mode
+         yaml-mode
+
+         ;; gnus
+         bbdb
+         google-contacts
+         mailcrypt
+         nognus
+
+         ;; ido
+         ido-ubiquitous
+         idomenu
+         smex
+
+         ;; erc
+         erc
+         erc-highlight-nicknames
+
+         ;; project tools
+         dirvars
+         eproject
+         dizzee
+
+         ;; shell
+         bash-completion
+
+         ;; editing tools
+         autopair
+         bookmark+
+         diff-hl
+         expand-region
+         lorem-ipsum
+         magit
+         mark-multiple
+         multiple-cursors
+         popup-kill-ring
+         undo-tree
+         yasnippet
+
+         ;; other tools
+         vkill
+
+         ;; lookup libraries
+         auto-complete
+         helm
+         popup
+
+         ;; libraries
+         apel
+         dired+
+         dired-plus
+         el-get
+         eol-conversion
+         flymake-point
+         google-maps
+         recover-buffers
+         sticky-windows
+         )))
+(el-get nil my-packages)
