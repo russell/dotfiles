@@ -174,15 +174,20 @@
 (defun python-custom-path ()
   ;; will be used at work where we have custom paths for some
   ;; projects.
+  (cond
+   ((equal (eproject-name) "df")
+    (list
+     "--sys-path" (file-truename (concat (eproject-root) "df"))
+     "--sys-path" (file-truename (concat (eproject-root) "befit"))
+     "--sys-path" (file-truename (concat (eproject-root) "dfplugins"))
+     "--sys-path" (file-truename (concat (eproject-root) "new_wang/app")))))
   )
 
 (defun jedi-server-custom-setup ()
   (virtualenv-guess-project)
-  (let ((cmds (when (python-custom-path)
-                `("--sys-path" ,(python-custom-path))))
-        (args (when virtualenv-name
-                `("--virtual-env" ,(file-truename virtualenv-name)))))
-    (when cmds (set (make-local-variable 'jedi:server-command) cmds))
+  (let* ((args (list "--log-level" "INFO" "--log" "/tmp/jedi.log")))
+    (when virtualenv-name (setq args (append args `("--virtual-env" ,(file-truename virtualenv-name)))))
+    (when (python-custom-path) (setq args (append args (python-custom-path))))
     (when args (set (make-local-variable 'jedi:server-args) args)))
   (jedi:setup))
 
