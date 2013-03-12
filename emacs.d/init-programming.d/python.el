@@ -24,6 +24,7 @@
 (custom-set-variables
  '(jedi:setup-keys t)
  '(jedi:key-goto-definition (kbd "M-."))
+ '(jedi:key-complete (kbd ""))
  '(jedi:goto-follow t))
 
 (define-project-type python (generic)
