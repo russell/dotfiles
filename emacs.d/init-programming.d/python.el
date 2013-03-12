@@ -178,7 +178,7 @@
   (cond
    ((equal (eproject-name) "df")
     (list
-     "--sys-path" (file-truename (concat (eproject-root) "df"))
+     "--sys-path" (file-truename (eproject-root))
      "--sys-path" (file-truename (concat (eproject-root) "befit"))
      "--sys-path" (file-truename (concat (eproject-root) "dfplugins"))
      "--sys-path" (file-truename (concat (eproject-root) "new_wang/app")))))
