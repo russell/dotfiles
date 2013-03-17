@@ -11,6 +11,7 @@
  '(py-split-windows-on-execute-function (quote split-window-horizontally))
  '(py-split-windows-on-execute-p t)
  '(py-switch-buffers-on-execute-p t)
+ '(py-tab-shifts-region-p t)
  '(python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n"))
 
 ;; python-mode keys
