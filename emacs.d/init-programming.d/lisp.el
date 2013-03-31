@@ -56,6 +56,8 @@
 ;; (add-hook 'inferior-lisp-mode-hook
 ;;           (lambda ()
 ;;             (auto-complete-mode 1)))
+(add-hook 'slime-repl-mode 'paredit-mode)
+
 
 (defun slime-eval-last-expression-in-repl1 (prefix)
   (interactive "P")
@@ -66,30 +68,22 @@
 ;;
 ;; elisp
 ;;
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (eldoc-mode)))
+(add-hook 'emacs-lisp-mode-hook  'eldoc-mode)
 
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (elisp-slime-nav-mode t)))
+(add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)
              (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
 
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (elisp-slime-expand-mode t)))
+(add-hook 'emacs-lisp-mode-hook 'elisp-slime-expand-mode)
 
 ;;
 ;; ielm mode
 ;;
-(add-hook 'ielm-mode-hook
-          (lambda ()
-            (eldoc-mode)))
-
+(add-hook 'ielm-mode-hook 'eldoc-mode)
+(add-hook 'ielm-mode-hook 'paredit-mode)
 
 ;;
 ;; scheme
@@ -98,3 +92,4 @@
 (add-hook 'geiser-mode-hook
           '(lambda ()
              (define-key geiser-mode-map "\C-c\C-c" 'geiser-eval-definition)))
+(add-hook 'geiser-mode-hook 'paredit-mode)
