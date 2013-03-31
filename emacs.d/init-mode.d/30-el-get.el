@@ -555,13 +555,11 @@
       (append
        '(
          ;; C
-         auto-complete-clang
          cedet
          ctags-update
          xcscope
 
          ;; elisp
-         auto-complete-emacs-lisp
          elisp-slime-expand
          elisp-slime-nav
 
@@ -660,7 +658,6 @@
          magit
          mark-multiple
          multiple-cursors
-         popup-kill-ring
          undo-tree
          yasnippet
 
@@ -668,7 +665,6 @@
          vkill
 
          ;; lookup libraries
-         auto-complete
          helm
          popup
 

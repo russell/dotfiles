@@ -1,7 +1,6 @@
 
 (eval-when-compile
-  (require 'cl)
-  (require 'auto-complete))
+  (require 'cl))
 
 (custom-set-variables
  '(py-shell-name "python")
@@ -136,12 +135,6 @@
 ;; (add-hook 'python-mode-hook
 ;;           '(lambda ()
 ;;              (autopair-mode)))
-
-;; Auto-Complete
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq ac-sources '(ac-source-jedi-direct
-                                ac-source-yasnippet))))
 
 ;; (add-hook 'python-mode-hook
 ;;           #'(lambda ()

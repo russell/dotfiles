@@ -26,15 +26,6 @@
 (setq slime-complete-symbol*-fancy t)
 (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
-;; (add-hook 'slime-mode-hook 'set-up-slime-ac)
-
-;; Auto-Complete
-(add-hook 'slime-mode-hook
-          '(lambda ()
-             (require 'ac-slime)
-             (setq ac-sources '(ac-source-abbrev ac-source-words-in-same-mode-buffers
-                                                 ac-source-slime-fuzzy))))
-
 (defun slime-quickload (system &rest keyword-args)
   "Quickload System."
   (slime-save-some-lisp-buffers)
