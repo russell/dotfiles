@@ -81,14 +81,14 @@
 ;;
 ;; elisp
 ;;
-(add-hook 'emacs-lisp-mode-hook  'eldoc-mode)
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)
-             (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
+(eval-after-load "lisp-mode"
+  '(progn
+    (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)
+    (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-expand-mode)
 
@@ -101,8 +101,8 @@
 ;;
 ;; scheme
 ;;
+(eval-after-load "geiser-mode"
+  '(progn
+    (define-key geiser-mode-map "\C-c\C-c" 'geiser-eval-definition)))
 
-(add-hook 'geiser-mode-hook
-          '(lambda ()
-             (define-key geiser-mode-map "\C-c\C-c" 'geiser-eval-definition)))
 (add-hook 'geiser-mode-hook 'paredit-mode)
