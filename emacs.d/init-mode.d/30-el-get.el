@@ -29,6 +29,16 @@
                :url "git://github.com/dgutov/diff-hl.git"
                :features diff-hl)
 
+        (:name company-mode
+               :type git
+               :url "git://github.com/company-mode/company-mode.git"
+               :features company)
+
+        (:name slime-company
+               :type git
+               :url "git://github.com/emacsmirror/slime-company.git"
+               :features slime-company)
+
         (:name auto-complete
                :website "http://cx4a.org/software/auto-complete/"
                :description "The most intelligent auto-completion extension."
@@ -665,8 +675,8 @@
          vkill
 
          ;; lookup libraries
+         company-mode
          helm
-         popup
 
          ;; libraries
          apel

@@ -19,12 +19,9 @@
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
 
 (slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation
-                              slime-tramp slime-banner slime-compiler-notes-tree))
-
-;;                              slime-proxy slime-parenscript))
-
-(setq slime-complete-symbol*-fancy t)
-(setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
+                              slime-tramp slime-banner slime-compiler-notes-tree
+                              slime-company))
+(setq slime-complete-symbol-function 'company-complete)
 
 (defun slime-quickload (system &rest keyword-args)
   "Quickload System."
@@ -66,9 +63,6 @@
 ;; paren script
 (setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
 
-;; (add-hook 'inferior-lisp-mode-hook
-;;           (lambda ()
-;;             (auto-complete-mode 1)))
 (add-hook 'slime-repl-mode 'paredit-mode)
 
 
