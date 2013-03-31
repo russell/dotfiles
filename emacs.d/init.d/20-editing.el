@@ -20,6 +20,15 @@
 ;; camel case navgation
 (global-subword-mode t)
 
+;; electric pair mode
+(electric-pair-mode t)
+
+;; electric layout mode
+(electric-layout-mode t)
+
+;; electric indent mode
+(electric-indent-mode t)
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
