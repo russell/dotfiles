@@ -41,7 +41,29 @@
               (slime-quickload (slime-read-system-name))))
   (:one-liner "Compile (as needed) and load an ASDF system."))
 
+(defslime-repl-shortcut slime-max-debug ("max-debug")
+  (:handler
+   (lambda ()
+     (interactive)
+     (insert "(declaim (optimize (debug 3) (speed 0) (safety 3) (compilation-speed 0)))")
+     (slime-repl-send-input)))
+  (:one-liner "Declaim max debug properties"))
 
+(defslime-repl-shortcut slime-max-speed ("max-speed")
+  (:handler (lambda ()
+              (interactive)
+              (insert "(declaim (optimize (debug 0) (speed 3) (safety 0) (compilation-speed 0)))")
+              (slime-repl-send-input)))
+  (:one-liner "Declaim max speed optimisation properties"))
+
+(defslime-repl-shortcut slime-max-sanity ("max-sanity")
+  (:handler (lambda ()
+              (interactive)
+              (insert "(declaim (optimize (debug 2) (speed 2) (safety 2) (compilation-speed 2)))")
+              (slime-repl-send-input)))
+  (:one-liner "Declaim sane optimisation properties"))
+
+;; paren script
 (setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
 
 ;; (add-hook 'inferior-lisp-mode-hook
