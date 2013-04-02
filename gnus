@@ -144,7 +144,7 @@ See (info \"(gnus)Group Line Specification\")."
 (setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")
       gnus-sync-newsrc-groups '("nntp" "nnrss")
       gnus-sync-lesync-install-topics 't)
-(gnus-sync-initialize)
+;; (gnus-sync-initialize)
 
 ;; Mailing list support
 (setq message-subscribed-address-functions
