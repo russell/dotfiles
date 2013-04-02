@@ -326,6 +326,11 @@
                :features "ldap-mode"
                :url "http://www.loveshack.ukfsn.org/emacs/ldap-mode.el")
 
+        (:name gnus-desktop-notify
+               :type http
+               :features gnus-desktop-notify
+               :url "http://www.thregr.org/~wavexx/hacks/gnus-desktop-notify/gnus-desktop-notify.el")
+
         (:name breadcrumb
                :website "http://breadcrumbemacs.sourceforge.net/"
                :description "Breadcrumb is an add-on module for Emacs that allows you to set a series of quick bookmarks in the file buffers, and jump back to them quickly."
@@ -486,6 +491,10 @@
                :features openstack-mode
                :url "git@github.com:russell/openstack-mode.git")
 
+        (:name erc-nick-notify
+               :type emacswiki
+               :features erc-nick-notify)
+
         (:name pyel
                :type git
                :features pyel
@@ -640,6 +649,7 @@
          google-contacts
          mailcrypt
          nognus
+         gnus-desktop-notify
 
          ;; ido
          ido-ubiquitous
@@ -649,6 +659,7 @@
          ;; erc
          erc
          erc-highlight-nicknames
+         erc-nick-notify
 
          ;; project tools
          dirvars
