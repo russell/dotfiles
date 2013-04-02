@@ -249,6 +249,9 @@ See (info \"(gnus)Group Line Specification\")."
         (gnus-catchup-mark (from -1) (subject -1))))
 (setq gnus-use-adaptive-scoring '(word line))
 
+(add-hook 'message-sent-hook 'gnus-score-followup-article)
+(add-hook 'message-sent-hook 'gnus-score-followup-thread)
+
 (setq plstore-cache-passphrase-for-symmetric-encryption t)
 
 ;;
