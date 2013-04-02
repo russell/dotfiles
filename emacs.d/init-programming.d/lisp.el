@@ -19,9 +19,8 @@
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
 
 (slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation
-                              slime-tramp slime-banner slime-compiler-notes-tree
-                              slime-company))
-(setq slime-complete-symbol-function 'company-complete)
+                              slime-tramp slime-banner slime-compiler-notes-tree))
+;; (setq slime-complete-symbol-function 'company-complete)
 
 (defun slime-quickload (system &rest keyword-args)
   "Quickload System."
