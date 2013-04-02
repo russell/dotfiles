@@ -131,8 +131,6 @@ See (info \"(gnus)Group Line Specification\")."
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
 
 (require 'gnus-gravatar)
-(require 'google-contacts-gnus)
-(require 'google-contacts-message)
 
 (require 'gnus-sync)
 (setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")

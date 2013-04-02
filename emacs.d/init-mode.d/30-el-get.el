@@ -395,7 +395,7 @@
                             ))
 
         (:name google-contacts
-               :features (google-contacts google-contacts-gnus google-contacts-message)
+               :features google-contacts
                :depends oauth2
                :type git
                :url "git://git.naquadah.org/google-contacts.el.git")
