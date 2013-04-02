@@ -29,6 +29,16 @@
                :url "git://github.com/dgutov/diff-hl.git"
                :features diff-hl)
 
+        (:name company-mode
+               :type git
+               :url "git://github.com/company-mode/company-mode.git"
+               :features company)
+
+        (:name slime-company
+               :type git
+               :url "git://github.com/emacsmirror/slime-company.git"
+               :features slime-company)
+
         (:name auto-complete
                :website "http://cx4a.org/software/auto-complete/"
                :description "The most intelligent auto-completion extension."
@@ -568,13 +578,11 @@
       (append
        '(
          ;; C
-         auto-complete-clang
          cedet
          ctags-update
          xcscope
 
          ;; elisp
-         auto-complete-emacs-lisp
          elisp-slime-expand
          elisp-slime-nav
 
@@ -678,7 +686,6 @@
          magit
          mark-multiple
          multiple-cursors
-         popup-kill-ring
          undo-tree
          yasnippet
 
@@ -688,7 +695,6 @@
          ;; lookup libraries
          auto-complete
          helm
-         popup
 
          ;; libraries
          apel

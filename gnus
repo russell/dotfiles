@@ -109,10 +109,16 @@ See (info \"(gnus)Group Line Specification\")."
 (setq gnus-face-9 'font-lock-warning-face)
 (setq gnus-face-10 'shadow)
 (setq gnus-summary-line-format
-        (concat
-         "%0{%U%R%z%}" "%10{|%}" "%1{%d%}" "%10{|%}"
-         "%9{%u&@;%}" "%(%-15,15f %)" "%10{│%}" "%4k" "%10{|%}"
-         "%2u&score;" "%10{|%}" "%10{%B%}" "%s\n"))
+      (concat
+       "%0{%U%R%z%}"
+       "%3{│%}" "%1{%d%}" "%3{│%}" ;; date
+       "  "
+       "%4{%-20,20f%}"               ;; name
+       "  "
+       "%3{│%}"
+       " "
+       "%1{%B%}"
+       "%s\n"))
 (setq gnus-summary-display-arrow t)
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
@@ -136,7 +142,7 @@ See (info \"(gnus)Group Line Specification\")."
 (setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")
       gnus-sync-newsrc-groups '("nntp" "nnrss")
       gnus-sync-lesync-install-topics 't)
-(gnus-sync-initialize)
+;; (gnus-sync-initialize)
 
 ;; Mailing list support
 (setq message-subscribed-address-functions
@@ -240,6 +246,9 @@ See (info \"(gnus)Group Line Specification\")."
         (gnus-low-score-mark)
         (gnus-catchup-mark (from -1) (subject -1))))
 (setq gnus-use-adaptive-scoring '(word line))
+
+(add-hook 'message-sent-hook 'gnus-score-followup-article)
+(add-hook 'message-sent-hook 'gnus-score-followup-thread)
 
 (setq plstore-cache-passphrase-for-symmetric-encryption t)
 

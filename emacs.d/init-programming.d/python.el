@@ -1,7 +1,6 @@
 
 (eval-when-compile
-  (require 'cl)
-  (require 'auto-complete))
+  (require 'cl))
 
 (custom-set-variables
  '(py-shell-name "python")
@@ -38,77 +37,6 @@
   (look-for "setup.py")
   :irrelevant-files ("^[.]" "^[#]"))
 
-;; Autofill inside of comments
-(defun python-auto-fill-comments-only ()
-  (auto-fill-mode 1)
-  (set (make-local-variable 'fill-nobreak-predicate)
-       (lambda ()
-         (not (python-in-string/comment)))))
-
-(defun lconfig-python-mode ()
-  (progn
-    ;; (define-key python-mode-map [(meta q)] 'py-fill-paragraph)
-    (defun ac-python-find ()
-      "Python `ac-find-function'."
-      (require 'thingatpt)
-      (let ((symbol (car-safe (bounds-of-thing-at-point 'symbol))))
-        (if (null symbol)
-            (if (string= "." (buffer-substring (- (point) 1) (point)))
-                (point)
-              nil)
-          symbol)))
-
-    (defun ac-python-candidate ()
-      "Python `ac-candidates-function'"
-      (let (candidates)
-        (dolist (source ac-sources)
-          (if (symbolp source)
-              (setq source (symbol-value source)))
-          (let* ((ac-limit (or (cdr-safe (assq 'limit source)) ac-limit))
-                 (requires (cdr-safe (assq 'requires source)))
-                 cand)
-            (if (or (null requires)
-                    (>= (length ac-target) requires))
-                (setq cand
-                      (delq nil
-                            (mapcar (lambda (candidate)
-                                      (propertize candidate 'source source))
-                                    (funcall (cdr (assq 'candidates source)))))))
-            (if (and (> ac-limit 1)
-                     (> (length cand) ac-limit))
-                (setcdr (nthcdr (1- ac-limit) cand) nil))
-            (setq candidates (append candidates cand))))
-        (delete-dups candidates)))
-
-    ;;(ac-set-trigger-key "TAB")
-    ;;(setq ac-sources '(ac-source-rope ac-source-yasnippet))
-    (set (make-local-variable 'ac-find-function) 'ac-python-find)
-    (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
-    ))
-;;(add-hook 'python-mode-hook 'lconfig-python-mode)
-
-(defun ac-python-candidates ()
-  (let* (py-split-windows-on-execute-p
-         py-switch-buffers-on-execute-p
-         (shell (py-choose-shell))
-         (proc (or (get-buffer-process shell)
-                   (get-buffer-process (py-shell nil nil shell 'noswitch nil)))))
-    (if (processp proc)
-        (with-syntax-table python-dotty-syntax-table
-          (let* ((imports (py-find-imports))
-                 (beg (save-excursion (skip-chars-backward "a-zA-Z0-9_.") (point)))
-                 (end (point))
-                 (word (buffer-substring-no-properties beg end))
-                 (code (if imports
-                           (concat imports python-shell-module-completion-string-code)
-                         python-shell-module-completion-string-code)))
-            (python-shell-completion--get-completions word proc code))))))
-
-(ac-define-source python
-  '((candidates . ac-python-candidates)
-    (symbol . "f")
-    (cache)))
-
 ;; Flymake Python
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 
@@ -136,12 +64,6 @@
 ;; (add-hook 'python-mode-hook
 ;;           '(lambda ()
 ;;              (autopair-mode)))
-
-;; Auto-Complete
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq ac-sources '(ac-source-jedi-direct
-                                ac-source-yasnippet))))
 
 ;; (add-hook 'python-mode-hook
 ;;           #'(lambda ()
@@ -177,7 +99,7 @@
   ;; will be used at work where we have custom paths for some
   ;; projects.
   (cond
-   ((equal (eproject-name) "df")
+   ((string-equal (eproject-name) "df")
     (list
      "--sys-path" (file-truename (eproject-root))
      "--sys-path" (file-truename (concat (eproject-root) "befit"))
@@ -185,18 +107,24 @@
      "--sys-path" (file-truename (concat (eproject-root) "new_wang/app")))))
   )
 
-(defun jedi-eldoc-documentation-function ()
-  (deferred:nextc
-    (jedi:call-deferred 'get_in_function_call)
-    #'jedi-eldoc-show)
-  nil)
 
-(defun jedi-eldoc-show (args)
-  (when args
-    (let ((eldoc-documentation-function
-           (lambda ()
-             (apply #'jedi:get-in-function-call--construct-call-signature args))))
-      (eldoc-print-current-symbol-info))))
+(eval-after-load "jedi"
+  (custom-set-faces
+   '(jedi:highlight-function-argument ((t (:inherit eldoc-highlight-function-argument)))))
+
+  (setq jedi:tooltip-method nil)
+  (defun jedi-eldoc-documentation-function ()
+    (deferred:nextc
+      (jedi:call-deferred 'get_in_function_call)
+      #'jedi-eldoc-show)
+    nil)
+
+  (defun jedi-eldoc-show (args)
+    (when args
+      (let ((eldoc-documentation-function
+             (lambda ()
+               (apply #'jedi:get-in-function-call--construct-call-signature args))))
+        (eldoc-print-current-symbol-info)))))
 
 (defun jedi-server-custom-setup ()
   (ignore-errors (virtualenv-guess-project))
@@ -211,27 +139,39 @@
 
 (add-hook 'python-mode-hook 'jedi-server-custom-setup)
 
-(defun jedi:ac-direct-matches ()
-  (mapcar
-   (lambda (x)
-     (destructuring-bind (&key word doc description symbol)
-         x
-       (popup-make-item word
-                        :symbol symbol
-                        :document (unless (equal doc "") doc))))
-   jedi:complete-reply))
+(eval-after-load "jedi"
+  (defun jedi:ac-direct-matches ()
+    (mapcar
+     (lambda (x)
+       (destructuring-bind (&key word doc description symbol)
+           x
+         (popup-make-item word
+                          :symbol symbol
+                          :document (unless (equal doc "") doc))))
+     jedi:complete-reply)))
 
-;; XXX doesn't seem to work at the moment,  void variable project-details?
-;; FFIP
-;; (add-hook 'python-mode-hook
-;;   (lambda ()
-;;     (unless project-details (project-root-fetch))
-;;      (when (project-root-p)
-;;          (let* ((default-directory (cdr project-details))
-;;                 (name (let ((spath (split-string default-directory "/")))
-;;                         (or (last (car spath))
-;;                             (nth (1- (length spath)) spath)))))
-;;            (ffip-set-current-project name default-directory 'python)))))
+
+;; (defun jedi:company-backend (command &optional arg &rest ignored)
+;;   (case command
+;;     (prefix (and (derived-mode-p 'python-mode)
+;;                  buffer-file-name
+;;                  (not (company-in-string-or-comment))
+;;                  (jedi:complete-request)
+;;                  (company-grab-symbol)))
+;;     (candidates
+;;      (mapcar (lambda (e) (plist-get e :word))  jedi:complete-reply))
+;;     (meta
+;;      (let ((doc-string
+;;              (plist-get (car (remove-if-not
+;;                               (lambda (e) (string-equal (plist-get e :word) arg))
+;;                               jedi:complete-reply))
+;;                         :doc)))
+;;        (when doc-string
+;;          (substring doc-string 0 (string-match "\n" doc-string)))))
+;;     (no-cache t)
+;;     (sorted nil)))
+;; (add-to-list 'company-backends 'jedi:company-backend)
+
 
 ;; Disable cedet
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)

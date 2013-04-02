@@ -20,6 +20,15 @@
 ;; camel case navgation
 (global-subword-mode t)
 
+;; electric pair mode
+(electric-pair-mode t)
+
+;; electric layout mode
+(electric-layout-mode t)
+
+;; electric indent mode
+(electric-indent-mode t)
+
 ;; TODO manually activate subword mode. so that the keys below work.
 ;; (global-set-key "\M-B" 'backward-word)
 ;; (global-set-key "\M-F" 'forward-word)
