@@ -20,6 +20,10 @@
 ;; camel case navgation
 (global-subword-mode t)
 
+;; TODO manually activate subword mode. so that the keys below work.
+;; (global-set-key "\M-B" 'backward-word)
+;; (global-set-key "\M-F" 'forward-word)
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
