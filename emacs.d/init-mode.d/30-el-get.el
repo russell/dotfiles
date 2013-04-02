@@ -675,7 +675,7 @@
          vkill
 
          ;; lookup libraries
-         company-mode
+         auto-complete
          helm
 
          ;; libraries
