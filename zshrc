@@ -10,9 +10,9 @@ gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SL
 antigen-bundle git
 antigen-bundle debian
 antigen-bundle pip
-antigen-bundle virtualenvwrapper
-
 antigen-apply
+
+source ~/.zsh/plugins/virtualenvwrapper.plugin.zsh
 
 # Disable underline of paths
 ZSH_HIGHLIGHT_STYLES[path]='none'
