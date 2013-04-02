@@ -16,19 +16,12 @@
 (setq erc-server-auto-reconnect nil)
 (setq erc-server-reconnect-attempts 5)
 (setq erc-server-reconnect-timeout 5)
-(setq erc-nick-notify-icon "/usr/share/pixmaps/other/IRC.png")
 
 ;; try and prevent ERC from flooding the connection when trying to
 ;; reconnect
 (setq erc-server-send-ping-timeout nil)
 
 (add-hook 'erc-join-hook 'enable-editing-modes)
-
-;;; erc-nick-notify
-(autoload 'erc-nick-notify-mode "erc-nick-notify"
-  "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
-mentioned in an erc channel" t)
-(eval-after-load 'erc '(erc-nick-notify-mode t))
 
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs" "#python"
