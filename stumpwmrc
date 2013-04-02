@@ -28,6 +28,9 @@
 (defun cat (&rest strings) "A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
 
+;; Set sloppy focus
+(setf *mouse-focus-policy* :sloppy)
+
 (setf *time-modeline-string* "%Y-%m-%d %a ^B%l:%M^b")
 (setf *screen-mode-line-format* (list "[^B%n^b]%W" "^>[%d]"))
 (defparameter *screen-mode-line-formats* (list (list "[^B%n^b] %W")
