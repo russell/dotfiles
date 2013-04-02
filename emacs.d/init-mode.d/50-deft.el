@@ -58,7 +58,7 @@
 (defun dustin-visiting-a-file ()
   (let* ((fn (buffer-file-name))
          (dn (file-name-directory fn)))
-    (if (string/starts-with dn (expand-file-name "~/.deft/"))
+    (if (string/starts-with dn (expand-file-name "~/org/"))
         (progn
           (message "Setting up local hook for %s (in %s)"
                    (file-name-nondirectory fn) dn)

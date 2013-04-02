@@ -331,14 +331,15 @@
                :url "git://gitorious.org/robmyers/scripts.git"
                :features "artbollocks-mode")
 
-        (:name ical2org
-               :type git
-               :url "https://github.com/cofi/ical2org.git")
-
         (:name ldap-mode
                :type http
                :features "ldap-mode"
                :url "http://www.loveshack.ukfsn.org/emacs/ldap-mode.el")
+
+        (:name gnus-desktop-notify
+               :type http
+               :features gnus-desktop-notify
+               :url "http://www.thregr.org/~wavexx/hacks/gnus-desktop-notify/gnus-desktop-notify.el")
 
         (:name breadcrumb
                :website "http://breadcrumbemacs.sourceforge.net/"
@@ -404,7 +405,7 @@
                             ))
 
         (:name google-contacts
-               :features (google-contacts google-contacts-gnus google-contacts-message)
+               :features google-contacts
                :depends oauth2
                :type git
                :url "git://git.naquadah.org/google-contacts.el.git")
@@ -461,6 +462,14 @@
                :features hyperspec-info
                :url "http://www.pentaside.org/code/hyperspec-info.el")
 
+        (:name org-import-icalendar
+               :description "Provide org-mode calendar import."
+               :type http
+               :depends (org-mode)
+               :features org-import-icalendar
+               :build (("mv" "org-import-calendar.el" "org-import-icalendar.el"))
+               :url "http://ozymandias.dk/emacs/org-import-calendar.el")
+
         (:name anything
                :website "http://www.emacswiki.org/emacs/Anything"
                :description "Open anything / QuickSilver-like candidate-selection framework"
@@ -491,6 +500,10 @@
                :type git
                :features openstack-mode
                :url "git@github.com:russell/openstack-mode.git")
+
+        (:name erc-nick-notify
+               :type emacswiki
+               :features erc-nick-notify)
 
         (:name pyel
                :type git
@@ -615,6 +628,10 @@
          puppet-flymake
          puppet-mode
 
+         ;; org-mode
+         org-mode
+         org-import-icalendar
+
          ;; other modes
          ace-jump-mode
          android-mode
@@ -629,7 +646,6 @@
          markdown-mode
          nginx-mode
          openstack-mode
-         org-mode
          po-mode
          po-mode+
          rainbow-delimiters
@@ -641,6 +657,7 @@
          google-contacts
          mailcrypt
          nognus
+         gnus-desktop-notify
 
          ;; ido
          ido-ubiquitous
@@ -650,6 +667,7 @@
          ;; erc
          erc
          erc-highlight-nicknames
+         erc-nick-notify
 
          ;; project tools
          dirvars

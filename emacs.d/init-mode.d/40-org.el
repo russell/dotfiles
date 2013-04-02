@@ -1,8 +1,8 @@
-(setq org-agenda-files (quote ("~/.deft/")))
-(setq org-directory "~/.deft/")
+(setq org-agenda-files (quote ("~/org/")))
+(setq org-directory "~/org/")
 (setq org-hide-leading-stars t)
 (setq org-mobile-directory "~/public_html/org")
-(setq org-mobile-inbox-for-pull "~/.deft/flagged.org")
+(setq org-mobile-inbox-for-pull "~/org/flagged.org")
 (setq org-modules (quote (org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-toc org-wikinodes)))
 (setq org-startup-folded (quote content))
 (setq org-tag-persistent-alist (quote ((:startgroup) ("WORK" . 119) ("HOME" . 104) (:endgroup) ("READING" . 114) ("COMPUTER" . 99))))
@@ -27,7 +27,7 @@
 (global-set-key [f1]
                 (lambda ()
                   (interactive)
-                  (dired "~/.deft")))
+                  (dired "~/org")))
 
 ;; Delete whitespace on save.
 (add-hook 'org-mode-hook
