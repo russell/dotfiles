@@ -15,3 +15,4 @@ emacs.d/el-get/
 /emacs.d/.mc-lists.el
 /emacs.d/srecode-map.el
 /.#gnus.bak
+*.elc
