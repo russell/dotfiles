@@ -9,6 +9,8 @@
           '(lambda ()
              (setq ac-sources '(ac-source-jedi-direct
                                 ac-source-yasnippet))))
+(add-hook 'python-mode-hook 'jedi-mode)
+
 
 (eval-after-load 'company
   '(progn
