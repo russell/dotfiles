@@ -227,4 +227,4 @@ focus it."
 ;; Enable devorak
 (run-shell-command "/usr/bin/setxkbmap dvorak")
 ;; Enable Synergy Server
-(run-shell-command "/usr/bin/synergys")
+;; (run-shell-command "/usr/bin/synergys")
