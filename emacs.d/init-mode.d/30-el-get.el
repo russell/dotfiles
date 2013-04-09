@@ -8,16 +8,6 @@
      (end-of-buffer)
      (eval-print-last-sexp))))
 
-
-(defun add-to-pythonpath (path)
-  "Adds a directory to the PYTHONPATH environment
-variable. Automatically applies expand-file-name to `path`."
-  (setenv "PYTHONPATH"
-          (concat (expand-file-name path) ":" (getenv "PYTHONPATH"))))
-
-;; pymacs
-(setq pymacs-reload nil) ; change nil to t to force a reload.
-
 (require 'package)
 (add-to-list 'package-archives
     '("marmalade" .
@@ -28,40 +18,34 @@ variable. Automatically applies expand-file-name to `path`."
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
 (setq el-get-verbose t)
+(setq el-get-user-package-directory "~/.emacs.d/el-get-init/")
 (setq el-get-sources
 
       '((:name magit
-               :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
+               :after (progn (global-set-key (kbd "C-x C-z") 'magit-status)))
 
-        (:name project-root
+        (:name diff-hl
                :type git
-               :url "https://github.com/emacsmirror/project-root.git"
-               :features project-root)
+               :url "git://github.com/dgutov/diff-hl.git"
+               :features diff-hl)
+
+        (:name company-mode
+               :type git
+               :url "git://github.com/company-mode/company-mode.git"
+               :features company)
+
+        (:name slime-company
+               :type git
+               :url "git://github.com/emacsmirror/slime-company.git"
+               :features slime-company)
 
         (:name auto-complete
                :website "http://cx4a.org/software/auto-complete/"
                :description "The most intelligent auto-completion extension."
                :type git
-               :depends (fuzzy)
-               :url "https://github.com/auto-complete/auto-complete"
-               :load-path "."
-               :post-init (lambda ()
-                            (require 'auto-complete)
-                            (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
-                            (require 'auto-complete-config)
-                            (ac-config-default)
-
-                            ;; custom keybindings to use tab, enter and up and down arrows
-                            (define-key ac-complete-mode-map "\t" 'ac-expand)
-                            (define-key ac-complete-mode-map "\r" 'ac-complete)
-                            (define-key ac-complete-mode-map "\M-n" 'ac-next)
-                            (define-key ac-complete-mode-map "\M-p" 'ac-previous)
-
-                            ;; Live completion with auto-complete
-                            ;; (see http://cx4a.org/software/auto-complete/)
-                            (require 'auto-complete-config nil t)
-                            ;; Do What I Mean mode
-                            (setq ac-dwim t)))
+               :depends (fuzzy popup)
+               :url "git://github.com/auto-complete/auto-complete.git"
+               :load-path ".")
 
         (:name fuzzy
                :type git
@@ -72,7 +56,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/szermatt/emacs-bash-completion.git"
                :features bash-completion
-               :post-init (lambda ()
+               :post-init (progn
                             (bash-completion-setup)))
 
         (:name autopair
@@ -81,7 +65,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type http
                :url "http://autopair.googlecode.com/svn/trunk/autopair.el"
                :features autopair
-               :after (lambda ()
+               :after (progn
                         (setq autopair-blink t)))
 
         (:name cedet
@@ -99,79 +83,6 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "https://github.com/myfreeweb/django-mode.git")
 
-        (:name pymacs
-               :type git
-               :url "http://github.com/pinard/Pymacs.git"
-               :features pymacs
-               :build ("make")
-               :post-init (lambda ()
-                            (add-to-pythonpath (concat el-get-dir "pymacs"))
-                            (unless pymacs-load-path
-                              (setq pymacs-load-path (list (concat el-get-dir "pymacs"))))))
-
-        (:name rope
-               :type hg
-               :url "http://bitbucket.org/agr/rope/"
-               :depends (pymacs)
-               :after (lambda ()
-                        (add-to-list 'pymacs-load-path
-                                     (concat el-get-dir "rope"))))
-
-        (:name ropemode
-               :type hg
-               :url "http://bitbucket.org/agr/ropemode/"
-               :depends (pymacs)
-               :after (lambda ()
-                        (add-to-list 'pymacs-load-path
-                                     (concat el-get-dir "ropemode"))))
-
-        (:name ropemacs
-               :type hg
-               :url "http://bitbucket.org/agr/ropemacs/"
-               :depends (pymacs rope ropemode auto-complete)
-               :after (lambda ()
-                        (add-to-list 'pymacs-load-path (concat el-get-dir "ropemacs"))
-                        (add-hook 'python-mode-hook
-                                  '(lambda ()
-                                     (setq ropemacs-local-prefix "C-c C-p")
-
-                                     ;; Stops from erroring if there's a syntax err
-                                     (setq ropemacs-codeassist-maxfixes 3)
-                                     (setq ropemacs-guess-project t)
-                                     (setq ropemacs-enable-autoimport t)
-
-                                     (if (or pymacs-reload (not (boundp 'ropePymacs)))
-                                         (setq ropePymacs (pymacs-load "ropemacs" "rope-"))
-                                       (message "ropePymacs already loaded")
-                                       )
-
-                                     (require 'tramp-cmds) ;; required for list remote buffers
-                                     ;; Rope Mode - Only enable when editing local files
-                                     (when (not (subsetp (list (current-buffer))
-                                                         (tramp-list-remote-buffers)))
-                                       (ropemacs-mode 1)
-                                       (setq ropemacs-enable-autoimport t)
-                                       (with-project-root (rope-open-project
-                                                           (cdr project-details)))
-
-                                       (defun ac-ropemacs-candidates ()
-                                         (mapcar (lambda (completion)
-                                                   (concat ac-prefix completion))
-                                                 (rope-completions)))
-
-                                       (ac-define-source nropemacs
-                                         '((candidates . ac-ropemacs-candidates)
-                                           (symbol . "p")))
-
-                                       (ac-define-source nropemacs-dot
-                                         '((candidates . ac-ropemacs-candidates)
-                                           (symbol . "p")
-                                           (prefix . c-dot)
-                                           (requires . 0)))
-                                       (setq ac-sources (append '(ac-source-nropemacs
-                                                                  ac-source-nropemacs-dot) ac-sources))
-                                       )))))
-
         (:name pydoc-info
                :type hg
                :url "http://bitbucket.org/jonwaltman/pydoc-info/"
@@ -182,18 +93,6 @@ variable. Automatically applies expand-file-name to `path`."
                :url "git://github.com/fgallina/python.el.git"
                :features (python))
 
-        (:name python-mode
-               :type git
-               :url "git://github.com/emacsmirror/python-mode.git"
-               :features (python-mode)
-               :depends pymacs
-               :load-path ("." "completion")
-               :compile nil
-               :post-init (lambda ()
-                            (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-                            (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-                            (autoload 'python-mode "python-mode" "Python editing mode." t)))
-
         (:name ipython
                :depends (python-mode))
 
@@ -202,13 +101,30 @@ variable. Automatically applies expand-file-name to `path`."
                :url "git://github.com/emacs-helm/helm.git"
                :features (helm))
 
+        (:name emms
+               :description "The Emacs Multimedia System"
+               :type git
+               :url "http://git.sv.gnu.org/r/emms.git"
+               :info "doc"
+               :load-path ("./lisp")
+               :features emms-setup
+               :build `(,(format "mkdir -p %s/emms " user-emacs-directory)
+                        ,(concat "make EMACS=" el-get-emacs
+                                 " SITEFLAG=\"--no-site-file -L " el-get-dir "/emacs-w3m/ \""
+                                 " autoloads lisp docs"))
+               :depends emacs-w3m)
+
+        (:name ampc
+               :type git
+               :url "http://ch.ristopher.com/r/ampc")
+
         (:name yasnippet
                :website "http://code.google.com/p/yasnippet/"
                :description "YASnippet is a template system for Emacs."
                :type git
                :url "https://github.com/capitaomorte/yasnippet.git"
                :features "yasnippet"
-               :prepare (lambda ()
+               :prepare (progn
                           ;; Set up the default snippets directory
                           ;;
                           ;; Principle: don't override any user settings
@@ -220,7 +136,7 @@ variable. Automatically applies expand-file-name to `path`."
                             (setq yas/snippet-dirs
                                   (list (concat el-get-dir (file-name-as-directory "yasnippet") "snippets")))))
 
-               :post-init (lambda ()
+               :post-init (progn
                             ;; Trick customize into believing the standard
                             ;; value includes the default snippets.
                             ;; yasnippet would probably do this itself,
@@ -248,7 +164,7 @@ variable. Automatically applies expand-file-name to `path`."
                :url "bzr://bzr.savannah.nongnu.org/color-theme/trunk"
                :load "color-theme.el"
                :features "color-theme"
-               :post-init (lambda ()
+               :post-init (progn
                             (color-theme-initialize)
                             (setq color-theme-is-global t)
                             (setq color-theme-is-cumulative t)
@@ -260,7 +176,7 @@ variable. Automatically applies expand-file-name to `path`."
                :depends (color-theme)
                :features color-theme-tangotango
                :url "git@github.com:russell/color-theme-tangotango.git"
-               :post-init (lambda ()
+               :post-init (progn
                             (color-theme-tangotango)))
 
         (:name highlight-indentation
@@ -282,7 +198,7 @@ variable. Automatically applies expand-file-name to `path`."
                :features expand-region
                :type git
                :url "git://github.com/magnars/expand-region.el.git"
-               :post-init (lambda ()
+               :post-init (progn
                             (global-set-key (kbd "C-@") 'er/expand-region)))
 
         (:name flymake-python
@@ -293,6 +209,25 @@ variable. Automatically applies expand-file-name to `path`."
                :type hg
                :url "https://bitbucket.org/jek/sandbox")
 
+
+        (:name ctable
+               :description "Table Component for elisp"
+               :type github
+               :pkgname "kiwanami/emacs-ctable")
+
+        (:name epc
+               :description "An RPC stack for Emacs Lisp"
+               :type github
+               :pkgname "kiwanami/emacs-epc"
+               :depends (deferred ctable)) ; concurrent is in deferred package
+
+        (:name jedi
+               :description "An awesome Python auto-completion for Emacs"
+               :type github
+               :pkgname "tkf/emacs-jedi"
+               :build (("make" "requirements"))
+               :depends (epc auto-complete))
+
         (:name po-mode
                :type http
                :url "http://cvs.savannah.gnu.org/viewvc/*checkout*/gettext/gettext/gettext-tools/misc/po-mode.el"
@@ -302,7 +237,7 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :features po-mode+
                :depends po-mode
-               :post-init (lambda ()
+               :post-init (progn
                             (autoload 'po-mode "po-mode+"
                               "Major mode for translators to edit PO files" t)
                             ))
@@ -323,9 +258,9 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :depends mysql
                :features sql-completion
-               :post-init (lambda ()
+               :post-init (progn
                             (add-hook 'sql-interactive-mode-hook
-                                      '(lambda ()
+                                      '(progn
                                          (define-key sql-interactive-mode-map "\t" 'comint-dynamic-complete)
                                          (sql-mysql-completion-init)))))
 
@@ -349,17 +284,10 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :url "git://github.com/magnars/mark-multiple.el.git")
 
-        (:name sr-speedbar
-               :features sr-speedbar
-               :depends (cedet)
-               :before (lambda ()
-                         (require 'speedbar))
-               :type emacswiki)
-
         (:name sticky-windows
                :features sticky-windows
                :type emacswiki
-               :post-init (lambda ()
+               :post-init (progn
                             (global-set-key [(control x) (?0)] 'sticky-window-delete-window)
                             (global-set-key [(control x) (?1)] 'sticky-window-delete-other-windows)
                             ;; In addition,
@@ -376,20 +304,9 @@ variable. Automatically applies expand-file-name to `path`."
                :type emacswiki
                :depends (popup pos-tip)
                :features popup-kill-ring
-               :post-init (lambda ()
+               :post-init (progn
+                            (require 'popup)
                             (global-set-key "\M-y" 'popup-kill-ring)))
-
-        (:name smex
-               :description "M-x interface with Ido-style fuzzy matching."
-               :type git
-               :url "http://github.com/nonsequitur/smex.git"
-               :features smex
-               :post-init (lambda ()
-                            (smex-initialize)
-                            (global-set-key (kbd "M-x") 'smex)
-                            (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-                            (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
-                            (global-set-key "\C-x\C-m" 'smex)))
 
         (:name active-menu
                :website "http://www.emacswiki.org/emacs/ActiveMenu"
@@ -414,14 +331,15 @@ variable. Automatically applies expand-file-name to `path`."
                :url "git://gitorious.org/robmyers/scripts.git"
                :features "artbollocks-mode")
 
-        (:name ical2org
-               :type git
-               :url "https://github.com/cofi/ical2org.git")
-
         (:name ldap-mode
                :type http
                :features "ldap-mode"
                :url "http://www.loveshack.ukfsn.org/emacs/ldap-mode.el")
+
+        (:name gnus-desktop-notify
+               :type http
+               :features gnus-desktop-notify
+               :url "http://www.thregr.org/~wavexx/hacks/gnus-desktop-notify/gnus-desktop-notify.el")
 
         (:name breadcrumb
                :website "http://breadcrumbemacs.sourceforge.net/"
@@ -429,9 +347,9 @@ variable. Automatically applies expand-file-name to `path`."
                :type http
                :url "http://downloads.sourceforge.net/project/breadcrumbemacs/Breadcrumb%20for%20Emacs/1.1.3/breadcrumb-1.1.3.zip"
                :build ("unzip breadcrumb-1.1.3.zip")
-               :before (lambda ()
+               :before (progn
                          (require 'inversion))
-               :post-init (lambda ()
+               :post-init (progn
                             (require 'breadcrumb)
                             ;; Shift-SPACE for set bookmark
                             (global-set-key [?\S-\ ] 'bc-set)
@@ -459,29 +377,35 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :description "An improved JavaScript editing mode"
                :url "https://github.com/mooz/js2-mode.git"
-               :post-init (lambda ()
+               :post-init (progn
                             (autoload 'js2-mode "js2-mode" nil t)))
+
+        (:name flymake-node-jshint
+               :type git
+               :description "Emacs library providing simple
+               flymake for JavaScript using JSHint through
+               node-jshint."
+               :url "git://github.com/jegbjerg/flymake-node-jshint.git"
+               :post-init (progn
+                            (require 'flymake-node-jshint)
+                            (add-hook 'js-mode-hook (lambda () (flymake-mode 1)))))
 
         (:name hideshow-org
                :features hideshow-org
                :type git
                :url "https://github.com/secelis/hideshow-org.git")
 
-        (:name find-file-in-project
-               :features find-file-in-project
-               :type elpa)
-
         (:name workgroups
                :description "Workgroups for windows (for Emacs)"
                :type git
                :url "https://github.com/tlh/workgroups.el.git"
                :features "workgroups"
-               :post-init (lambda ()
+               :post-init (progn
                             (workgroups-mode 1)
                             ))
 
         (:name google-contacts
-               :features (google-contacts google-contacts-gnus google-contacts-message)
+               :features google-contacts
                :depends oauth2
                :type git
                :url "git://git.naquadah.org/google-contacts.el.git")
@@ -538,6 +462,14 @@ variable. Automatically applies expand-file-name to `path`."
                :features hyperspec-info
                :url "http://www.pentaside.org/code/hyperspec-info.el")
 
+        (:name org-import-icalendar
+               :description "Provide org-mode calendar import."
+               :type http
+               :depends (org-mode)
+               :features org-import-icalendar
+               :build (("mv" "org-import-calendar.el" "org-import-icalendar.el"))
+               :url "http://ozymandias.dk/emacs/org-import-calendar.el")
+
         (:name anything
                :website "http://www.emacswiki.org/emacs/Anything"
                :description "Open anything / QuickSilver-like candidate-selection framework"
@@ -546,7 +478,7 @@ variable. Automatically applies expand-file-name to `path`."
                :load-path ("." "extensions")
                :depends (cedet)
                :features anything
-               :after (lambda ()
+               :after (progn
                         (require 'anything-config)))
 
         (:name restclient-mode
@@ -568,6 +500,10 @@ variable. Automatically applies expand-file-name to `path`."
                :type git
                :features openstack-mode
                :url "git@github.com:russell/openstack-mode.git")
+
+        (:name erc-nick-notify
+               :type emacswiki
+               :features erc-nick-notify)
 
         (:name pyel
                :type git
@@ -613,15 +549,11 @@ variable. Automatically applies expand-file-name to `path`."
                :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
                :features auto-capitalize)
 
-        (:name powerline
-               :type emacswiki
-               :features powerline)
-
         (:name puppet-mode
                :description "A simple mode for editing puppet manifests"
                :type git
                :url "git://github.com/puppetlabs/puppet-syntax-emacs.git"
-               :after (lambda ()
+               :after (progn
                         (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests" t)
                         (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
 
@@ -644,25 +576,135 @@ variable. Automatically applies expand-file-name to `path`."
 
 (setq my-packages
       (append
-       '(cedet oauth2 nginx-mode elisp-slime-expand popup
-               highlight-symbol highlight-parentheses eproject
-               mo-git-blame virtualenv flymake-point flymake-fringe-icons
-               folding js2-mode js-comint json fic-ext-mode dired+
-               eol-conversion doxymacs dired-plus clevercss undo-tree
-               auto-complete auto-complete-clang auctex active-menu
-               fringe-helper csv-mode apel el-get cssh
-               vkill google-maps nxhtml xcscope yasnippet tidy bookmark+
-               recover-buffers rainbow-delimiters org-mode
-               rst-mode pylookup python-pep8 smex popup-kill-ring
-               sr-speedbar dirvars po-mode+ po-mode pycheckers redshank
-               flymake-python hyperspec-info highlight-indentation python
-               python-mode django-mode autopair magit puppet-mode
-               markdown-mode sticky-windows expand-region emacs-w3m
-               paredit git-commit-mode ctags-update helm
-               bash-completion slime ac-slime erc idomenu
-               twittering-mode yaml-mode find-file-in-project
-               erc-highlight-nicknames apache-mode nognus openstack-mode
-               artbollocks-mode google-contacts highlight-sexp mailcrypt
-               restclient-mode ace-jump-mode auto-capitalize mark-multiple
-               multiple-cursors puppet-flymake elisp-slime-nav)))
-(el-get 'sync my-packages)
+       '(
+         ;; C
+         cedet
+         ctags-update
+         xcscope
+
+         ;; elisp
+         elisp-slime-expand
+         elisp-slime-nav
+
+         ;; internet
+         emacs-w3m
+         nxhtml
+         oauth2
+         restclient-mode
+
+         ;; javascript
+         js-comint
+         js2-mode
+         json
+
+         ;; python
+         django-mode
+         flymake-python
+         highlight-indentation
+         jedi
+         pycheckers
+         pylookup
+         python
+         python-mode
+         python-pep8
+         rst-mode
+
+         ;; latex
+         auctex
+
+         ;; common lisp
+         ac-slime
+         highlight-sexp
+         hyperspec-info
+         paredit
+         redshank
+         slime
+
+         ;; scheme
+         geiser
+         sicp
+
+         ;; puppet
+         puppet-flymake
+         puppet-mode
+
+         ;; org-mode
+         org-mode
+         org-import-icalendar
+
+         ;; other modes
+         ace-jump-mode
+         android-mode
+         apache-mode
+         artbollocks-mode
+         auto-capitalize
+         csv-mode
+         fic-ext-mode
+         git-commit-mode
+         highlight-parentheses
+         highlight-symbol
+         markdown-mode
+         nginx-mode
+         openstack-mode
+         po-mode
+         po-mode+
+         rainbow-delimiters
+         twittering-mode
+         yaml-mode
+
+         ;; gnus
+         bbdb
+         google-contacts
+         mailcrypt
+         nognus
+         gnus-desktop-notify
+
+         ;; ido
+         ido-ubiquitous
+         idomenu
+         smex
+
+         ;; erc
+         erc
+         erc-highlight-nicknames
+         erc-nick-notify
+
+         ;; project tools
+         dirvars
+         eproject
+         dizzee
+
+         ;; shell
+         bash-completion
+
+         ;; editing tools
+         autopair
+         bookmark+
+         diff-hl
+         expand-region
+         lorem-ipsum
+         magit
+         mark-multiple
+         multiple-cursors
+         undo-tree
+         yasnippet
+
+         ;; other tools
+         vkill
+
+         ;; lookup libraries
+         auto-complete
+         helm
+
+         ;; libraries
+         apel
+         dired+
+         dired-plus
+         el-get
+         eol-conversion
+         flymake-point
+         google-maps
+         recover-buffers
+         sticky-windows
+         )))
+(el-get nil my-packages)

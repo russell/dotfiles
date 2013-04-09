@@ -5,3 +5,6 @@
 
 (setq dired-omit-files
       (concat dired-omit-files "\\|^\\..+$"))
+
+;; unbind the help key
+(define-key dired-mode-map [f1] nil)

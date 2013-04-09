@@ -11,3 +11,6 @@
 (add-hook 'git-commit-mode-hook 'auto-capitalize-mode)
 (add-hook 'git-commit-mode-hook 'turn-on-artbollocks-mode)
 (add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
+
+
+(setq magit-set-upstream-on-push 'dontask)

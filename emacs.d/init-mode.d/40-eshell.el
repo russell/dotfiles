@@ -56,7 +56,8 @@
         (eshell-source-file filename))))
 
 (defun eshell/e (file)
-          (find-file file))
+  "Open a file, alias to find-file"
+  (find-file file))
 
 
 (global-set-key (kbd "<f2>") 'my-eshell)

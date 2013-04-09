@@ -20,6 +20,19 @@
 ;; camel case navgation
 (global-subword-mode t)
 
+;; electric pair mode
+(electric-pair-mode t)
+
+;; electric layout mode
+(electric-layout-mode t)
+
+;; electric indent mode
+(electric-indent-mode t)
+
+;; TODO manually activate subword mode. so that the keys below work.
+;; (global-set-key "\M-B" 'backward-word)
+;; (global-set-key "\M-F" 'forward-word)
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
@@ -114,3 +127,29 @@
         (funcall current-mode))))
 
 ;;(global-set-key "\C-h e s" 'scratch)
+
+
+;; uncamelcase
+(defun un-camelcase-string (s &optional sep start)
+  "Convert CamelCase string S to lower case with word separator SEP.
+    Default for SEP is a hyphen \"-\".
+
+    If third argument START is non-nil, convert words after that
+    index in STRING."
+  (let ((case-fold-search nil))
+    (while (string-match "[A-Z]" s (or start 1))
+      (setq s (replace-match (concat (or sep "-")
+                                     (downcase (match-string 0 s)))
+                             t nil s)))
+    (downcase s)))
+
+(defun uncamelcase-word-at-point ()
+  (interactive)
+  (let* ((case-fold-search nil)
+         (start-point (point))
+         (beg (and (skip-chars-backward "[:alnum:]:_-") (point)))
+         (end (and (skip-chars-forward  "[:alnum:]:_-") (point)))
+         (txt (buffer-substring beg end))
+         (cml (un-camelcase-string txt "_")) )
+    (if cml (progn (delete-region beg end) (insert cml)))
+    (goto-char start-point)))

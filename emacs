@@ -15,8 +15,8 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
 ; set font
-(set-default-font "DejaVu Sans Mono:pixelsize=14:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=14:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true"))
+(set-default-font "Liberation Mono:pixelsize=15")
+(add-to-list 'default-frame-alist '(font . "Liberation Mono:pixelsize=15"))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

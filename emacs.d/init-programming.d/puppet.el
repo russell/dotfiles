@@ -1,4 +1,5 @@
 (setq puppet-mode-hook nil)
+(setq puppet-indent-level 4)
 
 (defun puppet-flash-region (start end &optional timeout)
   "Temporarily highlight region from START to END."
@@ -39,11 +40,3 @@
           (lambda ()
             (make-local-variable 'indent-tabs-mode)
             (setq indent-tabs-mode nil)))
-
-;; Trim whitespace
-(add-hook 'puppet-mode-hook
-          (lambda ()
-            (add-hook 'write-contents-functions
-                      '(lambda()
-                         (save-excursion
-                           (delete-trailing-whitespace))))))

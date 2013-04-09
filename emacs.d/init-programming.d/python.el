@@ -1,20 +1,31 @@
 
-;; Ipython dark color theme
-;;(setq py-python-command-args '("-i" "--colors=Linux"))
+(eval-when-compile
+  (require 'cl))
 
-(setq py-shell-name "python")
-(setq py-split-windows-on-execute-function 'split-window-horizontally)
-(setq py-complete-function (quote py-shell-complete))
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-split-windows-on-execute-function (quote split-window-horizontally))
-(setq py-split-windows-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
-(setq python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n")
+(custom-set-variables
+ '(py-shell-name "python")
+ '(py-split-windows-on-execute-function 'split-window-horizontally)
+ '(py-complete-function (quote py-shell-complete))
+ '(py-switch-buffers-on-execute-p t)
+ '(py-split-windows-on-execute-function (quote split-window-horizontally))
+ '(py-split-windows-on-execute-p t)
+ '(py-switch-buffers-on-execute-p t)
+ '(py-tab-shifts-region-p t)
+ '(python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n"))
 
-
+;; python-mode keys
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
+;; jedi pop mark
+(define-key python-mode-map "\M-," 'pop-global-mark)
+
+;; jedi
+(custom-set-variables
+ '(jedi:setup-keys t)
+ '(jedi:key-goto-definition (kbd "M-."))
+ '(jedi:key-complete (kbd ""))
+ '(jedi:goto-follow t))
 
 (define-project-type python (generic)
   (and (look-for "setup.py")
@@ -25,77 +36,6 @@
 (define-project-type generic-python (generic)
   (look-for "setup.py")
   :irrelevant-files ("^[.]" "^[#]"))
-
-;; Autofill inside of comments
-(defun python-auto-fill-comments-only ()
-  (auto-fill-mode 1)
-  (set (make-local-variable 'fill-nobreak-predicate)
-       (lambda ()
-         (not (python-in-string/comment)))))
-
-(defun lconfig-python-mode ()
-  (progn
-    ;; (define-key python-mode-map [(meta q)] 'py-fill-paragraph)
-    (defun ac-python-find ()
-      "Python `ac-find-function'."
-      (require 'thingatpt)
-      (let ((symbol (car-safe (bounds-of-thing-at-point 'symbol))))
-        (if (null symbol)
-            (if (string= "." (buffer-substring (- (point) 1) (point)))
-                (point)
-              nil)
-          symbol)))
-
-    (defun ac-python-candidate ()
-      "Python `ac-candidates-function'"
-      (let (candidates)
-        (dolist (source ac-sources)
-          (if (symbolp source)
-              (setq source (symbol-value source)))
-          (let* ((ac-limit (or (cdr-safe (assq 'limit source)) ac-limit))
-                 (requires (cdr-safe (assq 'requires source)))
-                 cand)
-            (if (or (null requires)
-                    (>= (length ac-target) requires))
-                (setq cand
-                      (delq nil
-                            (mapcar (lambda (candidate)
-                                      (propertize candidate 'source source))
-                                    (funcall (cdr (assq 'candidates source)))))))
-            (if (and (> ac-limit 1)
-                     (> (length cand) ac-limit))
-                (setcdr (nthcdr (1- ac-limit) cand) nil))
-            (setq candidates (append candidates cand))))
-        (delete-dups candidates)))
-
-    ;;(ac-set-trigger-key "TAB")
-    ;;(setq ac-sources '(ac-source-rope ac-source-yasnippet))
-    (set (make-local-variable 'ac-find-function) 'ac-python-find)
-    (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
-    ))
-;;(add-hook 'python-mode-hook 'lconfig-python-mode)
-
-(defun ac-python-candidates ()
-  (let* (py-split-windows-on-execute-p
-         py-switch-buffers-on-execute-p
-         (shell (py-choose-shell))
-         (proc (or (get-buffer-process shell)
-                   (get-buffer-process (py-shell nil nil shell 'noswitch nil)))))
-    (if (processp proc)
-        (with-syntax-table python-dotty-syntax-table
-          (let* ((imports (py-find-imports))
-                 (beg (save-excursion (skip-chars-backward "a-zA-Z0-9_.") (point)))
-                 (end (point))
-                 (word (buffer-substring-no-properties beg end))
-                 (code (if imports
-                           (concat imports python-shell-module-completion-string-code)
-                         python-shell-module-completion-string-code)))
-            (python-shell-completion--get-completions word proc code))))))
-
-(ac-define-source python
-  '((candidates . ac-python-candidates)
-    (symbol . "f")
-    (cache)))
 
 ;; Flymake Python
 (add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -117,37 +57,13 @@
           '(lambda ()
              (setq indent-tabs-mode nil)))
 
-;; Flyspell Mode
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (flyspell-prog-mode)))
-
 ;; highlight indentation and symbols
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (highlight-indentation-on)
-             (highlight-symbol-mode 1)))
+(add-hook 'python-mode-hook 'highlight-indentation-mode)
 
 ;; ;; autopair mode
 ;; (add-hook 'python-mode-hook
 ;;           '(lambda ()
 ;;              (autopair-mode)))
-
-;; Delete whitespace on save.
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (add-hook 'write-contents-functions
-                       '(lambda()
-                          (save-excursion
-                            (delete-trailing-whitespace))))))
-
-;; Auto-Complete
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq ac-sources '(ac-source-abbrev
-                                ac-source-words-in-same-mode-buffers
-                                ;; ac-source-python
-                                ac-source-yasnippet))))
 
 ;; (add-hook 'python-mode-hook
 ;;           #'(lambda ()
@@ -167,26 +83,76 @@
   (lambda ()
     (setq imenu-create-index-function 'python-imenu-create-index)))
 
+;;
 ;; Virtual env
-;; (add-hook 'python-mode-hook
-;;   (lambda ()
-;;     (unless project-details (project-root-fetch))
-;;     (when (project-root-p)
-;;       (if (eq 'python-virtualenv (car project-details))
-;;           (virtualenv-activate default-directory)))))
+;;
+
+(defun virtualenv-guess-project ()
+  "Guess the current project."
+  (when (and (eproject-maybe-turn-on)
+             (member* (eproject-name) (virtualenv-workon-complete)
+                      :test 'string-equal))
+    (virtualenv-workon (eproject-name))))
 
 
-;; XXX doesn't seem to work at the moment,  void variable project-details?
-;; FFIP
-;; (add-hook 'python-mode-hook
-;;   (lambda ()
-;;     (unless project-details (project-root-fetch))
-;;      (when (project-root-p)
-;;          (let* ((default-directory (cdr project-details))
-;;                 (name (let ((spath (split-string default-directory "/")))
-;;                         (or (last (car spath))
-;;                             (nth (1- (length spath)) spath)))))
-;;            (ffip-set-current-project name default-directory 'python)))))
+(defun python-custom-path ()
+  ;; will be used at work where we have custom paths for some
+  ;; projects.
+  (cond
+   ((string-equal (eproject-name) "df")
+    (list
+     "--sys-path" (file-truename (eproject-root))
+     "--sys-path" (file-truename (concat (eproject-root) "befit"))
+     "--sys-path" (file-truename (concat (eproject-root) "dfplugins"))
+     "--sys-path" (file-truename (concat (eproject-root) "new_wang/app")))))
+  )
+
+
+(eval-after-load 'jedi
+  '(progn
+    (custom-set-faces
+     '(jedi:highlight-function-argument ((t (:inherit eldoc-highlight-function-argument)))))
+
+    (setq jedi:tooltip-method nil)
+    (defun jedi-eldoc-documentation-function ()
+      (deferred:nextc
+        (jedi:call-deferred 'get_in_function_call)
+        #'jedi-eldoc-show)
+      nil)
+
+    (defun jedi-eldoc-show (args)
+      (when args
+        (let ((eldoc-documentation-function
+               (lambda ()
+                 (apply #'jedi:get-in-function-call--construct-call-signature args))))
+          (eldoc-print-current-symbol-info))))))
+
+(defun jedi-server-custom-setup ()
+  (ignore-errors (virtualenv-guess-project))
+  (let* (args)
+    (when virtualenv-name (setq args (append args `("--virtual-env" ,(file-truename virtualenv-name)))))
+    (when (python-custom-path) (setq args (append args (python-custom-path))))
+    (when args (set (make-local-variable 'jedi:server-args) args)))
+  (jedi:setup)
+  (remove-hook 'post-command-hook 'jedi:handle-post-command t)
+  (eldoc-mode)
+  (set (make-local-variable 'eldoc-documentation-function) #'jedi-eldoc-documentation-function))
+
+(add-hook 'python-mode-hook 'jedi-server-custom-setup)
+
+(eval-after-load 'jedi
+  (defun jedi:ac-direct-matches ()
+    (mapcar
+     (lambda (x)
+       (destructuring-bind (&key word doc description symbol)
+           x
+         (popup-make-item word
+                          :symbol symbol
+                          :document (unless (equal doc "") doc))))
+     jedi:complete-reply)))
+
+
+
 
 ;; Disable cedet
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
@@ -262,34 +228,9 @@
                                                                            (concat default-directory "src/")))))
                 (when (and (file-exists-p "./bin/dftrial") (string-equal (eproject-name) "df"))
                   (set (make-local-variable 'compile-command)
-                       (concat "./bin/dftrial " buffer-file-name)))))))
+                       (concat default-directory "bin/dftrial " buffer-file-name)))))))
 
-(defun py-shell-manage-windows (switch py-split-windows-on-execute-p py-switch-buffers-on-execute-p oldbuf py-buffer-name)
-  (cond (;; split and switch
-         (unless (eq switch 'noswitch)
-           (and py-split-windows-on-execute-p
-                (or (eq switch 'switch)
-                    py-switch-buffers-on-execute-p)))
-         (if (< (count-windows) py-max-split-windows)
-           (funcall py-split-windows-on-execute-function)
-           (switch-to-buffer-other-window py-buffer-name)))
-        ;; split, not switch
-        ((and py-split-windows-on-execute-p
-              (or (eq switch 'noswitch)
-                  (not (eq switch 'switch))))
-         (if (< (count-windows) py-max-split-windows)
-             (progn
-               (funcall py-split-windows-on-execute-function)
-               (display-buffer py-buffer-name))
-           (display-buffer py-buffer-name 'display-buffer-reuse-window)))
-        ;; no split, switch
-        ((or (eq switch 'switch)
-             (and (not (eq switch 'noswitch))
-                  py-switch-buffers-on-execute-p))
-         (pop-to-buffer py-buffer-name)
-         (goto-char (point-max)))
-        ;; no split, no switch
-        ((or (eq switch 'noswitch)
-             (not py-switch-buffers-on-execute-p))
-         (set-buffer oldbuf)
-         (switch-to-buffer (current-buffer)))))
+
+(defun copy-break-point ()
+  (interactive)
+  (kill-new (concat (buffer-file-name) ":" (number-to-string (line-number-at-pos)))))
