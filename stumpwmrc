@@ -31,6 +31,8 @@
 ;; Set sloppy focus
 (setf *mouse-focus-policy* :sloppy)
 
+(setf *mode-line-foreground-color* "Gray50")
+(setf *mode-line-background-color* "Gray20")
 (setf *time-modeline-string* "%Y-%m-%d %a ^B%l:%M^b")
 (setf *screen-mode-line-format* (list "[^B%n^b]%W" "^>[%d]"))
 (defparameter *screen-mode-line-formats* (list (list "[^B%n^b] %W")
@@ -43,6 +45,9 @@
                     (enable-mode-line (current-screen) head t mode-line-format))))
   (mapcar #'mode-line-on
           (mapcar #'list (screen-heads (current-screen)) *screen-mode-line-formats*)))
+
+(setf *mode-line-timeout* 10) ; Update every 10 seconds if nothing else has triggered it already.
+(turn-on-mode-line-timer)
 
 ;;** 2 (info "(stumpwm)Key Bindings")
 
