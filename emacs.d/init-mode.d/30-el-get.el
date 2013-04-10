@@ -661,7 +661,6 @@
          gnus-desktop-notify
 
          ;; ido
-         ido-ubiquitous
          idomenu
          smex
 
