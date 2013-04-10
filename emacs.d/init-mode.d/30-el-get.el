@@ -224,6 +224,7 @@
         (:name jedi
                :description "An awesome Python auto-completion for Emacs"
                :type github
+               :submodule nil
                :pkgname "tkf/emacs-jedi"
                :build (("make" "requirements"))
                :depends (epc auto-complete))
