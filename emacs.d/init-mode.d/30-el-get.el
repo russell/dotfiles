@@ -405,12 +405,15 @@
                             (workgroups-mode 1)
                             ))
 
+        (:name oauth2
+               :type git
+               :url "git://github.com/emacsmirror/oauth2.git")
+
         (:name google-contacts
                :features google-contacts
                :depends oauth2
                :type git
                :url "git://git.naquadah.org/google-contacts.el.git")
-
 
         (:name highlight-sexp
                :features highlight-sexp
@@ -421,10 +424,6 @@
                :features bookmark+
                :type git
                :url "git@github.com:russell/bookmark-plus.git")
-
-        (:name oauth2
-               :features oauth2
-               :type elpa)
 
         (:name recover-buffers
                :features recover-buffers
