@@ -22,6 +22,7 @@
  '(isearch ((((class color) (min-colors 89)) (:foreground "#eeeeec" :background "#ce5c00"))))
  '(lazy-highlight ((((class color) (min-colors 89)) (:background "#8f5902"))))
  '(trailing-whitespace ((((class color) (min-colors 89)) (:background "#a40000"))))
+ '(ledger-font-highlight-face ((t (:background "gray10"))))
  '(mode-line ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#222222" :foreground "#bbbbbc"))))
  '(mode-line-inactive ((((class color) (min-colors 89)) (:foreground "#eeeeec" :background "#555753" :box (:line-width -1 :style released-button)))))
  '(compilation-mode-line-fail ((((class color) (min-colors 89)) (:foreground "#a40000"))))
