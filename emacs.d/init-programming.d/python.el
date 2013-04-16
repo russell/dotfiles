@@ -108,23 +108,24 @@
   )
 
 
-(eval-after-load "jedi"
-  (custom-set-faces
-   '(jedi:highlight-function-argument ((t (:inherit eldoc-highlight-function-argument)))))
+(eval-after-load 'jedi
+  '(progn
+    (custom-set-faces
+     '(jedi:highlight-function-argument ((t (:inherit eldoc-highlight-function-argument)))))
 
-  (setq jedi:tooltip-method nil)
-  (defun jedi-eldoc-documentation-function ()
-    (deferred:nextc
-      (jedi:call-deferred 'get_in_function_call)
-      #'jedi-eldoc-show)
-    nil)
+    (setq jedi:tooltip-method nil)
+    (defun jedi-eldoc-documentation-function ()
+      (deferred:nextc
+        (jedi:call-deferred 'get_in_function_call)
+        #'jedi-eldoc-show)
+      nil)
 
-  (defun jedi-eldoc-show (args)
-    (when args
-      (let ((eldoc-documentation-function
-             (lambda ()
-               (apply #'jedi:get-in-function-call--construct-call-signature args))))
-        (eldoc-print-current-symbol-info)))))
+    (defun jedi-eldoc-show (args)
+      (when args
+        (let ((eldoc-documentation-function
+               (lambda ()
+                 (apply #'jedi:get-in-function-call--construct-call-signature args))))
+          (eldoc-print-current-symbol-info))))))
 
 (defun jedi-server-custom-setup ()
   (ignore-errors (virtualenv-guess-project))
@@ -139,7 +140,7 @@
 
 (add-hook 'python-mode-hook 'jedi-server-custom-setup)
 
-(eval-after-load "jedi"
+(eval-after-load 'jedi
   (defun jedi:ac-direct-matches ()
     (mapcar
      (lambda (x)
