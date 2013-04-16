@@ -59,6 +59,13 @@
               (slime-repl-send-input)))
   (:one-liner "Declaim sane optimisation properties"))
 
+(defslime-repl-shortcut slime-repl-asdf-initialize-source-registry ("asdf-initialize-source-registry")
+  (:handler (lambda ()
+              (interactive)
+              (slime-repl-shortcut-eval-async '(asdf:initialize-source-registry))))
+  (:one-liner "Refresh the ASDF source registry."))
+
+
 ;; paren script
 (setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
 
