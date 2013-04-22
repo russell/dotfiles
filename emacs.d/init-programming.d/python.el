@@ -140,19 +140,6 @@
 
 (add-hook 'python-mode-hook 'jedi-server-custom-setup)
 
-(eval-after-load 'jedi
-  (defun jedi:ac-direct-matches ()
-    (mapcar
-     (lambda (x)
-       (destructuring-bind (&key word doc description symbol)
-           x
-         (popup-make-item word
-                          :symbol symbol
-                          :document (unless (equal doc "") doc))))
-     jedi:complete-reply)))
-
-
-
 
 ;; Disable cedet
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)

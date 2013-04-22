@@ -34,3 +34,13 @@
          (no-cache t)
          (sorted nil)))
      (add-to-list 'company-backends 'jedi:company-backend)))
+
+(defun jedi:ac-direct-matches ()
+    (mapcar
+     (lambda (x)
+       (destructuring-bind (&key word doc description symbol)
+           x
+         (popup-make-item word
+                          :symbol symbol
+                          :document (unless (equal doc "") doc))))
+     jedi:complete-reply))
