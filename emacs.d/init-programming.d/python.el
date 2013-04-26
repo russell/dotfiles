@@ -17,16 +17,6 @@
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
-;; jedi pop mark
-(define-key python-mode-map "\M-," 'pop-global-mark)
-
-;; jedi
-(custom-set-variables
- '(jedi:setup-keys t)
- '(jedi:key-goto-definition (kbd "M-."))
- '(jedi:key-complete (kbd ""))
- '(jedi:goto-follow t))
-
 (define-project-type python (generic)
   (and (look-for "setup.py")
        (look-for "lib")
@@ -101,51 +91,6 @@
      "--sys-path" (file-truename (concat (eproject-root) "dfplugins"))
      "--sys-path" (file-truename (concat (eproject-root) "new_wang/app")))))
   )
-
-
-(eval-after-load 'jedi
-  '(progn
-    (custom-set-faces
-     '(jedi:highlight-function-argument ((t (:inherit eldoc-highlight-function-argument)))))
-
-    (setq jedi:tooltip-method nil)
-    (defun jedi-eldoc-documentation-function ()
-      (deferred:nextc
-        (jedi:call-deferred 'get_in_function_call)
-        #'jedi-eldoc-show)
-      nil)
-
-    (defun jedi-eldoc-show (args)
-      (when args
-        (let ((eldoc-documentation-function
-               (lambda ()
-                 (apply #'jedi:get-in-function-call--construct-call-signature args))))
-          (eldoc-print-current-symbol-info))))))
-
-(defun jedi-server-custom-setup ()
-  (ignore-errors (virtualenv-guess-project))
-  (let* (args)
-    (when virtualenv-name (setq args (append args `("--virtual-env" ,(file-truename virtualenv-name)))))
-    (when (python-custom-path) (setq args (append args (python-custom-path))))
-    (when args (set (make-local-variable 'jedi:server-args) args)))
-  (jedi:setup)
-  (remove-hook 'post-command-hook 'jedi:handle-post-command t)
-  (eldoc-mode)
-  (set (make-local-variable 'eldoc-documentation-function) #'jedi-eldoc-documentation-function))
-
-(add-hook 'python-mode-hook 'jedi-server-custom-setup)
-
-(eval-after-load 'jedi
-  '(defun jedi:ac-direct-matches ()
-    (mapcar
-     (lambda (x)
-       (destructuring-bind (&key word doc description symbol)
-           x
-         (popup-make-item word
-                          :symbol symbol
-                          :document (unless (equal doc "") doc))))
-     jedi:complete-reply)))
-
 
 
 ;; Disable cedet
