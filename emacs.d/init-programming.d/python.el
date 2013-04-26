@@ -60,11 +60,6 @@
 ;; highlight indentation and symbols
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
 
-;; ;; autopair mode
-;; (add-hook 'python-mode-hook
-;;           '(lambda ()
-;;              (autopair-mode)))
-
 ;; (add-hook 'python-mode-hook
 ;;           #'(lambda ()
 ;;               (push '(?' . ?')
