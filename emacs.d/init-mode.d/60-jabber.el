@@ -6,9 +6,6 @@
 (setq jabber-roster-line-format " %c %-25n %u %-8s  %S")
 (setq jabber-roster-show-bindings nil)
 
-(setq jabber-account-list
-      '(("russell.sim@gmail.com"
-         (:network-server . "talk.google.com")
-         (:connection-type . ssl))))
+(load "~/.jabberel")
 
 (add-hook 'jabber-chat-mode-hook 'enable-editing-modes)
