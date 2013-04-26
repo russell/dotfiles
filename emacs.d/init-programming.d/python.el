@@ -17,16 +17,6 @@
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
-;; jedi pop mark
-(define-key python-mode-map "\M-," 'pop-global-mark)
-
-;; jedi
-(custom-set-variables
- '(jedi:setup-keys t)
- '(jedi:key-goto-definition (kbd "M-."))
- '(jedi:key-complete (kbd ""))
- '(jedi:goto-follow t))
-
 (define-project-type python (generic)
   (and (look-for "setup.py")
        (look-for "lib")
@@ -59,11 +49,6 @@
 
 ;; highlight indentation and symbols
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
-
-;; ;; autopair mode
-;; (add-hook 'python-mode-hook
-;;           '(lambda ()
-;;              (autopair-mode)))
 
 ;; (add-hook 'python-mode-hook
 ;;           #'(lambda ()
@@ -106,39 +91,6 @@
      "--sys-path" (file-truename (concat (eproject-root) "dfplugins"))
      "--sys-path" (file-truename (concat (eproject-root) "new_wang/app")))))
   )
-
-
-(eval-after-load 'jedi
-  '(progn
-    (custom-set-faces
-     '(jedi:highlight-function-argument ((t (:inherit eldoc-highlight-function-argument)))))
-
-    (setq jedi:tooltip-method nil)
-    (defun jedi-eldoc-documentation-function ()
-      (deferred:nextc
-        (jedi:call-deferred 'get_in_function_call)
-        #'jedi-eldoc-show)
-      nil)
-
-    (defun jedi-eldoc-show (args)
-      (when args
-        (let ((eldoc-documentation-function
-               (lambda ()
-                 (apply #'jedi:get-in-function-call--construct-call-signature args))))
-          (eldoc-print-current-symbol-info))))))
-
-(defun jedi-server-custom-setup ()
-  (ignore-errors (virtualenv-guess-project))
-  (let* (args)
-    (when virtualenv-name (setq args (append args `("--virtual-env" ,(file-truename virtualenv-name)))))
-    (when (python-custom-path) (setq args (append args (python-custom-path))))
-    (when args (set (make-local-variable 'jedi:server-args) args)))
-  (jedi:setup)
-  (remove-hook 'post-command-hook 'jedi:handle-post-command t)
-  (eldoc-mode)
-  (set (make-local-variable 'eldoc-documentation-function) #'jedi-eldoc-documentation-function))
-
-(add-hook 'python-mode-hook 'jedi-server-custom-setup)
 
 
 ;; Disable cedet
@@ -207,15 +159,17 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
+            (eproject-maybe-turn-on)
             (when (ignore-errors (eproject-root))
               (let ((default-directory (eproject-root)))
+                (set (make-local-variable 'compilation-directory) (eproject-root))
                 (when (and (file-exists-p "./run") (string-equal (eproject-name) "1800respect"))
                   (set (make-local-variable 'compile-command)
                        (concat "./test -- " (python-convert-path-to-module buffer-file-name
                                                                            (concat default-directory "src/")))))
                 (when (and (file-exists-p "./bin/dftrial") (string-equal (eproject-name) "df"))
                   (set (make-local-variable 'compile-command)
-                       (concat default-directory "bin/dftrial " buffer-file-name)))))))
+                       (concat default-directory "bin/dftrial ")))))))
 
 
 (defun copy-break-point ()

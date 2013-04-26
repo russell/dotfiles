@@ -4,13 +4,8 @@
  '(jedi:key-goto-definition (kbd "M-."))
  '(jedi:setup-keys t))
 
-;; Auto complete
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq ac-sources '(ac-source-jedi-direct
-                                ac-source-yasnippet))))
-(add-hook 'python-mode-hook 'jedi-mode)
-
+;; jedi pop mark
+(define-key python-mode-map "\M-," 'pop-global-mark)
 
 (eval-after-load 'company
   '(progn
@@ -44,3 +39,36 @@
                           :symbol symbol
                           :document (unless (equal doc "") doc))))
      jedi:complete-reply))
+
+
+(eval-after-load 'jedi
+  '(progn
+    (custom-set-faces
+     '(jedi:highlight-function-argument ((t (:inherit eldoc-highlight-function-argument)))))
+
+    (setq jedi:tooltip-method nil)
+    (defun jedi-eldoc-documentation-function ()
+      (deferred:nextc
+        (jedi:call-deferred 'get_in_function_call)
+        #'jedi-eldoc-show)
+      nil)
+
+    (defun jedi-eldoc-show (args)
+      (when args
+        (let ((eldoc-documentation-function
+               (lambda ()
+                 (apply #'jedi:get-in-function-call--construct-call-signature args))))
+          (eldoc-print-current-symbol-info))))))
+
+(defun jedi-server-custom-setup ()
+  (ignore-errors (virtualenv-guess-project))
+  (let* (args)
+    (when virtualenv-name (setq args (append args `("--virtual-env" ,(file-truename virtualenv-name)))))
+    (when (python-custom-path) (setq args (append args (python-custom-path))))
+    (when args (set (make-local-variable 'jedi:server-args) args)))
+  (jedi:setup)
+  (remove-hook 'post-command-hook 'jedi:handle-post-command t)
+  (eldoc-mode)
+  (set (make-local-variable 'eldoc-documentation-function) #'jedi-eldoc-documentation-function))
+
+(add-hook 'python-mode-hook 'jedi-server-custom-setup)

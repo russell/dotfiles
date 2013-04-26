@@ -20,9 +20,6 @@
 ;; camel case navgation
 (global-subword-mode t)
 
-;; electric pair mode
-(electric-pair-mode t)
-
 ;; electric layout mode
 (electric-layout-mode t)
 

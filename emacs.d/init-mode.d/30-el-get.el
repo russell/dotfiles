@@ -224,7 +224,6 @@
         (:name jedi
                :description "An awesome Python auto-completion for Emacs"
                :type github
-               :submodule nil
                :pkgname "tkf/emacs-jedi"
                :build (("make" "requirements"))
                :depends (epc auto-complete))
@@ -242,6 +241,17 @@
                             (autoload 'po-mode "po-mode+"
                               "Major mode for translators to edit PO files" t)
                             ))
+
+        (:name dash
+               :description "A modern list api for Emacs. No 'cl required."
+               :type github
+               :pkgname "magnars/dash.el")
+
+        (:name smartparens
+               :description "Autoinsert pairs of defined brackets and wrap regions"
+               :type github
+               :pkgname "Fuco1/smartparens"
+               :depends dash)
 
         (:name tsql-indent
                :type emacswiki
@@ -470,6 +480,13 @@
                :build (("mv" "org-import-calendar.el" "org-import-icalendar.el"))
                :url "http://ozymandias.dk/emacs/org-import-calendar.el")
 
+        (:name ical-event
+               :description "Provide org-mode calendar."
+               :type git
+               :depends (org-mode)
+               :features (gnus-calendar ical-event gnus-calendar-org ical-event-reply)
+               :url "git://github.com/jtatarik/ical-event.git")
+
         (:name anything
                :website "http://www.emacswiki.org/emacs/Anything"
                :description "Open anything / QuickSilver-like candidate-selection framework"
@@ -630,7 +647,7 @@
 
          ;; org-mode
          org-mode
-         org-import-icalendar
+         ical-event
 
          ;; other modes
          ace-jump-mode
@@ -677,7 +694,7 @@
          bash-completion
 
          ;; editing tools
-         autopair
+         smartparens
          bookmark+
          diff-hl
          expand-region

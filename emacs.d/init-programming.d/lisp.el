@@ -13,7 +13,14 @@
         ;; paredit mode
         (add-hook mode 'paredit-mode))
 
-      '(slime-mode-hook emacs-lisp-mode-hook geiser-mode-hook))
+      '(lisp-mode
+        inferior-emacs-lisp-mode
+        lisp-interaction-mode
+        common-lisp-mode
+        slime-mode-hook
+        emacs-lisp-mode-hook
+        geiser-mode-hook
+        scheme-mode))
 
 
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
