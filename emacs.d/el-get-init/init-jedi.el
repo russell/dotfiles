@@ -5,7 +5,8 @@
  '(jedi:setup-keys t))
 
 ;; jedi pop mark
-(define-key python-mode-map "\M-," 'pop-global-mark)
+(eval-after-load 'python-mode
+  '(define-key python-mode-map "\M-," 'pop-global-mark))
 
 (eval-after-load 'company
   '(progn
