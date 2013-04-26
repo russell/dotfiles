@@ -93,19 +93,19 @@
 
 (defcommand emacs () ()
   "Start emacs unless it is already running, in which case focus it."
-  (run-or-raise "exec /usr/bin/emacs --name emacs-primary-server --eval '(server-start)'"
+  (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-primary-server --eval '(server-start)'"
                 '(:class "Emacs" :instance "emacs-primary-server")))
 (define-key *root-map* (kbd "e") "emacs")
 
 (defcommand emacs-irc () ()
   "Start erc unless it is already running, in which case focus it."
-  (run-or-raise "exec /usr/bin/emacs --name emacs-erc --eval '(start-irc)'"
+  (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-erc --eval '(start-irc)'"
                 '(:class "Emacs" :instance "emacs-erc")))
 (define-key *root-map* (kbd "p") "emacs-irc")
 
 (defcommand emacs-gnus () ()
   "Start erc unless it is already running, in which case focus it."
-  (run-or-raise "exec /usr/bin/emacs --name emacs-gnus --eval '(gnus)'"
+  (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-gnus --eval '(gnus)'"
                 '(:class "Emacs" :instance "emacs-gnus")))
 (define-key *root-map* (kbd "m") "emacs-gnus")
 
