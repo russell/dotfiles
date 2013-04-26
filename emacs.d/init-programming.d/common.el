@@ -1,18 +1,30 @@
-(mapc (lambda (mode)
-        ;; diff hl mode
-        (add-hook mode 'diff-hl-mode)
+(let ((lisp-modes '(slime-mode-hook
+                    geiser-mode-hook
+                    emacs-lisp-mode-hook))
+      (c-like-modes '(python-mode-hook
+                      c-mode-common-hook
+                      puppet-mode-hook
+                      sh-mode-hook
+                      makefile-mode)))
 
-        ;; Delete whitespace on save.
-        (add-hook mode
-                  '(lambda ()
-                     (add-hook 'write-contents-functions
-                               'delete-trailing-whitespace)))
+  (mapc (lambda (mode)
+          ;; diff hl mode
+          (add-hook mode 'diff-hl-mode)
 
-        ;; flyspell
-        (add-hook mode 'flyspell-prog-mode)
-        (add-hook mode 'highlight-symbol-mode))
+          ;; Delete whitespace on save.
+          (add-hook mode
+                    '(lambda ()
+                       (add-hook 'write-contents-functions
+                                 'delete-trailing-whitespace)))
 
-      '(python-mode-hook slime-mode-hook geiser-mode-hook
-                         emacs-lisp-mode-hook c-mode-common-hook
-                         puppet-mode-hook sh-mode-hook
-                         makefile-mode))
+          ;; flyspell
+          (add-hook mode 'flyspell-prog-mode)
+          (add-hook mode 'highlight-symbol-mode))
+
+        (concatenate 'list lisp-modes c-like-modes))
+  (mapc (lambda (mode)
+          (add-hook mode '(lambda ()
+                            (smartparens-mode)
+                            (sp-use-paredit-bindings))))
+
+        (concatenate 'list c-like-modes '(eshell-mode))))
