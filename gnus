@@ -108,6 +108,22 @@ See (info \"(gnus)Group Line Specification\")."
   (setq gnus-sum-thread-tree-single-leaf     "╰─► "))
 (setq gnus-face-9 'font-lock-warning-face)
 (setq gnus-face-10 'shadow)
+
+(setq gnus-cached-mark ?☍
+      gnus-canceled-mark ?↗
+      gnus-del-mark ?✗
+      gnus-dormant-mark ?⚐
+      gnus-expirable-mark ?♻
+      gnus-forwarded-mark ?↪
+      gnus-killed-mark ?☠
+      gnus-process-mark ?⚙
+      gnus-read-mark ?✓
+      gnus-recent-mark ?✩
+      gnus-replied-mark ?↺
+      gnus-unread-mark ?✉
+      gnus-unseen-mark ?★
+      gnus-ticked-mark ?⚑)
+
 (setq gnus-summary-line-format
       (concat
        "%0{%U%R%z%}"
