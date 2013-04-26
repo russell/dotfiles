@@ -147,7 +147,7 @@ focus it."
     ("System Tools"
      ("Calculator"        "speedcrunch")
      ("Disk space"        "filelight")
-     ("File Manager"      "nautilus")  ; thunar
+     ("File Manager"      "nautilus --no-desktop")
      ("Nvidia X Server"   "nvidia-settings")
      ("Power Preferences" "gnome-power-preferences")
      ("Printers"          "system-config-printer")
@@ -190,11 +190,11 @@ focus it."
 
 ;;;; Groups
 
-(gnew "Communication")
+;; (gnew "Communication")
 
-(define-frame-preference "Communication"
-  ;; frame raise lock (lock AND raise == jumpto)
-  (0 t   t :class "Emacs" :title "^ERC: .*$"))
+;; (define-frame-preference "Communication"
+;;   ;; frame raise lock (lock AND raise == jumpto)
+;;   (0 t   t :class "Emacs" :title "^ERC: .*$"))
 
 ;;;; Applications startup
 
