@@ -412,8 +412,7 @@
                :url "https://github.com/tlh/workgroups.el.git"
                :features "workgroups"
                :post-init (progn
-                            (workgroups-mode 1)
-                            ))
+                            (workgroups-mode 1)))
 
         (:name oauth2
                :type git
