@@ -66,10 +66,21 @@
 
 (defun virtualenv-guess-project ()
   "Guess the current project."
-  (when (and (eproject-maybe-turn-on)
-             (member* (eproject-name) (virtualenv-workon-complete)
-                      :test 'string-equal))
-    (virtualenv-workon (eproject-name))))
+  (when (eproject-maybe-turn-on)
+    (let* ((dot-venv-file (concat (file-name-as-directory (eproject-root)) ".venv"))
+           (venv-name
+           (or
+            (when (file-exists-p dot-venv-file)
+              (with-temp-buffer
+                (insert-file-contents dot-venv-file)
+                ;; extract virtual env from .venv file
+                (if (string-match "[ \t]*$" (buffer-string))
+                    (replace-match "" nil nil (buffer-string))
+                    (buffer-string))))
+            (member* (eproject-name) (virtualenv-workon-complete)
+                     :test 'string-equal))))
+      (when venv-name
+        (virtualenv-workon venv-name)))))
 
 
 (defun python-custom-path ()
