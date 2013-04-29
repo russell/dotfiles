@@ -50,14 +50,6 @@
 ;; highlight indentation and symbols
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
 
-;; (add-hook 'python-mode-hook
-;;           #'(lambda ()
-;;               (push '(?' . ?')
-;;                     (getf autopair-extra-pairs :code))
-;;               (setq autopair-handle-action-fns
-;;                     (list #'autopair-default-handle-action
-;;                           #'autopair-python-triple-quote-action))))
-
 (add-hook 'python-mode-hook
           (lambda ()
             (defvar py-mode-map python-mode-map)
