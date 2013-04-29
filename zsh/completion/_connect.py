@@ -1,0 +1,5 @@
+#compdef connect.py
+#autoload
+
+_arguments \
+    ':command:(ccp_content_database ccp_content_database-superuser ccp_member_database ccp_member_database-superuser ccp_working_database ccp_working_database-superuser distribute_database distribute_database-superuser old_database old_database-superuser tests tests-superuser wang_primary_database wang_primary_database-superuser wang_secondary_database wang_secondary_database-superuser wang_system_primary_database wang_system_primary_database-superuser wang_system_secondary_database wang_system_secondary_database-superuser)'
