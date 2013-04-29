@@ -278,6 +278,7 @@ See (info \"(gnus)Group Line Specification\")."
 ;; hook to setup message
 (defun my-mml-secure-message-sign-mime ()
   (when (and gnus-newsgroup-name
+             (member (cadr gnus-current-select-method) '("gmail"))
              (string-match
               my-sign-mime-group-regexp
               gnus-newsgroup-name))
