@@ -106,35 +106,6 @@
         (py-shell argprompt dedicated "python" switch
                   py-separator-char (format "*Python: %s*" name)))))
 
-;; (defun py-choose-shell (&optional arg pyshell dedicated)
-;;   (with-project-root
-;;       (car (loop for buffer in (buffer-list)
-;;                  when (and
-;;                        (string-match "^\*Python: .*\*$" (buffer-name buffer))
-;;                        (equal (buffer-local-value 'default-directory buffer)
-;;                               default-directory))
-;;                  collect (buffer-name buffer)))))
-
-;; (defun py-buffer-name-prepare (name &optional sepchar dedicated)
-;;   (let ((py-file-buffer default-directory)
-;;         (py-name (cond ((string= "ipython" name)
-;;                         (replace-regexp-in-string "ipython" "IPython" name))
-;;                        ((string= "jython" name)
-;;                         (replace-regexp-in-string "jython" "Jython" name))
-;;                        ((string= "python" name)
-;;                         (replace-regexp-in-string "python" "Python" name))
-;;                        ((string-match "python2" name)
-;;                         (replace-regexp-in-string "python2" "Python2" name))
-;;                        ((string-match "python3" name)
-;;                         (replace-regexp-in-string "python3" "Python3" name))
-;;                        (t name))))
-;;     (with-project-root
-;;         (let ((project-name (let ((spath (split-string default-directory "/")))
-;;                               (if (not (equal (last (car spath)) ""))
-;;                                   (last (car spath))
-;;                                 (nth (- (length spath) 2) spath)))))
-;;           (format "*%s: %s*" py-name project-name)))))
-
 ;; Use python.el indentation
 (add-hook 'python-mode-hook
           '(lambda ()
