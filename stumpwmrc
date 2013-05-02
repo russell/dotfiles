@@ -57,6 +57,12 @@
 ;; `*root-map*' is the keymap by default bound to `C-t'. It is known as the
 ;; prefix map.
 
+;; new root map bindings
+(define-key *top-map* (kbd "s-t") '*root-map*)
+(undefine-key *top-map* (kbd "C-t"))
+
+(set-prefix-key (kbd "s-t"))
+
 (define-key *root-map* (kbd "I") "show-window-properties")
 
 ; launch Web browser
@@ -64,9 +70,10 @@
   "Start Firefox or switch to it, if it is already running."
   (run-or-raise "iceweasel" '(:class "Iceweasel")))
 (define-key *root-map* (kbd "u") "iceweasel")
+(define-key *top-map* (kbd "s-u") "iceweasel")
 
 
-;; ask the user for a search string and search for it in Wikipedia
+;; ASK the user for a search string and search for it in Wikipedia
 (defcommand wikipedia (search)
   ((:string "Search in Wikipedia for: "))
   "prompt the user for a search term and look it up in the English Wikipedia"
@@ -96,18 +103,21 @@
   (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-primary-server --eval '(server-start)'"
                 '(:class "Emacs" :instance "emacs-primary-server")))
 (define-key *root-map* (kbd "e") "emacs")
+(define-key *top-map* (kbd "s-e") "emacs")
 
 (defcommand emacs-irc () ()
   "Start erc unless it is already running, in which case focus it."
   (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-erc --eval '(start-irc)'"
                 '(:class "Emacs" :instance "emacs-erc")))
 (define-key *root-map* (kbd "p") "emacs-irc")
+(define-key *top-map* (kbd "s-p") "emacs-irc")
 
 (defcommand emacs-gnus () ()
   "Start erc unless it is already running, in which case focus it."
   (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-gnus --eval '(gnus)'"
                 '(:class "Emacs" :instance "emacs-gnus")))
 (define-key *root-map* (kbd "m") "emacs-gnus")
+(define-key *top-map* (kbd "s-m") "emacs-gnus")
 
 (defcommand gnome-terminal () ()
   "Start gnome-terminal unless it is already running, in which case
@@ -115,6 +125,7 @@ focus it."
   (run-or-raise "exec /usr/bin/gnome-terminal" '(:class "Gnome-terminal")))
 (define-key *root-map* (kbd "c")   "gnome-terminal")
 (define-key *root-map* (kbd "C-c") "gnome-terminal")
+(define-key *top-map* (kbd "s-c") "gnome-terminal")
 
 
 ;;;;
