@@ -246,5 +246,9 @@ focus it."
 (run-shell-command "/usr/bin/gnome-screensaver")
 ;; Enable devorak
 (run-shell-command "/usr/bin/setxkbmap dvorak")
+
+;; xmodmap
+(run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")
+
 ;; Enable Synergy Server
 ;; (run-shell-command "/usr/bin/synergys")
