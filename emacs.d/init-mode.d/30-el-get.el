@@ -709,6 +709,5 @@
          flymake-point
          google-maps
          recover-buffers
-         sticky-windows
          )))
 (el-get nil my-packages)
