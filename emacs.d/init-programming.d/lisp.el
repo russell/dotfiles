@@ -48,18 +48,21 @@
                       (cl-union
                        (mapcar
                         (lambda (b)
-                          (with-current-buffer b (slime-current-package)))
+                          (let ((string-start 0)
+                                (package-name (with-current-buffer b (slime-current-package))))
+                            (when (equal "#" (substring package-name string-start (+ string-start 1)))
+                              (incf string-start))
+                            (when (equal ":" (substring package-name string-start (+ string-start 1)))
+                              (incf string-start))
+                            (downcase (substring package-name string-start))))
                         (cl-remove-if-not
                          (lambda (b) (equal (buffer-local-value 'major-mode b)
                                             'lisp-mode))
                          (buffer-list)))
                        (slime-eval '(cl:nunion
                                      (swank:list-asdf-systems)
-                                     (cl:nunion
-                                      (cl:mapcar 'ql-dist:name
-                                                 (ql:system-list))
-                                      (ql:list-local-systems)
-                                      :test 'cl:string=)
+                                     (cl:mapcar 'ql-dist:name
+                                                (ql:system-list))
                                      :test 'cl:string=))
                        :test 'string-equal))
                      (default-value (slime-find-asd-file

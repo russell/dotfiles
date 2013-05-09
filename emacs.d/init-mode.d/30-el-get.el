@@ -240,7 +240,7 @@
                :description "Autoinsert pairs of defined brackets and wrap regions"
                :type github
                :pkgname "Fuco1/smartparens"
-               :depends dash)
+               :depends (dash))
 
         (:name tsql-indent
                :type emacswiki
