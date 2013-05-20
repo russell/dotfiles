@@ -573,6 +573,12 @@
                         (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests" t)
                         (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
 
+        (:name ido-hacks
+               :description "Advices for ido-mode."
+               :type github
+               :pkgname "scottjad/ido-hacks"
+               :features ido-hacks)
+
         (:name apel
                :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
                :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
@@ -677,7 +683,7 @@
 
          ;; ido
          idomenu
-         smex
+         ido-hacks
 
          ;; erc
          erc
