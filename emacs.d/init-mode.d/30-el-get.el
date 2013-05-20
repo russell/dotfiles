@@ -568,6 +568,13 @@
                :pkgname "scottjad/ido-hacks"
                :features ido-hacks)
 
+        (:name helm-descbinds
+               :description "Helm frontend to describe key bindings."
+               :type github
+               :pkgname "emacs-helm/helm-descbinds"
+               :depends (helm-descbinds)
+               :features helm-descbinds)
+
         (:name apel
                :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
                :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
@@ -705,6 +712,7 @@
          ;; lookup libraries
          auto-complete
          helm
+         helm-descbinds
 
          ;; libraries
          apel
