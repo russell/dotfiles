@@ -131,9 +131,17 @@
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
+(defun ielm-pop-to-buffer ()
+  (interactive)
+  (if (get-buffer "*ielm*")
+      (pop-to-buffer "*ielm*")
+    (progn ;; TODO this needs to use the other one or make a new window
+           (ielm))))
+
 (eval-after-load "lisp-mode"
   '(progn
     (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)
+    (define-key emacs-lisp-mode-map "\C-c\C-z" 'ielm-pop-to-buffer)
     (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-expand-mode)
