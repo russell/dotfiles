@@ -572,7 +572,7 @@
                :description "Helm frontend to describe key bindings."
                :type github
                :pkgname "emacs-helm/helm-descbinds"
-               :depends (helm-descbinds)
+               :depends (helm)
                :features helm-descbinds)
 
         (:name apel
