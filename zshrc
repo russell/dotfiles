@@ -28,8 +28,6 @@ if [[ $TERM == "dumb" ]]; then	# in emacs
     unsetopt zle
     unsetopt prompt_cr
     unsetopt prompt_subst
-    unfunction precmd
-    unfunction preexec
 else
     setopt prompt_subst
     autoload -U colors
