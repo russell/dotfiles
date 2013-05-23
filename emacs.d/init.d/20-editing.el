@@ -52,27 +52,6 @@
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 
-;; Hilight the current line
-(global-hl-line-mode 1)
-(add-hook 'eshell-mode-hook
-	  '(lambda()
-	     (set (make-local-variable 'global-hl-line-mode) nil)))
-(add-hook 'calendar-mode-hook
-	  '(lambda()
-	     (set (make-local-variable 'global-hl-line-mode) nil)))
-(add-hook 'comint-mode-hook
-	  '(lambda()
-	     (set (make-local-variable 'global-hl-line-mode) nil)))
-(add-hook 'term-mode-hook
-	  '(lambda()
-	     (set (make-local-variable 'global-hl-line-mode) nil)))
-(add-hook 'slime-repl-mode-hook
-	  '(lambda()
-	     (set (make-local-variable 'global-hl-line-mode) nil)))
-(add-hook 'erc-mode-hook
-	  '(lambda()
-	     (set (make-local-variable 'global-hl-line-mode) nil)))
-
 
 ; store temporary files in home directory
 (defvar user-temporary-file-directory
