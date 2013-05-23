@@ -6,10 +6,15 @@
 
 (setq erc-max-buffer-size 10000)
 
-(setq erc-modules '(autojoin button completion fill irccontrols list
+(setq erc-modules '(autojoin button completion irccontrols list
                              match menu move-to-prompt netsplit networks
                              noncommands readonly replace ring services
                              stamp smiley spelling truncate highlight-nicknames track))
+
+(custom-set-variables
+ '(erc-insert-away-timestamp-function 'erc-insert-timestamp-left)
+ '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
+ '(erc-timestamp-only-if-changed-flag nil))
 
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
