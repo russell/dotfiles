@@ -1,5 +1,7 @@
 ;;; markdown-mode
 (require 'smartparens)
+(require 'smartparens-config)
+
 (sp-with-modes '(markdown-mode gfm-mode rst-mode)
   (sp-local-pair "*" "*" :bind "C-*")
   (sp-local-tag "2" "**" "**")
