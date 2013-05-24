@@ -27,7 +27,8 @@ if [[ $TERM == "dumb" ]]; then	# in emacs
     # http://www.emacswiki.org/emacs/TrampMode
     unsetopt zle
     unsetopt prompt_cr
-    unsetopt prompt_subst
+    setopt prompt_subst
+    source ~/.zsh/emacs.zsh-theme
 else
     setopt prompt_subst
     autoload -U colors
