@@ -36,16 +36,9 @@
 (size-indication-mode 1)
 
 (custom-set-variables
- '(custom-enabled-themes '(tsdh-dark)))
+ '(custom-enabled-themes '(arrsim-custom tsdh-dark)))
 
 (setq custom-safe-themes t)
-
-
-
-(defun tango-plus ()
-  "re-init the tango plus theme."
-  (interactive)
-  (load-theme 'tango-plus))
 
 (defun rotate-windows ()
   "Rotate your windows"
