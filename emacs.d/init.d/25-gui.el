@@ -35,9 +35,11 @@
 ;;; Display file size in Modeline
 (size-indication-mode 1)
 
-(setq custom-enabled-themes '(tango-plus))
+(custom-set-variables
+ '(custom-enabled-themes '(tsdh-dark)))
+
 (setq custom-safe-themes t)
-(customize-save-variable 'custom-enabled-themes custom-enabled-themes)
+
 
 
 (defun tango-plus ()
