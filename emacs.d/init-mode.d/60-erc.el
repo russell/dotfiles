@@ -14,7 +14,12 @@
 (custom-set-variables
  '(erc-insert-away-timestamp-function 'erc-insert-timestamp-left)
  '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
- '(erc-timestamp-only-if-changed-flag nil))
+ '(erc-timestamp-only-if-changed-flag nil)
+ '(erc-track-exclude-server-buffer t)
+ '(erc-track-exclude-types
+   (quote
+    ("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353")))
+ '(erc-header-line-face-method nil))
 
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
