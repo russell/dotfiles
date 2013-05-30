@@ -28,6 +28,8 @@
  '(flymake-warnline ((t (:background "#001B63"))))
  ;; erc
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
+ ;; slime
+ '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
  )
 
 (provide-theme 'arrsim-custom)
