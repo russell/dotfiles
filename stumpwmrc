@@ -66,6 +66,7 @@
 (set-prefix-key (kbd "s-t"))
 
 (define-key *root-map* (kbd "I") "show-window-properties")
+(define-key *top-map* (kbd "s-k") "delete")
 
 (define-key *top-map* (kbd "s-0") "select-window-by-number 0")
 (define-key *top-map* (kbd "s-1") "select-window-by-number 1")
