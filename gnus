@@ -176,9 +176,11 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 ;; Check for new mail once in every this many minutes.
 ;;
-(gnus-demon-add-handler 'gnus-group-get-new-news 10 t)
-(gnus-demon-add-handler 'gnus-demon-close-connections 30 t)
-(gnus-demon-init)
+(gnus-demon-add-scanmail)
+(gnus-demon-add-rescan)
+(gnus-demon-add-scan-timestamps)
+(gnus-demon-add-nntp-close-connection)
+(gnus-demon-add-disconnection)
 
 (defun gmail-delete ()
   "Move the current message to the bin."
