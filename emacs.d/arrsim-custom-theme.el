@@ -7,8 +7,11 @@
 
 (custom-theme-set-faces
  'arrsim-custom
+ ;; tsdh-dark customisations
+ ;; none at the moment
+
  '(highlight-indentation-face ((t (:background "grey25"))))
- '(helm-selection ((t (:inherit 'highlight))))
+ '(helm-selection ((t (:background "#00472b"))))
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
  '(mumamo-background-chunk-submode1 ((t (:background "grey30"))))
@@ -26,3 +29,5 @@
  ;; erc
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
  )
+
+(provide-theme 'arrsim-custom)

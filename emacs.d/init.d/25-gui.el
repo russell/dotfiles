@@ -36,9 +36,8 @@
 (size-indication-mode 1)
 
 (custom-set-variables
+ '(custom-safe-themes t)
  '(custom-enabled-themes '(arrsim-custom tsdh-dark)))
-
-(setq custom-safe-themes t)
 
 (defun rotate-windows ()
   "Rotate your windows"
