@@ -35,15 +35,9 @@
 ;;; Display file size in Modeline
 (size-indication-mode 1)
 
-(setq custom-enabled-themes '(tango-plus))
-(setq custom-safe-themes t)
-(customize-save-variable 'custom-enabled-themes custom-enabled-themes)
-
-
-(defun tango-plus ()
-  "re-init the tango plus theme."
-  (interactive)
-  (load-theme 'tango-plus))
+(custom-set-variables
+ '(custom-safe-themes t)
+ '(custom-enabled-themes '(arrsim-custom tsdh-dark)))
 
 (defun rotate-windows ()
   "Rotate your windows"

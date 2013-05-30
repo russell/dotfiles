@@ -61,9 +61,30 @@
 (define-key *top-map* (kbd "s-t") '*root-map*)
 (undefine-key *top-map* (kbd "C-t"))
 
+(define-key *top-map* (kbd "s-o") "fnext")
+
 (set-prefix-key (kbd "s-t"))
 
 (define-key *root-map* (kbd "I") "show-window-properties")
+(define-key *top-map* (kbd "s-k") "delete")
+
+(define-key *top-map* (kbd "s-0") "select-window-by-number 0")
+(define-key *top-map* (kbd "s-1") "select-window-by-number 1")
+(define-key *top-map* (kbd "s-2") "select-window-by-number 2")
+(define-key *top-map* (kbd "s-3") "select-window-by-number 3")
+(define-key *top-map* (kbd "s-4") "select-window-by-number 4")
+(define-key *top-map* (kbd "s-5") "select-window-by-number 5")
+(define-key *top-map* (kbd "s-6") "select-window-by-number 6")
+(define-key *top-map* (kbd "s-7") "select-window-by-number 7")
+(define-key *top-map* (kbd "s-8") "select-window-by-number 8")
+(define-key *top-map* (kbd "s-9") "select-window-by-number 9")
+
+
+(define-key *top-map* (kbd "M-Up")    "move-window up")
+(define-key *top-map* (kbd "M-Down")  "move-window down")
+(define-key *top-map* (kbd "M-Left")  "move-window left")
+(define-key *top-map* (kbd "M-Right") "move-window right")
+
 
 ; launch Web browser
 (defcommand iceweasel () ()
