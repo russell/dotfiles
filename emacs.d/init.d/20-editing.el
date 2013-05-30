@@ -24,7 +24,7 @@
 (electric-layout-mode t)
 
 ;; electric indent mode
-(electric-indent-mode t)
+;; (electric-indent-mode t)
 
 ;; TODO manually activate subword mode. so that the keys below work.
 ;; (global-set-key "\M-B" 'backward-word)
