@@ -289,6 +289,14 @@ See (info \"(gnus)Group Line Specification\")."
 ;; plug this into message-setup-hook
 (add-hook 'message-setup-hook 'my-mml-secure-message-sign-mime)
 
+;; cacheing
+
+(setq gnus-use-cache t)
+(setq gnus-cache-directory "~/Mail/cache/")
+(setq gnus-cache-enter-articles '(ticked dormant read unread))
+(setq gnus-cache-remove-articles nil)
+(setq gnus-cacheable-groups "^nnimap")
+
 ;;
 ;; RSS
 ;;
