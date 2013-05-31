@@ -130,8 +130,8 @@
   "Start erc unless it is already running, in which case focus it."
   (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-erc --eval '(start-irc)'"
                 '(:class "Emacs" :instance "emacs-erc")))
-(define-key *root-map* (kbd "p") "emacs-irc")
-(define-key *top-map* (kbd "s-p") "emacs-irc")
+(define-key *root-map* (kbd "p") "emacs")
+(define-key *top-map* (kbd "s-p") "emacs")
 
 (defcommand emacs-gnus () ()
   "Start erc unless it is already running, in which case focus it."
