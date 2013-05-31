@@ -87,7 +87,7 @@
   ;; will be used at work where we have custom paths for some
   ;; projects.
   (cond
-   ((string-equal (eproject-name) "df")
+   ((and eproject-mode (string-equal (eproject-name) "df"))
     (list
      "--sys-path" (file-truename (eproject-root))
      "--sys-path" (file-truename (concat (eproject-root) "befit"))
