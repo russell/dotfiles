@@ -3,7 +3,7 @@
 
 (custom-theme-set-variables
  'arrsim-custom
- '(setq 'rst-level-face-base-color "grey25"))
+ '(rst-level-face-base-color "grey25"))
 
 (custom-theme-set-faces
  'arrsim-custom
