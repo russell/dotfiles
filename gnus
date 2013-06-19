@@ -261,6 +261,11 @@ See (info \"(gnus)Group Line Specification\")."
 
 (setq plstore-cache-passphrase-for-symmetric-encryption t)
 
+(setq gnus-message-archive-group
+      '((if (message-news-p)
+            "sent-news"
+          "sent-mail")))
+
 ;;
 ;; GPG
 ;;
