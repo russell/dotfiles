@@ -38,6 +38,29 @@
    `(ql:quickload ,system)
    (slime-asdf-operation-finished-function system)))
 
+
+(defun slime-find-all-system-names ()
+  (cl-union
+   (mapcar
+    (lambda (b)
+      (let ((string-start 0)
+            (package-name (with-current-buffer b (slime-current-package))))
+        (when (equal "#" (substring package-name string-start (+ string-start 1)))
+          (incf string-start))
+        (when (equal ":" (substring package-name string-start (+ string-start 1)))
+          (incf string-start))
+        (downcase (substring package-name string-start))))
+    (cl-remove-if-not
+     (lambda (b) (equal (buffer-local-value 'major-mode b)
+                        'lisp-mode))
+     (buffer-list)))
+   (slime-eval '(cl:nunion
+                 (swank:list-asdf-systems)
+                 (cl:mapcar 'ql-dist:name
+                            (ql:system-list))
+                 :test 'cl:string=))
+   :test 'string-equal))
+
 ;; Quickload a system
 ;; https://github.com/quicklisp/quicklisp-slime-helper/issues/11
 (defslime-repl-shortcut slime-repl-quickload
@@ -45,26 +68,7 @@
   (:handler (lambda ()
               (interactive)
               (let* ((system-names
-                      (cl-union
-                       (mapcar
-                        (lambda (b)
-                          (let ((string-start 0)
-                                (package-name (with-current-buffer b (slime-current-package))))
-                            (when (equal "#" (substring package-name string-start (+ string-start 1)))
-                              (incf string-start))
-                            (when (equal ":" (substring package-name string-start (+ string-start 1)))
-                              (incf string-start))
-                            (downcase (substring package-name string-start))))
-                        (cl-remove-if-not
-                         (lambda (b) (equal (buffer-local-value 'major-mode b)
-                                            'lisp-mode))
-                         (buffer-list)))
-                       (slime-eval '(cl:nunion
-                                     (swank:list-asdf-systems)
-                                     (cl:mapcar 'ql-dist:name
-                                                (ql:system-list))
-                                     :test 'cl:string=))
-                       :test 'string-equal))
+                      (slime-find-all-system-names))
                      (default-value (slime-find-asd-file
                                      (or default-directory
                                          (buffer-file-name))
