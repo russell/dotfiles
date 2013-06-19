@@ -672,6 +672,7 @@
 
          ;; gnus
          bbdb
+         mbsync
          google-contacts
          mailcrypt
          nognus
