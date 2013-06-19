@@ -132,7 +132,7 @@ See (info \"(gnus)Group Line Specification\")."
       (not gnus-thread-sort-by-most-recent-date)))
 
 ; w3m
-(setq mm-text-html-renderer 'w3m)
+(setq mm-text-html-renderer 'shr)
 (setq mm-inline-text-html-with-images t)
 (setq mm-w3m-safe-url-regexp nil)
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
