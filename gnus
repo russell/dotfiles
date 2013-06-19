@@ -28,17 +28,17 @@
 ;		  (get-new-mail nil)))
 
 ;; Dovecat IMAP server
-;(setq gnus-select-method '(nnimap "Mail"
-;				  (nnimap-address "localhost")
-;				  (nnimap-stream network)
-;				  (nnimap-authenticator login)))
+(setq gnus-select-method '(nnimap "Mail"
+				  (nnimap-address "localhost")
+				  (nnimap-stream network)
+				  (nnimap-authenticator login)))
 
 ;; Gmail IMAP server
-(setq gnus-select-method '(nnimap "gmail"
-				  (nnimap-address "imap.gmail.com")
-				  (nnimap-server-port 993)
-				  (nnimap-stream ssl)
-                  (nnir-search-engine imap)))
+;; (setq gnus-select-method '(nnimap "gmail"
+;; 				  (nnimap-address "imap.gmail.com")
+;; 				  (nnimap-server-port 993)
+;; 				  (nnimap-stream ssl)
+;;                   (nnir-search-engine imap)))
 
 (setq message-send-mail-function 'smtpmail-send-it
       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
