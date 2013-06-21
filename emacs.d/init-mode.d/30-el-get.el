@@ -665,7 +665,6 @@
          nginx-mode
          openstack-mode
          po-mode
-         po-mode+
          rainbow-delimiters
          twittering-mode
          yaml-mode
