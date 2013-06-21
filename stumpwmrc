@@ -68,6 +68,29 @@
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer set Master 5%+")
 (define-key *top-map* (kbd "XF86AudioMute") "exec amixer set Master toggle")
 
+
+;;
+;; Brightness Control
+;;
+(defun parse-string-to-float (line)
+  (car
+   (with-input-from-string (s line)
+     (loop
+       :for num := (read s nil nil)
+       :while num
+       :collect num))))
+
+(defcommand brightness (value) ((:number "Adjust brightness: "))
+  "Increment brightness."
+  (let ((arg (if (plusp value) "-inc" "-dec")))
+    (run-shell-command (format nil "xbacklight ~a ~a" arg (abs value))))
+  (format nil "Brightness: ~,2f"
+          (parse-string-to-float
+           (run-shell-command "xbacklight" t))))
+
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "brightness 10")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "brightness -10")
+
 ;;** 2 (info "(stumpwm)Key Bindings")
 
 ;; `*top-map*' is the top level key map. This is where you'll find the
