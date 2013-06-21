@@ -129,3 +129,12 @@
          (cml (un-camelcase-string txt "_")) )
     (if cml (progn (delete-region beg end) (insert cml)))
     (goto-char start-point)))
+
+(defun my-rgrep ()
+  "Search the current project."
+  (interactive)
+  (let ((default-directory
+          (if vc-mode
+              (vc-call-backend (vc-backend buffer-file-name) 'root default-directory)
+            default-directory)))
+    (call-interactively 'rgrep)))
