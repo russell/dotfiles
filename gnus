@@ -170,7 +170,13 @@ See (info \"(gnus)Group Line Specification\")."
 
 (require 'mbsync)
 (add-hook 'mbsync-exit-hook 'gnus-group-get-new-news)
-(define-key gnus-group-mode-map (kbd "f") 'mbsync)
+
+(defun my-gnus-group-get-new-news ()
+  (interactive)
+  (gnus-group-get-new-news)
+  (mbsync))
+
+(define-key gnus-group-mode-map (kbd "f") 'my-gnus-group-get-new-news)
 
 (defun gmail-delete ()
   "Move the current message to the bin."
