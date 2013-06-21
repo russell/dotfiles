@@ -1,1 +1,3 @@
+gtk-icon-theme-name = "Tango"
+gtk-theme-name = "Adwaita"
 include "/usr/share/themes/Emacs/gtk-2.0-key/gtkrc"
