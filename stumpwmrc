@@ -49,6 +49,25 @@
 (setf *mode-line-timeout* 10) ; Update every 10 seconds if nothing else has triggered it already.
 (turn-on-mode-line-timer)
 
+(setf *window-format* "%m%n%s%c")
+
+;; message windows
+
+(setf *message-window-gravity* :center)
+
+(setf *message-window-padding* 20)
+(set-msg-border-width 2)
+
+(setf *input-window-gravity* :bottom-left)
+
+;;
+;; Mixer keys
+;;
+
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer set Master 5%-")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer set Master 5%+")
+(define-key *top-map* (kbd "XF86AudioMute") "exec amixer set Master toggle")
+
 ;;** 2 (info "(stumpwm)Key Bindings")
 
 ;; `*top-map*' is the top level key map. This is where you'll find the
