@@ -212,8 +212,16 @@ focus it."
 (define-key *root-map* (kbd "C-c") "gnome-terminal")
 (define-key *top-map* (kbd "s-c") "gnome-terminal")
 
+;;
+;; MPD
+;;
+
 (load-module "mpd")
 (define-key *top-map* (kbd "s-p") '*mpd-map*)
+(define-key *top-map* (kbd "XF86Forward") "mpd-next")
+(define-key *top-map* (kbd "XF86Back") "mpd-prev")
+(define-key *top-map* (kbd "XF86AudioPlay") "mpd-toggle-pause")
+
 
 ;;;;
 ;;;; Menu
@@ -298,7 +306,7 @@ focus it."
 ;;;; Applications startup
 
 ;; Gnome Settings
-(run-shell-command "/usr/bin/gnome-settings-daemon")
+;; (run-shell-command "/usr/bin/gnome-settings-daemon")
 ;; GNOME Keyring
 
 ;; ;; GNOME Keyring: GPG Agent
@@ -330,13 +338,8 @@ focus it."
 ;(sb-posix:setenv "GPG_AGENT_INFO" "/tmp/keyring-ssh9yh/gpg:0:1" 0)
 ;(sb-posix:setenv "SSH_AUTH_SOCK" "/tmp/keyring-ssh9yh/ssh" 0)
 
-;; Screensaver
-;; (run-shell-command "/usr/bin/gnome-screensaver")
 ;; Enable devorak
 (run-shell-command "/usr/bin/setxkbmap dvorak")
 
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")
-
-;; Enable Synergy Server
-;; (run-shell-command "/usr/bin/synergys")
