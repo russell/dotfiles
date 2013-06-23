@@ -1,16 +1,84 @@
 // -*- mode: js -*-
 
 
+// zoom the page by default
+function my_zoom_set (buffer) {
+    browser_zoom_set(buffer, true, 110);
+}
+add_hook('create_buffer_late_hook', my_zoom_set);
+
+
+// minibuffer
+minibuffer_auto_complete_default=true;
+url_completion_use_history=true; // should work since bf05c87405
+url_completion_use_bookmarks=true;
+
+// we'd like to see the # of buffers being loaded
+add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
+
+// but really we'd also like to know how many buffers are present and which is the current
+add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
+
+// remove the clock
+remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+
+// Tabs
+require("new-tabs.js");
+
+// Open Middle-Clicked Links in New Buffers
+require("clicks-in-new-buffer.js");
+clicks_in_new_buffer_target=OPEN_NEW_BUFFER_BACKGROUND; // Now buffers open in background.
+
+// Bind Number Keys to Switch to Buffers 1-10
+function define_switch_buffer_key (key, buf_num) {
+  define_key(default_global_keymap, key,
+             function (I) {
+               switch_to_buffer(I.window,
+                                I.window.buffers.get_buffer(buf_num));
+             });
+}
+for (let i=0; i < 10; ++i) {
+  define_switch_buffer_key(String((i+1)%10), i);
+}
+
+// set emacs as external editor
+editor_shell_command="emacsclient -c";
+
+// view source in your editor.
+view_source_use_external_editor=true;
+
+
+// redefine l as "follow link" (like f)
+// (too many of the keys are for the left hand, I like "l" for "link")
+define_key(content_buffer_normal_keymap, "l", "follow");
+
+// Use M-l to follow link in new background buffer
+define_key(default_global_keymap, "M-l", "follow-new-buffer-background");
+
+interactive("find-url-new-background-buffer",
+    "Open a URL in a new background buffer",
+    alternates(follow_new_buffer_background, follow_new_window),
+    $browser_object=browser_object_url,
+    $prompt="Find url");
+
+// make C-c C-c "submit form"
+define_key(content_buffer_normal_keymap, "C-c C-c", "submit-form");
+
+
+// set default download directory
+cwd=get_home_directory();
+cwd.append("downloads");
+
 /*
-  keybindings
-*/
+ *  keybindings
+ */
 
 define_key(text_keymap, 'C-w', 'cmd_deleteWordBackward');
 
 
 /*
-  web jumps
-*/
+ * web jumps
+ */
 
 define_delicious_webjumps("russell.sim");
 
@@ -49,24 +117,96 @@ define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
 define_webjump("github", "http://github.com/search?q=%s&type=Everything");
 
 /*
-  Plugins
-*/
+ * Plugins
+ */
 
 require("adblockplus");
 
 /*
-  Page Modes
-*/
+ * global modes
+ */
+
+require("favicon");
+add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true);
+read_buffer_show_icons = true;
+
+/*
+ * Page Modes
+ */
 require("reddit");
 require("duckduckgo");
+require("github");
 
 
 /*
-  Key Kill
-*/
+ *  Key Kill
+ */
 require("key-kill");
 key_kill_mode.test.push(build_url_regexp($domain = "github"));
 key_kill_mode.test.push(/\/\/.*slashdot\.org\//);
 key_kill_mode.test.push(build_url_regexp($domain = "google"));
 key_kill_mode.test.push(build_url_regexp($domain = "youtube"));
 
+
+
+/*
+ * Readable
+ */
+
+var readable_options = {
+    text_font: 'quote(Palatino%20Linotype),'+
+               '%20Palatino,%20quote(Book%20Antigua),'+
+               '%20Georgia,%20serif',
+    text_font_monospace: 'quote(Courier%20New),'+
+                         '%20Courier,%20monospace',
+    text_font_header: 'quote(Times%20New%20Roman),'+
+                      '%20Times,%20serif',
+    text_size: '18px',
+    text_line_height: '1.5',
+    box_width: '30em',
+    color_text: '#282828',
+    color_background: '#F5F5F5',
+    color_links: '#0000FF',
+    text_align: 'normal',
+    base: 'blueprint',
+    custom_css: ''
+};
+
+interactive("readable",
+    "",
+    function (I) {
+        var document = I.buffer.document;
+        var window = document.defaultView.wrappedJSObject;
+        if (document.getElementsByTagName('body').length == 0)
+            return;
+        if (window.$readable) {
+            if (window.$readable.bookmarkletTimer)
+                return;
+        } else
+            window.$readable = {};
+        window.$readable.bookmarkletTimer = true;
+        window.$readable.options = readable_options;
+        if (window.$readable.bookmarkletClicked) {
+            window.$readable.bookmarkletClicked();
+            return;
+        }
+        var el = document.createElement('script');
+        el.setAttribute('src',
+                        'http://readable-static.tastefulwords.com/target.js'+
+                        '?rand='+encodeURIComponent(Math.random()));
+        document.getElementsByTagName('body')[0].appendChild(el);
+    });
+define_key(default_global_keymap, "C-x r", "readable");
+
+// Make sure I don't close by accident
+add_hook("before_quit_hook",
+         function () {
+           var w=get_recent_conkeror_window();
+           var result=(w==null) ||
+                 "y"==(yield w.minibuffer.read_single_character_option(
+                   $prompt="Quit Conkeror? (y/n)",
+                   $options=["y", "n"]));
+           yield co_return(result);
+         });
+
+can_kill_last_buffer=false;
