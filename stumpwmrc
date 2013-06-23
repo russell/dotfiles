@@ -168,13 +168,6 @@
 (define-key *root-map* (kbd "e") "emacs")
 (define-key *top-map* (kbd "s-e") "emacs")
 
-(defcommand emacs-irc () ()
-  "Start erc unless it is already running, in which case focus it."
-  (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-erc --eval '(start-irc)'"
-                '(:class "Emacs" :instance "emacs-erc")))
-(define-key *root-map* (kbd "p") "emacs")
-(define-key *top-map* (kbd "s-p") "emacs")
-
 (defcommand emacs-gnus () ()
   "Start erc unless it is already running, in which case focus it."
   (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-gnus --eval '(gnus)'"
