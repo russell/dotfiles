@@ -31,20 +31,38 @@
 ;; Set sloppy focus
 (setf *mouse-focus-policy* :sloppy)
 
+
+;;
+;; Mode line
+;;
+
+(load-module "wifi")
+(load-module "battery-portable")
+
 (setf *mode-line-foreground-color* "Gray50")
 (setf *mode-line-background-color* "Gray20")
+
+(defparameter *vol-status-command*
+  "amixer get Master | egrep '[[:digit:]]+%' -o | head -1 | tr -d '\\n'")
+
+(defparameter *screen-mode-line-format-last*
+  (concatenate 'list
+               (list "[^B%n^b] %W^>")
+               (when (not (null (stumpwm.contrib.battery-portable::all-batteries
+                                 (stumpwm.contrib.battery-portable::preferred-battery-method))))
+                 (list "| %B "))
+               (list "| Vol. "
+                     '(:eval (run-shell-command *vol-status-command* t)))
+               (list "| %i | [%d]")))
+
 (setf *time-modeline-string* "%Y-%m-%d %a ^B%l:%M^b")
-(setf *screen-mode-line-format* (list "[^B%n^b]%W" "^>[%d]"))
-(defparameter *screen-mode-line-formats* (list (list "[^B%n^b] %W")
-                                               (list "[^B%n^b] %W" "^>[%d]")))
+(setf *screen-mode-line-format* "[^B%n^b]%W")
 
 ;; Turn on the modeline for each head with different mode lines
-(flet ((mode-line-on (args)
-                  (let ((head (car args))
-                        (mode-line-format (cadr args)))
-                    (enable-mode-line (current-screen) head t mode-line-format))))
-  (mapcar #'mode-line-on
-          (mapcar #'list (screen-heads (current-screen)) *screen-mode-line-formats*)))
+(let ((heads (reverse (screen-heads (current-screen)))))
+  (loop :for head :in (cdr heads)
+        :do (enable-mode-line (current-screen) head t *screen-mode-line-format*))
+  (enable-mode-line (current-screen) (car heads) t *screen-mode-line-format-last*))
 
 (setf *mode-line-timeout* 10) ; Update every 10 seconds if nothing else has triggered it already.
 (turn-on-mode-line-timer)
