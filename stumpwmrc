@@ -147,11 +147,11 @@
 
 
 ; launch Web browser
-(defcommand iceweasel () ()
+(defcommand conkeror () ()
   "Start Firefox or switch to it, if it is already running."
-  (run-or-raise "iceweasel" '(:class "Iceweasel")))
-(define-key *root-map* (kbd "u") "iceweasel")
-(define-key *top-map* (kbd "s-u") "iceweasel")
+  (run-or-raise "conkeror" '(:class "Conkeror")))
+(define-key *root-map* (kbd "u") "conkeror")
+(define-key *top-map* (kbd "s-u") "conkeror")
 
 
 ;; ASK the user for a search string and search for it in Wikipedia
