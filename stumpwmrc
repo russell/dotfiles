@@ -183,6 +183,8 @@ focus it."
 (define-key *root-map* (kbd "C-c") "gnome-terminal")
 (define-key *top-map* (kbd "s-c") "gnome-terminal")
 
+(load-module "mpd")
+(define-key *top-map* (kbd "s-p") '*mpd-map*)
 
 ;;;;
 ;;;; Menu
