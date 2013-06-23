@@ -1,5 +1,10 @@
 ; -*- mode: Lisp;-*-
 
+
+;;; asdf init
+(load (merge-pathnames "projects/lisp/asdf/build/asdf.lisp" (user-homedir-pathname)))
+(require 'asdf)
+
 ;;; The following lines added by ql:add-to-init-file:
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames ".quicklisp/setup.lisp"
@@ -7,7 +12,7 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
-;;; quicklisp projects
+;; initialize the source registry
 (asdf:initialize-source-registry)
 
 ;; Enable debug
@@ -24,7 +29,7 @@
 
 
 ;;; Hash table printing
-(defun print-ht (ht &aux (*print-pretty* t))
-  (format t "~&~s~%" ht)
-  (maphash (lambda (k v) (format t "~@<~S~20T~3I~_~S~:>~%" k v)) ht)
-  (values))
+;; (defun print-ht (ht &aux (*print-pretty* t))
+;;   (format t "~&~s~%" ht)
+;;   (maphash (lambda (k v) (format t "~@<~S~20T~3I~_~S~:>~%" k v)) ht)
+;;   (values))
