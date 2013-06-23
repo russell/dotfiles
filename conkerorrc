@@ -14,9 +14,13 @@ define_key(text_keymap, 'C-w', 'cmd_deleteWordBackward');
 
 define_delicious_webjumps("russell.sim");
 
-
+// Hacker news
 define_webjump("hackernews", "http://searchyc.com/%s",
                $alternative = "http://news.ycombinator.com/");
+
+// Reddit
+define_webjump("reddit", "http://www.reddit.com/r/%s",
+               $alternative = "http://www.reddit.com/");
 
 // Emacs
 define_webjump("emacswiki",
@@ -44,9 +48,22 @@ define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
 // Github
 define_webjump("github", "http://github.com/search?q=%s&type=Everything");
 
+/*
+  Plugins
+*/
+
 require("adblockplus");
 
-// Kill a bunch of anoying keys
+/*
+  Page Modes
+*/
+require("reddit");
+require("duckduckgo");
+
+
+/*
+  Key Kill
+*/
 require("key-kill");
 key_kill_mode.test.push(build_url_regexp($domain = "github"));
 key_kill_mode.test.push(/\/\/.*slashdot\.org\//);
