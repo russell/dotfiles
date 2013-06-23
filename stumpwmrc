@@ -300,7 +300,7 @@ focus it."
 ;(sb-posix:setenv "SSH_AUTH_SOCK" "/tmp/keyring-ssh9yh/ssh" 0)
 
 ;; Screensaver
-(run-shell-command "/usr/bin/gnome-screensaver")
+;; (run-shell-command "/usr/bin/gnome-screensaver")
 ;; Enable devorak
 (run-shell-command "/usr/bin/setxkbmap dvorak")
 
