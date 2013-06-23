@@ -201,8 +201,16 @@ focus it."
 (define-key *root-map* (kbd "C-c") "gnome-terminal")
 (define-key *top-map* (kbd "s-c") "gnome-terminal")
 
+;;
+;; MPD
+;;
+
 (load-module "mpd")
 (define-key *top-map* (kbd "s-p") '*mpd-map*)
+(define-key *top-map* (kbd "XF86Forward") "mpd-next")
+(define-key *top-map* (kbd "XF86Back") "mpd-prev")
+(define-key *top-map* (kbd "XF86AudioPlay") "mpd-toggle-pause")
+
 
 ;;;;
 ;;;; Menu
