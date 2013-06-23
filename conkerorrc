@@ -1,0 +1,55 @@
+// -*- mode: js -*-
+
+
+/*
+  keybindings
+*/
+
+define_key(text_keymap, 'C-w', 'cmd_deleteWordBackward');
+
+
+/*
+  web jumps
+*/
+
+define_delicious_webjumps("russell.sim");
+
+
+define_webjump("hackernews", "http://searchyc.com/%s",
+               $alternative = "http://news.ycombinator.com/");
+
+// Emacs
+define_webjump("emacswiki",
+    "http://www.google.com/cse?cx=004774160799092323420%3A6-ff2s0o6yi"+
+        "&q=%s&sa=Search&siteurl=emacswiki.org%2F",
+    $alternative="http://www.emacswiki.org/");
+
+// Debian
+define_webjump("deb", "http://packages.debian.org/search?keywords=%s&searchon=names&suite=unstable&section=all");
+define_webjump("debfile", "http://packages.debian.org/search?searchon=contents&keywords=%s&mode=path&suite=unstable&arch=any");
+define_webjump("debbugs", "http://bugs.debian.org/%s");
+define_webjump("debpts", "http://packages.qa.debian.org/%s");
+define_webjump("buildd", "https://buildd.debian.org/%s");
+define_webjump("buildd-experimental", "http://experimental.ftbfs.de/%s");
+define_webjump("buildd-ports", "http://buildd.debian-ports.org/build.php?pkg=%s");
+define_webjump("debqa", "http://qa.debian.org/developer.php?login=%s");
+
+// Mozilla developer center
+define_webjump("mdc", "https://developer.mozilla.org/Special:Search?search=%s&type=fulltext&go=Search");
+
+// Python
+define_webjump("python", "http://docs.python.org/search.html?q=%s");
+define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
+
+// Github
+define_webjump("github", "http://github.com/search?q=%s&type=Everything");
+
+require("adblockplus");
+
+// Kill a bunch of anoying keys
+require("key-kill");
+key_kill_mode.test.push(build_url_regexp($domain = "github"));
+key_kill_mode.test.push(/\/\/.*slashdot\.org\//);
+key_kill_mode.test.push(build_url_regexp($domain = "google"));
+key_kill_mode.test.push(build_url_regexp($domain = "youtube"));
+
