@@ -1,3 +1,5 @@
+# -*- mode: conf -*-
+
 [ui]
 username = Russell Sim <russell.sim@gmail.com>
 editor = emacsclient
