@@ -88,8 +88,19 @@
 
 
 ;;
+;; Brightness
+;;
+
+(load-module "kbd-brightness")
+(setf stumpwm.contrib.kbd-brightness:*keyboard-brightness-display* t)
+(define-key *top-map* (kbd "XF86KbdBrightnessUp") "kbd-brightness 25")
+(define-key *top-map* (kbd "XF86KbdBrightnessDown") "kbd-brightness -25")
+
+
+;;
 ;; Brightness Control
 ;;
+
 (defun parse-string-to-float (line)
   (car
    (with-input-from-string (s line)
