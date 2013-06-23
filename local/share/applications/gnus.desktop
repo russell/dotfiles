@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Office;Network;Email
+Comment=Advanced Mail User Agent
+Exec=gnus-email %u
+Icon=Emacs
+Name=Gnus
+MimeType=x-scheme-handler/mailto
+NoDisplay=true
+Terminal=false
+Type=Application
