@@ -54,6 +54,7 @@ cwd.append("downloads");
  */
 
 define_key(text_keymap, 'C-w', 'cmd_deleteWordBackward');
+define_key(text_keymap, 'C-x C-k', 'kill-region');
 
 
 /*
