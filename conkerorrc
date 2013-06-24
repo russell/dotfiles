@@ -22,25 +22,6 @@ add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
 // remove the clock
 remove_hook("mode_line_hook", mode_line_adder(clock_widget));
 
-// Tabs
-require("new-tabs.js");
-
-// Open Middle-Clicked Links in New Buffers
-require("clicks-in-new-buffer.js");
-clicks_in_new_buffer_target=OPEN_NEW_BUFFER_BACKGROUND; // Now buffers open in background.
-
-// Bind Number Keys to Switch to Buffers 1-10
-function define_switch_buffer_key (key, buf_num) {
-  define_key(default_global_keymap, key,
-             function (I) {
-               switch_to_buffer(I.window,
-                                I.window.buffers.get_buffer(buf_num));
-             });
-}
-for (let i=0; i < 10; ++i) {
-  define_switch_buffer_key(String((i+1)%10), i);
-}
-
 // set emacs as external editor
 editor_shell_command="emacsclient -c";
 
