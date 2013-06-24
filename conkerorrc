@@ -10,7 +10,6 @@ add_hook('create_buffer_late_hook', my_zoom_set);
 
 // minibuffer
 minibuffer_auto_complete_default=true;
-url_completion_use_history=true; // should work since bf05c87405
 url_completion_use_bookmarks=true;
 
 // we'd like to see the # of buffers being loaded
