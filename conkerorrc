@@ -132,7 +132,8 @@ key_kill_mode.test.push(build_url_regexp($domain = "github"));
 key_kill_mode.test.push(/\/\/.*slashdot\.org\//);
 key_kill_mode.test.push(build_url_regexp($domain = "google"));
 key_kill_mode.test.push(build_url_regexp($domain = "youtube"));
-
+key_kill_mode.test.push(build_url_regexp($domain = "rallydev"));
+key_kill_mode.test.push(build_url_regexp($domain = "confluence"));
 
 
 /*
