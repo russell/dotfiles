@@ -65,3 +65,6 @@
              (setq i (1+ i)))))))
 
 (global-set-key (kbd "C-x -") 'rotate-windows)
+
+(when (getenv "DISPLAY")
+  (setq browse-url-browser-function 'browse-url-xdg-open))
