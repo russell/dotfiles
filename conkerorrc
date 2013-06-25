@@ -7,6 +7,11 @@ function my_zoom_set (buffer) {
 }
 add_hook('create_buffer_late_hook', my_zoom_set);
 
+// Enable password management
+session_pref("signon.rememberSignons", true);
+session_pref("signon.expireMasterPassword", false);
+session_pref("signon.SignonFileName", "signons.txt");
+Cc["@mozilla.org/login-manager;1"].getService(Ci.nsILoginManager); // init
 
 // minibuffer
 minibuffer_auto_complete_default=true;
