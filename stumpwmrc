@@ -28,6 +28,11 @@
 (defun cat (&rest strings) "A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
 
+(asdf:initialize-source-registry)
+
+(asdf:oos 'asdf:load-op :stumpwm.contrib.kbd-brightness)
+(asdf:oos 'asdf:load-op :stumpwm.contrib.wifi)
+
 ;; Set sloppy focus
 (setf *mouse-focus-policy* :sloppy)
 
@@ -36,7 +41,6 @@
 ;; Mode line
 ;;
 
-(load-module "wifi")
 (load-module "battery-portable")
 
 (setf *mode-line-foreground-color* "Gray50")
