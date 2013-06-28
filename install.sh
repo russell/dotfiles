@@ -57,6 +57,8 @@ for name in $files; do
     symlink $name
 done
 
+mkdir -p ~/.config/gtk-3.0/
 symlink config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
+mkdir -p ~/.local/share/applications/
 symlink local/share/applications/conkeror.desktop ~/.local/share/applications/conkeror.desktop
 symlink local/share/applications/gnus.desktop ~/.local/share/applications/gnus.desktop

@@ -247,6 +247,7 @@ focus it."
 
     ("Internet"
      ("Iceweasel" "iceweasel")
+     ("Firefox" "firefox")
      ("Conkeror" "conkeror")
      ("Chrome" "google-chrome"))
 
