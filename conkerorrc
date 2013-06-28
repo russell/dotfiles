@@ -32,6 +32,9 @@ editor_shell_command="emacsclient -c";
 // view source in your editor.
 view_source_use_external_editor=true;
 
+// Open download window in a new buffer.
+download_buffer_automatic_open_target=OPEN_NEW_BUFFER;
+
 // open urls in an existing instance
 url_remoting_fn = load_url_in_new_buffer;
 
