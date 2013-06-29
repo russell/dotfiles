@@ -138,3 +138,7 @@
               (vc-call-backend (vc-backend buffer-file-name) 'root default-directory)
             default-directory)))
     (call-interactively 'rgrep)))
+
+(defun pwgen ()
+  (interactive)
+  (shell-command "pwgen -c -n -B -s 12 1" t))
