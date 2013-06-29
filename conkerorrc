@@ -128,6 +128,17 @@ require("reddit");
 require("duckduckgo");
 require("github");
 
+/*
+ * More emacs like key bindings.
+ */
+
+define_key(duckduckgo_keymap, "n", "duckduckgo-down");
+define_key(duckduckgo_keymap, "p", "duckduckgo-up");
+define_key(reddit_keymap, "n", "reddit-next");
+define_key(reddit_keymap, "N", "reddit-next-parent-comment");
+define_key(reddit_keymap, "p", "reddit-prev");
+define_key(reddit_keymap, "P", "reddit-prev-parent-comment");
+
 
 /*
  *  Key Kill
