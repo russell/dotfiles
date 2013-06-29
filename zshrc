@@ -10,9 +10,8 @@ gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SL
 antigen-bundle git
 antigen-bundle debian
 antigen-bundle pip
+antigen-bundle robbyrussell/oh-my-zsh plugins/virtualenvwrapper
 antigen-apply
-
-source ~/.zsh/plugins/virtualenvwrapper.plugin.zsh
 
 # Disable underline of paths
 ZSH_HIGHLIGHT_STYLES[path]='none'
@@ -214,7 +213,7 @@ export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 export DIST=unstable
 export ARCH=amd64
 
-export VIRTUAL_ENV_DISABLE_PROMPT="True"
+export WORKON_HOME=~/.virtualenvs/
 
 export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
