@@ -7,9 +7,9 @@ antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git $fpath)
 
-antigen-bundle git
-antigen-bundle debian
-antigen-bundle pip
+antigen-bundle robbyrussell/oh-my-zsh plugins/git
+antigen-bundle robbyrussell/oh-my-zsh plugins/debian
+antigen-bundle robbyrussell/oh-my-zsh plugins/pip
 antigen-bundle robbyrussell/oh-my-zsh plugins/virtualenvwrapper
 antigen-apply
 
