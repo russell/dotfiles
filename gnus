@@ -183,10 +183,14 @@ See (info \"(gnus)Group Line Specification\")."
   (interactive)
   (gnus-summary-move-article nil "[Google Mail]/Bin"))
 
+(define-key gnus-summary-backend-map (kbd "k") 'gmail-delete)
+
 (defun gmail-report-spam ()
   "Mark the current message as spam."
   (interactive)
   (gnus-summary-move-article nil "[Google Mail]/Spam"))
+
+(define-key gnus-summary-backend-map (kbd "s") 'gmail-report-spam)
 
 ;;(info "(emacs-w3m) Gnus")
 (defun gnus-summary-w3m-safe-toggle-inline-images (&optional arg)
