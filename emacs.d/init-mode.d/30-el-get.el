@@ -454,6 +454,13 @@
                :features slime-js
                :url "git://github.com/swank-js/slime-js.git")
 
+        (:name slime-fiveam
+               :description "SLIME FiveAM."
+               :type git
+               :depends (slime)
+               :url "git@github.com:russell/slime-fiveam.git"
+               :features slime-fiveam)
+
         (:name hyperspec-info
                :description "info lookup for hyperspec"
                :type http
@@ -655,6 +662,7 @@
          paredit
          redshank
          slime
+         slime-fiveam
 
          ;; scheme
          geiser
