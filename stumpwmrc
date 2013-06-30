@@ -223,6 +223,7 @@ focus it."
      ("GIMP" "gimp")
      ("Inkscape" "inkscape")
      ("Picasa" "picasa")
+     ("Screenshot" "gnome-screenshot -a")
      ("Scanner" "xsane"))
 
     ("Internet"
