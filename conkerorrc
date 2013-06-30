@@ -54,6 +54,18 @@ interactive("find-url-new-background-buffer",
 // make C-c C-c "submit form"
 define_key(content_buffer_normal_keymap, "C-c C-c", "submit-form");
 
+// Make sure I don't close by accident
+add_hook("before_quit_hook",
+         function () {
+           var w=get_recent_conkeror_window();
+           var result=(w==null) ||
+                 "y"==(yield w.minibuffer.read_single_character_option(
+                   $prompt="Quit Conkeror? (y/n)",
+                   $options=["y", "n"]));
+           yield co_return(result);
+         });
+
+can_kill_last_buffer=false;
 
 // set default download directory
 cwd=get_home_directory();
@@ -249,16 +261,3 @@ interactive("readable",
         document.getElementsByTagName('body')[0].appendChild(el);
     });
 define_key(default_global_keymap, "C-x r", "readable");
-
-// Make sure I don't close by accident
-add_hook("before_quit_hook",
-         function () {
-           var w=get_recent_conkeror_window();
-           var result=(w==null) ||
-                 "y"==(yield w.minibuffer.read_single_character_option(
-                   $prompt="Quit Conkeror? (y/n)",
-                   $options=["y", "n"]));
-           yield co_return(result);
-         });
-
-can_kill_last_buffer=false;
