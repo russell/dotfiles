@@ -98,6 +98,11 @@ interactive("find-url-from-history-new-buffer",
 define_key(content_buffer_normal_keymap, "h", "find-url-from-history-new-buffer");
 define_key(content_buffer_normal_keymap, "H", "find-url-from-history");
 
+// load session module
+require("session.js");
+session_auto_save_auto_load = true; // auto-load session
+
+
 /*
  *  keybindings
  */
