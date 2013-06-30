@@ -160,32 +160,12 @@
 (define-key *top-map* (kbd "M-Left")  "move-window left")
 (define-key *top-map* (kbd "M-Right") "move-window right")
 
-
 ; launch Web browser
 (defcommand conkeror () ()
   "Start Firefox or switch to it, if it is already running."
   (run-or-raise "conkeror" '(:class "Conkeror")))
 (define-key *root-map* (kbd "u") "conkeror")
 (define-key *top-map* (kbd "s-u") "conkeror")
-
-
-;; ASK the user for a search string and search for it in Wikipedia
-(defcommand wikipedia (search)
-  ((:string "Search in Wikipedia for: "))
-  "prompt the user for a search term and look it up in the English Wikipedia"
-  (check-type search string)
-  (let ((uri (format nil "http://en.wikipedia.org/wiki/Special:Search?search=~a" search)))
-    (run-shell-command
-     (cat "iceweasel -new-tab \"" uri "\""))))
-
-;; ask the user for a search string and search for it in Google
-(defcommand google (search)
-  ((:string "Search in Google for: "))
-  "prompt the user for a search term and look it up in Google "
-  (check-type search string)
-  (let ((uri (format nil "http://www.google.com/search?q=~a" search)))
-    (run-shell-command
-     (cat "iceweasel -new-tab \"" uri "\""))))
 
 ;; log out
 (define-key *root-map* (kbd "^") "quit")
