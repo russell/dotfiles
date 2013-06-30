@@ -119,6 +119,9 @@ define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
 // Github
 define_webjump("github", "http://github.com/search?q=%s&type=Everything");
 
+// Launchpad
+define_webjump("launchpad", "https://launchpad.net/+search?field.text=%s");
+
 /*
  * Plugins
  */
