@@ -301,30 +301,7 @@ focus it."
 
 (define-key *root-map* (kbd ".") "menu")
 
-
-;;;; Groups
-
-;; (gnew "Communication")
-
-;; (define-frame-preference "Communication"
-;;   ;; frame raise lock (lock AND raise == jumpto)
-;;   (0 t   t :class "Emacs" :title "^ERC: .*$"))
-
 ;;;; Applications startup
-
-;; Gnome Settings
-;; (run-shell-command "/usr/bin/gnome-settings-daemon")
-;; GNOME Keyring
-
-;; ;; GNOME Keyring: GPG Agent
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=gpg")
-;; ;; GNOME Keyring: Secret Service
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=secrets")
-;; ;; GNOME Keyring: PKCS#11 Component
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=pkcs11")
-;; ;; GNOME Keyring: SSH Agent
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=ssh")
-
 
 ;; GNOME Keyring
 (let* ((output (run-shell-command "/usr/bin/gnome-keyring-daemon --start" t))
@@ -340,10 +317,6 @@ focus it."
                            :while j)))
 
         (sb-posix:setenv (car env-var) (cadr env-var) 1)))))
-
-;; Currently i have to run these by hand to get a working gpgagent
-;(sb-posix:setenv "GPG_AGENT_INFO" "/tmp/keyring-ssh9yh/gpg:0:1" 0)
-;(sb-posix:setenv "SSH_AUTH_SOCK" "/tmp/keyring-ssh9yh/ssh" 0)
 
 ;; Enable devorak
 (run-shell-command "/usr/bin/setxkbmap dvorak")
