@@ -214,8 +214,7 @@ focus it."
 ;;;;
 
 (defparameter *start-menu*
-  '(
-    ("Accessories"
+  '(("Accessories"
      ("Password and Keys" "revelation"))
 
     ("Graphics"
@@ -262,8 +261,7 @@ focus it."
      ("Clipboard" "xclipboard")
      ("Fonts" "xfontsel")
      ("Ruler" "kruler")
-     ("Events" "xev"))
-    ))
+     ("Events" "xev"))))
 
 (defcommand menu () ()
   "docstring"
