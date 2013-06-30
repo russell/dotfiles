@@ -73,7 +73,9 @@
 
 (setf *window-format* "%m%n%s%c")
 
+;;
 ;; message windows
+;;
 
 (setf *message-window-gravity* :center)
 
@@ -258,7 +260,10 @@ focus it."
 
 (define-key *root-map* (kbd ".") "menu")
 
-;;;; Applications startup
+
+;;;
+;;; Applications startup
+;;;
 
 ;; GNOME Keyring
 (let* ((output (run-shell-command "/usr/bin/gnome-keyring-daemon --start" t))
