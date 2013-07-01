@@ -32,6 +32,9 @@ editor_shell_command="emacsclient -c";
 // view source in your editor.
 view_source_use_external_editor=true;
 
+// Open download window in a new buffer.
+download_buffer_automatic_open_target=OPEN_NEW_BUFFER;
+
 // open urls in an existing instance
 url_remoting_fn = load_url_in_new_buffer;
 
@@ -51,10 +54,54 @@ interactive("find-url-new-background-buffer",
 // make C-c C-c "submit form"
 define_key(content_buffer_normal_keymap, "C-c C-c", "submit-form");
 
+// Make sure I don't close by accident
+add_hook("before_quit_hook",
+         function () {
+           var w=get_recent_conkeror_window();
+           var result=(w==null) ||
+                 "y"==(yield w.minibuffer.read_single_character_option(
+                   $prompt="Quit Conkeror? (y/n)",
+                   $options=["y", "n"]));
+           yield co_return(result);
+         });
+
+can_kill_last_buffer=false;
 
 // set default download directory
 cwd=get_home_directory();
 cwd.append("downloads");
+
+
+/*
+ * History
+ */
+
+define_browser_object_class(
+    "history-url", null,
+    function (I, prompt) {
+        check_buffer (I.buffer, content_buffer);
+        var result = yield I.buffer.window.minibuffer.read_url(
+            $prompt = prompt,  $use_webjumps = false, $use_history = true, $use_bookmarks = false);
+        yield co_return (result);
+    });
+
+interactive("find-url-from-history",
+            "Find a page from history in the current buffer",
+            "find-url",
+            $browser_object = browser_object_history_url);
+
+interactive("find-url-from-history-new-buffer",
+            "Find a page from history in the current buffer",
+            "find-url-new-buffer",
+            $browser_object = browser_object_history_url);
+
+define_key(content_buffer_normal_keymap, "h", "find-url-from-history-new-buffer");
+define_key(content_buffer_normal_keymap, "H", "find-url-from-history");
+
+// load session module
+require("session.js");
+session_auto_save_auto_load = true; // auto-load session
+
 
 /*
  *  keybindings
@@ -104,6 +151,9 @@ define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
 // Github
 define_webjump("github", "http://github.com/search?q=%s&type=Everything");
 
+// Launchpad
+define_webjump("launchpad", "https://launchpad.net/+search?field.text=%s");
+
 /*
  * Plugins
  */
@@ -124,6 +174,17 @@ read_buffer_show_icons = true;
 require("reddit");
 require("duckduckgo");
 require("github");
+
+/*
+ * More emacs like key bindings.
+ */
+
+define_key(duckduckgo_keymap, "n", "duckduckgo-down");
+define_key(duckduckgo_keymap, "p", "duckduckgo-up");
+define_key(reddit_keymap, "n", "reddit-next");
+define_key(reddit_keymap, "N", "reddit-next-parent-comment");
+define_key(reddit_keymap, "p", "reddit-prev");
+define_key(reddit_keymap, "P", "reddit-prev-parent-comment");
 
 
 /*
@@ -235,16 +296,3 @@ interactive("readable",
         document.getElementsByTagName('body')[0].appendChild(el);
     });
 define_key(default_global_keymap, "C-x r", "readable");
-
-// Make sure I don't close by accident
-add_hook("before_quit_hook",
-         function () {
-           var w=get_recent_conkeror_window();
-           var result=(w==null) ||
-                 "y"==(yield w.minibuffer.read_single_character_option(
-                   $prompt="Quit Conkeror? (y/n)",
-                   $options=["y", "n"]));
-           yield co_return(result);
-         });
-
-can_kill_last_buffer=false;

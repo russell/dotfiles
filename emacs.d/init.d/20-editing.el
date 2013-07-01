@@ -26,6 +26,9 @@
 ;; electric indent mode
 ;; (electric-indent-mode t)
 
+(require 'epa-file)
+(epa-file-enable)
+
 ;; TODO manually activate subword mode. so that the keys below work.
 ;; (global-set-key "\M-B" 'backward-word)
 ;; (global-set-key "\M-F" 'forward-word)
@@ -138,3 +141,7 @@
               (vc-call-backend (vc-backend buffer-file-name) 'root default-directory)
             default-directory)))
     (call-interactively 'rgrep)))
+
+(defun pwgen ()
+  (interactive)
+  (shell-command "pwgen -c -n -B -s 12 1" t))

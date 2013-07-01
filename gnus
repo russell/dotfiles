@@ -167,10 +167,14 @@ See (info \"(gnus)Group Line Specification\")."
   (interactive)
   (gnus-summary-move-article nil "[Google Mail]/Bin"))
 
+(define-key gnus-summary-backend-map (kbd "k") 'gmail-delete)
+
 (defun gmail-report-spam ()
   "Mark the current message as spam."
   (interactive)
   (gnus-summary-move-article nil "[Google Mail]/Spam"))
+
+(define-key gnus-summary-backend-map (kbd "s") 'gmail-report-spam)
 
 ;;(info "(emacs-w3m) Gnus")
 (defun gnus-summary-w3m-safe-toggle-inline-images (&optional arg)
@@ -212,6 +216,23 @@ See (info \"(gnus)Group Line Specification\")."
  ;; Gnus: pixmap if in X.
  ;; Default: "Gnus: %%b {%M%:%S}"  (%b buffer-name?)
  gnus-group-mode-line-format "Gnus: {%M%:%S}"
+
+ ;; %G  Group name
+ ;; %p  Unprefixed group name
+ ;; %A  Current article number
+ ;; %z  Current article score
+ ;; %V  Gnus version
+ ;; %U  Number of unread articles in the group
+ ;; %e  Number of unselected articles in the group
+ ;; %Z  A string with unread/unselected article counts
+ ;; %g  Shortish group name
+ ;; %S  Subject of the current article
+ ;; %u  User-defined spec
+ ;; %s  Current score file name
+ ;; %d  Number of dormant articles
+ ;; %r  Number of articles that have been marked as read in this session
+ ;; %E  Number of articles expunged by the score files
+ gnus-summary-mode-line-format "Gnus: %G [%A] %Z"
 
  ;; %M marked articles.
  ;; %S subscribed.

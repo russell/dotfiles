@@ -40,29 +40,30 @@
 
 
 (defun slime-find-all-system-names ()
-  (cl-union
-   (mapcar
-    (lambda (b)
-      (let ((string-start 0)
-            (package-name (with-current-buffer b (slime-current-package))))
-        (when (equal "#" (substring package-name string-start (+ string-start 1)))
-          (incf string-start))
-        (when (equal ":" (substring package-name string-start (+ string-start 1)))
-          (incf string-start))
-        (downcase (substring package-name string-start))))
-    (cl-remove-if-not
-     (lambda (b) (equal (buffer-local-value 'major-mode b)
-                        'lisp-mode))
-     (buffer-list)))
-   (slime-eval '(cl:nunion
-                 (swank:list-asdf-systems)
-                 (cl:mapcar 'ql-dist:name
-                            (ql:system-list))
-                 :test 'cl:string=))
-   :test 'string-equal))
+  (flet ((first-char (string &optional (string-start 0))
+                     (substring string string-start (1+ string-start))))
+      (cl-union
+       (mapcar
+        (lambda (b)
+          (let ((string-start 0)
+                (package-name (with-current-buffer b (slime-current-package))))
+            (when (equal "#" (first-char package-name string-start))
+              (incf string-start))
+            (when (equal ":" (first-char package-name string-start))
+              (incf string-start))
+            (downcase (substring package-name string-start))))
+        (cl-remove-if-not
+         (lambda (b) (equal (buffer-local-value 'major-mode b)
+                            'lisp-mode))
+         (buffer-list)))
+       (slime-eval '(cl:nunion
+                     (swank:list-asdf-systems)
+                     (cl:mapcar 'ql-dist:name
+                                (ql:system-list))
+                     :test 'cl:string=))
+       :test 'string-equal)))
 
 ;; Quickload a system
-;; https://github.com/quicklisp/quicklisp-slime-helper/issues/11
 (defslime-repl-shortcut slime-repl-quickload
   ("quickload" "+ql" "ql")
   (:handler (lambda ()
