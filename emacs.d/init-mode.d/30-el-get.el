@@ -90,6 +90,11 @@
                :url "git://github.com/emacs-helm/helm.git"
                :features (helm))
 
+        (:name mbsync
+               :type github
+               :pkgname "russell/mbsync-el"
+               :features mbsync)
+
         (:name emms
                :description "The Emacs Multimedia System"
                :type git
