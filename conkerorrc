@@ -121,6 +121,10 @@ define_delicious_webjumps("russell.sim");
 define_webjump("hackernews", "http://searchyc.com/%s",
                $alternative = "http://news.ycombinator.com/");
 
+// Trello news
+define_webjump("trello", "https://trello.com/search?q=%s",
+               $alternative = "https://trello.com/");
+
 // Reddit
 define_webjump("reddit", "http://www.reddit.com/r/%s",
                $alternative = "http://www.reddit.com/");
