@@ -350,6 +350,11 @@
                :post-init (progn
                             (workgroups-mode 1)))
 
+        (:name smart-operator
+               :type http
+               :url "https://xwl.appspot.com/ref/smart-operator.el"
+               :description "Beautify the operators in codes")
+
         (:name oauth2
                :type git
                :url "git://github.com/emacsmirror/oauth2.git")
