@@ -178,6 +178,7 @@ read_buffer_show_icons = true;
 require("reddit");
 require("duckduckgo");
 require("github");
+require("google-search-results");
 
 /*
  * More emacs like key bindings.
