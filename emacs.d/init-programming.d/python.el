@@ -133,7 +133,10 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (eproject-maybe-turn-on)
+            (condition-case e
+                (eproject-maybe-turn-on)
+              (error (display-warning 'warning
+                                      (format "arrsim-python.el: %s" e))))
             (when (ignore-errors (eproject-root))
               (let ((default-directory (eproject-root)))
                 (set (make-local-variable 'compilation-directory) (eproject-root))
