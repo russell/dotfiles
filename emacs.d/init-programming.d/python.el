@@ -17,12 +17,6 @@
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
-(define-project-type python (generic)
-  (and (look-for "setup.py")
-       (look-for "lib")
-       (look-for "bin/activate"))
-  :irrelevant-files ("^[.]" "^[#]"))
-
 (define-project-type generic-python (generic)
   (look-for "setup.py")
   :irrelevant-files ("^[.]" "^[#]"))
@@ -108,6 +102,9 @@
                         (nth (- (length spath) 2) spath)))))
         (py-shell argprompt dedicated "python" switch
                   py-separator-char (format "*Python: %s*" name)))))
+
+;; TODO add setting of `compilation-environment' it will help compile
+;; mode work with virtual envs.
 
 ;; Use python.el indentation
 (add-hook 'python-mode-hook
