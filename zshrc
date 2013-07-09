@@ -213,6 +213,7 @@ export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 export DIST=unstable
 export ARCH=amd64
 
+export VIRTUAL_ENV_DISABLE_PROMPT="True"
 export WORKON_HOME=~/.virtualenvs/
 
 export PIP_DOWNLOAD_CACHE=~/.egg-cache
