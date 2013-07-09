@@ -43,6 +43,7 @@
 ;(setq imap-store-password t)
 
 (setq gnus-asynchronous t)
+(setq gnus-widen-article-window t)
 
 
 ;; turn on mail icon
