@@ -39,12 +39,12 @@
  '(diredp-write-priv ((t nil)))
 
  ;; Ansi Term
- '(term-color-black ((t (:foreground "gray20" ))))
- '(term-color-red ((t (:foreground "indian red"))))
- '(term-color-green ((t (:foreground "light sea green" :weight bold))))
- '(term-color-yellow ((t (:foreground "light salmon"))))
- '(term-color-blue ((t (:foreground "dodger blue"))))
- '(term-color-cyan ((t (:foreground "yellow green"))))
- '(term-colol-magenta ((t (:foreground "hot pink")))))
+ '(term-color-black ((t (:foreground "gray20" :background "gray20"))))
+ '(term-color-red ((t (:foreground "indian red" :background "indian red"))))
+ '(term-color-green ((t (:foreground "light sea green" :background "light sea green"))))
+ '(term-color-yellow ((t (:foreground "light salmon" :background "light salmon"))))
+ '(term-color-blue ((t (:foreground "dodger blue" :background "dodger blue"))))
+ '(term-color-cyan ((t (:foreground "yellow green" :background "yellow green"))))
+ '(term-color-magenta ((t (:foreground "hot pink" :background "hot pink")))))
 
 (provide-theme 'arrsim-custom)
