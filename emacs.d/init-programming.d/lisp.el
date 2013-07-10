@@ -2,14 +2,16 @@
 ;; Lisp
 ;;
 
-;; common lisp mode hooks
+;; 'common' lisp mode hooks
 (mapc (lambda (mode)
+        ;; indent on newline
+        (local-set-key (kbd "RET") 'newline-and-indent)
+
         ;; force balanced parens on save
         (add-hook mode
                   (lambda ()
                     (add-hook 'write-contents-functions
                               'check-parens)))
-
         ;; paredit mode
         (add-hook mode 'paredit-mode))
 
