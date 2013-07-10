@@ -125,6 +125,10 @@ define_webjump("hackernews", "http://searchyc.com/%s",
 define_webjump("trello", "https://trello.com/search?q=%s",
                $alternative = "https://trello.com/");
 
+// F2L Confluence
+define_webjump("confluence", "https://confluence.fitness2live.net.au/dosearchsite.action?spaceSearch=false&queryString=%s",
+               $alternative = "https://confluence.fitness2live.net.au/");
+
 // Reddit
 define_webjump("reddit", "http://www.reddit.com/r/%s",
                $alternative = "http://www.reddit.com/");
