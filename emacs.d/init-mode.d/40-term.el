@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
+(require 'term)
+
 (defun my-ansi-term (program &optional new-buffer-name)
   (interactive (let ((default-prog (or explicit-shell-file-name
                                        (getenv "ESHELL")
