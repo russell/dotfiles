@@ -1,5 +1,5 @@
 (deftheme arrsim-custom
-  "Created 2013-05-29.")
+  "tsdh-dark customisations")
 
 (custom-theme-set-variables
  'arrsim-custom
@@ -7,8 +7,6 @@
 
 (custom-theme-set-faces
  'arrsim-custom
- ;; tsdh-dark customisations
- ;; none at the moment
 
  '(highlight-indentation-face ((t (:background "grey25"))))
  '(helm-selection ((t (:background "#00472b"))))
@@ -26,8 +24,10 @@
  '(font-lock-artbollocks-face ((t (:stipple nil :underline "Purple" :inverse-video nil :slant italic :weight bold))))
  '(flymake-infoline ((t (:background "#00472b"))))
  '(flymake-warnline ((t (:background "#001B63"))))
+
  ;; erc
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
+
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
 
