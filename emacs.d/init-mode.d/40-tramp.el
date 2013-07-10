@@ -29,8 +29,16 @@
 ;; Sudo
 (defun sudo-edit-current-file ()
   (interactive)
-  (find-alternate-file
-   (concat "/sudo:root@localhost:"
-	   (buffer-file-name (current-buffer)))))
+  (let ((position (point)))
+    (find-alternate-file
+     (if (file-remote-p (buffer-file-name))
+         (let ((vec (tramp-dissect-file-name (buffer-file-name))))
+           (tramp-make-tramp-file-name
+            "sudo"
+            (tramp-file-name-user vec)
+            (tramp-file-name-host vec)
+            (tramp-file-name-localname vec)))
+       (concat "/sudo:root@localhost:" (buffer-file-name))))
+    (goto-char position)))
 
 (require 'tramp)
