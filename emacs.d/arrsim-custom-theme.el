@@ -30,10 +30,21 @@
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
+
+ ;; dired
  '(diredp-exec-priv ((t nil)))
  '(diredp-no-priv ((t nil)))
  '(diredp-rare-priv ((t (:foreground "Green"))))
  '(diredp-read-priv ((t nil)))
- '(diredp-write-priv ((t nil))))
+ '(diredp-write-priv ((t nil)))
+
+ ;; Ansi Term
+ '(term-color-black ((t (:foreground "gray20" ))))
+ '(term-color-red ((t (:foreground "indian red"))))
+ '(term-color-green ((t (:foreground "light sea green" :weight bold))))
+ '(term-color-yellow ((t (:foreground "light salmon"))))
+ '(term-color-blue ((t (:foreground "dodger blue"))))
+ '(term-color-cyan ((t (:foreground "yellow green"))))
+ '(term-colol-magenta ((t (:foreground "hot pink")))))
 
 (provide-theme 'arrsim-custom)
