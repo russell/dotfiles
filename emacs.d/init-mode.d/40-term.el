@@ -51,3 +51,4 @@
     (switch-to-buffer term-ansi-buffer-name)))
 
 (global-set-key "\C-cd" 'my-ansi-term)
+(global-set-key "\C-cc" 'my-ansi-term)
