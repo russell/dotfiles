@@ -345,8 +345,5 @@ focus it."
 ;(sb-posix:setenv "GPG_AGENT_INFO" "/tmp/keyring-ssh9yh/gpg:0:1" 0)
 ;(sb-posix:setenv "SSH_AUTH_SOCK" "/tmp/keyring-ssh9yh/ssh" 0)
 
-;; Enable devorak
-(run-shell-command "/usr/bin/setxkbmap dvorak")
-
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")
