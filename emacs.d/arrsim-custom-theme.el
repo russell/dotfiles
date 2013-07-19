@@ -1,5 +1,5 @@
 (deftheme arrsim-custom
-  "Created 2013-05-29.")
+  "tsdh-dark customisations")
 
 (custom-theme-set-variables
  'arrsim-custom
@@ -7,8 +7,6 @@
 
 (custom-theme-set-faces
  'arrsim-custom
- ;; tsdh-dark customisations
- ;; none at the moment
 
  '(highlight-indentation-face ((t (:background "grey25"))))
  '(helm-selection ((t (:background "#00472b"))))
@@ -26,14 +24,27 @@
  '(font-lock-artbollocks-face ((t (:stipple nil :underline "Purple" :inverse-video nil :slant italic :weight bold))))
  '(flymake-infoline ((t (:background "#00472b"))))
  '(flymake-warnline ((t (:background "#001B63"))))
+
  ;; erc
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
+
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
+
+ ;; dired
  '(diredp-exec-priv ((t nil)))
  '(diredp-no-priv ((t nil)))
  '(diredp-rare-priv ((t (:foreground "Green"))))
  '(diredp-read-priv ((t nil)))
- '(diredp-write-priv ((t nil))))
+ '(diredp-write-priv ((t nil)))
+
+ ;; Ansi Term
+ '(term-color-black ((t (:foreground "gray20" :background "gray20"))))
+ '(term-color-red ((t (:foreground "indian red" :background "indian red"))))
+ '(term-color-green ((t (:foreground "light sea green" :background "light sea green"))))
+ '(term-color-yellow ((t (:foreground "light salmon" :background "light salmon"))))
+ '(term-color-blue ((t (:foreground "dodger blue" :background "dodger blue"))))
+ '(term-color-cyan ((t (:foreground "yellow green" :background "yellow green"))))
+ '(term-color-magenta ((t (:foreground "hot pink" :background "hot pink")))))
 
 (provide-theme 'arrsim-custom)

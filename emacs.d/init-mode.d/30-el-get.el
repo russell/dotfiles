@@ -29,16 +29,6 @@
                :url "git://github.com/dgutov/diff-hl.git"
                :features diff-hl)
 
-        (:name company-mode
-               :type git
-               :url "git://github.com/company-mode/company-mode.git"
-               :features company)
-
-        (:name slime-company
-               :type git
-               :url "git://github.com/emacsmirror/slime-company.git"
-               :features slime-company)
-
         (:name auto-complete
                :website "http://cx4a.org/software/auto-complete/"
                :description "The most intelligent auto-completion extension."
@@ -89,6 +79,11 @@
                :type git
                :url "git://github.com/emacs-helm/helm.git"
                :features (helm))
+
+        (:name mbsync
+               :type github
+               :pkgname "russell/mbsync-el"
+               :features mbsync)
 
         (:name emms
                :description "The Emacs Multimedia System"
@@ -147,27 +142,6 @@
                ;; see https://github.com/dimitri/el-get/issues/200
                :compile nil)
 
-        (:name color-theme
-               :type bzr
-               :options nil
-               :url "bzr://bzr.savannah.nongnu.org/color-theme/trunk"
-               :load "color-theme.el"
-               :features "color-theme"
-               :post-init (progn
-                            (color-theme-initialize)
-                            (setq color-theme-is-global t)
-                            (setq color-theme-is-cumulative t)
-                            (setq color-theme-load-all-themes nil)))
-
-
-        (:name color-theme-tangotango
-               :type git
-               :depends (color-theme)
-               :features color-theme-tangotango
-               :url "git@github.com:russell/color-theme-tangotango.git"
-               :post-init (progn
-                            (color-theme-tangotango)))
-
         (:name highlight-indentation
                :features highlight-indentation
                :type git
@@ -197,7 +171,6 @@
         (:name pycheckers
                :type hg
                :url "https://bitbucket.org/jek/sandbox")
-
 
         (:name ctable
                :description "Table Component for elisp"
@@ -341,32 +314,6 @@
                :features gnus-desktop-notify
                :url "http://www.thregr.org/~wavexx/hacks/gnus-desktop-notify/gnus-desktop-notify.el")
 
-        (:name breadcrumb
-               :website "http://breadcrumbemacs.sourceforge.net/"
-               :description "Breadcrumb is an add-on module for Emacs that allows you to set a series of quick bookmarks in the file buffers, and jump back to them quickly."
-               :type http
-               :url "http://downloads.sourceforge.net/project/breadcrumbemacs/Breadcrumb%20for%20Emacs/1.1.3/breadcrumb-1.1.3.zip"
-               :build ("unzip breadcrumb-1.1.3.zip")
-               :before (progn
-                         (require 'inversion))
-               :post-init (progn
-                            (require 'breadcrumb)
-                            ;; Shift-SPACE for set bookmark
-                            (global-set-key [?\S-\ ] 'bc-set)
-                            ;; M-j for jump to previous
-                            (global-set-key [(meta j)] 'bc-previous)
-                            ;; Shift-M-j for jump to next
-                            (global-set-key [(shift meta j)] 'bc-next)
-                            ;; M-up-arrow for local previous
-                            (global-set-key [(meta up)] 'bc-local-previous)
-                            ;; M-down-arrow for local next
-                            (global-set-key [(meta down)] 'bc-local-next)
-                            ;; C-c j for jump to current bookmark
-                            (global-set-key [(control c)(j)] 'bc-goto-current)
-                            ;; C-x M-j for the bookmark menu list
-                            (global-set-key [(control x)(meta j)] 'bc-list)
-                            ))
-
         (:name elscreen
                :type http-tar
                :features elscreen
@@ -402,6 +349,11 @@
                :features "workgroups"
                :post-init (progn
                             (workgroups-mode 1)))
+
+        (:name smart-operator
+               :type http
+               :url "https://xwl.appspot.com/ref/smart-operator.el"
+               :description "Beautify the operators in codes")
 
         (:name oauth2
                :type git
@@ -453,6 +405,13 @@
                :depends (slime)
                :features slime-js
                :url "git://github.com/swank-js/slime-js.git")
+
+        (:name slime-fiveam
+               :description "SLIME FiveAM."
+               :type git
+               :depends (slime)
+               :url "git@github.com:russell/slime-fiveam.git"
+               :features slime-fiveam)
 
         (:name hyperspec-info
                :description "info lookup for hyperspec"
@@ -524,6 +483,24 @@
                :type git
                :features ibuffer-tramp
                :url "git://github.com/svend/ibuffer-tramp.git")
+
+        (:name org-mode
+               :website "http://orgmode.org/"
+               :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."
+               :type git
+               :url "git://orgmode.org/org-mode.git"
+               :info "doc"
+               :build/berkeley-unix `,(mapcar
+                                       (lambda (target)
+                                         (list "gmake" target (concat "EMACS=" (shell-quote-argument el-get-emacs))))
+                                       '("oldorg"))
+               :build `,(mapcar
+                         (lambda (target)
+                           (list "make" target (concat "EMACS=" (shell-quote-argument el-get-emacs))))
+                         '("oldorg"))
+               :load-path ("." "lisp" "contrib/lisp")
+               :autoloads nil
+               :features org-loaddefs)
 
         (:name jabber
                :type git
@@ -637,6 +614,7 @@
          paredit
          redshank
          slime
+         slime-fiveam
 
          ;; scheme
          geiser

@@ -73,7 +73,9 @@
 
 (setf *window-format* "%m%n%s%c")
 
+;;
 ;; message windows
+;;
 
 (setf *message-window-gravity* :center)
 
@@ -160,32 +162,12 @@
 (define-key *top-map* (kbd "M-Left")  "move-window left")
 (define-key *top-map* (kbd "M-Right") "move-window right")
 
-
 ; launch Web browser
 (defcommand conkeror () ()
   "Start Firefox or switch to it, if it is already running."
   (run-or-raise "conkeror" '(:class "Conkeror")))
 (define-key *root-map* (kbd "u") "conkeror")
 (define-key *top-map* (kbd "s-u") "conkeror")
-
-
-;; ASK the user for a search string and search for it in Wikipedia
-(defcommand wikipedia (search)
-  ((:string "Search in Wikipedia for: "))
-  "prompt the user for a search term and look it up in the English Wikipedia"
-  (check-type search string)
-  (let ((uri (format nil "http://en.wikipedia.org/wiki/Special:Search?search=~a" search)))
-    (run-shell-command
-     (cat "iceweasel -new-tab \"" uri "\""))))
-
-;; ask the user for a search string and search for it in Google
-(defcommand google (search)
-  ((:string "Search in Google for: "))
-  "prompt the user for a search term and look it up in Google "
-  (check-type search string)
-  (let ((uri (format nil "http://www.google.com/search?q=~a" search)))
-    (run-shell-command
-     (cat "iceweasel -new-tab \"" uri "\""))))
 
 ;; log out
 (define-key *root-map* (kbd "^") "quit")
@@ -234,16 +216,10 @@ focus it."
 ;;;;
 
 (defparameter *start-menu*
-  '(
-    ("Accessories"
-     ("Password and Keys" "revelation"))
-
-    ("Graphics"
-     ("Color Picker" "gcolor2")
+  '(("Graphics"
      ("GIMP" "gimp")
      ("Inkscape" "inkscape")
-     ("Picasa" "picasa")
-     ("Scanner" "xsane"))
+     ("Screenshot" "gnome-screenshot -a"))
 
     ("Internet"
      ("Iceweasel" "iceweasel")
@@ -259,30 +235,13 @@ focus it."
      ("Rhythmbox" "rhythmbox"))
 
     ("System Tools"
-     ("Calculator" "speedcrunch")
-     ("Disk space" "filelight")
+     ("Disk space" "baobab")
      ("File Manager" "nautilus --no-desktop")
-     ("Nvidia X Server" "nvidia-settings")
-     ("Power Preferences" "gnome-power-preferences")
      ("Printers" "system-config-printer")
-     ("Terminal Server" "tsclient")
-         ; Turn on "Enable window manager's key bindings" for prefix key to
-         ; be passed seamlessly (when *not* in full screen).
-         ; Toggle between full screen and not full screen using
-         ; `Ctrl-Alt-Enter'.
-
-     ;; > In the case of Rdesktop you have to launch the app with the option
-     ;; > '-K' so Stump can retain control over the key combinations that you
-     ;; > input inside the remote session.
-
-     ("VirtualBox" "VirtualBox"))
+     ("Remote Desktop" "vinagre"))
 
     ("X Windows Tools"
-     ("Clipboard" "xclipboard")
-     ("Fonts" "xfontsel")
-     ("Ruler" "kruler")
-     ("Events" "xev"))
-    ))
+     ("Events" "xev"))))
 
 (defcommand menu () ()
   "docstring"
@@ -302,29 +261,9 @@ focus it."
 (define-key *root-map* (kbd ".") "menu")
 
 
-;;;; Groups
-
-;; (gnew "Communication")
-
-;; (define-frame-preference "Communication"
-;;   ;; frame raise lock (lock AND raise == jumpto)
-;;   (0 t   t :class "Emacs" :title "^ERC: .*$"))
-
-;;;; Applications startup
-
-;; Gnome Settings
-;; (run-shell-command "/usr/bin/gnome-settings-daemon")
-;; GNOME Keyring
-
-;; ;; GNOME Keyring: GPG Agent
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=gpg")
-;; ;; GNOME Keyring: Secret Service
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=secrets")
-;; ;; GNOME Keyring: PKCS#11 Component
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=pkcs11")
-;; ;; GNOME Keyring: SSH Agent
-;; (run-shell-command "/usr/bin/gnome-keyring-daemon  --start --components=ssh")
-
+;;;
+;;; Applications startup
+;;;
 
 ;; GNOME Keyring
 (let* ((output (run-shell-command "/usr/bin/gnome-keyring-daemon --start" t))
@@ -340,10 +279,6 @@ focus it."
                            :while j)))
 
         (sb-posix:setenv (car env-var) (cadr env-var) 1)))))
-
-;; Currently i have to run these by hand to get a working gpgagent
-;(sb-posix:setenv "GPG_AGENT_INFO" "/tmp/keyring-ssh9yh/gpg:0:1" 0)
-;(sb-posix:setenv "SSH_AUTH_SOCK" "/tmp/keyring-ssh9yh/ssh" 0)
 
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")

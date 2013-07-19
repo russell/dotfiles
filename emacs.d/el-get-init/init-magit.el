@@ -12,3 +12,6 @@
 
 
 (setq magit-set-upstream-on-push 'dontask)
+
+(magit-wip-mode 1)
+(global-magit-wip-save-mode 1)

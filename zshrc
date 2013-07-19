@@ -7,12 +7,11 @@ antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git $fpath)
 
-antigen-bundle git
-antigen-bundle debian
-antigen-bundle pip
+antigen-bundle robbyrussell/oh-my-zsh plugins/git
+antigen-bundle robbyrussell/oh-my-zsh plugins/debian
+antigen-bundle robbyrussell/oh-my-zsh plugins/pip
+antigen-bundle robbyrussell/oh-my-zsh plugins/virtualenvwrapper
 antigen-apply
-
-source ~/.zsh/plugins/virtualenvwrapper.plugin.zsh
 
 # Disable underline of paths
 ZSH_HIGHLIGHT_STYLES[path]='none'
@@ -215,6 +214,7 @@ export DIST=unstable
 export ARCH=amd64
 
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
+export WORKON_HOME=~/.virtualenvs/
 
 export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
@@ -257,6 +257,19 @@ e () {
 E () {
     emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
+
+function set-eterm-dir {
+    echo -e "\033AnSiTu" "$LOGNAME" # $LOGNAME is more portable than using whoami.
+    echo -e "\033AnSiTc" "$(pwd)"
+    echo -e "\033AnSiTh" "$(hostname -f)"
+}
+
+# Track directory, username, and cwd for remote logons.
+if [ "$TERM" = "Eterm-color" ]; then
+    PROMPT_COMMAND=set-eterm-dir
+    function precmd { set-eterm-dir }
+fi
+
 
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"

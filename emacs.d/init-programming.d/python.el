@@ -17,12 +17,6 @@
 (define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
 (define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
 
-(define-project-type python (generic)
-  (and (look-for "setup.py")
-       (look-for "lib")
-       (look-for "bin/activate"))
-  :irrelevant-files ("^[.]" "^[#]"))
-
 (define-project-type generic-python (generic)
   (look-for "setup.py")
   :irrelevant-files ("^[.]" "^[#]"))
@@ -109,6 +103,9 @@
         (py-shell argprompt dedicated "python" switch
                   py-separator-char (format "*Python: %s*" name)))))
 
+;; TODO add setting of `compilation-environment' it will help compile
+;; mode work with virtual envs.
+
 ;; Use python.el indentation
 (add-hook 'python-mode-hook
           '(lambda ()
@@ -133,7 +130,10 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (eproject-maybe-turn-on)
+            (condition-case e
+                (eproject-maybe-turn-on)
+              (error (display-warning 'warning
+                                      (format "arrsim-python.el: %s" e))))
             (when (ignore-errors (eproject-root))
               (let ((default-directory (eproject-root)))
                 (set (make-local-variable 'compilation-directory) (eproject-root))
