@@ -54,7 +54,6 @@ setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 bindkey '\ew' kill-region
-bindkey -s '\el' "ls\n"
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history
 bindkey "^[[6~" down-line-or-history
