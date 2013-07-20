@@ -197,6 +197,7 @@ focus it."
 (define-key *root-map* (kbd "c")   "gnome-terminal")
 (define-key *root-map* (kbd "C-c") "gnome-terminal")
 (define-key *top-map* (kbd "s-c") "gnome-terminal")
+(define-key *top-map* (kbd "s-i") "gnome-terminal")
 
 ;;
 ;; MPD
@@ -279,9 +280,6 @@ focus it."
                            :while j)))
 
         (sb-posix:setenv (car env-var) (cadr env-var) 1)))))
-
-;; Enable devorak
-(run-shell-command "/usr/bin/setxkbmap dvorak")
 
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")
