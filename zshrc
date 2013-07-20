@@ -38,6 +38,9 @@ fi
 # Example aliases
 alias zshconfig="source ~/.zshrc"
 
+# Gtypist
+alias gtypist="gtypist -bi"
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
