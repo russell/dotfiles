@@ -220,6 +220,7 @@ focus it."
   '(("Graphics"
      ("GIMP" "gimp")
      ("Inkscape" "inkscape")
+     ("Rawstudio" "rawstudio")
      ("Screenshot" "gnome-screenshot -a"))
 
     ("Internet"
