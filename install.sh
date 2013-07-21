@@ -8,6 +8,7 @@ conkerorrc
 eclrc
 emacs
 emacs.d
+fonts.conf
 gbp.conf
 gitconfig
 gitignore
