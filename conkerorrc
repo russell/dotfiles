@@ -155,6 +155,7 @@ define_webjump("mdc", "https://developer.mozilla.org/Special:Search?search=%s&ty
 // Python
 define_webjump("python", "http://docs.python.org/search.html?q=%s");
 define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
+define_webjump("pypi", "https://pypi.python.org/pypi?%3Aaction=search&term=%s&submit=search");
 
 // Github
 define_webjump("github", "http://github.com/search?q=%s&type=Everything");
