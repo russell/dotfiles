@@ -294,6 +294,11 @@
                :url "http://cvs.savannah.gnu.org/viewvc/*checkout*/emacs/lisp/json.el?root=emacs"
                :features json)
 
+        (:name jss
+               :description "Mode for developing in browser JavaScript."
+               :type github
+               :pkgname "segv/jss")
+
         (:name fill-column-indicator
                :type git
                :url "https://github.com/alpaker/Fill-Column-Indicator.git"
