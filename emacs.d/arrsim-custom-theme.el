@@ -10,6 +10,7 @@
 
  '(highlight-indentation-face ((t (:background "grey25"))))
  '(helm-selection ((t (:background "#00472b"))))
+
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
  '(mumamo-background-chunk-submode1 ((t (:background "grey30"))))
@@ -37,6 +38,11 @@
  '(diredp-rare-priv ((t (:foreground "Green"))))
  '(diredp-read-priv ((t nil)))
  '(diredp-write-priv ((t nil)))
+
+ ;; email
+ '(gnus-header-content ((t (:foreground "#A64B00" :height 1.1))))
+ '(gnus-header-name ((t (:weight bold :height 1.2))))
+ '(gnus-header-subject ((t (:foreground "yellow green" :weight bold :height 1.4))))
 
  ;; Ansi Term
  '(term-color-black ((t (:foreground "gray20" :background "gray20"))))
