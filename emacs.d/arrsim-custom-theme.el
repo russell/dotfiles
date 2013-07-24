@@ -28,6 +28,8 @@
 
  ;; erc
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
+ '(erc-timestamp-face ((t (:foreground "peru"))))
+ '(erc-notice-face ((t (:slant italic :foreground "grey30"))))
 
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
