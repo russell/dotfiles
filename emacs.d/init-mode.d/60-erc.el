@@ -9,7 +9,7 @@
 (setq erc-modules '(autojoin button completion irccontrols list
                              match menu move-to-prompt netsplit networks
                              noncommands readonly replace ring services
-                             stamp smiley spelling truncate highlight-nicknames track))
+                             stamp smiley spelling truncate highlight-nicknames))
 
 (custom-set-variables
  '(erc-insert-away-timestamp-function 'erc-insert-timestamp-left)
