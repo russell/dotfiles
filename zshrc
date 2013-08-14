@@ -187,6 +187,9 @@ setopt auto_cd
 setopt multios
 setopt cdablevarS
 
+# Editor
+export EDITOR='emacsclient'
+
 #
 # grep colors
 #
@@ -208,6 +211,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 #export PYTHONDONTWRITEBYTECODE=true
 
+# PDSH
 export PDSH_RCMD_TYPE="ssh"
 export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 
@@ -215,9 +219,11 @@ export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
 export DIST=unstable
 export ARCH=amd64
 
+# Virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
 export WORKON_HOME=~/.virtualenvs/
 
+# Pip
 export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
 # EMACS launcher
