@@ -5,6 +5,7 @@ bash_aliases
 bashrc
 bazaar
 conkerorrc
+common.lisp
 eclrc
 emacs
 emacs.d
