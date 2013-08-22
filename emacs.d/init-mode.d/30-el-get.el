@@ -215,9 +215,10 @@
                :pkgname "Fuco1/smartparens"
                :depends (dash))
 
-        (:name tsql-indent
-               :type emacswiki
-               :features tsql-indent)
+        (:name sql-indent
+               :type http
+               :url "http://www.emacswiki.org/emacs/download/sql-indent.el"
+               :features sql-indent)
 
         (:name idomenu
                :type emacswiki
