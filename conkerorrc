@@ -150,7 +150,8 @@ define_webjump("buildd-ports", "http://buildd.debian-ports.org/build.php?pkg=%s"
 define_webjump("debqa", "http://qa.debian.org/developer.php?login=%s");
 
 // Mozilla developer center
-define_webjump("mdc", "https://developer.mozilla.org/Special:Search?search=%s&type=fulltext&go=Search");
+
+define_webjump("mdc", "https://developer.mozilla.org/en-US/search?q=%s");
 
 // Python
 define_webjump("python", "http://docs.python.org/search.html?q=%s");

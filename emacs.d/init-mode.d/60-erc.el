@@ -4,12 +4,12 @@
 (require 'erc-services)
 (erc-services-mode 1)
 
-(setq erc-max-buffer-size 10000)
+(setq erc-max-buffer-size 15000)
 
 (setq erc-modules '(autojoin button completion irccontrols list
-                             match menu move-to-prompt netsplit networks
+                             match move-to-prompt netsplit networks
                              noncommands readonly replace ring services
-                             stamp smiley spelling truncate highlight-nicknames))
+                             stamp smiley spelling truncate))
 
 (custom-set-variables
  '(erc-insert-away-timestamp-function 'erc-insert-timestamp-left)
