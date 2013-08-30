@@ -61,3 +61,23 @@
 
 
 (global-set-key (kbd "<f2>") 'my-eshell)
+
+
+;; a stupid hack, seems that helm is leaking into eshell and this is
+;; the only way to stop it.
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)))
+
+
+(defadvice eldoc-current-symbol (around eldoc-current-symbol activate)
+  ad-do-it
+  (if (and (not ad-return-value)
+           (eq major-mode 'eshell-mode))
+      (save-excursion
+        (goto-char eshell-last-output-end)
+        (let ((esym (eshell-find-alias-function (current-word)))
+              (sym (intern-soft (current-word))))
+          (setq ad-return-value (or esym sum))))))
+
+(add-hook 'eshell-mode-hook 'eldoc-mode)
