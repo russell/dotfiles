@@ -49,6 +49,39 @@
                :post-init (progn
                             (bash-completion-setup)))
 
+        (:name peek-mode
+               :type github
+               :pkgname "erikriverson/peek-mode"
+               :depends (elnode))
+
+        (:name elnode
+               :website "http://emacswiki.org/wiki/Elnode"
+               :description "Asynchronous HttpServer framework."
+               :type github
+               :depends (fakir noflet kv web db s)
+               :pkgname "nicferrier/elnode")
+
+        (:name fakir
+               :type github
+               :depends (noflet dash)
+               :pkgname "nicferrier/emacs-fakir")
+
+        (:name noflet
+               :type github
+               :pkgname "nicferrier/emacs-noflet")
+
+        (:name kv
+               :type github
+               :pkgname "nicferrier/emacs-kv")
+
+        (:name web
+               :type github
+               :pkgname "nicferrier/emacs-web")
+
+        (:name db
+               :type github
+               :pkgname "nicferrier/emacs-db")
+
         (:name autopair
                :website "http://code.google.com/p/autopair/"
                :description "Autopair is an extension to the Emacs text editor that automatically pairs braces and quotes."
@@ -208,6 +241,11 @@
                :description "A modern list api for Emacs. No 'cl required."
                :type github
                :pkgname "magnars/dash.el")
+
+        (:name s
+               :description "Emacs string manipulation."
+               :type github
+               :pkgname "magnars/s.el")
 
         (:name smartparens
                :description "Autoinsert pairs of defined brackets and wrap regions"
