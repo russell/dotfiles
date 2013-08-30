@@ -24,6 +24,11 @@
       '((:name magit
                :after (progn (global-set-key (kbd "C-x C-z") 'magit-status)))
 
+        (:name git-modes
+               :type github
+               :pkgname "magit/git-modes"
+               :features (git-commit-mode git-rebase-mode gitconfig-mode gitignore-mode))
+
         (:name diff-hl
                :type git
                :url "git://github.com/dgutov/diff-hl.git"
@@ -662,7 +667,7 @@
          auto-capitalize
          csv-mode
          fic-ext-mode
-         git-commit-mode
+         git-modes
          highlight-parentheses
          highlight-symbol
          markdown-mode
