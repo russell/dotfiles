@@ -145,3 +145,8 @@
 (defun pwgen ()
   (interactive)
   (shell-command "pwgen -c -n -B -s 12 1" t))
+
+
+(defun copy-file-name ()
+  (interactive)
+  (kill-new (buffer-file-name)))

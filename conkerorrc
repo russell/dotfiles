@@ -150,11 +150,13 @@ define_webjump("buildd-ports", "http://buildd.debian-ports.org/build.php?pkg=%s"
 define_webjump("debqa", "http://qa.debian.org/developer.php?login=%s");
 
 // Mozilla developer center
-define_webjump("mdc", "https://developer.mozilla.org/Special:Search?search=%s&type=fulltext&go=Search");
+
+define_webjump("mdc", "https://developer.mozilla.org/en-US/search?q=%s");
 
 // Python
 define_webjump("python", "http://docs.python.org/search.html?q=%s");
 define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
+define_webjump("pypi", "https://pypi.python.org/pypi?%3Aaction=search&term=%s&submit=search");
 
 // Github
 define_webjump("github", "http://github.com/search?q=%s&type=Everything");
@@ -305,3 +307,13 @@ interactive("readable",
         document.getElementsByTagName('body')[0].appendChild(el);
     });
 define_key(default_global_keymap, "C-x r", "readable");
+
+user_pref("devtools.chrome.enabled", true);
+user_pref("devtools.debugger.remote-enabled", true);
+Components.utils.import("resource://gre/modules/devtools/dbg-server.jsm"); 
+
+interactive("debugging-server", null, function (I) {
+  DebuggerServer.init(function () { return true; });
+  DebuggerServer.addBrowserActors();
+  DebuggerServer.openListener(6000);
+});

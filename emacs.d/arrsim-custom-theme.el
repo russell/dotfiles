@@ -28,6 +28,8 @@
 
  ;; erc
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
+ '(erc-timestamp-face ((t (:foreground "peru"))))
+ '(erc-notice-face ((t (:slant italic :foreground "grey30"))))
 
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
@@ -43,6 +45,16 @@
  '(gnus-header-content ((t (:foreground "#A64B00" :height 1.1))))
  '(gnus-header-name ((t (:weight bold :height 1.2))))
  '(gnus-header-subject ((t (:foreground "yellow green" :weight bold :height 1.4))))
+
+ ;; Jabber
+ '(jabber-roster-user-online ((t (:foreground "light sea green" :weight bold))))
+ '(jabber-roster-user-away ((t (:foreground "cornflower blue"))))
+ '(jabber-roster-user-xa ((t (:foreground "medium purple"))))
+ '(jabber-rare-time-face ((t (:foreground "#4671D5"))))
+ '(jabber-chat-prompt-local ((t (:foreground "light sea green"))))
+ '(jabber-chat-prompt-foreign ((t (:foreground "indian red"))))
+ '(jabber-chat-prompt-system ((t (:foreground "light salmon"))))
+ '(jabber-chat-error ((t (:foreground "hot pink"))))
 
  ;; Ansi Term
  '(term-color-black ((t (:foreground "gray20" :background "gray20"))))

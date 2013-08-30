@@ -59,6 +59,10 @@
   "Open a file, alias to find-file"
   (find-file file))
 
+(defun eshell/magit (file)
+  "Open a magit console."
+  (magit-status file))
+
 
 (global-set-key (kbd "<f2>") 'my-eshell)
 

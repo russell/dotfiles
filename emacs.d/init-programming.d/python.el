@@ -49,11 +49,6 @@
             (defvar py-mode-map python-mode-map)
             (defvar py-shell-map python-shell-map)))
 
-;; Imenu
-(add-hook 'python-mode-hook
-  (lambda ()
-    (setq imenu-create-index-function 'python-imenu-create-index)))
-
 ;;
 ;; Virtual env
 ;;
