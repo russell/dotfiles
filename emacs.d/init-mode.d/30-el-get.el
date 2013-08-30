@@ -22,7 +22,14 @@
 (setq el-get-sources
 
       '((:name magit
-               :after (progn (global-set-key (kbd "C-x C-z") 'magit-status)))
+               :website "https://github.com/magit/magit#readme"
+               :description "It's Magit! An Emacs mode for Git."
+               :type github
+               :pkgname "magit/magit"
+               :info "."
+               :build (("make" "all"))
+               :after (progn (global-set-key (kbd "C-x C-z") 'magit-status))
+               :build/darwin `(,(concat "make EMACS=" el-get-emacs " all")))
 
         (:name git-modes
                :type github
