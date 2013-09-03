@@ -37,8 +37,7 @@
       '(("freenode.net" "#emacs" "#python"
          "#openstack" "#lisp" "#lispcafe"
          "#clnoobs")
-        ("oftc.net" "#debian" "#debian-mentors")
-        ("irc.in.f2l.info" "#befit")))
+        ("oftc.net" "#debian" "#debian-mentors")))
 
 (defun irc-oftc ()
   (interactive)
@@ -56,12 +55,7 @@
   (interactive)
   (erc :server "localhost" :port 6667
 	   :nick "arrsim" :full-name "Russell Sim"
-       :password "vi8huoKo"))
-
-(defun irc-f2l ()
-  (interactive)
-  (erc :server "irc.in.f2l.info" :port 6667
-	   :nick "arrsim" :full-name "Russell Sim"))
+       :password bitlbee-pass))
 
 (defun start-irc ()
   "Connect to IRC."
@@ -69,8 +63,7 @@
   (setq frame-title-format '("ERC: %b"))
   (irc-oftc)
   (irc-freenode)
-  (irc-bitlbee)
-  (irc-f2l))
+  (irc-bitlbee))
 
 
 (require 'notifications)

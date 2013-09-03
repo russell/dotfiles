@@ -22,7 +22,19 @@
 (setq el-get-sources
 
       '((:name magit
-               :after (progn (global-set-key (kbd "C-x C-z") 'magit-status)))
+               :website "https://github.com/magit/magit#readme"
+               :description "It's Magit! An Emacs mode for Git."
+               :type github
+               :pkgname "magit/magit"
+               :info "."
+               :build (("make" "all"))
+               :after (progn (global-set-key (kbd "C-x C-z") 'magit-status))
+               :build/darwin `(,(concat "make EMACS=" el-get-emacs " all")))
+
+        (:name git-modes
+               :type github
+               :pkgname "magit/git-modes"
+               :features (git-commit-mode git-rebase-mode gitconfig-mode gitignore-mode))
 
         (:name diff-hl
                :type git
@@ -48,6 +60,39 @@
                :features bash-completion
                :post-init (progn
                             (bash-completion-setup)))
+
+        (:name peek-mode
+               :type github
+               :pkgname "erikriverson/peek-mode"
+               :depends (elnode))
+
+        (:name elnode
+               :website "http://emacswiki.org/wiki/Elnode"
+               :description "Asynchronous HttpServer framework."
+               :type github
+               :depends (fakir noflet kv web db s)
+               :pkgname "nicferrier/elnode")
+
+        (:name fakir
+               :type github
+               :depends (noflet dash)
+               :pkgname "nicferrier/emacs-fakir")
+
+        (:name noflet
+               :type github
+               :pkgname "nicferrier/emacs-noflet")
+
+        (:name kv
+               :type github
+               :pkgname "nicferrier/emacs-kv")
+
+        (:name web
+               :type github
+               :pkgname "nicferrier/emacs-web")
+
+        (:name db
+               :type github
+               :pkgname "nicferrier/emacs-db")
 
         (:name autopair
                :website "http://code.google.com/p/autopair/"
@@ -208,6 +253,11 @@
                :description "A modern list api for Emacs. No 'cl required."
                :type github
                :pkgname "magnars/dash.el")
+
+        (:name s
+               :description "Emacs string manipulation."
+               :type github
+               :pkgname "magnars/s.el")
 
         (:name smartparens
                :description "Autoinsert pairs of defined brackets and wrap regions"
@@ -624,7 +674,7 @@
          auto-capitalize
          csv-mode
          fic-ext-mode
-         git-commit-mode
+         git-modes
          highlight-parentheses
          highlight-symbol
          markdown-mode

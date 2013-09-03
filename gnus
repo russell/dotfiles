@@ -324,3 +324,25 @@ See (info \"(gnus)Group Line Specification\")."
     (message "Converting Atom to RSS... done")))
 
 (ad-activate 'mm-url-insert)
+
+(require 'org-exp)
+(require 'org-compat)
+
+;; Render org files to email.
+;; (require 'org-mime)
+
+;;
+(require 'gnus-desktop-notify)
+(gnus-desktop-notify-mode)
+
+(defun my-gnus-summary-view-html-alternative-in-xdg ()
+      "Display the HTML part of the current multipart/alternative MIME message
+    in xdg browser."
+      (interactive)
+      (save-current-buffer
+        (gnus-summary-show-article)
+        (set-buffer gnus-article-buffer)
+        (let ((file (make-temp-file "html-message-" nil ".html"))
+              (handle (cdr (assq 1 gnus-article-mime-handle-alist))))
+          (mm-save-part-to-file handle file)
+          (browse-url-xdg-open (concat "file://" file)))))
