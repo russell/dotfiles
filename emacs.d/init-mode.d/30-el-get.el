@@ -690,8 +690,8 @@
          gnus-desktop-notify
 
          ;; ido
-         idomenu
-         ido-hacks
+         ;; idomenu
+         ;; ido-hacks
 
          ;; erc
          erc

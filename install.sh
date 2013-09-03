@@ -6,6 +6,7 @@ bashrc
 bazaar
 conkerorrc
 common.lisp
+dunstrc
 eclrc
 emacs
 emacs.d
