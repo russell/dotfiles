@@ -37,8 +37,7 @@
       '(("freenode.net" "#emacs" "#python"
          "#openstack" "#lisp" "#lispcafe"
          "#clnoobs")
-        ("oftc.net" "#debian" "#debian-mentors")
-        ("irc.in.f2l.info" "#befit")))
+        ("oftc.net" "#debian" "#debian-mentors")))
 
 (defun irc-oftc ()
   (interactive)
@@ -64,5 +63,4 @@
   (setq frame-title-format '("ERC: %b"))
   (irc-oftc)
   (irc-freenode)
-  (irc-bitlbee)
-  (irc-f2l))
+  (irc-bitlbee))
