@@ -641,7 +641,7 @@
 
          ;; scheme
          geiser
-         sicp
+         ;; sicp
 
          ;; puppet
          puppet-flymake
@@ -671,7 +671,7 @@
          yaml-mode
 
          ;; gnus
-         bbdb
+         ;; bbdb
          mbsync
          google-contacts
          mailcrypt
