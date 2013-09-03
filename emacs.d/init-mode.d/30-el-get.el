@@ -421,6 +421,12 @@
                :type git
                :url "git://git.naquadah.org/google-contacts.el.git")
 
+        (:name google-maps
+               :description "Access Google Maps from Emacs"
+               :type git
+               :url "git://git.naquadah.org/google-maps.git"
+               :features (google-maps org-location-google-maps))
+
         (:name highlight-sexp
                :features highlight-sexp
                :type git
@@ -500,6 +506,11 @@
                :features anything
                :after (progn
                         (require 'anything-config)))
+
+        (:name erc
+               :description "A powerful, modular, and extensible Emacs InternetRelayChat client."
+               :type git
+               :url "git://git.sv.gnu.org/erc.git")
 
         (:name restclient-mode
                :type git
@@ -721,7 +732,6 @@
          el-get
          eol-conversion
          flymake-point
-         google-maps
          recover-buffers
          )))
 (el-get nil my-packages)
