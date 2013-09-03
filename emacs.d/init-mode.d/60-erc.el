@@ -71,3 +71,14 @@
   (irc-freenode)
   (irc-bitlbee)
   (irc-f2l))
+
+
+(require 'notifications)
+(defun erc-global-notify (match-type nick message)
+  "Notify when a message is recieved."
+  (notifications-notify
+   :title nick
+   :body message
+   :urgency 'low))
+
+(add-hook 'erc-text-matched-hook 'erc-global-notify)
