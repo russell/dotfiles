@@ -56,12 +56,7 @@
   (interactive)
   (erc :server "localhost" :port 6667
 	   :nick "arrsim" :full-name "Russell Sim"
-       :password "vi8huoKo"))
-
-(defun irc-f2l ()
-  (interactive)
-  (erc :server "irc.in.f2l.info" :port 6667
-	   :nick "arrsim" :full-name "Russell Sim"))
+       :password bitlbee-pass))
 
 (defun start-irc ()
   "Connect to IRC."
