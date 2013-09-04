@@ -123,6 +123,7 @@
         (:name helm
                :type git
                :url "git://github.com/emacs-helm/helm.git"
+               :depends (ido-hacks)
                :features (helm))
 
         (:name mbsync
