@@ -5,7 +5,9 @@
 ;; 'common' lisp mode hooks
 (mapc (lambda (mode)
         ;; indent on newline
-        (local-set-key (kbd "RET") 'newline-and-indent)
+        (add-hook mode
+                  (lambda ()
+                    (local-set-key (kbd "RET") 'newline-and-indent)))
 
         ;; force balanced parens on save
         (add-hook mode
