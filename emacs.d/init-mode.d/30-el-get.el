@@ -591,6 +591,13 @@
                :depends (helm)
                :features helm-descbinds)
 
+        (:name helm-slime
+               :description "Helm frontend for slime"
+               :type github
+               :pkgname "emacs-helm/helm-slime"
+               :depends (helm)
+               :features helm-slime)
+
         (:name apel
                :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
                :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
@@ -648,6 +655,7 @@
 
          ;; common lisp
          ac-slime
+         helm-slime
          highlight-sexp
          hyperspec-info
          paredit
