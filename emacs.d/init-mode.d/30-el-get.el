@@ -123,6 +123,7 @@
         (:name helm
                :type git
                :url "git://github.com/emacs-helm/helm.git"
+               :depends (ido-hacks)
                :features (helm))
 
         (:name mbsync
@@ -600,7 +601,29 @@
                :pkgname "emacs-helm/helm-descbinds"
                :depends (helm)
                :features helm-descbinds)
-))
+
+        (:name helm-slime
+               :description "Helm frontend for slime"
+               :type github
+               :pkgname "emacs-helm/helm-slime"
+               :depends (helm)
+               :features helm-slime)
+
+        (:name apel
+               :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
+               :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
+               :type git
+               :module "apel"
+               :url "git://github.com/emacsmirror/apel.git"
+               :build
+               (mapcar
+                (lambda (target)
+                  (list el-get-emacs
+                        (split-string "-batch -q -no-site-file -l APEL-MK -f")
+                        target
+                        "prefix" "site-lisp" "site-lisp"))
+                '("compile-apel" "install-apel"))
+               :load-path ("site-lisp/apel" "site-lisp/emu"))))
 
 
 (setq my-packages
@@ -643,6 +666,7 @@
 
          ;; common lisp
          ac-slime
+         helm-slime
          highlight-sexp
          hyperspec-info
          paredit

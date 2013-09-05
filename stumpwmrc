@@ -279,5 +279,8 @@ focus it."
 
         (sb-posix:setenv (car env-var) (cadr env-var) 1)))))
 
+;; dunst
+(run-shell-command "/usr/bin/dunst -conf ~/.dunstrc")
+
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")

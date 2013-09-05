@@ -5,7 +5,9 @@
 ;; 'common' lisp mode hooks
 (mapc (lambda (mode)
         ;; indent on newline
-        (local-set-key (kbd "RET") 'newline-and-indent)
+        (add-hook mode
+                  (lambda ()
+                    (local-set-key (kbd "RET") 'newline-and-indent)))
 
         ;; force balanced parens on save
         (add-hook mode
@@ -30,6 +32,10 @@
 (slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation
                               slime-tramp slime-banner slime-compiler-notes-tree))
 ;; (setq slime-complete-symbol-function 'company-complete)
+(eval-after-load "slime"
+  '(progn
+    (define-key slime-mode-map "\M-/" 'helm-slime-complete)))
+
 
 (defun slime-quickload (system &rest keyword-args)
   "Quickload System."
@@ -149,6 +155,7 @@
   '(progn
     (define-key emacs-lisp-mode-map "\C-c\C-c" 'eval-defun)
     (define-key emacs-lisp-mode-map "\C-c\C-z" 'ielm-pop-to-buffer)
+    (define-key emacs-lisp-mode-map "\M-/" 'helm-lisp-completion-at-point)
     (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-expand-mode)
