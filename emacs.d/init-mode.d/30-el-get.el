@@ -406,6 +406,20 @@
                :features "workgroups"
                :post-init (progn
                             (workgroups-mode 1)))
+        (:name bbdb
+               :website "http://bbdb.sourceforge.net/"
+               :description "The Insidious Big Brother Database (BBDB) is a contact management utility."
+               :type git
+               :url "git://git.savannah.nongnu.org/bbdb.git"
+               :load-path ("./lisp")
+               ;; if using vm, add `--with-vm-dir=DIR' after ./configure
+               :build `("autoreconf --force --install"
+                        ,(concat "./configure --with-emacs=" el-get-emacs)
+                        "make clean" "rm -f lisp/bbdb-autoloads.el"
+                        "make")
+               :features bbdb-loaddefs
+               :autoloads nil
+               :post-init (bbdb-initialize))
 
         (:name smart-operator
                :type http
@@ -706,7 +720,7 @@
          yaml-mode
 
          ;; gnus
-         ;; bbdb
+         bbdb
          mbsync
          google-contacts
          mailcrypt
