@@ -606,7 +606,7 @@
                :description "Helm frontend for slime"
                :type github
                :pkgname "emacs-helm/helm-slime"
-               :depends (helm)
+               :depends (helm slime)
                :features helm-slime)
 
         (:name apel
