@@ -773,4 +773,5 @@
          flymake-point
          recover-buffers
          )))
+
 (el-get nil my-packages)
