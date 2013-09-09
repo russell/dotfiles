@@ -166,6 +166,10 @@
 (add-hook 'ielm-mode-hook 'eldoc-mode)
 (add-hook 'ielm-mode-hook 'paredit-mode)
 
+(eval-after-load "ielm"
+  '(progn
+    (define-key inferior-emacs-lisp-mode-map "\M-/" 'helm-lisp-completion-at-point)))
+
 ;;
 ;; scheme
 ;;
