@@ -4,6 +4,19 @@
 
 (setq term-term-name "Eterm-color")
 
+(defun my-project-name ()
+  (file-name-nondirectory
+   (directory-file-name
+    (vc-call-backend (vc-deduce-backend) 'root default-directory))))
+
+
+(defadvice term-handle-ansi-terminal-messages (after update-term-buffer-name (message))
+  (when (and term-ansi-at-user term-ansi-at-host)
+      (rename-buffer (concat "*" term-ansi-at-user "@" term-ansi-at-host "*") t)))
+
+(ad-activate 'term-handle-ansi-terminal-messages)
+
+
 (defun my-ansi-term (program &optional new-buffer-name)
   (interactive (let ((default-prog (or explicit-shell-file-name
                                        (getenv "ESHELL")
@@ -17,9 +30,7 @@
   (let ((project
          (if vc-mode
              (concat ": "
-                     (file-name-nondirectory
-                      (directory-file-name
-                       (vc-call-backend (vc-deduce-backend) 'root default-directory))))
+                     (my-project-name))
            "")))
 
     ;; Pick the name of the new buffer.
@@ -50,5 +61,4 @@
 
     (switch-to-buffer term-ansi-buffer-name)))
 
-(global-set-key "\C-cd" 'my-ansi-term)
 (global-set-key "\C-cc" 'my-ansi-term)
