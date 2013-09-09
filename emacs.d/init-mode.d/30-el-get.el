@@ -729,7 +729,7 @@
 
          ;; ido
          ;; idomenu
-         ;; ido-hacks
+         ido-hacks
 
          ;; erc
          erc
@@ -742,6 +742,7 @@
          dizzee
 
          ;; shell
+         multi-term
          bash-completion
 
          ;; editing tools
