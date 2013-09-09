@@ -20,3 +20,5 @@
     (global-set-key (kbd "M-x") 'execute-extended-command)
     (ad-disable-regexp "^ido-hacks-"))
   (ad-activate-regexp "^ido-hacks-"))
+
+(ido-helm-mode)

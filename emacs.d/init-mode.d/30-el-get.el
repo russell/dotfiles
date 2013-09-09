@@ -406,6 +406,20 @@
                :features "workgroups"
                :post-init (progn
                             (workgroups-mode 1)))
+        (:name bbdb
+               :website "http://bbdb.sourceforge.net/"
+               :description "The Insidious Big Brother Database (BBDB) is a contact management utility."
+               :type git
+               :url "git://git.savannah.nongnu.org/bbdb.git"
+               :load-path ("./lisp")
+               ;; if using vm, add `--with-vm-dir=DIR' after ./configure
+               :build `("autoreconf --force --install"
+                        ,(concat "./configure --with-emacs=" el-get-emacs)
+                        "make clean" "rm -f lisp/bbdb-autoloads.el"
+                        "make")
+               :features bbdb-loaddefs
+               :autoloads nil
+               :post-init (bbdb-initialize))
 
         (:name smart-operator
                :type http
@@ -421,6 +435,12 @@
                :depends oauth2
                :type git
                :url "git://git.naquadah.org/google-contacts.el.git")
+
+        (:name google-maps
+               :description "Access Google Maps from Emacs"
+               :type git
+               :url "git://git.naquadah.org/google-maps.git"
+               :features (google-maps org-location-google-maps))
 
         (:name highlight-sexp
                :features highlight-sexp
@@ -501,6 +521,11 @@
                :features anything
                :after (progn
                         (require 'anything-config)))
+
+        (:name erc
+               :description "A powerful, modular, and extensible Emacs InternetRelayChat client."
+               :type git
+               :url "git://git.sv.gnu.org/erc.git")
 
         (:name restclient-mode
                :type git
@@ -595,7 +620,7 @@
                :description "Helm frontend for slime"
                :type github
                :pkgname "emacs-helm/helm-slime"
-               :depends (helm)
+               :depends (helm slime)
                :features helm-slime)
 
         (:name apel
@@ -665,7 +690,7 @@
 
          ;; scheme
          geiser
-         sicp
+         ;; sicp
 
          ;; puppet
          puppet-flymake
@@ -704,7 +729,7 @@
 
          ;; ido
          ;; idomenu
-         ;; ido-hacks
+         ido-hacks
 
          ;; erc
          erc
@@ -717,6 +742,7 @@
          dizzee
 
          ;; shell
+         multi-term
          bash-completion
 
          ;; editing tools
@@ -740,13 +766,11 @@
          helm-descbinds
 
          ;; libraries
-         apel
          dired+
          dired-plus
          el-get
          eol-conversion
          flymake-point
-         google-maps
          recover-buffers
          )))
 (el-get nil my-packages)
