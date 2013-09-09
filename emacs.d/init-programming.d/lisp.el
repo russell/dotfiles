@@ -36,6 +36,9 @@
   '(progn
     (define-key slime-mode-map "\M-/" 'helm-slime-complete)))
 
+(eval-after-load "slime-repl"
+  '(progn
+    (define-key slime-repl-mode-map "\M-/" 'helm-slime-complete)))
 
 (defun slime-quickload (system &rest keyword-args)
   "Quickload System."
