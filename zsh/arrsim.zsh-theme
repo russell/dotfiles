@@ -41,4 +41,4 @@ time=$time_enabled
 PROMPT='
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
 $(virtualenv_info)$(prompt_char) '
-RPROMPT='[${time}]'
+RPROMPT=''
