@@ -22,3 +22,8 @@
   (ad-activate-regexp "^ido-hacks-"))
 
 (ido-helm-mode)
+
+(custom-set-variables
+ '(helm-boring-buffer-regexp-list
+   (quote
+    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*tramp" "\\*Minibuf" "\\*epc"))))
