@@ -8,6 +8,7 @@
 (custom-theme-set-faces
  'arrsim-custom
 
+ '(font-lock-type-face ((t (:foreground "OliveDrab1"))))
  '(highlight-indentation-face ((t (:background "grey25"))))
  '(helm-selection ((t (:background "#00472b"))))
 
@@ -40,6 +41,13 @@
  '(diredp-rare-priv ((t (:foreground "Green"))))
  '(diredp-read-priv ((t nil)))
  '(diredp-write-priv ((t nil)))
+
+ ;; helm
+ '(helm-ff-directory ((t (:foreground "light salmon"))))
+ '(helm-ff-executable ((t (:foreground "SeaGreen2"))))
+ '(helm-ff-file ((t (:foreground "SeaGreen3"))))
+ '(helm-ff-symlink ((t (:foreground "cyan3"))))
+ '(helm-selection ((t (:background "sea green"))))
 
  ;; email
  '(gnus-header-content ((t (:foreground "#A64B00" :height 1.1))))
