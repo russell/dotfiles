@@ -28,6 +28,9 @@
    (quote
     ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*tramp" "\\*Minibuf" "\\*epc"))))
 
-(defalias 'helm-apt-cache-show
-  (lambda (package)
-    (apt-utils-show-package-1 package t nil)))
+(eval-after-load 'helm-apt
+  '(progn
+     (require 'apt-utils)
+     (defalias 'helm-apt-cache-show
+       (lambda (package)
+         (apt-utils-show-package-1 package t nil)))))
