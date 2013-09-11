@@ -45,7 +45,7 @@
  ;; helm
  '(helm-ff-directory ((t (:foreground "light salmon"))))
  '(helm-ff-executable ((t (:foreground "SeaGreen2"))))
- '(helm-ff-file ((t (:foreground "SeaGreen3"))))
+ '(helm-ff-file ((t (:foreground "OliveDrab1"))))
  '(helm-ff-symlink ((t (:foreground "cyan3"))))
  '(helm-selection ((t (:background "sea green"))))
 
