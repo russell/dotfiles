@@ -12,6 +12,10 @@
  '(highlight-indentation-face ((t (:background "grey25"))))
  '(helm-selection ((t (:background "#00472b"))))
 
+ '(mode-line ((t (:family "Nimbus Sans L" :box
+                          (:line-width 2 :color "red")
+                          :background "gray30"))))
+
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
  '(mumamo-background-chunk-submode1 ((t (:background "grey30"))))

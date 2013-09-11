@@ -15,8 +15,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
 ; set font
-(set-default-font "Liberation Mono:pixelsize=15")
-(add-to-list 'default-frame-alist '(font . "Liberation Mono:pixelsize=15"))
+(set-default-font "Anonymous Pro:pixelsize=16")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

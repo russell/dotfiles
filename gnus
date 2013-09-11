@@ -145,23 +145,10 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 ;; Check for new mail once in every this many minutes.
 ;;
-(gnus-demon-add-handler 'mbsync 10 2)
 (gnus-demon-add-handler 'gnus-demon-scan-news 20 2)
 (gnus-demon-add-handler 'gnus-demon-scan-timestamps nil 30)
 (gnus-demon-add-nntp-close-connection)
 (gnus-demon-add-disconnection)
-
-;; mbsync
-
-(require 'mbsync)
-(add-hook 'mbsync-exit-hook 'gnus-group-get-new-news)
-
-(defun my-gnus-group-get-new-news ()
-  (interactive)
-  (gnus-group-get-new-news)
-  (mbsync))
-
-(define-key gnus-group-mode-map (kbd "f") 'my-gnus-group-get-new-news)
 
 (defun gmail-delete ()
   "Move the current message to the bin."
