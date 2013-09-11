@@ -742,7 +742,6 @@
          dizzee
 
          ;; shell
-         multi-term
          bash-completion
 
          ;; editing tools
