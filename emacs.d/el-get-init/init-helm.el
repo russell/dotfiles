@@ -34,3 +34,9 @@
      (defalias 'helm-apt-cache-show
        (lambda (package)
          (apt-utils-show-package-1 package t nil)))))
+
+(defun helm-truncate-lines ()
+  (with-current-buffer (get-buffer-create helm-buffer)
+    (toggle-truncate-lines t)))
+
+(add-hook 'helm-after-initialize-hook 'helm-truncate-lines)
