@@ -333,3 +333,13 @@ See (info \"(gnus)Group Line Specification\")."
               (handle (cdr (assq 1 gnus-article-mime-handle-alist))))
           (mm-save-part-to-file handle file)
           (browse-url-xdg-open (concat "file://" file)))))
+
+
+(setq gnus-posting-styles
+      '((".*"
+         (From (with-current-buffer gnus-article-buffer
+                 (or (message-fetch-field "Resent-From")
+                     "russell.sim@gmail.com")))
+         (Organization (with-current-buffer gnus-article-buffer
+                         (when (message-fetch-field "Resent-From")
+                           "The University of Melbourne"))))))
