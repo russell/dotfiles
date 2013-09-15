@@ -1,21 +1,10 @@
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl)
+  (require 'noflet))
 
 (custom-set-variables
- '(py-shell-name "python")
- '(py-split-windows-on-execute-function 'split-window-horizontally)
- '(py-complete-function (quote py-shell-complete))
- '(py-switch-buffers-on-execute-p t)
- '(py-split-windows-on-execute-function (quote split-window-horizontally))
- '(py-split-windows-on-execute-p t)
- '(py-switch-buffers-on-execute-p t)
- '(py-tab-shifts-region-p t)
- '(python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n"))
-
-;; python-mode keys
-(define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
-(define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
+ )
 
 (define-project-type generic-python (generic)
   (look-for "setup.py")
@@ -36,18 +25,23 @@
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pycheckers-init)))
 
-;; Force indentation with spaces.
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq indent-tabs-mode nil)))
+
+;; Smartparens
+(add-hook 'python-mode-hook 'smartparens-strict-mode)
+
+(defadvice python-indent-dedent-line-backspace (around python-indent-dedent-line-backspace-around)
+  "Replace the backward-delete-char function with the smartparens
+one."
+  (noflet ((backward-delete-char-untabify (arg &optional killp)
+              (sp-backward-delete-char arg)))
+    ad-do-it))
+
+(ad-activate 'python-indent-dedent-line-backspace)
+
 
 ;; highlight indentation and symbols
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (defvar py-mode-map python-mode-map)
-            (defvar py-shell-map python-shell-map)))
 
 ;;
 ;; Virtual env
@@ -86,59 +80,7 @@
 
 
 ;; Disable cedet
-(remove-hook 'python-mode-hook 'wisent-python-default-setup)
-
-(defun my-python (&optional argprompt dedicated switch)
-  (interactive "P")
-  (with-project-root
-      (let ((name (let ((spath (split-string default-directory "/")))
-                    (if (not (equal (last (car spath)) ""))
-                        (last (car spath))
-                        (nth (- (length spath) 2) spath)))))
-        (py-shell argprompt dedicated "python" switch
-                  py-separator-char (format "*Python: %s*" name)))))
-
-;; TODO add setting of `compilation-environment' it will help compile
-;; mode work with virtual envs.
-
-;; Use python.el indentation
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq indent-region-function #'python-indent-region)
-             (setq indent-line-function #'python-indent-line-function)))
-
-
-;; Fix window splitting
-
-(defcustom py-max-split-windows 2
-  "When split windows is enabled the maximum windows to allow
-  before reusing other windows."
-  :type 'number
-  :group 'python-mode)
-
-(defun python-convert-path-to-module (path basedir)
-  (let ((path (substring (file-name-sans-extension path)
-                         (length basedir))))
-    (while (string-match "[/]" path)
-      (setq path (replace-match "." t t path)))
-    path))
-
-(add-hook 'python-mode-hook
-          (lambda ()
-            (condition-case e
-                (eproject-maybe-turn-on)
-              (error (display-warning 'warning
-                                      (format "arrsim-python.el: %s" e))))
-            (when (ignore-errors (eproject-root))
-              (let ((default-directory (eproject-root)))
-                (set (make-local-variable 'compilation-directory) (eproject-root))
-                (when (and (file-exists-p "./run") (string-equal (eproject-name) "1800respect"))
-                  (set (make-local-variable 'compile-command)
-                       (concat "./test -- " (python-convert-path-to-module buffer-file-name
-                                                                           (concat default-directory "src/")))))
-                (when (and (file-exists-p "./bin/dftrial") (string-equal (eproject-name) "df"))
-                  (set (make-local-variable 'compile-command)
-                       (concat default-directory "bin/dftrial ")))))))
+;; (remove-hook 'python-mode-hook 'wisent-python-default-setup)
 
 
 (defun copy-break-point ()

@@ -670,9 +670,6 @@
          jedi
          pycheckers
          pylookup
-         python
-         python-mode
-         python-pep8
          rst-mode
 
          ;; latex
@@ -732,7 +729,6 @@
 
          ;; erc
          erc
-         erc-highlight-nicknames
          erc-nick-notify
 
          ;; project tools
@@ -767,6 +763,7 @@
          dired+
          dired-plus
          el-get
+         noflet
          eol-conversion
          flymake-point
          recover-buffers
