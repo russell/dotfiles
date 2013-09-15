@@ -325,9 +325,6 @@ See (info \"(gnus)Group Line Specification\")."
 
 (ad-activate 'mm-url-insert)
 
-(require 'org-exp)
-(require 'org-compat)
-
 ;; Render org files to email.
 ;; (require 'org-mime)
 
