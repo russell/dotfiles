@@ -1,6 +1,7 @@
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl)
+  (require 'noflet))
 
 (custom-set-variables
  )
@@ -23,6 +24,19 @@
 (when (load "flymake" t)
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pycheckers-init)))
+
+
+;; Smartparens
+(add-hook 'python-mode-hook 'smartparens-strict-mode)
+
+(defadvice python-indent-dedent-line-backspace (around python-indent-dedent-line-backspace-around)
+  "Replace the backward-delete-char function with the smartparens
+one."
+  (noflet ((backward-delete-char-untabify (arg &optional killp)
+              (sp-backward-delete-char arg)))
+    ad-do-it))
+
+(ad-activate 'python-indent-dedent-line-backspace)
 
 
 ;; highlight indentation and symbols

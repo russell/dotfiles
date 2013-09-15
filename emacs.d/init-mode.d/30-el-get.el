@@ -765,6 +765,7 @@
          dired+
          dired-plus
          el-get
+         noflet
          eol-conversion
          flymake-point
          recover-buffers
