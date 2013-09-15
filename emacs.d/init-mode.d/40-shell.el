@@ -9,7 +9,7 @@
 ;; Shell
 (defun add-mode-line-dirtrack ()
   (add-to-list 'mode-line-buffer-identification
-	       '(:propertize (" " default-directory " ") face dired-directory)))
+	       '(:propertize (" " term-ansi-at-dir " ") face dired-directory)))
 (add-hook 'shell-mode-hook 'add-mode-line-dirtrack)
 
 (add-hook 'shell-mode-hook

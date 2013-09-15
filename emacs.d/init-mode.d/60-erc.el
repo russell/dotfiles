@@ -47,7 +47,7 @@
 
 (defun irc-freenode ()
   (interactive)
-  (erc-tls :server "irc.freenode.net" :port 6697
+  (erc-tls :server "chat.freenode.net" :port 6697
 	   :nick "arrsim" :full-name "Russell Sim"
 	   :password freenode-pass))
 

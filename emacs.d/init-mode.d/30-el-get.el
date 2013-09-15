@@ -670,9 +670,6 @@
          jedi
          pycheckers
          pylookup
-         python
-         python-mode
-         python-pep8
          rst-mode
 
          ;; latex
@@ -742,7 +739,6 @@
          dizzee
 
          ;; shell
-         multi-term
          bash-completion
 
          ;; editing tools
@@ -769,6 +765,7 @@
          dired+
          dired-plus
          el-get
+         noflet
          eol-conversion
          flymake-point
          recover-buffers

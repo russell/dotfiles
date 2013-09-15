@@ -72,4 +72,4 @@
   (eldoc-mode)
   (set (make-local-variable 'eldoc-documentation-function) #'jedi-eldoc-documentation-function))
 
-(add-hook 'python-mode-hook 'jedi-server-custom-setup)
+;; (add-hook 'python-mode-hook 'jedi-server-custom-setup)

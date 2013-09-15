@@ -12,6 +12,10 @@
  '(highlight-indentation-face ((t (:background "grey25"))))
  '(helm-selection ((t (:background "#00472b"))))
 
+ '(mode-line ((t (:family "Nimbus Sans L" :box
+                          (:line-width 2 :color "red")
+                          :background "gray30"))))
+
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
  '(mumamo-background-chunk-submode1 ((t (:background "grey30"))))
@@ -45,7 +49,7 @@
  ;; helm
  '(helm-ff-directory ((t (:foreground "light salmon"))))
  '(helm-ff-executable ((t (:foreground "SeaGreen2"))))
- '(helm-ff-file ((t (:foreground "SeaGreen3"))))
+ '(helm-ff-file ((t (:foreground "OliveDrab1"))))
  '(helm-ff-symlink ((t (:foreground "cyan3"))))
  '(helm-selection ((t (:background "sea green"))))
 

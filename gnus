@@ -123,12 +123,6 @@ See (info \"(gnus)Group Line Specification\")."
 
 (require 'gnus-gravatar)
 
-;; (require 'gnus-sync)
-;; (setq gnus-sync-backend '(lesync "http://marvin.webhop.net:5984/gnus")
-;;       gnus-sync-newsrc-groups '("nntp" "nnrss")
-;;       gnus-sync-lesync-install-topics 't)
-;; (gnus-sync-initialize)
-
 ;; Mailing list support
 (setq message-subscribed-address-functions
       '(gnus-find-subscribed-addresses))
@@ -145,23 +139,10 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 ;; Check for new mail once in every this many minutes.
 ;;
-(gnus-demon-add-handler 'mbsync 10 2)
 (gnus-demon-add-handler 'gnus-demon-scan-news 20 2)
 (gnus-demon-add-handler 'gnus-demon-scan-timestamps nil 30)
 (gnus-demon-add-nntp-close-connection)
 (gnus-demon-add-disconnection)
-
-;; mbsync
-
-(require 'mbsync)
-(add-hook 'mbsync-exit-hook 'gnus-group-get-new-news)
-
-(defun my-gnus-group-get-new-news ()
-  (interactive)
-  (gnus-group-get-new-news)
-  (mbsync))
-
-(define-key gnus-group-mode-map (kbd "f") 'my-gnus-group-get-new-news)
 
 (defun gmail-delete ()
   "Move the current message to the bin."
@@ -343,3 +324,13 @@ See (info \"(gnus)Group Line Specification\")."
               (handle (cdr (assq 1 gnus-article-mime-handle-alist))))
           (mm-save-part-to-file handle file)
           (browse-url-xdg-open (concat "file://" file)))))
+
+
+(setq gnus-posting-styles
+      '((".*"
+         (From (with-current-buffer gnus-article-buffer
+                 (or (message-fetch-field "Resent-From")
+                     "russell.sim@gmail.com")))
+         (Organization (with-current-buffer gnus-article-buffer
+                         (when (message-fetch-field "Resent-From")
+                           "The University of Melbourne"))))))
