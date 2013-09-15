@@ -30,7 +30,11 @@
           (if (file-remote-p default-directory)
               "/usr/bin/ssh"
             "/usr/bin/zsh"))
-         (switches (file-remote-p default-directory 'host)))
+         (switches (when (file-remote-p default-directory 'host)
+                     (list (file-remote-p default-directory 'host)
+                           "-t"
+                           (format "cd %s; /bin/bash --login"
+                                   (file-remote-p default-directory 'localname))))))
 
     ;; Pick the name of the new buffer.
     (setq term-ansi-buffer-name
@@ -45,9 +49,7 @@
     (setq term-ansi-buffer-name (concat "*" term-ansi-buffer-name "*"))
 
     (setq term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
-    (setq term-ansi-buffer-name (if switches
-                                    (term-ansi-make-term term-ansi-buffer-name program nil switches)
-                                  (term-ansi-make-term term-ansi-buffer-name program)))
+    (setq term-ansi-buffer-name (apply 'term-ansi-make-term term-ansi-buffer-name program nil switches))
 
     (set-buffer term-ansi-buffer-name)
     (term-mode)
