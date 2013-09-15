@@ -16,7 +16,6 @@
 
 (ad-activate 'term-handle-ansi-terminal-messages)
 
-
 (add-hook 'term-exec-hook (lambda ()
             (let* ((buff (current-buffer))
                  (proc (get-buffer-process buff)))
@@ -27,6 +26,44 @@
 
 (defun my-ansi-term (&optional new-buffer-name)
   (interactive)
-  (ansi-term "/usr/bin/zsh" new-buffer-name))
+  (let* ((program
+          (if (file-remote-p default-directory)
+              "/usr/bin/ssh"
+            "/usr/bin/zsh"))
+         (switches (file-remote-p default-directory 'host)))
+
+    ;; Pick the name of the new buffer.
+    (setq term-ansi-buffer-name
+          (if new-buffer-name
+              new-buffer-name
+            (if term-ansi-buffer-base-name
+                (if (eq term-ansi-buffer-base-name t)
+                    (file-name-nondirectory program)
+                  term-ansi-buffer-base-name)
+              "ansi-term")))
+
+    (setq term-ansi-buffer-name (concat "*" term-ansi-buffer-name "*"))
+
+    (setq term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
+    (setq term-ansi-buffer-name (if switches
+                                    (term-ansi-make-term term-ansi-buffer-name program nil switches)
+                                  (term-ansi-make-term term-ansi-buffer-name program)))
+
+    (set-buffer term-ansi-buffer-name)
+    (term-mode)
+    (term-char-mode)
+    (let (term-escape-char)
+      (term-set-escape-char ?\C-x))
+
+    (switch-to-buffer term-ansi-buffer-name)))
+
+(defun my-term-init ()
+  ;; Set the ange-ftp variables because there are no default values.
+
+  (setq ange-ftp-default-user nil)
+  (setq ange-ftp-default-password nil)
+  (setq ange-ftp-generate-anonymous-password nil))
+
+(add-hook 'term-mode-hook 'my-term-init)
 
 (global-set-key "\C-cc" 'my-ansi-term)
