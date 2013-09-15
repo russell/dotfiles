@@ -3,19 +3,7 @@
   (require 'cl))
 
 (custom-set-variables
- '(py-shell-name "python")
- '(py-split-windows-on-execute-function 'split-window-horizontally)
- '(py-complete-function (quote py-shell-complete))
- '(py-switch-buffers-on-execute-p t)
- '(py-split-windows-on-execute-function (quote split-window-horizontally))
- '(py-split-windows-on-execute-p t)
- '(py-switch-buffers-on-execute-p t)
- '(py-tab-shifts-region-p t)
- '(python-shell-module-completion-string-code "';'.join(__COMPLETER_all_completions('''%s'''))\n"))
-
-;; python-mode keys
-(define-key python-mode-map "\C-c\C-c" 'py-execute-def-or-class)
-(define-key python-mode-map "\C-c\M-c" 'py-execute-buffer)
+ )
 
 (define-project-type generic-python (generic)
   (look-for "setup.py")
@@ -36,18 +24,10 @@
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pycheckers-init)))
 
-;; Force indentation with spaces.
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq indent-tabs-mode nil)))
 
 ;; highlight indentation and symbols
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (defvar py-mode-map python-mode-map)
-            (defvar py-shell-map python-shell-map)))
 
 ;;
 ;; Virtual env
@@ -86,35 +66,6 @@
 
 
 ;; Disable cedet
-(remove-hook 'python-mode-hook 'wisent-python-default-setup)
-
-(defun my-python (&optional argprompt dedicated switch)
-  (interactive "P")
-  (with-project-root
-      (let ((name (let ((spath (split-string default-directory "/")))
-                    (if (not (equal (last (car spath)) ""))
-                        (last (car spath))
-                        (nth (- (length spath) 2) spath)))))
-        (py-shell argprompt dedicated "python" switch
-                  py-separator-char (format "*Python: %s*" name)))))
-
-;; TODO add setting of `compilation-environment' it will help compile
-;; mode work with virtual envs.
-
-;; Use python.el indentation
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq indent-region-function #'python-indent-region)
-             (setq indent-line-function #'python-indent-line-function)))
-
-
-;; Fix window splitting
-
-(defcustom py-max-split-windows 2
-  "When split windows is enabled the maximum windows to allow
-  before reusing other windows."
-  :type 'number
-  :group 'python-mode)
 
 (defun python-convert-path-to-module (path basedir)
   (let ((path (substring (file-name-sans-extension path)

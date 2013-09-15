@@ -670,9 +670,6 @@
          jedi
          pycheckers
          pylookup
-         python
-         python-mode
-         python-pep8
          rst-mode
 
          ;; latex
