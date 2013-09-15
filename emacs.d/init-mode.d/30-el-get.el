@@ -730,7 +730,6 @@
 
          ;; erc
          erc
-         erc-highlight-nicknames
          erc-nick-notify
 
          ;; project tools
