@@ -23,6 +23,9 @@
 ;; electric layout mode
 (electric-layout-mode t)
 
+;; show the current column number
+(column-number-mode)
+
 ;; electric indent mode
 ;; (electric-indent-mode t)
 
