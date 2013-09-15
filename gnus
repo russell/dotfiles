@@ -323,16 +323,16 @@ See (info \"(gnus)Group Line Specification\")."
 (gnus-desktop-notify-mode)
 
 (defun my-gnus-summary-view-html-alternative-in-xdg ()
-      "Display the HTML part of the current multipart/alternative MIME message
+  "Display the HTML part of the current multipart/alternative MIME message
     in xdg browser."
-      (interactive)
-      (save-current-buffer
-        (gnus-summary-show-article)
-        (set-buffer gnus-article-buffer)
-        (let ((file (make-temp-file "html-message-" nil ".html"))
-              (handle (cdr (assq 1 gnus-article-mime-handle-alist))))
-          (mm-save-part-to-file handle file)
-          (browse-url-xdg-open (concat "file://" file)))))
+  (interactive)
+  (save-current-buffer
+    (gnus-summary-show-article)
+    (set-buffer gnus-article-buffer)
+    (let ((file (make-temp-file "html-message-" nil ".html"))
+          (handle (cdr (assq 1 gnus-article-mime-handle-alist))))
+      (mm-save-part-to-file handle file)
+      (browse-url-xdg-open (concat "file://" file)))))
 
 
 (setq gnus-posting-styles
