@@ -676,7 +676,6 @@
          auctex
 
          ;; common lisp
-         ac-slime
          helm-slime
          highlight-sexp
          hyperspec-info
@@ -756,7 +755,6 @@
          vkill
 
          ;; lookup libraries
-         auto-complete
          helm
          helm-descbinds
 
