@@ -43,6 +43,24 @@ one."
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
 
 
+(defvar python-source-setup-code
+  "def source(filename):
+    import os
+    import subprocess
+
+    command = ['bash', '-c', 'source %s && env' % filename]
+
+    proc = subprocess.Popen(command, stdout = subprocess.PIPE)
+
+    for line in proc.stdout:
+        (key, _, value) = line.partition(\"=\")
+        os.environ[key] = value[:-1]  # strip newline
+
+    proc.communicate()
+")
+
+(add-to-list 'python-shell-setup-codes 'python-source-setup-code)
+
 ;;
 ;; Virtual env
 ;;
