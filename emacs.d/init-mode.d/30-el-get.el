@@ -755,7 +755,6 @@
          vkill
 
          ;; lookup libraries
-         auto-complete
          helm
          helm-descbinds
 
