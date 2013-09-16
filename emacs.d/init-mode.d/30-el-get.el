@@ -676,7 +676,6 @@
          auctex
 
          ;; common lisp
-         ac-slime
          helm-slime
          highlight-sexp
          hyperspec-info

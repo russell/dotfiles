@@ -8,6 +8,9 @@
 ;; Jump to a definition in the current file. (This is awesome)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 
+;; Find files binding
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
 (require 'helm-match-plugin)
 
 (define-minor-mode ido-helm-mode

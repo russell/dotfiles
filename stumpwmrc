@@ -183,21 +183,7 @@
   "Start emacs unless it is already running, in which case focus it."
   (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-primary-server --eval '(server-start)'"
                 '(:class "Emacs" :instance "emacs-primary-server")))
-(define-key *root-map* (kbd "e") "emacs")
 (define-key *top-map* (kbd "s-e") "emacs")
-
-(defcommand emacs-gnus () ()
-  "Start erc unless it is already running, in which case focus it."
-  (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-gnus --eval '(gnus)'"
-                '(:class "Emacs" :instance "emacs-gnus")))
-(define-key *root-map* (kbd "x") "emacs-gnus")
-(define-key *top-map* (kbd "s-x") "emacs-gnus")
-
-(defcommand gnome-terminal () ()
-  "Start gnome-terminal unless it is already running, in which case
-focus it."
-  (run-or-raise "exec /usr/bin/gnome-terminal" '(:class "Gnome-terminal")))
-(define-key *top-map* (kbd "s-i") "gnome-terminal")
 
 ;;
 ;; MPD
