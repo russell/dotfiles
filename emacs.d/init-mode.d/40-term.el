@@ -24,6 +24,11 @@
                             (if (string= event "finished\n")
                                        (kill-buffer buff))))))))
 
+(defun yas-dont-activate ()
+  (yas-minor-mode -1))
+
+(add-hook 'term-mode-hook 'yas-dont-activate)
+
 (defun my-ansi-term (&optional new-buffer-name)
   (interactive)
   (let* ((program
