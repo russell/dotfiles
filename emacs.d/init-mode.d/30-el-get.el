@@ -703,7 +703,6 @@
          artbollocks-mode
          auto-capitalize
          csv-mode
-         fic-ext-mode
          git-modes
          highlight-parentheses
          highlight-symbol
