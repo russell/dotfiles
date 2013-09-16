@@ -3,6 +3,8 @@
   (require 'cl)
   (require 'noflet))
 
+(require 'python)
+
 (custom-set-variables
  )
 
