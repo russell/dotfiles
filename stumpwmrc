@@ -5,6 +5,9 @@
 
 (asdf:oos 'asdf:load-op 'swank)
 
+(when (equal (machine-instance) "kieran")
+  (run-shell-command "/usr/bin/xrandr --output DVI-0 --right-of DisplayPort-0"))
+
 ;; load Swank so we can connect with SLIME
 (swank-loader:init)
 (defvar *swank-p* nil)

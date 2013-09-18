@@ -1,6 +1,11 @@
+(require 'yasnippet)
 
-(defun enable-ac-yasnippet ()
-  (interactive)
-  (when (eq major-mode 'python-mode)
-    (setq-local yas/indent-line 'fixed))
-  (add-to-list ac-sources 'ac-source-yasnippet))
+(yas-global-mode)
+
+(setq yas/root-directory "~/.emacs.d/snippets")
+(loop for dir in `("~/.emacs.d/snippets"
+                   ,(concat (file-name-as-directory el-get-dir)
+                           (file-name-as-directory "yasnippet")
+                           "snippets"))
+      do (yas/load-directory dir))
+(yas/reload-all)

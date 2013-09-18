@@ -9,17 +9,26 @@
 (setq erc-modules '(autojoin button completion irccontrols list
                              match move-to-prompt netsplit networks
                              noncommands readonly replace ring services
-                             stamp smiley spelling truncate))
+                             stamp smiley spelling truncate track))
 
 (custom-set-variables
  '(erc-insert-away-timestamp-function 'erc-insert-timestamp-left)
  '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
  '(erc-timestamp-only-if-changed-flag nil)
  '(erc-track-exclude-server-buffer t)
+ '(erc-track-priority-faces-only 'all)
  '(erc-track-exclude-types
    (quote
     ("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353")))
- '(erc-header-line-face-method nil))
+ '(erc-header-line-face-method nil)
+ '(erc-track-faces-priority-list '(erc-error-face
+                                   erc-current-nick-face
+                                   erc-keyword-face
+                                   erc-nick-msg-face
+                                   erc-direct-msg-face
+                                   erc-dangerous-host-face
+                                   erc-notice-face
+                                   erc-prompt-face)))
 
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
