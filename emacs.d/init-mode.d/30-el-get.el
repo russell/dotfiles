@@ -126,11 +126,6 @@
                :depends (ido-hacks)
                :features (helm))
 
-        (:name mbsync
-               :type github
-               :pkgname "russell/mbsync-el"
-               :features mbsync)
-
         (:name emms
                :description "The Emacs Multimedia System"
                :type git
@@ -716,7 +711,6 @@
 
          ;; gnus
          bbdb
-         mbsync
          google-contacts
          mailcrypt
          nognus
