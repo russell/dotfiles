@@ -85,6 +85,33 @@ case "$TERM" in
     ;;
 esac
 
+case $TERM in
+    eterm-color*)
+        # Setup tramp variables
+        _HOSTNAME=$(hostname -f 2>/dev/null)
+        if [ -n "$_HOSTNAME" ]
+        then
+            _HOST=$_HOSTNAME
+        elif [ -n "$SSH_CONNECTION" ]
+        then
+            _HOST=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
+        else
+            _HOST=$HOSTNAME
+        fi
+        PROMPT_COMMAND='echo -ne "\033AnSiTh ${_HOST}\n\033AnSiTu ${USER}\n\033AnSiTc ${PWD/#$HOME/~}\n"'
+
+        # Setup termcap file.
+        LOCAL_EMACS_VERSION=$(ls -r /usr/share/emacs/ | grep -v site-lisp | head -n 1)
+        if [ -n $LOCAL_EMACS_VERSION ]
+        then
+            export TERMINFO="/usr/share/emacs/$LOCAL_EMACS_VERSION/etc/"
+        else
+            echo "Can't find a local version of emacs."
+        fi
+        ;;
+
+esac
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
