@@ -12,8 +12,8 @@
  '(font-lock-type-face ((t (:foreground "OliveDrab1"))))
  '(highlight-indentation-face ((t (:background "grey25"))))
 
- '(mode-line ((t (:family "Nimbus Sans L" :box
-                          (:line-width 2 :color "red")
+ '(mode-line ((t (:family "Nimbus Sans L" :height 1.1
+                          :box (:line-width 2 :color "red")
                           :background "gray30"))))
  '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
                                     :box (:line-width 2 :color "dark red")))))
