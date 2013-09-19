@@ -1,6 +1,9 @@
 ;;; Don't show dialogs
 (setq use-dialog-box nil)
 
+; set font
+(set-frame-font "DejaVu Sans Mono:pixelsize=15")
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=15"))
 
 ;; full screen
 (defun fullscreen ()

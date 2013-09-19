@@ -2,8 +2,6 @@
 
 (require 'term)
 
-(setq term-term-name "Eterm-color")
-
 (defun my-project-name ()
   (file-name-nondirectory
    (directory-file-name
@@ -62,7 +60,8 @@
     (let (term-escape-char)
       (term-set-escape-char ?\C-x))
 
-    (switch-to-buffer term-ansi-buffer-name)))
+    (switch-to-buffer term-ansi-buffer-name)
+    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)))
 
 (defun my-term-init ()
   ;; Set the ange-ftp variables because there are no default values.

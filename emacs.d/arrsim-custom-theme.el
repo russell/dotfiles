@@ -8,13 +8,18 @@
 (custom-theme-set-faces
  'arrsim-custom
 
+ '(highlight ((t (:background "grey25"))))
+ '(button ((t (:inherit (link)))))
+ '(link ((t (:underline (:color foreground-color :style line)
+                        :foreground "medium turquoise"))))
  '(font-lock-type-face ((t (:foreground "OliveDrab1"))))
  '(highlight-indentation-face ((t (:background "grey25"))))
- '(helm-selection ((t (:background "#00472b"))))
 
- '(mode-line ((t (:family "Nimbus Sans L" :box
-                          (:line-width 2 :color "red")
+ '(mode-line ((t (:family "Nimbus Sans L" :height 1.1
+                          :box (:line-width 2 :color "red")
                           :background "gray30"))))
+ '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
+                                    :box (:line-width 2 :color "dark red")))))
 
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
@@ -32,31 +37,59 @@
  '(flymake-warnline ((t (:background "#001B63"))))
 
  ;; erc
+ '(erc-default-face ((t (:foreground "green"))))
  '(erc-prompt-face ((t (:inherit minibuffer-prompt))))
- '(erc-timestamp-face ((t (:foreground "peru"))))
- '(erc-notice-face ((t (:slant italic :foreground "grey30"))))
+ '(erc-timestamp-face ((t (:inherit (font-lock-string-face)))))
+ '(erc-notice-face ((t (:slant italic :foreground "grey50"))))
+ '(erc-current-nick-face ((t (:foreground "dodgerblue" :weight bold))))
+ '(erc-my-nick-face ((t (:foreground "dodgerblue" :weight bold))))
+ '(erc-nick-msg-face ((t (:foreground "red"))))
 
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
 
+ ;; helm
+ '(helm-source-header ((t (:box 1
+                                :height 1.3
+                                :weight bold
+                                :foreground "white"
+                                :background "dark slate blue"))))
+ '(helm-selection ((t (:background "grey35"))))
+ '(helm-ff-directory ((t (:foreground "DodgerBlue" :weight bold))))
+ '(helm-ff-executable ((t (:foreground "cornsilk"))))
+ '(helm-ff-file ((t (:inherit (font-default)))))
+ '(helm-ff-symlink ((t (:inherit (font-lock-keyword-face)))))
+ '(helm-ff-invalid-symlink ((t (:background "red" :foreground "black"))))
+ '(helm-ff-prefix ((t (:foreground "black" :background "yellow"))))
+
  ;; dired
+ '(diredp-dir-heading ((t (:background "#00003F3F3434" :foreground "DodgerBlue" :height 1.3 :weight bold))))
+ '(dired-directory ((t (:foreground "#7474FFFFFFFF" :weight bold))))
+ '(dired-symlink ((t (:inherit (font-lock-keyword-face) :weight bold))))
+ '(diredp-symlink ((t (:inherit (font-lock-keyword-face) :weight bold))))
+ '(dired-flagged ((t (:inherit (error)))))
+ '(dired-header ((t (:inherit (font-lock-type-face)))))
+ '(dired-ignored ((t (:inherit (shadow)))))
+ '(dired-mark ((t (:inherit (font-lock-constant-face)))))
+ '(dired-marked ((t (:inherit (warning)))))
+ '(diredp-file-name ((t (:inherit (font-default)))))
+ '(diredp-dir-priv ((t (:foreground "DodgerBlue" :weight bold))))
  '(diredp-exec-priv ((t nil)))
  '(diredp-no-priv ((t nil)))
  '(diredp-rare-priv ((t (:foreground "Green"))))
  '(diredp-read-priv ((t nil)))
  '(diredp-write-priv ((t nil)))
 
- ;; helm
- '(helm-ff-directory ((t (:foreground "light salmon"))))
- '(helm-ff-executable ((t (:foreground "SeaGreen2"))))
- '(helm-ff-file ((t (:foreground "OliveDrab1"))))
- '(helm-ff-symlink ((t (:foreground "cyan3"))))
- '(helm-selection ((t (:background "sea green"))))
-
  ;; email
- '(gnus-header-content ((t (:foreground "#A64B00" :height 1.1))))
- '(gnus-header-name ((t (:weight bold :height 1.2))))
- '(gnus-header-subject ((t (:foreground "yellow green" :weight bold :height 1.4))))
+ '(gnus-header-content ((t (:inherit (font-lock-builtin-face) :height 1.1))))
+ '(gnus-button ((t (:underline (:color foreground-color :style line)
+                               :foreground "yellow"))))
+ '(gnus-header-name ((t (:weight bold :height 1.1))))
+ '(gnus-header-subject ((t (:foreground "indian red" :weight bold :height 1.1))))
+ '(gnus-header-content ((t (:foreground "dodger blue" :weight bold :height 1.1))))
+ '(gnus-summary-high-ancient ((t (:foreground "#A64B00" :weight bold))))
+ '(gnus-summary-low-ancient ((t (:foreground "medium turquoise" :slant italic))))
+ '(gnus-summary-low-read ((t (:foreground "dark sea green" :slant italic))))
 
  ;; Jabber
  '(jabber-roster-user-online ((t (:foreground "light sea green" :weight bold))))

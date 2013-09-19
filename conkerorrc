@@ -13,6 +13,8 @@ session_pref("signon.expireMasterPassword", false);
 session_pref("signon.SignonFileName", "signons.txt");
 Cc["@mozilla.org/login-manager;1"].getService(Ci.nsILoginManager); // init
 
+session_pref("general.useragent.compatMode.firefox", true);
+
 // minibuffer
 minibuffer_auto_complete_default=true;
 url_completion_use_bookmarks=true;

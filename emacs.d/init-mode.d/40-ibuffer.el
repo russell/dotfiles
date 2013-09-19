@@ -32,6 +32,6 @@
                  (with-current-buffer buf
                    default-directory)
                default-directory))))
-     (ido-find-file-in-dir default-directory))))
+     (call-interactively 'helm-find-files))))
 
 (define-key ibuffer-mode-map "\C-x\C-f" 'ibuffer-ido-find-file)
