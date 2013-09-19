@@ -9,6 +9,9 @@
  'arrsim-custom
 
  '(highlight ((t (:background "grey25"))))
+ '(button ((t (:inherit (link)))))
+ '(link ((t (:underline (:color foreground-color :style line)
+                        :foreground "medium turquoise"))))
  '(font-lock-type-face ((t (:foreground "OliveDrab1"))))
  '(highlight-indentation-face ((t (:background "grey25"))))
 
@@ -78,9 +81,15 @@
  '(diredp-write-priv ((t nil)))
 
  ;; email
- '(gnus-header-content ((t (:foreground "#A64B00" :height 1.1))))
- '(gnus-header-name ((t (:weight bold :height 1.2))))
- '(gnus-header-subject ((t (:foreground "yellow green" :weight bold :height 1.4))))
+ '(gnus-header-content ((t (:inherit (font-lock-builtin-face) :height 1.1))))
+ '(gnus-button ((t (:underline (:color foreground-color :style line)
+                               :foreground "yellow"))))
+ '(gnus-header-name ((t (:weight bold :height 1.1))))
+ '(gnus-header-subject ((t (:foreground "indian red" :weight bold :height 1.1))))
+ '(gnus-header-content ((t (:foreground "dodger blue" :weight bold :height 1.1))))
+ '(gnus-summary-high-ancient ((t (:foreground "#A64B00" :weight bold))))
+ '(gnus-summary-low-ancient ((t (:foreground "medium turquoise" :slant italic))))
+ '(gnus-summary-low-read ((t (:foreground "dark sea green" :slant italic))))
 
  ;; Jabber
  '(jabber-roster-user-online ((t (:foreground "light sea green" :weight bold))))
@@ -91,22 +100,6 @@
  '(jabber-chat-prompt-foreign ((t (:foreground "indian red"))))
  '(jabber-chat-prompt-system ((t (:foreground "light salmon"))))
  '(jabber-chat-error ((t (:foreground "hot pink"))))
-
- ;; gnus
- '(gnus-button ((t (:inherit button))))
- '(gnus-cite-1 ((t (:foreground "dark turquoise"))) t)
- '(gnus-group-mail-1 ((t (:inherit gnus-group-mail-1-empty :weight bold))))
- '(gnus-group-mail-1-empty ((t (:foreground "#00CC00"))))
- '(gnus-group-mail-3 ((t (:inherit gnus-group-mail-3-empty :weight bold))))
- '(gnus-group-mail-3-empty ((t (:foreground "#009999"))))
- '(gnus-group-news-3 ((t (:inherit gnus-group-news-3-empty :weight bold))))
- '(gnus-group-news-3-empty ((t (:foreground "light green"))))
- '(gnus-header-content ((t (:foreground "#A64B00"))))
- '(gnus-header-name ((t (:weight bold))))
- '(gnus-header-subject ((t (:foreground "#A64B00" :weight bold))))
- '(gnus-summary-high-ancient ((t (:foreground "#A64B00" :weight bold))))
- '(gnus-summary-low-ancient ((t (:foreground "medium turquoise" :slant italic))))
- '(gnus-summary-low-read ((t (:foreground "dark sea green" :slant italic))))
 
  ;; Ansi Term
  '(term-color-black ((t (:foreground "gray20" :background "gray20"))))
