@@ -49,6 +49,22 @@
 ;; turn on mail icon
 (setq display-time-use-mail-icon t)
 
+(setq gnus-score-over-mark ?↑)          ; ↑ ☀
+(setq gnus-score-below-mark ?↓)         ; ↓ ☂
+(setq gnus-ticked-mark ?⚑)
+(setq gnus-dormant-mark ?⚐)
+(setq gnus-expirable-mark ?♻)
+(setq gnus-read-mark ?✓)
+(setq gnus-del-mark ?✗)
+(setq gnus-killed-mark ?☠)
+(setq gnus-replied-mark ?↺)
+(setq gnus-forwarded-mark ?↪)
+
+(setq gnus-cached-mark ?☍)
+(setq gnus-recent-mark ?★)
+(setq gnus-unseen-mark ?✩)
+(setq gnus-unread-mark ?✉)
+
 (defun gnus-user-format-function-@ (header)
   "Display @ for message with attachment in summary line.
 You need to add `Content-Type' to `nnmail-extra-headers' and
@@ -99,7 +115,7 @@ See (info \"(gnus)Group Line Specification\")."
        "%3{│%}" "%1{%d%}" "%3{│%}" ;; date
        "  "
        "%4{%-20,20f%}"               ;; name
-       "  "
+       "\t"
        "%3{│%}"
        " "
        "%1{%B%}"
@@ -117,8 +133,13 @@ See (info \"(gnus)Group Line Specification\")."
 
 ; w3m
 (setq mm-text-html-renderer 'shr)
+
+(setq shr-blocked-images nil)
 (setq mm-inline-text-html-with-images t)
+(setq shr-color-visible-distance-min 10)
+(setq shr-color-visible-luminance-min 80)
 (setq mm-w3m-safe-url-regexp nil)
+
 ;(setq gnus-mime-display-multipart-related-as-mixed nil)
 
 (require 'gnus-gravatar)
