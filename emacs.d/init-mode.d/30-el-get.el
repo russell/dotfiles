@@ -94,6 +94,10 @@
                :type github
                :pkgname "nicferrier/emacs-db")
 
+        (:name request
+               :type github
+               :pkgname "tkf/emacs-request")
+
         (:name autopair
                :website "http://code.google.com/p/autopair/"
                :description "Autopair is an extension to the Emacs text editor that automatically pairs braces and quotes."
@@ -545,6 +549,7 @@
         (:name openstack-mode
                :type git
                :features openstack-mode
+               :depends (request)
                :url "git@github.com:russell/openstack-mode.git")
 
         (:name erc-nick-notify
