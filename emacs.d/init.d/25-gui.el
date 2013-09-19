@@ -2,8 +2,8 @@
 (setq use-dialog-box nil)
 
 ; set font
-(set-frame-font "Liberation Mono:pixelsize=15")
-(add-to-list 'default-frame-alist '(font . "Liberation Mono:pixelsize=15"))
+(set-frame-font "DejaVu Sans Mono:pixelsize=15")
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=15"))
 
 ;; full screen
 (defun fullscreen ()
