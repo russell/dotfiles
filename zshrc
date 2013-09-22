@@ -276,7 +276,7 @@ function set-eterm-dir {
 }
 
 # Track directory, username, and cwd for remote logons.
-if [ "$TERM" = "Eterm-color" ]; then
+if [ "$TERM" = "eterm-color" ]; then
     PROMPT_COMMAND=set-eterm-dir
     function precmd { set-eterm-dir }
 fi
