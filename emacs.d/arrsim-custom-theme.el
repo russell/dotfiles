@@ -21,6 +21,10 @@
  '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
                                     :box (:line-width 2 :color "dark red")))))
 
+ ;; ledger
+ '(ledger-font-highlight-face ((t (:background "grey30"))))
+ '(ledger-occur-xact-face ((t (:background "grey30"))))
+
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
  '(mumamo-background-chunk-submode1 ((t (:background "grey30"))))
