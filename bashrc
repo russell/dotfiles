@@ -44,6 +44,7 @@ case "$TERM" in
     dumb) ;;
     xterm-color) color_prompt=yes;;
     xterm) color_prompt=yes;;
+    eterm-color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -76,16 +77,12 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
+# If this is an xterm set the title to user@host:dir, if it's an emacs term, do better
 case "$TERM" in
     xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-    *)
-    ;;
-esac
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
 
-case $TERM in
     eterm-color*)
         # Setup tramp variables
         _HOSTNAME=$(hostname -f 2>/dev/null)
@@ -110,6 +107,8 @@ case $TERM in
         fi
         ;;
 
+    *)
+        ;;
 esac
 
 # enable color support of ls and also add handy aliases
