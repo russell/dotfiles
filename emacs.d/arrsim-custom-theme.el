@@ -21,6 +21,10 @@
  '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
                                     :box (:line-width 2 :color "dark red")))))
 
+ ;; ledger
+ '(ledger-font-highlight-face ((t (:background "grey30"))))
+ '(ledger-occur-xact-face ((t (:background "grey30"))))
+
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
  '(mumamo-background-chunk-submode1 ((t (:background "grey30"))))
@@ -102,6 +106,7 @@
  '(jabber-chat-error ((t (:foreground "hot pink"))))
 
  ;; Ansi Term
+ '(term ((t (:foreground "#eeeeec" :background "gray20"))))
  '(term-color-black ((t (:foreground "gray20" :background "gray20"))))
  '(term-color-red ((t (:foreground "indian red" :background "indian red"))))
  '(term-color-green ((t (:foreground "light sea green" :background "light sea green"))))
