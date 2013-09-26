@@ -27,12 +27,15 @@
 
 (add-hook 'term-mode-hook 'yas-dont-activate)
 
-(defun my-ansi-term (&optional new-buffer-name)
-  (interactive)
-  (let* ((program
-          (if (file-remote-p default-directory)
-              "/usr/bin/ssh"
-            "/usr/bin/zsh"))
+(defun my-ansi-term (&optional default-location-p new-buffer-name)
+  (interactive "P")
+  (let* ((default-directory (if default-location-p
+                                (expand-file-name "~/")
+                              default-directory))
+         (program
+             (if (file-remote-p default-directory)
+                 "/usr/bin/ssh"
+               "/usr/bin/zsh"))
          (switches (when (file-remote-p default-directory 'host)
                      (list (file-remote-p default-directory 'host)
                            "-t"
