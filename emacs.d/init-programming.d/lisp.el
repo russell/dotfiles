@@ -12,15 +12,13 @@
         ;; force balanced parens on save
         (add-hook mode
                   (lambda ()
-                    (add-hook 'write-contents-functions
+                    (add-hook 'after-save-hook
                               'check-parens)))
         ;; paredit mode
         (add-hook mode 'paredit-mode))
 
-      '(lisp-mode
-        inferior-emacs-lisp-mode
-        lisp-interaction-mode
-        common-lisp-mode
+      '(lisp-mode-hook
+        lisp-interaction-mode-hook
         slime-mode-hook
         emacs-lisp-mode-hook
         geiser-mode-hook
@@ -38,7 +36,8 @@
 
 (eval-after-load "slime-repl"
   '(progn
-    (define-key slime-repl-mode-map "\M-/" 'helm-slime-complete)))
+     (add-hook 'slime-repl-map-mode-hook 'paredit-mode)
+     (define-key slime-repl-mode-map "\M-/" 'helm-slime-complete)))
 
 (defun slime-quickload (system &rest keyword-args)
   "Quickload System."
