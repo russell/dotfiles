@@ -1,5 +1,6 @@
 ; TRAMP
 (setq password-cache-expiry 1000)
+(setq tramp-default-method "rsync")
 (set-default 'tramp-default-proxies-alist '())
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
