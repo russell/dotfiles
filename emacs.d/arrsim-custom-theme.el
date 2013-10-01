@@ -106,6 +106,7 @@
  '(jabber-chat-error ((t (:foreground "hot pink"))))
 
  ;; Ansi Term
+ '(term ((t (:foreground "#eeeeec" :background "gray20"))))
  '(term-color-black ((t (:foreground "gray20" :background "gray20"))))
  '(term-color-red ((t (:foreground "indian red" :background "indian red"))))
  '(term-color-green ((t (:foreground "light sea green" :background "light sea green"))))
