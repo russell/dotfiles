@@ -50,29 +50,32 @@
 
 (defun irc-oftc ()
   (interactive)
-  (erc-tls :server "irc.oftc.net" :port 6697
-	   :nick "arrsim" :full-name "Russell Sim"
-	   :password oftc-pass))
+  (let ((default-directory (expand-file-name "~")))
+    (erc-tls :server "irc.oftc.net" :port 6697
+             :nick "arrsim" :full-name "Russell Sim"
+             :password oftc-pass)))
 
 (defun irc-freenode ()
   (interactive)
-  (erc-tls :server "chat.freenode.net" :port 6697
-	   :nick "arrsim" :full-name "Russell Sim"
-	   :password freenode-pass))
+  (let ((default-directory (expand-file-name "~")))
+    (erc-tls :server "chat.freenode.net" :port 6697
+             :nick "arrsim" :full-name "Russell Sim"
+             :password freenode-pass)))
 
 (defun irc-bitlbee ()
   (interactive)
-  (erc :server "localhost" :port 6667
-	   :nick "arrsim" :full-name "Russell Sim"
-       :password bitlbee-pass))
+  (let ((default-directory (expand-file-name "~")))
+    (erc :server "localhost" :port 6667
+         :nick "arrsim" :full-name "Russell Sim"
+         :password bitlbee-pass)))
 
 (defun start-irc ()
   "Connect to IRC."
   (interactive)
-  (setq frame-title-format '("ERC: %b"))
-  (irc-oftc)
-  (irc-freenode)
-  (irc-bitlbee))
+  (let ((default-directory (expand-file-name "~")))
+    (irc-oftc)
+    (irc-freenode)
+    (irc-bitlbee)))
 
 
 (require 'notifications)
