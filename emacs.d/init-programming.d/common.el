@@ -5,6 +5,7 @@
                       c-mode-common-hook
                       puppet-mode-hook
                       sh-mode-hook
+                      puppet-hook-mode
                       makefile-mode)))
 
   (mapc (lambda (mode)
