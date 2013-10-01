@@ -15,7 +15,7 @@
 (setq mm-decrypt-option 'known)
 (setq mml-smime-signers (quote ("27E94A1A")))
 (setq mm-discouraged-alternatives
-      '("text/html" "text/richtext")
+      '("text/html" "text/richtext" "multipart/related")
       mm-automatic-display
       (remove "text/html" mm-automatic-display))
 
