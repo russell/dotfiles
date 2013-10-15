@@ -357,4 +357,7 @@ See (info \"(gnus)Group Line Specification\")."
                      "russell.sim@gmail.com")))
          (Organization (with-current-buffer gnus-article-buffer
                          (when (message-fetch-field "Resent-From")
-                           "The University of Melbourne"))))))
+                           "The University of Melbourne"))))
+        ("^rc-"
+         (From "russell.sim@unimelb.edu.au")
+         (Organization "The University of Melbourne"))))
