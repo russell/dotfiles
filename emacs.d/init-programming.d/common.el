@@ -10,7 +10,9 @@
                       puppet-mode-hook
                       sh-mode-hook
                       puppet-hook-mode
-                      makefile-mode)))
+                      makefile-mode-hook
+                      js2-mode-hook
+                      js-mode-hook)))
 
   (mapc (lambda (mode)
           ;; diff hl mode
