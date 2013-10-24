@@ -70,16 +70,17 @@
                :website "http://emacswiki.org/wiki/Elnode"
                :description "Asynchronous HttpServer framework."
                :type github
-               :depends (fakir noflet kv web db s)
+               :depends (fakir emacs-noflet kv web db s)
                :pkgname "nicferrier/elnode")
 
         (:name fakir
                :type github
-               :depends (noflet dash)
+               :depends (dash emacs-noflet)
                :pkgname "nicferrier/emacs-fakir")
 
-        (:name noflet
+        (:name emacs-noflet
                :type github
+               :feature noflet
                :pkgname "nicferrier/emacs-noflet")
 
         (:name kv
@@ -760,7 +761,7 @@
          dired+
          dired-plus
          el-get
-         noflet
+         emacs-noflet
          eol-conversion
          flymake-point
          recover-buffers
