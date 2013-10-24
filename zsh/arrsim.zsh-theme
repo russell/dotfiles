@@ -38,10 +38,13 @@ time_enabled="%(?.%{$fg[green]%}.%{$fg[red]%})%*%{$reset_color%}"
 time_disabled="%{$fg[green]%}%*%{$reset_color%}"
 time=$time_enabled
 
-PROMPT='
+function default_prompt {
+    PROMPT='
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
 $(virtualenv_info)$(prompt_char) '
-RPROMPT=''
+    RPROMPT=''
+}
+default_prompt
 
 function openstack_url_type {
     OS_PORT=$(echo $OS_AUTH_URL | awk 'BEGIN { FS = "[:/]" } { print $5 }')

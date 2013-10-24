@@ -281,6 +281,14 @@ if [ "$TERM" = "eterm-color" ]; then
     function precmd { set-eterm-dir }
 fi
 
+function openstack_clear {
+    unset OS_AUTH_URL
+    unset OS_TENANT_NAME
+    unset OS_USERNAME
+    unset OS_PASSWORD
+    unset OS_REGION_NAME
+    default_prompt
+}
 
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
