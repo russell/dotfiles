@@ -711,6 +711,7 @@
          nginx-mode
          openstack-mode
          po-mode
+         wgrep
          rainbow-delimiters
          twittering-mode
          yaml-mode
