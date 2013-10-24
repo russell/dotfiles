@@ -99,6 +99,10 @@
                :type github
                :pkgname "tkf/emacs-request")
 
+        (:name gerrit-download
+               :type github
+               :pkgname "chmouel/gerrit-download.el")
+
         (:name autopair
                :website "http://code.google.com/p/autopair/"
                :description "Autopair is an extension to the Emacs text editor that automatically pairs braces and quotes."
