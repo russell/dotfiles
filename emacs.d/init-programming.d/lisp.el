@@ -26,7 +26,7 @@
 
 
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
-
+(require 'slime)
 (slime-setup '(inferior-slime slime-fancy slime-asdf slime-indentation
                               slime-tramp slime-banner slime-compiler-notes-tree))
 ;; (setq slime-complete-symbol-function 'company-complete)
