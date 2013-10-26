@@ -339,6 +339,12 @@
                :url "https://github.com/emacsmirror/active-menu.git"
                :features "active-menu")
 
+        (:name scad-mode
+               :description ""
+               :type http
+               :url "https://raw.github.com/openscad/openscad/master/contrib/scad-mode.el"
+               :features scad)
+
         (:name json
                :description "JavaScript Object Notation parser / generator"
                :type http
