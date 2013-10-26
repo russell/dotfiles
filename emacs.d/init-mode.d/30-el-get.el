@@ -458,13 +458,13 @@
 
         (:name slime
                :description "Superior Lisp Interaction Mode for Emacs"
-               :type git
+               :type cvs
                :module "slime"
+               :url ":pserver:anonymous:anonymous@common-lisp.net:/project/slime/cvsroot"
                :info "doc"
                :features slime
-               :url "git://github.com/russell/slime.git"
                :load-path ("." "contrib")
-               :compile (".")
+               :compile ("\\.el$")
                :build (list "make -C doc"))
 
         ;; (:name slime-proxy
