@@ -25,12 +25,6 @@
     width = 3
     color = "#000000"
 
-[shortcuts]
-    close = super+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
-
 [urgency_low]
     background = "#ffffff"
     foreground = "#000000"

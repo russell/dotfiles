@@ -70,16 +70,17 @@
                :website "http://emacswiki.org/wiki/Elnode"
                :description "Asynchronous HttpServer framework."
                :type github
-               :depends (fakir noflet kv web db s)
+               :depends (fakir emacs-noflet kv web db s)
                :pkgname "nicferrier/elnode")
 
         (:name fakir
                :type github
-               :depends (noflet dash)
+               :depends (dash emacs-noflet)
                :pkgname "nicferrier/emacs-fakir")
 
-        (:name noflet
+        (:name emacs-noflet
                :type github
+               :feature noflet
                :pkgname "nicferrier/emacs-noflet")
 
         (:name kv
@@ -97,6 +98,10 @@
         (:name request
                :type github
                :pkgname "tkf/emacs-request")
+
+        (:name gerrit-download
+               :type github
+               :pkgname "chmouel/gerrit-download.el")
 
         (:name autopair
                :website "http://code.google.com/p/autopair/"
@@ -716,6 +721,7 @@
          nginx-mode
          openstack-mode
          po-mode
+         wgrep
          rainbow-delimiters
          twittering-mode
          yaml-mode
@@ -766,7 +772,7 @@
          dired+
          dired-plus
          el-get
-         noflet
+         emacs-noflet
          eol-conversion
          flymake-point
          recover-buffers

@@ -15,3 +15,6 @@
 
 ;; (magit-wip-mode 1)
 ;; (global-magit-wip-save-mode 1)
+(eval-after-load "magit"
+  '(add-hook 'magit-refresh-file-buffer-hook
+             'diff-hl-update))
