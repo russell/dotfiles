@@ -10,7 +10,12 @@
 (setq message-from-style 'angles)
 
 (setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"))
-(setq gnus-visible-headers '("^From:" "^Newsgroups:" "^Subject:" "^Date:" "^Followup-To:" "^Reply-To:" "^Organization:" "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:" "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:" "^Apparently-To:" "^Gnus-Warning:" "^Resent-From:" "^User-Agent:"))
+(setq gnus-visible-headers '("^From:" "^Newsgroups:" "^Subject:" "^Date:"
+                             "^Followup-To:" "^Reply-To:" "^Organization:"
+                             "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:"
+                             "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:"
+                             "^Apparently-To:" "^Gnus-Warning:"
+                             "^Resent-From:" "^User-Agent:"))
 (setq mm-verify-option 'known)
 (setq mm-decrypt-option 'known)
 (setq mml-smime-signers (quote ("27E94A1A")))
