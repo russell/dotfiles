@@ -159,8 +159,8 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 ;; Gravatar
 ;;
-(setq 'gnus-treat-from-gravatar 'head)
-(setq 'gnus-treat-mail-gravatar 'head)
+(setq gnus-treat-from-gravatar 'head)
+(setq gnus-treat-mail-gravatar 'head)
 
 
 (add-hook 'gnus-article-prepare-hook 'th-gnus-article-prepared)
