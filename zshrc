@@ -269,10 +269,24 @@ E () {
     emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
+_HOSTNAME=$(hostname -f 2>/dev/null)
+if [ -n "$INSIDE_EMACS" ]
+then
+    _HOST=$(hostname 2>/dev/null)
+elif [ -n "$_HOSTNAME" ]
+then
+    _HOST=$_HOSTNAME
+elif [ -n "$SSH_CONNECTION" ]
+then
+    _HOST=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
+else
+    _HOST=$HOSTNAME
+fi
+
 function set-eterm-dir {
     echo -e "\033AnSiTu" "$LOGNAME" # $LOGNAME is more portable than using whoami.
     echo -e "\033AnSiTc" "$(pwd)"
-    echo -e "\033AnSiTh" "$(hostname -f)"
+    echo -e "\033AnSiTh" "$_HOST"
 }
 
 # Track directory, username, and cwd for remote logons.
