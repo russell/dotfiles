@@ -41,13 +41,13 @@
 ;; Make Gnus NOT ignore [Gmail] mailboxes
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
-(setq gnus-secondary-select-methods
-      '((nntp "news.gmane.org")
-        (nntp "news.eternal-september.org")))
 ;; Set the correct from address when composing an email.
 (setq message-alternative-emails
       (regexp-opt '("russell.sim@gmail.com" "russell.sim@unimelb.edu.au")))
 
+(setq gnus-secondary-select-methods
+      '((nntp "news.gmane.org")
+        (nntp "news.eternal-september.org")))
 
 ;; don't bother me with dribbles
 ;(setq gnus-always-read-dribble-file t)
