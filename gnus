@@ -10,12 +10,17 @@
 (setq message-from-style 'angles)
 
 (setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"))
-(setq gnus-visible-headers '("^From:" "^Newsgroups:" "^Subject:" "^Date:" "^Followup-To:" "^Reply-To:" "^Organization:" "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:" "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:" "^Apparently-To:" "^Gnus-Warning:" "^Resent-From:" "^User-Agent:"))
+(setq gnus-visible-headers '("^From:" "^Newsgroups:" "^Subject:" "^Date:"
+                             "^Followup-To:" "^Reply-To:" "^Organization:"
+                             "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:"
+                             "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:"
+                             "^Apparently-To:" "^Gnus-Warning:"
+                             "^Resent-From:" "^User-Agent:"))
 (setq mm-verify-option 'known)
 (setq mm-decrypt-option 'known)
 (setq mml-smime-signers (quote ("27E94A1A")))
 (setq mm-discouraged-alternatives
-      '("text/html" "text/richtext" "multipart/related")
+      '("multipart/related" "text/html" "text/richtext")
       mm-automatic-display
       (remove "text/html" mm-automatic-display))
 
@@ -158,9 +163,9 @@ See (info \"(gnus)Group Line Specification\")."
 ;;
 ;; Gravatar
 ;;
-(defun th-gnus-article-prepared ()
-  (gnus-treat-from-gravatar)
-  (gnus-treat-mail-gravatar))
+(setq gnus-treat-from-gravatar 'head)
+(setq gnus-treat-mail-gravatar 'head)
+
 
 (add-hook 'gnus-article-prepare-hook 'th-gnus-article-prepared)
 
