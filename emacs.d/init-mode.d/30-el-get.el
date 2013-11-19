@@ -634,6 +634,12 @@
                :depends (helm slime)
                :features helm-slime)
 
+        (:name sql-preset
+               :description "Store SQL connections configuration."
+               :type github
+               :pkgname "ieure/sql-preset-el"
+               :features sql-preset)
+
         (:name apel
                :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
                :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
@@ -697,7 +703,9 @@
 
          ;; scheme
          geiser
-         ;; sicp
+
+         ;; sql
+         sql-preset
 
          ;; puppet
          puppet-flymake
