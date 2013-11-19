@@ -39,6 +39,10 @@
 (setq gnus-secondary-select-methods
       '((nntp "news.gmane.org")
         (nntp "news.eternal-september.org")))
+;; Set the correct from address when composing an email.
+(setq message-alternative-emails
+      (regexp-opt '("russell.sim@gmail.com" "russell.sim@unimelb.edu.au")))
+
 
 ;; don't bother me with dribbles
 ;(setq gnus-always-read-dribble-file t)
@@ -349,12 +353,37 @@ See (info \"(gnus)Group Line Specification\")."
       (mm-save-part-to-file handle file)
       (browse-url-xdg-open (concat "file://" file)))))
 
+(defun rs/remove-address (re-address header)
+  "`RE-ADDRESS' is a regular expression matching the address that
+should be removed.  One way to generate such a RE is using
+`REGEXP-OPT'"
+  (mapconcat 'identity
+             (remove-if
+              (lambda (a)
+                (string-match re-address a))
+              (mapcar (lambda (a)
+                        (while (string-match "[ \t][ \t]+" a)
+                          (setq a (replace-match "" t t a)))
+                        a)
+                      (message-tokenize-header header)))
+             ", "))
+
+
+(defun rs/dont-cc-self ()
+  "Remove my addresses from the CC header."
+  (save-excursion
+    (when (message-fetch-field "Cc")
+      (let ((case-fold-search t)
+            (cc-content (rs/remove-address message-alternative-emails
+                                           (message-fetch-field "Cc"))))
+        (gnus-article-goto-header "Cc")
+        (message-delete-line)
+        (insert (concat "Cc: " cc-content "\n"))))))
+
+(add-hook 'message-header-setup-hook 'rs/dont-cc-self)
 
 (setq gnus-posting-styles
       '((".*"
-         (From (with-current-buffer gnus-article-buffer
-                 (or (message-fetch-field "Resent-From")
-                     "russell.sim@gmail.com")))
          (Organization (with-current-buffer gnus-article-buffer
                          (when (message-fetch-field "Resent-From")
                            "The University of Melbourne"))))
