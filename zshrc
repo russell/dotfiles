@@ -286,13 +286,15 @@ else
 fi
 
 function set-eterm-dir {
-    echo -e "\033AnSiTu" "$LOGNAME" # $LOGNAME is more portable than using whoami.
     echo -e "\033AnSiTc" "$(pwd)"
-    echo -e "\033AnSiTh" "$_HOST"
+    if [ -z "$INSIDE_EMACS" ]; then
+        echo -e "\033AnSiTu" "$LOGNAME" # $LOGNAME is more portable than using whoami.
+        echo -e "\033AnSiTh" "$_HOST"
+    fi
 }
 
 # Track directory, username, and cwd for remote logons.
-if [[ "$TERM" = "eterm-color" && -z "$INSIDE_EMACS" ]]; then
+if [ "$TERM" = "eterm-color" ]; then
     add-zsh-hook precmd set-eterm-dir
 fi
 
