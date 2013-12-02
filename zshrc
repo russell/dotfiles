@@ -35,6 +35,8 @@ else
     source ~/.zsh/arrsim.zsh-theme
 fi
 
+autoload -U add-zsh-hook
+
 # Example aliases
 alias zshconfig="source ~/.zshrc"
 
@@ -290,9 +292,8 @@ function set-eterm-dir {
 }
 
 # Track directory, username, and cwd for remote logons.
-if [ "$TERM" = "eterm-color" ]; then
-    PROMPT_COMMAND=set-eterm-dir
-    function precmd { set-eterm-dir }
+if [[ "$TERM" = "eterm-color" && -z "$INSIDE_EMACS" ]]; then
+    add-zsh-hook precmd set-eterm-dir
 fi
 
 function openstack_clear {
