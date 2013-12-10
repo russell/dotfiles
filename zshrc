@@ -285,17 +285,21 @@ else
     _HOST=$HOSTNAME
 fi
 
-function set-eterm-dir {
+function eterm-precmd {
     echo -e "\033AnSiTc" "$(pwd)"
-    if [ -z "$INSIDE_EMACS" ]; then
-        echo -e "\033AnSiTu" "$LOGNAME" # $LOGNAME is more portable than using whoami.
-        echo -e "\033AnSiTh" "$_HOST"
-    fi
+    echo -e "\033AnSiTu" "$LOGNAME"
+    echo -e "\033AnSiTh" "$_HOST"
+    echo -e "\033AnSiTp" "$(basename $SHELL)"
+}
+
+function eterm-preexec {
+    echo -e "\033AnSiTp" $(echo "$1" | cut -d ' ' -f 1)
 }
 
 # Track directory, username, and cwd for remote logons.
 if [ "$TERM" = "eterm-color" ]; then
-    add-zsh-hook precmd set-eterm-dir
+    add-zsh-hook precmd eterm-precmd
+    add-zsh-hook preexec eterm-preexec
 fi
 
 function openstack_clear {
