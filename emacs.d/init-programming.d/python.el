@@ -105,4 +105,6 @@ one."
 
 (defun copy-break-point ()
   (interactive)
-  (kill-new (concat (buffer-file-name) ":" (number-to-string (line-number-at-pos)))))
+  (kill-new (concat (file-remote-p (buffer-file-name) 'localname)
+                    ":"
+                    (number-to-string (line-number-at-pos)))))
