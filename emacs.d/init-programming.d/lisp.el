@@ -143,7 +143,7 @@
 ;; elisp
 ;;
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-
+(add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
 (defun ielm-pop-to-buffer ()

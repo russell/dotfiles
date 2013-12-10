@@ -12,24 +12,11 @@
   (look-for "setup.py")
   :irrelevant-files ("^[.]" "^[#]"))
 
-;; Flymake Python
-(add-hook 'find-file-hook 'flymake-find-file-hook)
-
-(defun flymake-pycheckers-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-with-folder-structure))
-         (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name))))
-    (list "~/.emacs.d/el-get/flymake-python/pyflymake.py" (list local-file))))
-
-(when (load "flymake" t)
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pycheckers-init)))
-
-
 ;; Smartparens
 (add-hook 'python-mode-hook 'smartparens-strict-mode)
+
+;; Flycheck
+(add-hook 'python-mode-hook 'flycheck-mode)
 
 (defadvice python-indent-dedent-line-backspace (around python-indent-dedent-line-backspace-around)
   "Replace the backward-delete-char function with the smartparens

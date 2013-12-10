@@ -682,7 +682,6 @@
 
          ;; python
          django-mode
-         flymake-python
          highlight-indentation
          jedi
          pycheckers
@@ -708,7 +707,6 @@
          sql-preset
 
          ;; puppet
-         puppet-flymake
          puppet-mode
 
          ;; org-mode
@@ -722,6 +720,7 @@
          artbollocks-mode
          auto-capitalize
          csv-mode
+         flycheck-mode
          git-modes
          highlight-parentheses
          highlight-symbol
@@ -782,7 +781,6 @@
          el-get
          emacs-noflet
          eol-conversion
-         flymake-point
          recover-buffers
          )))
 

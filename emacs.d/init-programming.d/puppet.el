@@ -28,11 +28,8 @@
 ;;           (lambda ()
 ;;             (define-key puppet-mode-map "\C-xr" 'puppet-block-align)))
 
-;; Puppet Flymake
-(add-hook 'puppet-mode-hook
-          (lambda ()
-            (flymake-puppet-load)
-            (flymake-start-syntax-check)))
+;; Flycheck
+(add-hook 'puppet-mode-hook 'flycheck-mode)
 
 ;; Indent without tabs
 (add-hook 'puppet-mode-hook
