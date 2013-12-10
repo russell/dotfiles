@@ -303,11 +303,9 @@ if [ "$TERM" = "eterm-color" ]; then
 fi
 
 function openstack_clear {
-    unset OS_AUTH_URL
-    unset OS_TENANT_NAME
-    unset OS_USERNAME
-    unset OS_PASSWORD
-    unset OS_REGION_NAME
+    if [ -n "$(env | awk -F '=' '/OS_/ { print $1 }')" ]; then
+       unset $(env | awk -F '=' '/OS_/ { print $1 }')
+    fi
     default_prompt
 }
 
