@@ -720,7 +720,7 @@
          artbollocks-mode
          auto-capitalize
          csv-mode
-         flycheck-mode
+         flycheck
          git-modes
          highlight-parentheses
          highlight-symbol
