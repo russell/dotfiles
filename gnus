@@ -389,9 +389,15 @@ should be removed.  One way to generate such a RE is using
 
 (setq gnus-posting-styles
       '((".*"
+         (x-identity "default")
+         (name "Russell Sim")
+         (address "russell.sim@gmail.com")
          (Organization (with-current-buffer gnus-article-buffer
                          (when (message-fetch-field "Resent-From")
                            "The University of Melbourne"))))
         ("^rc-"
+         (x-identity "unimelb")
+         (name "Russell Sim")
+         (address "russell.sim@unimelb.edu.au")
          (From "russell.sim@unimelb.edu.au")
          (Organization "The University of Melbourne"))))

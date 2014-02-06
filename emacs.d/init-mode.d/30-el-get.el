@@ -737,6 +737,7 @@
          bbdb
          google-contacts
          mailcrypt
+         gnus-identities
          nognus
          gnus-desktop-notify
 
