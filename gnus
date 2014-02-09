@@ -135,13 +135,15 @@ See (info \"(gnus)Group Line Specification\")."
 (setq gnus-summary-display-arrow t)
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
-(setq gnus-thread-sort-functions
-      '(gnus-thread-sort-by-number
-	(not gnus-thread-sort-by-most-recent-date)
-	gnus-thread-sort-by-total-score))
+(setq gnus-summary-thread-gathering-function
+      'gnus-gather-threads-by-references)
 
-(setq gnus-thread-sort-functions '(gnus-thread-sort-by-number
-      (not gnus-thread-sort-by-most-recent-date)))
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-number gnus-thread-sort-by-most-recent-date))
+
+(setq gnus-subthread-sort-functions
+      '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
+
 
 ; w3m
 (setq mm-text-html-renderer 'shr)
@@ -166,8 +168,6 @@ See (info \"(gnus)Group Line Specification\")."
 (setq gnus-treat-from-gravatar 'head)
 (setq gnus-treat-mail-gravatar 'head)
 
-
-(add-hook 'gnus-article-prepare-hook 'th-gnus-article-prepared)
 
 ;;
 ;; Check for new mail once in every this many minutes.
