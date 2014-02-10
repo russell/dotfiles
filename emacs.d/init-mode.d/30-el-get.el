@@ -376,6 +376,12 @@
                :features "ldap-mode"
                :url "http://www.loveshack.ukfsn.org/emacs/ldap-mode.el")
 
+        (:name gnus-identities
+               :description "Change identity when composing a message."
+               :features "gnus-identities"
+               :type github
+               :pkgname "renard/gnus-identities")
+
         (:name gnus-desktop-notify
                :type http
                :features gnus-desktop-notify
