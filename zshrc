@@ -271,15 +271,23 @@ E () {
     emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
-_HOSTNAME=$(hostname -f 2>/dev/null)
-if [ -n "$_HOSTNAME" ]
+if [ -n "$SSH_CONNECTION" ]
 then
-    _HOST=$_HOSTNAME
-elif [ -n "$SSH_CONNECTION" ]
-then
-    _HOST=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
+
+    _IP=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
+    _RHOSTNAME=$(host $IP 2>/dev/null | sed -n 's/.*pointer \(.*\)[.]/\1/p')
+    _HOSTIP=$(hostname -i 2>/dev/null)
+
+    if [ "$_IP" == "$_HOSTIP" ]; then
+        _HOST=$(hostname -f 2>/dev/null)
+    elif [ -n "$_HOSTNAME" ]; then
+        _HOST="$_HOSTNAME"
+    else
+        _HOST="$_IP"
+    fi
+
 else
-    _HOST=$HOSTNAME
+    _HOST=$(hostname -f 2>/dev/null)
 fi
 
 function eterm-precmd {
