@@ -283,9 +283,9 @@ else
 fi
 
 function eterm-precmd {
-    echo -e "\033AnSiTc" "$(pwd)"
     echo -e "\033AnSiTu" "$LOGNAME"
     echo -e "\033AnSiTh" "$_HOST"
+    echo -e "\033AnSiTc" "$(pwd)"
     echo -e "\033AnSiTp" "$(basename $SHELL)"
 }
 
