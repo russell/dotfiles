@@ -1,1 +1,3 @@
-(setq auto-capitalize-words '("I" "HTTP" "TCP" "I'm" "C" "Python" "SBCL" "API" "Openstack" "NeCTAR"))
+
+(setq auto-capitalize-words '("I" "HTTP" "TCP" "I'm" "C" "Python" "SBCL"
+                              "API" "Openstack" "NeCTAR" "RDSI"))
