@@ -173,6 +173,12 @@
 (define-key *root-map* (kbd "u") "conkeror")
 (define-key *top-map* (kbd "s-u") "conkeror")
 
+; launch terminal
+(defcommand terminator () ()
+  "Start Terminator or switch to it, if it's already running."
+  (run-or-raise "terminator" '(:class "Terminator")))
+(define-key *top-map* (kbd "s-i") "terminator")
+
 ;; log out
 (define-key *root-map* (kbd "^") "quit")
 
