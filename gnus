@@ -9,7 +9,9 @@
 ;;
 (setq message-from-style 'angles)
 
-(setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"))
+(setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"
+                                   "text/plain" "multipart/alternative" "text/html"))
+
 (setq gnus-visible-headers '("^From:" "^Newsgroups:" "^Subject:" "^Date:"
                              "^Followup-To:" "^Reply-To:" "^Organization:"
                              "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:"
