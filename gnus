@@ -137,6 +137,8 @@ See (info \"(gnus)Group Line Specification\")."
 (setq gnus-summary-display-arrow t)
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
+(setq gnus-summary-gather-subject-limit 'fuzzy)
+
 (setq gnus-summary-thread-gathering-function
       'gnus-gather-threads-by-references)
 
