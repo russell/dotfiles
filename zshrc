@@ -272,7 +272,7 @@ E () {
 _HOSTNAME=$(hostname -f 2>/dev/null)
 if [ -n "$INSIDE_EMACS" ]
 then
-    _HOST=$(hostname 2>/dev/null)
+    _HOST=$(hostname -f 2>/dev/null)
 elif [ -n "$_HOSTNAME" ]
 then
     _HOST=$_HOSTNAME
