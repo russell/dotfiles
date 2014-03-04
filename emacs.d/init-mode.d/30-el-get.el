@@ -97,6 +97,7 @@
 
         (:name request
                :type github
+               :submodule nil
                :pkgname "tkf/emacs-request")
 
         (:name gerrit-download
