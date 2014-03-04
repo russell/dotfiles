@@ -507,6 +507,14 @@
                :features hyperspec-info
                :url "http://www.pentaside.org/code/hyperspec-info.el")
 
+        (:name gnuplot-mode
+               :description "Drive gnuplot from within emacs"
+               :type github
+               :pkgname "bruceravel/gnuplot-mode"
+               :build `("./configure"
+                        ,(concat "make EMACS=" el-get-emacs " gnuplot.elc gnuplot-gui.elc"))
+               :info "gnuplot.info")
+
         (:name org-import-icalendar
                :description "Provide org-mode calendar import."
                :type http
