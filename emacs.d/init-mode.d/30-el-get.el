@@ -10,8 +10,8 @@
 
 (require 'package)
 (add-to-list 'package-archives
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+             '("marmalade" .
+               "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; el-get configuration
@@ -377,6 +377,12 @@
                :features "ldap-mode"
                :url "http://www.loveshack.ukfsn.org/emacs/ldap-mode.el")
 
+        (:name gnus-identities
+               :description "Change identity when composing a message."
+               :features "gnus-identities"
+               :type github
+               :pkgname "renard/gnus-identities")
+
         (:name gnus-desktop-notify
                :type http
                :features gnus-desktop-notify
@@ -643,6 +649,12 @@
                :depends (helm slime)
                :features helm-slime)
 
+        (:name sql-preset
+               :description "Store SQL connections configuration."
+               :type github
+               :pkgname "ieure/sql-preset-el"
+               :features sql-preset)
+
         (:name apel
                :website "http://www.kanji.zinbun.kyoto-u.ac.jp/~tomo/elisp/APEL/"
                :description "APEL (A Portable Emacs Library) is a library to support to write portable Emacs Lisp programs."
@@ -685,7 +697,6 @@
 
          ;; python
          django-mode
-         flymake-python
          highlight-indentation
          jedi
          pycheckers
@@ -706,10 +717,11 @@
 
          ;; scheme
          geiser
-         ;; sicp
+
+         ;; sql
+         sql-preset
 
          ;; puppet
-         puppet-flymake
          puppet-mode
 
          ;; org-mode
@@ -723,6 +735,7 @@
          artbollocks-mode
          auto-capitalize
          csv-mode
+         flycheck
          git-modes
          highlight-parentheses
          highlight-symbol
@@ -739,6 +752,7 @@
          bbdb
          google-contacts
          mailcrypt
+         gnus-identities
          nognus
          gnus-desktop-notify
 
@@ -783,7 +797,6 @@
          el-get
          emacs-noflet
          eol-conversion
-         flymake-point
          recover-buffers
          )))
 

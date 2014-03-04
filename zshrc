@@ -35,6 +35,8 @@ else
     source ~/.zsh/arrsim.zsh-theme
 fi
 
+autoload -U add-zsh-hook
+
 # Example aliases
 alias zshconfig="source ~/.zshrc"
 
@@ -269,38 +271,46 @@ E () {
     emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
-_HOSTNAME=$(hostname -f 2>/dev/null)
-if [ -n "$INSIDE_EMACS" ]
+if [ -n "$SSH_CONNECTION" ]
 then
-    _HOST=$(hostname -f 2>/dev/null)
-elif [ -n "$_HOSTNAME" ]
-then
-    _HOST=$_HOSTNAME
-elif [ -n "$SSH_CONNECTION" ]
-then
-    _HOST=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
+
+    _IP=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
+    _RHOSTNAME=$(host $IP 2>/dev/null | sed -n 's/.*pointer \(.*\)[.]/\1/p')
+    _HOSTIP=$(hostname -i 2>/dev/null)
+
+    if [ "$_IP" == "$_HOSTIP" ]; then
+        _HOST=$(hostname -f 2>/dev/null)
+    elif [ -n "$_HOSTNAME" ]; then
+        _HOST="$_HOSTNAME"
+    else
+        _HOST="$_IP"
+    fi
+
 else
-    _HOST=$HOSTNAME
+    _HOST=$(hostname -f 2>/dev/null)
 fi
 
-function set-eterm-dir {
-    echo -e "\033AnSiTu" "$LOGNAME" # $LOGNAME is more portable than using whoami.
-    echo -e "\033AnSiTc" "$(pwd)"
+function eterm-precmd {
+    echo -e "\033AnSiTu" "$LOGNAME"
     echo -e "\033AnSiTh" "$_HOST"
+    echo -e "\033AnSiTc" "$(pwd)"
+    echo -e "\033AnSiTp" "$(basename $SHELL)"
+}
+
+function eterm-preexec {
+    echo -e "\033AnSiTp" $(echo "$1" | cut -d ' ' -f 1)
 }
 
 # Track directory, username, and cwd for remote logons.
 if [ "$TERM" = "eterm-color" ]; then
-    PROMPT_COMMAND=set-eterm-dir
-    function precmd { set-eterm-dir }
+    add-zsh-hook precmd eterm-precmd
+    add-zsh-hook preexec eterm-preexec
 fi
 
 function openstack_clear {
-    unset OS_AUTH_URL
-    unset OS_TENANT_NAME
-    unset OS_USERNAME
-    unset OS_PASSWORD
-    unset OS_REGION_NAME
+    if [ -n "$(env | awk -F '=' '/OS_/ { print $1 }')" ]; then
+       unset $(env | awk -F '=' '/OS_/ { print $1 }')
+    fi
     default_prompt
 }
 

@@ -12,7 +12,6 @@
 (load-directory (concat user-emacs-directory "init-mode.d"))
 (load-directory (concat user-emacs-directory "init-programming.d"))
 
-(add-to-list 'load-path "~/.emacs.d/")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
