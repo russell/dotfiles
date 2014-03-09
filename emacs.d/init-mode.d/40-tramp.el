@@ -6,6 +6,8 @@
              '((regexp-quote (system-name)) nil nil))
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote "localhost") nil nil))
+(add-to-list 'tramp-default-proxies-alist
+             '(".*home" "\\`root\\'" "/ssh:%h:"))
 
 ;; Sudo
 (defun sudo-edit-current-file ()
