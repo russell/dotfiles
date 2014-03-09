@@ -278,7 +278,7 @@ then
     _RHOSTNAME=$(host $IP 2>/dev/null | sed -n 's/.*pointer \(.*\)[.]/\1/p')
     _HOSTIP=$(hostname -i 2>/dev/null)
 
-    if [ "$_IP" == "$_HOSTIP" ]; then
+    if [[ "$_IP" == "$_HOSTIP" ]]; then
         _HOST=$(hostname -f 2>/dev/null)
     elif [ -n "$_HOSTNAME" ]; then
         _HOST="$_HOSTNAME"
