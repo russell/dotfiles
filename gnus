@@ -395,7 +395,10 @@ should be removed.  One way to generate such a RE is using
       '((".*"
          (x-identity "default")
          (name "Russell Sim")
-         (address "russell.sim@gmail.com")
+         (address (with-current-buffer gnus-article-buffer
+                    (if (string-equal (message-fetch-field "Resent-From") "russell.sim@unimelb.edu.au")
+                        "russell.sim@unimelb.edu.au"
+                      "russell.sim@gmail.com")))
          (Organization (with-current-buffer gnus-article-buffer
                          (when (message-fetch-field "Resent-From")
                            "The University of Melbourne"))))
