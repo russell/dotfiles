@@ -16,7 +16,7 @@
 (add-hook 'python-mode-hook 'smartparens-strict-mode)
 
 ;; Flycheck
-(add-hook 'python-mode-hook 'flycheck-mode)
+(add-hook 'python-mode-hook 'flycheck-mode-on-safe)
 
 (defadvice python-indent-dedent-line-backspace (around python-indent-dedent-line-backspace-around)
   "Replace the backward-delete-char function with the smartparens
