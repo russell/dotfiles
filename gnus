@@ -346,9 +346,12 @@ See (info \"(gnus)Group Line Specification\")."
 ;; Render org files to email.
 ;; (require 'org-mime)
 
-;;
-(require 'gnus-desktop-notify)
-(gnus-desktop-notify-mode)
+;; Enable notifications
+(custom-set-variables
+ '(gnus-notifications-use-gravatar nil)
+ '(gnus-notifications-use-google-contacts nil))
+
+(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 
 (defun my-gnus-summary-view-html-alternative-in-xdg ()
   "Display the HTML part of the current multipart/alternative MIME message

@@ -383,11 +383,6 @@
                :type github
                :pkgname "renard/gnus-identities")
 
-        (:name gnus-desktop-notify
-               :type http
-               :features gnus-desktop-notify
-               :url "http://www.thregr.org/~wavexx/hacks/gnus-desktop-notify/gnus-desktop-notify.el")
-
         (:name elscreen
                :type http-tar
                :features elscreen
@@ -754,7 +749,6 @@
          mailcrypt
          gnus-identities
          nognus
-         gnus-desktop-notify
 
          ;; ido
          ;; idomenu
