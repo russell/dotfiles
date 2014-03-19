@@ -1,3 +1,6 @@
+
+;;; Code:
+
 (require 'yasnippet)
 
 (yas-global-mode)
@@ -9,3 +12,10 @@
                            "snippets"))
       do (yas/load-directory dir))
 (yas/reload-all)
+
+(set-default 'yas-dont-activate
+             (lambda ()
+               (or (minibufferp)
+                   (member major-mode '(erc-mode)))))
+
+;;; init-yasnippet.el ends here
