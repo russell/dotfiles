@@ -150,7 +150,13 @@
 
 (defun pwgen ()
   (interactive)
-  (shell-command "pwgen -c -n -B -s 12 1" t))
+  (insert
+   (with-temp-buffer
+     (shell-command "pwgen -c -n -y -B 15 1" t)
+     (goto-char (point-min))
+     (while (search-forward "\n" nil t)
+       (replace-match "" nil t))
+     (buffer-substring (point-min) (point-max)))))
 
 
 (defun copy-file-name ()
