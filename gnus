@@ -172,6 +172,11 @@ See (info \"(gnus)Group Line Specification\")."
 (setq gnus-treat-from-gravatar 'head)
 (setq gnus-treat-mail-gravatar 'head)
 
+;;
+;; ICalendar support
+;;
+(require 'gnus-icalendar)
+(gnus-icalendar-setup)
 
 ;;
 ;; Check for new mail once in every this many minutes.
