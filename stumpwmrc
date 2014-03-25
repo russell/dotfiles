@@ -50,6 +50,7 @@
 
 (setf *mode-line-foreground-color* "Gray50")
 (setf *mode-line-background-color* "Gray20")
+(set-focus-color "DarkRed")
 
 (defparameter *vol-status-command*
   "amixer get Master | egrep '[[:digit:]]+%' -o | head -1 | tr -d '\\n'")
