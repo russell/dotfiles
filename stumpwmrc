@@ -40,6 +40,7 @@
 ;; Set sloppy focus
 (setf *mouse-focus-policy* :sloppy)
 
+(set-contrib-dir "/home/russell/projects/lisp/stumpwm-contrib")
 
 ;;
 ;; Mode line
@@ -49,6 +50,7 @@
 
 (setf *mode-line-foreground-color* "Gray50")
 (setf *mode-line-background-color* "Gray20")
+(set-focus-color "DarkRed")
 
 (defparameter *vol-status-command*
   "amixer get Master | egrep '[[:digit:]]+%' -o | head -1 | tr -d '\\n'")
@@ -56,8 +58,8 @@
 (defparameter *screen-mode-line-format-last*
   (concatenate 'list
                (list "[^B%n^b] %W^>")
-               (when (not (null (stumpwm.contrib.battery-portable::all-batteries
-                                 (stumpwm.contrib.battery-portable::preferred-battery-method))))
+               (when (not (null (battery-portable::all-batteries
+                                 (battery-portable::preferred-battery-method))))
                  (list "| %B "))
                (list "| Vol. "
                      '(:eval (run-shell-command *vol-status-command* t)))
