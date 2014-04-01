@@ -643,6 +643,13 @@
                :depends (helm slime)
                :features helm-slime)
 
+        (:name helm-swoop
+               :description "Helm Swoop"
+               :type github
+               :pkgname "ShingoFukuyama/helm-swoop"
+               :depends (helm)
+               :features helm-swoop)
+
         (:name sql-preset
                :description "Store SQL connections configuration."
                :type github
