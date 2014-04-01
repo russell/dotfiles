@@ -27,15 +27,13 @@
 (ido-helm-mode)
 
 (custom-set-variables
- '(helm-ff-tramp-not-fancy nil)
+ '(helm-ff-tramp-not-fancy t)
  '(helm-ff-skip-boring-files t)
  '(helm-boring-file-regexp-list
-   (quote
-    ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$"
-     "\\.so$" "\\.a$" "\\.elc$" "\\.fas$" "\\.fasl$" "\\.pyc$" "\\.pyo$")))
+   '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$"
+    "\\.so$" "\\.a$" "\\.elc$" "\\.fas$" "\\.fasl$" "\\.pyc$" "\\.pyo$"))
  '(helm-boring-buffer-regexp-list
-   (quote
-    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*tramp" "\\*Minibuf" "\\*epc"))))
+   '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*tramp" "\\*Minibuf" "\\*epc")))
 
 (eval-after-load 'helm-apt
   '(progn
