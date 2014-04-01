@@ -11,6 +11,8 @@
 (add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
 
 
+(setq magit-turn-on-auto-revert-mode nil)
+
 (setq magit-set-upstream-on-push 'dontask)
 
 ;; (magit-wip-mode 1)
