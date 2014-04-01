@@ -56,6 +56,10 @@
 ;; don't bother me with session password
 ;(setq imap-store-password t)
 
+(custom-set-variables
+ '(gnus-signature-separator
+   '("^-- $" "^-- *$" "^[.][.][.][.][.][.]* *$")))
+
 (setq gnus-asynchronous t)
 (setq gnus-widen-article-window t)
 
