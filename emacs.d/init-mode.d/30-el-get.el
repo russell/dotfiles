@@ -623,6 +623,12 @@
                :pkgname "scottjad/ido-hacks"
                :features ido-hacks)
 
+        (:name free-keys
+               :description "Show free bindings."
+               :type github
+               :pkgname "Fuco1/free-keys"
+               :features free-keys)
+
         (:name helm-descbinds
                :description "Helm frontend to describe key bindings."
                :type github
