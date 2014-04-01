@@ -789,6 +789,7 @@
          ;; lookup libraries
          helm
          helm-descbinds
+         helm-swoop
 
          ;; libraries
          dired+
