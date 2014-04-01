@@ -29,7 +29,7 @@
 ;;             (define-key puppet-mode-map "\C-xr" 'puppet-block-align)))
 
 ;; Flycheck
-(add-hook 'puppet-mode-hook 'flycheck-mode)
+(add-hook 'puppet-mode-hook 'flycheck-mode-on-safe)
 
 ;; Indent without tabs
 (add-hook 'puppet-mode-hook
