@@ -17,7 +17,7 @@
                              "^Summary:" "^Keywords:" "^To:" "^[BGF]?Cc:"
                              "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:"
                              "^Apparently-To:" "^Gnus-Warning:"
-                             "^Resent-From:" "^User-Agent:"))
+                             "^Resent-From:" "^User-Agent:" "^X-Mailer:"))
 (setq mm-verify-option 'known)
 (setq mm-decrypt-option 'known)
 (setq mml-smime-signers (quote ("27E94A1A")))
