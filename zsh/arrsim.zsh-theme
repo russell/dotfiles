@@ -63,8 +63,8 @@ function openstack_url_type {
 }
 
 function openstack_cloud {
-    OS_PORT=$(echo $OS_AUTH_URL | awk 'BEGIN { FS = "[:/]" } { print $4 }')
-    case $OS_PORT in
+    OS_HOSTNAME=$(echo $OS_AUTH_URL | awk 'BEGIN { FS = "[:/]" } { print $4 }')
+    case $OS_HOSTNAME in
         *dev*)
             echo "dev"
             ;;
@@ -77,9 +77,14 @@ function openstack_cloud {
     esac
 }
 
+function openstack_keystone {
+    OS_HOSTNAME=$(echo $OS_AUTH_URL | awk 'BEGIN { FS = "[.:/]" } { print $4 }')
+    echo $OS_HOSTNAME
+}
+
 function openstack_prompt {
     PROMPT='
-%{$fg[magenta]%}${OS_USERNAME}%{$reset_color%}@%{$fg[yellow]%}${OS_TENANT_NAME}%{$reset_color%} %{$fg_bold[green]%}keystone.$(openstack_cloud):$(openstack_url_type)%{$reset_color%}/%{$fg[yellow]%}${OS_REGION_NAME}%{$reset_color%}
+%{$fg[magenta]%}${OS_USERNAME}%{$reset_color%}@%{$fg[yellow]%}${OS_TENANT_NAME}%{$reset_color%} %{$fg_bold[green]%}$(openstack_keystone).$(openstack_cloud):$(openstack_url_type)%{$reset_color%}/%{$fg[yellow]%}${OS_REGION_NAME}%{$reset_color%}
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
 $(virtualenv_info)$(prompt_char) '
 }
