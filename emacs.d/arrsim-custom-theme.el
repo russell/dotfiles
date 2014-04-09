@@ -18,12 +18,13 @@
  '(mode-line ((t (:family "Nimbus Sans L" :height 1.1
                           :box (:line-width 2 :color "red")
                           :background "gray30"))))
- '(header-line ((t (:family "Nimbus Sans L" :height 1.0
-                            :box (:line-width 2 :color "red")
-                            :inverse nil
-                            :background "gray30"))))
  '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
                                     :box (:line-width 2 :color "dark red")))))
+
+ '(header-line ((t (:family "Nimbus Sans L" :height 1.0
+                            :box (:line-width 2 :color "dark red")
+                            :inverse nil
+                            :background "gray30"))))
 
  ;; ledger
  '(ledger-font-highlight-face ((t (:background "grey30"))))
