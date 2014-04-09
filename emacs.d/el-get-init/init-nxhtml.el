@@ -29,5 +29,3 @@
                '(lambda ()
                   (add-hook 'write-contents-functions
                             'delete-trailing-whitespace)))))
-
-(put 'nxml-mode 'flyspell-mode-predicate 'sgml-mode-flyspell-verify)
