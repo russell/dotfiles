@@ -18,6 +18,10 @@
  '(mode-line ((t (:family "Nimbus Sans L" :height 1.1
                           :box (:line-width 2 :color "red")
                           :background "gray30"))))
+ '(header-line ((t (:family "Nimbus Sans L" :height 1.0
+                            :box (:line-width 2 :color "red")
+                            :inverse nil
+                            :background "gray30"))))
  '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
                                     :box (:line-width 2 :color "dark red")))))
 
@@ -48,6 +52,8 @@
  '(erc-current-nick-face ((t (:foreground "dodgerblue" :weight bold))))
  '(erc-my-nick-face ((t (:foreground "dodgerblue" :weight bold))))
  '(erc-nick-msg-face ((t (:foreground "red"))))
+
+ '(which-func ((t (:inherit header-line :bold t))))
 
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))
