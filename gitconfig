@@ -24,6 +24,7 @@ tool = meld
 
 [alias]
 
+status = status -sb
 st = status -sb
 d = diff
 ci = commit -v
