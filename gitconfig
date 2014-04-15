@@ -6,7 +6,6 @@ email = russell.sim@gmail.com
 
 [github]
 user = russell
-token = 4f022ce92bd6715972fcfb67c253c43a
 
 [core]
 excludesfile = /home/russell/.gitignore
