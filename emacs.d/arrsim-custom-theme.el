@@ -22,8 +22,8 @@
                                     :box (:line-width 2 :color "dark red")))))
 
  '(header-line ((t (:family "Nimbus Sans L" :height 1.0
-                            :box (:line-width 2 :color "dark red")
-                            :inverse nil
+                            :box nil
+                            :inverse-video nil
                             :background "gray30"))))
 
  ;; ledger
