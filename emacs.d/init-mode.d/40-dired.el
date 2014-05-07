@@ -2,7 +2,7 @@
 (require 'dired-x)
 
 (setq-default dired-omit-files-p t) ; this is buffer-local variable
-(setq dired-hide-details-hide-information-lines nil)
+(setq-default dired-hide-details-hide-information-lines nil)
 
 (setq dired-omit-files
       (concat dired-omit-files "\\|^\\..+$"))
