@@ -10,10 +10,10 @@
                     (local-set-key (kbd "RET") 'newline-and-indent)))
 
         ;; force balanced parens on save
-        (add-hook mode
-                  (lambda ()
-                    (add-hook (make-local-variable 'after-save-hook)
-                              'check-parens)))
+        ;; (add-hook mode
+        ;;           (lambda ()
+        ;;             (add-hook (make-local-variable 'after-save-hook)
+        ;;                       'check-parens)))
         ;; paredit mode
         (add-hook mode 'paredit-mode))
 
