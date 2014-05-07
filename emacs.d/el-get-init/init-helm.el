@@ -12,6 +12,7 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (require 'helm-match-plugin)
+(require 'helm)
 
 (define-minor-mode ido-helm-mode
   "Advices for ido-mode."
@@ -41,3 +42,13 @@
      (defalias 'helm-apt-cache-show
        (lambda (package)
          (apt-utils-show-package-1 package t nil)))))
+
+(defun helm-backward-kill (arg)
+  "Helm backward kill word."
+  (interactive "p")
+  (when (helm-alive-p)
+    (subword-backward-kill arg)))
+
+(eval-after-load 'helm
+  '(progn
+     (define-key helm-map "\C-w" 'helm-backward-kill)))
