@@ -9,7 +9,8 @@
 (setq erc-modules '(autojoin button completion irccontrols list
                              match move-to-prompt netsplit networks
                              noncommands readonly replace ring services
-                             stamp smiley spelling truncate track))
+                             notifications stamp smiley spelling
+                             truncate track))
 
 (custom-set-variables
  '(erc-insert-away-timestamp-function 'erc-insert-timestamp-left)
