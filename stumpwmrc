@@ -283,3 +283,6 @@
 
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")
+
+;; xmodmap
+(run-shell-command "/usr/bin/redshift -l 38:144")
