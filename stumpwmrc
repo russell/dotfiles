@@ -198,13 +198,13 @@
 ;; MPD
 ;;
 
-(load-module "mpd")
-(define-key *top-map* (kbd "s-p") '*mpd-map*)
-(define-key *top-map* (kbd "XF86Forward") "mpd-next")
-(define-key *top-map* (kbd "XF86Back") "mpd-prev")
-(define-key *top-map* (kbd "XF86AudioNext") "mpd-next")
-(define-key *top-map* (kbd "XF86AudioPrev") "mpd-prev")
-(define-key *top-map* (kbd "XF86AudioPlay") "mpd-toggle-pause")
+;; (load-module "mpd")
+;; (define-key *top-map* (kbd "s-p") '*mpd-map*)
+;; (define-key *top-map* (kbd "XF86Forward") "mpd-next")
+;; (define-key *top-map* (kbd "XF86Back") "mpd-prev")
+;; (define-key *top-map* (kbd "XF86AudioNext") "mpd-next")
+;; (define-key *top-map* (kbd "XF86AudioPrev") "mpd-prev")
+;; (define-key *top-map* (kbd "XF86AudioPlay") "mpd-toggle-pause")
 
 
 ;;;;
