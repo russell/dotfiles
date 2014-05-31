@@ -39,6 +39,7 @@
 (size-indication-mode 1)
 
 (custom-set-variables
+ '(custom-theme-directory "~/.emacs.d/themes/")
  '(custom-safe-themes t)
  '(custom-enabled-themes '(arrsim-custom tsdh-dark)))
 

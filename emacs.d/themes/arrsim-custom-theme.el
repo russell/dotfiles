@@ -29,6 +29,7 @@
  ;; ledger
  '(ledger-font-highlight-face ((t (:background "grey30"))))
  '(ledger-occur-xact-face ((t (:background "grey30"))))
+ '(ledger-font-xact-highlight-face ((t (:background "grey30"))))
 
  ;; mumamo-mode
  '(mumamo-background-chunk-major ((t (:background "#2e3436"))))
@@ -65,11 +66,11 @@
                                 :weight bold
                                 :foreground "white"
                                 :background "dark slate blue"))))
- '(helm-selection ((t (:background "grey35"))))
- '(helm-ff-directory ((t (:foreground "DodgerBlue" :weight bold))))
- '(helm-ff-executable ((t (:foreground "cornsilk"))))
- '(helm-ff-file ((t (:inherit (font-default)))))
- '(helm-ff-symlink ((t (:inherit (font-lock-keyword-face)))))
+ '(helm-selection ((t (:underline nil :background "grey35"))))
+ '(helm-ff-directory ((t (:foreground nil :background nil :inherit (diredp-dir-priv)))))
+ '(helm-ff-executable ((t (:foreground nil :background nil :inherit (diredp-executable-tag)))))
+ '(helm-ff-file ((t (:foreground nil :background nil :inherit (diredp-file-name)))))
+ '(helm-ff-symlink ((t (:foreground nil :background nil :inherit (diredp-link-priv)))))
  '(helm-ff-invalid-symlink ((t (:background "red" :foreground "black"))))
  '(helm-ff-prefix ((t (:foreground "black" :background "yellow"))))
 
