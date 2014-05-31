@@ -469,17 +469,6 @@
                :type darcs
                :url "http://porkmail.org/elisp/recover-buffers/")
 
-        (:name slime
-               :description "Superior Lisp Interaction Mode for Emacs"
-               :type cvs
-               :module "slime"
-               :url ":pserver:anonymous:anonymous@common-lisp.net:/project/slime/cvsroot"
-               :info "doc"
-               :features slime
-               :load-path ("." "contrib")
-               :compile ("\\.el$")
-               :build (list "make -C doc"))
-
         ;; (:name slime-proxy
         ;;        :description "Slime proxy mode for Emacs and parenscript"
         ;;        :type git
