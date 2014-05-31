@@ -13,3 +13,7 @@
   (sp-local-pair "<" ">"))
 
 (sp-use-paredit-bindings)
+
+;; Python mode needs indentation to work correctly, so indent after
+;; backwards deleting.
+(add-to-list 'sp--lisp-modes 'python-mode)

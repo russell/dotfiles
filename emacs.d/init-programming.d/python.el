@@ -50,8 +50,6 @@ one."
 
 (add-to-list 'python-shell-setup-codes 'python-source-setup-code)
 
-(add-to-list 'sp--lisp-modes 'python-mode)
-
 ;;
 ;; Virtual env
 ;;
