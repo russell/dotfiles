@@ -216,6 +216,7 @@
      ("GIMP" "gimp")
      ("Inkscape" "inkscape")
      ("Rawstudio" "rawstudio")
+     ("Darktable" "darktable")
      ("Screenshot" "gnome-screenshot -a"))
 
     ("Internet"
