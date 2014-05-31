@@ -11,3 +11,5 @@
 ;;; html like modes
 (sp-with-modes '(html-mode sgml-mode)
   (sp-local-pair "<" ">"))
+
+(sp-use-paredit-bindings)
