@@ -190,7 +190,7 @@
 
 (defcommand emacs () ()
   "Start emacs unless it is already running, in which case focus it."
-  (run-or-raise "exec /usr/bin/emacs-snapshot --name emacs-primary-server --eval '(server-start)'"
+  (run-or-raise "exec /usr/bin/emacs --name emacs-primary-server --eval '(server-start)'"
                 '(:class "Emacs" :instance "emacs-primary-server")))
 (define-key *top-map* (kbd "s-e") "emacs")
 
