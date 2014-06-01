@@ -16,4 +16,5 @@
 
 ;; Python mode needs indentation to work correctly, so indent after
 ;; backwards deleting.
-(add-to-list 'sp--lisp-modes 'python-mode)
+;; (add-to-list 'sp--lisp-modes 'python-mode)
+;; This seems to then wreck the delete forwards commands
