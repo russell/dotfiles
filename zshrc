@@ -172,6 +172,8 @@ else
     export BZR_EDITOR="emacsclient"
 fi
 
+alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
+
 #
 # ls colors
 #
