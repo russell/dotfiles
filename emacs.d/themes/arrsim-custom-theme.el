@@ -15,14 +15,15 @@
  '(font-lock-type-face ((t (:foreground "OliveDrab1"))))
  '(highlight-indentation-face ((t (:background "grey25"))))
 
- '(mode-line ((t (:family "Nimbus Sans L" :height 1.1
+ '(mode-line ((t (:height 1.1
                           :box (:line-width 2 :color "red")
-                          :background "gray30"))))
+                          :foreground "red"
+                          :background "black"))))
  '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
-                                    :box (:line-width 2 :color "dark red")))))
+                                    :box (:line-width 2 :color "gray30")))))
 
  '(header-line ((t (:family "Nimbus Sans L" :height 1.0
-                            :foreground nil
+                            :foreground "white"
                             :box nil
                             :inverse-video nil
                             :background "gray30"))))
@@ -57,6 +58,9 @@
  '(erc-nick-msg-face ((t (:foreground "red"))))
 
  '(which-func ((t (:inherit header-line :bold t))))
+
+ ;; smart-mode-line
+ '(sml/remote ((t (:foreground "green"))))
 
  ;; slime
  '(slime-repl-prompt-face ((t (:inherit minibuffer-prompt))))

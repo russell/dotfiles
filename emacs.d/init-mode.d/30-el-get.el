@@ -718,6 +718,7 @@
          org-mode
 
          ;; other modes
+         smart-mode-line
          ace-jump-mode
          android-mode
          apache-mode
