@@ -20,7 +20,7 @@
                           :foreground "red"
                           :background "black"))))
  '(mode-line-inactive ((t (:inherit mode-line :foreground "dark gray"
-                                    :box (:line-width 2 :color "gray30")))))
+                                    :box (:line-width 2 :color "gray50")))))
 
  '(header-line ((t (:family "Nimbus Sans L" :height 1.0
                             :foreground "white"
