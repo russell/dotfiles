@@ -57,7 +57,8 @@
  '(erc-my-nick-face ((t (:foreground "dodgerblue" :weight bold))))
  '(erc-nick-msg-face ((t (:foreground "red"))))
 
- '(which-func ((t (:inherit header-line :bold t))))
+ '(which-func ((t (:inherit header-line :bold t
+                            :foreground nil))))
 
  ;; smart-mode-line
  '(sml/remote ((t (:foreground "green"))))
