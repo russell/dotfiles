@@ -380,6 +380,7 @@
         (:name gnus-identities
                :description "Change identity when composing a message."
                :features "gnus-identities"
+               :depends (nognus)
                :type github
                :pkgname "renard/gnus-identities")
 
