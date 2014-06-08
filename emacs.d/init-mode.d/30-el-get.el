@@ -134,7 +134,8 @@
                :type git
                :url "git://github.com/emacs-helm/helm.git"
                :depends (ido-hacks)
-               :features (helm))
+               :features (helm)
+               :compile nil)
 
         (:name emms
                :description "The Emacs Multimedia System"
