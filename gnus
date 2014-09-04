@@ -426,16 +426,19 @@ should be removed.  One way to generate such a RE is using
 Russell
 ")
 
+(defun rc/sent-from-unimelb-p ()
+  (string-equal (message-fetch-field "Resent-From") "russell.sim@unimelb.edu.au"))
+
 (setq gnus-posting-styles
       '((".*"
          (x-identity "default")
          (name "Russell Sim")
          (address (with-current-buffer gnus-article-buffer
-                    (if (string-equal (message-fetch-field "Resent-From") "russell.sim@unimelb.edu.au")
+                    (if (rc/sent-from-unimelb-p)
                         "russell.sim@unimelb.edu.au"
                       "russell.sim@gmail.com")))
          (Organization (with-current-buffer gnus-article-buffer
-                         (when (message-fetch-field "Resent-From")
+                         (when (rc/sent-from-unimelb-p)
                            "The University of Melbourne")))
          (signature message-signature))
         ("^rc-"
