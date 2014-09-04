@@ -7,6 +7,13 @@
 ;;
 ;; Personal settings
 ;;
+;;; Code:
+
+(require 'message)
+(require 'gnus-art)
+(require 'gnus-async)
+(require 'smtpmail)
+
 (setq message-from-style 'angles)
 
 (setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"
