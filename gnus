@@ -47,9 +47,10 @@
 (setq message-alternative-emails
       (regexp-opt '("russell.sim@gmail.com" "russell.sim@unimelb.edu.au")))
 
-(setq gnus-secondary-select-methods
-      '((nntp "news.gmane.org")
-        (nntp "news.eternal-september.org")))
+(when (equal hostname "sparky")
+ (setq gnus-secondary-select-methods
+       '((nntp "news.gmane.org")
+         (nntp "news.eternal-september.org"))))
 
 ;; don't bother me with dribbles
 ;(setq gnus-always-read-dribble-file t)
