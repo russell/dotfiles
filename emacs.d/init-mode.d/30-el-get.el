@@ -381,6 +381,7 @@
                :description "Change identity when composing a message."
                :features "gnus-identities"
                :type github
+               :depends (nognus)
                :pkgname "renard/gnus-identities")
 
         (:name elscreen
