@@ -134,7 +134,8 @@
                :type git
                :url "git://github.com/emacs-helm/helm.git"
                :depends (ido-hacks)
-               :features (helm))
+               :features (helm)
+               :compile nil)
 
         (:name emms
                :description "The Emacs Multimedia System"
@@ -380,6 +381,7 @@
         (:name gnus-identities
                :description "Change identity when composing a message."
                :features "gnus-identities"
+               :depends (nognus)
                :type github
                :depends (nognus)
                :pkgname "renard/gnus-identities")

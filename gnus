@@ -7,6 +7,13 @@
 ;;
 ;; Personal settings
 ;;
+;;; Code:
+
+(require 'message)
+(require 'gnus-art)
+(require 'gnus-async)
+(require 'smtpmail)
+
 (setq message-from-style 'angles)
 
 (setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"
@@ -415,20 +422,30 @@ should be removed.  One way to generate such a RE is using
 
 (add-hook 'message-header-setup-hook 'rs/dont-cc-self)
 
+(setq message-signature
+      "Cheers,
+Russell
+")
+
+(defun rc/sent-from-unimelb-p ()
+  (string-equal (message-fetch-field "Resent-From") "russell.sim@unimelb.edu.au"))
+
 (setq gnus-posting-styles
       '((".*"
          (x-identity "default")
          (name "Russell Sim")
          (address (with-current-buffer gnus-article-buffer
-                    (if (string-equal (message-fetch-field "Resent-From") "russell.sim@unimelb.edu.au")
+                    (if (rc/sent-from-unimelb-p)
                         "russell.sim@unimelb.edu.au"
                       "russell.sim@gmail.com")))
          (Organization (with-current-buffer gnus-article-buffer
-                         (when (message-fetch-field "Resent-From")
-                           "The University of Melbourne"))))
+                         (when (rc/sent-from-unimelb-p)
+                           "The University of Melbourne")))
+         (signature message-signature))
         ("^rc-"
          (x-identity "unimelb")
          (name "Russell Sim")
          (address "russell.sim@unimelb.edu.au")
          (From "russell.sim@unimelb.edu.au")
-         (Organization "The University of Melbourne"))))
+         (Organization "The University of Melbourne")
+         (signature message-signature))))
