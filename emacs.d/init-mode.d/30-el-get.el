@@ -664,7 +664,7 @@
                :load-path ("site-lisp/apel" "site-lisp/emu"))))
 
 
-(setq my-packages
+(setq rs/packages
       (append
        '(
          ;; C
@@ -792,4 +792,4 @@
          recover-buffers
          )))
 
-(el-get nil my-packages)
+(el-get nil rs/packages)

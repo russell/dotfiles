@@ -139,7 +139,7 @@
     (if cml (progn (delete-region beg end) (insert cml)))
     (goto-char start-point)))
 
-(defun my-rgrep ()
+(defun rs/rgrep ()
   "Search the current project."
   (interactive)
   (let ((default-directory
