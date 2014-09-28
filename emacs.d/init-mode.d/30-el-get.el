@@ -383,6 +383,7 @@
                :features "gnus-identities"
                :depends (nognus)
                :type github
+               :depends (nognus)
                :pkgname "renard/gnus-identities")
 
         (:name elscreen

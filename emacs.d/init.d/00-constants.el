@@ -8,6 +8,7 @@
 
 
 (defconst debian-p
+  "Is the current system Debian or Ubuntu."
   (let ((lsb-release (executable-find "lsb_release")))
     (when lsb-release
       (member
@@ -20,5 +21,11 @@
             (buffer-substring (point-min) (point-max))) "[: \f\t\n\r\v]+" t)))
        '("Debian" "Ubuntu")))))
 
-;; the reason for wanting this is so that i can support ifconfig on
-;; debian systems.
+(defconst hostname
+  "The unqualified hostname of the computer."
+  (let ((hostname (executable-find "hostname")))
+    (when hostname
+      (with-temp-buffer
+        (shell-command (concat hostname)
+                       (current-buffer))
+        (buffer-substring (point-min) (point-max))))))
