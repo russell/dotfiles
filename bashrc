@@ -88,13 +88,13 @@ case "$TERM" in
         if [ -n "$SSH_CONNECTION" ]
         then
             _IP=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
-            _RHOSTNAME=$(host $IP 2>/dev/null | sed -n 's/.*pointer \(.*\)[.]/\1/p')
+            _RHOSTNAME=$(host $_IP 2>/dev/null | sed -n 's/.*pointer \(.*\)[.]/\1/p')
             _HOSTIP=$(hostname -i 2>/dev/null)
 
             if [[ "$_IP" == "$_HOSTIP" ]]; then
                 _HOST=$(hostname -f 2>/dev/null)
-            elif [ -n "$_HOSTNAME" ]; then
-                _HOST=$_HOSTNAME
+            elif [ -n "$_RHOSTNAME" ]; then
+                _HOST=$_RHOSTNAME
             else
                 _HOST=$_IP
             fi
