@@ -203,7 +203,7 @@ function join {
     shift;
     echo "$*";
 }
-export GUILE_LOAD_PATH=$(join ';' `ls -d ~/projects/scheme/*`)
+export GUILE_LOAD_PATH=$(join ';' `ls -d ~/projects/scheme/*(N)`)
 
 #
 # grep colors
