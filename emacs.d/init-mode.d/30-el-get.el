@@ -95,6 +95,10 @@
                :type github
                :pkgname "nicferrier/emacs-db")
 
+        (:name magit-gerrit
+               :type github
+               :pkgname "terranpro/magit-gerrit")
+
         (:name request
                :type github
                :submodule nil
