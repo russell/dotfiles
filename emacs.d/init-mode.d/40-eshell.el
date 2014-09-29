@@ -32,7 +32,7 @@
                '(:propertize (" " default-directory " ") face dired-directory)))
 (add-hook 'eshell-mode-hook 'add-mode-line-dirtrack)
 
-(defun my-eshell (&optional buffer)
+(defun rs/eshell (&optional buffer)
   (interactive)
   (let* ((tramp-path (when (tramp-tramp-file-p default-directory)
                        (tramp-dissect-file-name default-directory)))
@@ -64,7 +64,7 @@
   (magit-status file))
 
 
-(global-set-key (kbd "<f2>") 'my-eshell)
+(global-set-key (kbd "<f2>") 'rs/eshell)
 
 
 ;; a stupid hack, seems that helm is leaking into eshell and this is
