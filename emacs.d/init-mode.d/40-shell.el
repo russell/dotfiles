@@ -17,7 +17,7 @@
             (set (make-local-variable 'comint-prompt-read-only) t)))
 
 
-(defun my-shell (&optional buffer)
+(defun rs/shell (&optional buffer)
   (interactive)
   (let* ((tramp-path (when (tramp-tramp-file-p default-directory)
                        (tramp-dissect-file-name default-directory)))

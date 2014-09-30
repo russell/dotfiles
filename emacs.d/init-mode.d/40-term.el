@@ -2,14 +2,14 @@
 
 (require 'term)
 
-(defun my-project-name ()
+(defun rs/project-name ()
   (file-name-nondirectory
    (directory-file-name
     (vc-call-backend (vc-deduce-backend) 'root default-directory))))
 
 (defvar term-ansi-at-prog nil)
 
-(defun my-term-init ()
+(defun rs/term-init ()
   ;; Set the ange-ftp variables because there are no default values.
   (setq term-ansi-at-host (system-name))
   (setq term-ansi-at-dir (file-remote-p default-directory 'localname))
@@ -19,7 +19,7 @@
   (setq ange-ftp-default-password nil)
   (setq ange-ftp-generate-anonymous-password nil))
 
-(add-hook 'term-mode-hook 'my-term-init)
+(add-hook 'term-mode-hook 'rs/term-init)
 
 (defun term-handle-ansi-terminal-messages (message)
   ;; Is there a command here?
@@ -132,7 +132,7 @@
 
 (add-hook 'term-mode-hook 'yas-dont-activate)
 
-(defun my-ansi-term (&optional default-location-p new-buffer-name)
+(defun rs/ansi-term (&optional default-location-p new-buffer-name)
   (interactive "P")
   (let* ((default-directory (if default-location-p
                                 (expand-file-name "~/")
@@ -171,4 +171,4 @@
     (switch-to-buffer term-ansi-buffer-name)
     (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)))
 
-(global-set-key "\C-cc" 'my-ansi-term)
+(global-set-key "\C-cc" 'rs/ansi-term)

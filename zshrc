@@ -197,6 +197,14 @@ setopt cdablevarS
 # Editor
 export EDITOR='emacsclient'
 
+# Scheme
+function join {
+    local IFS="$1";
+    shift;
+    echo "$*";
+}
+export GUILE_LOAD_PATH=$(join ';' `ls -d ~/projects/scheme/*(N)`)
+
 #
 # grep colors
 #
