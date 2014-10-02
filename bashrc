@@ -71,7 +71,11 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\$ '
+    if [ $(id -u) -eq 0 ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\$ '
+    fi
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -88,13 +92,13 @@ case "$TERM" in
         if [ -n "$SSH_CONNECTION" ]
         then
             _IP=$(echo -n $SSH_CONNECTION | cut -d\  -f3)
-            _RHOSTNAME=$(host $IP 2>/dev/null | sed -n 's/.*pointer \(.*\)[.]/\1/p')
+            _RHOSTNAME=$(host $_IP 2>/dev/null | sed -n 's/.*pointer \(.*\)[.]/\1/p')
             _HOSTIP=$(hostname -i 2>/dev/null)
 
             if [[ "$_IP" == "$_HOSTIP" ]]; then
                 _HOST=$(hostname -f 2>/dev/null)
-            elif [ -n "$_HOSTNAME" ]; then
-                _HOST=$_HOSTNAME
+            elif [ -n "$_RHOSTNAME" ]; then
+                _HOST=$_RHOSTNAME
             else
                 _HOST=$_IP
             fi
