@@ -1,14 +1,21 @@
 (require 'smart-mode-line)
-(add-to-list 'sml/hidden-modes " yas")
-(add-to-list 'sml/hidden-modes " hl-s")
-(add-to-list 'sml/hidden-modes " ElDoc")
-(add-to-list 'sml/hidden-modes " Paredit")
-(add-to-list 'sml/hidden-modes " SliNav")
-(add-to-list 'sml/hidden-modes " SliExp")
-(add-to-list 'sml/hidden-modes " SP")
-(add-to-list 'sml/hidden-modes " ||")
-(add-to-list 'sml/hidden-modes "/s")
 
 (sml/setup)
 
+(add-to-list 'rm-excluded-modes " yas")
+(add-to-list 'rm-excluded-modes " hl-s")
+(add-to-list 'rm-excluded-modes " ElDoc")
+(add-to-list 'rm-excluded-modes " Paredit")
+(add-to-list 'rm-excluded-modes " SliNav")
+(add-to-list 'rm-excluded-modes " SliExp")
+(add-to-list 'rm-excluded-modes " SP")
+(add-to-list 'rm-excluded-modes " ||")
+(add-to-list 'rm-excluded-modes "/s")
+
+(add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":projects:") t)
+
 (sml/apply-theme 'dark)
+
+(provide 'init-smart-mode-line)
+
+;;; init-smart-mode-line.el ends here
