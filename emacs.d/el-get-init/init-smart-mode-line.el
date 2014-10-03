@@ -6,7 +6,8 @@
 (add-to-list 'sml/hidden-modes " SliNav")
 (add-to-list 'sml/hidden-modes " SliExp")
 (add-to-list 'sml/hidden-modes " SP")
-(add-to-list 'sml/hidden-modes " /s")
+(add-to-list 'sml/hidden-modes " ||")
+(add-to-list 'sml/hidden-modes "/s")
 
 (sml/setup)
 
