@@ -768,6 +768,7 @@
          multiple-cursors
          undo-tree
          yasnippet
+         hungry-delete
 
          ;; other tools
          vkill
