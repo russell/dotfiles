@@ -1,3 +1,7 @@
+
+(custom-set-variables
+ '(diff-switches "-uN"))
+
 ;; enable ansi color for diff output
 (add-hook 'diff-mode-hook
           '(lambda ()

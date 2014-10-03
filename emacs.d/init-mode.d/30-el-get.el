@@ -385,10 +385,10 @@
         (:name gnus-identities
                :description "Change identity when composing a message."
                :features "gnus-identities"
-               :depends (nognus)
+               :depends (gnus)
                :type github
-               :depends (nognus)
-               :pkgname "renard/gnus-identities")
+               :depends (gnus)
+               :pkgname "russell/gnus-identities")
 
         (:name elscreen
                :type http-tar
@@ -429,6 +429,7 @@
                :website "http://bbdb.sourceforge.net/"
                :description "The Insidious Big Brother Database (BBDB) is a contact management utility."
                :type git
+               :depends (gnus)
                :url "git://git.savannah.nongnu.org/bbdb.git"
                :load-path ("./lisp")
                ;; if using vm, add `--with-vm-dir=DIR' after ./configure
@@ -588,18 +589,6 @@
                :features flymake-puppet
                :url "git://github.com/grimradical/puppet-flymake.git")
 
-        (:name nognus
-               :description "A newsreader for GNU Emacs"
-               :type git
-               :url "http://git.gnus.org/gnus.git"
-               :build ("./configure" "make")
-               :build/windows-nt `(,(concat "\"make.bat " invocation-directory "\""))
-               :build/darwin `(,(concat "./configure --with-emacs=" el-get-emacs) "make")
-               :info "texi"
-               :load-path ("lisp")
-               :autoloads nil
-               :features gnus-load)
-
         (:name auto-capitalize
                :type emacswiki
                :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
@@ -746,11 +735,11 @@
          yaml-mode
 
          ;; gnus
+         gnus
+         gnus-identities
          bbdb
          google-contacts
          mailcrypt
-         gnus-identities
-         nognus
 
          ;; ido
          ;; idomenu
