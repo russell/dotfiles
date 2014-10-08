@@ -22,7 +22,7 @@
           'lconfig-org-mode)
 
 (add-hook 'org-mode-hook
-          'turn-on-artbollocks-mode)
+          'artbollocks-mode)
 
 (global-set-key [f1]
                 (lambda ()

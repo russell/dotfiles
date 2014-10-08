@@ -374,7 +374,7 @@
 
         (:name artbollocks-mode
                :type git
-               :url "git://gitorious.org/robmyers/scripts.git"
+               :url "https://github.com/sachac/artbollocks-mode.git"
                :features "artbollocks-mode")
 
         (:name ldap-mode

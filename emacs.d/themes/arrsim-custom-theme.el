@@ -41,10 +41,10 @@
  '(mumamo-background-chunk-submode4 ((t (:background "grey30"))))
 
  ;; artbollock-mode
- '(font-lock-passive-voice-face ((t (:stipple nil :inverse-video nil :underline "gold" :slant italic))))
- '(font-lock-lexical-illusions-face ((t (:underline "limegreen" :weight bold :slant italic :inverse-video nil :stipple nil))))
- '(font-lock-weasel-words-face ((t (:weight bold :slant italic :inverse-video nil :underline "Brown" :stipple nil))))
- '(font-lock-artbollocks-face ((t (:stipple nil :underline "Purple" :inverse-video nil :slant italic :weight bold))))
+ '(artbollocks-passive-voice-face ((t (:stipple nil :inverse-video nil :underline "gold" :slant italic :background nil :foreground nil))))
+ '(artbollocks-lexical-illusions-face ((t (:underline "limegreen" :weight bold :slant italic :inverse-video nil :stipple nil :background nil :foreground nil))))
+ '(artbollocks-weasel-words-face ((t (:weight bold :slant italic :inverse-video nil :underline "Brown" :stipple nil :background nil :foreground nil))))
+ '(artbollocks-face ((t (:stipple nil :underline "Purple" :inverse-video nil :slant italic :weight bold :background nil :foreground nil))))
  '(flymake-infoline ((t (:background "#00472b"))))
  '(flymake-warnline ((t (:background "#001B63"))))
 
