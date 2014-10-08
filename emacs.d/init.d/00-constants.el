@@ -22,10 +22,13 @@
        '("Debian" "Ubuntu")))))
 
 (defconst hostname
-  "The unqualified hostname of the computer."
   (let ((hostname (executable-find "hostname")))
     (when hostname
       (with-temp-buffer
         (shell-command (concat hostname)
                        (current-buffer))
-        (buffer-substring (point-min) (point-max))))))
+        (buffer-substring (point-min)
+                          (save-excursion
+                            (move-end-of-line nil)
+                            (point))))))
+  "The unqualified hostname of the computer.")
