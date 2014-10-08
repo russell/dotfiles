@@ -1,0 +1,1 @@
+(global-hungry-delete-mode)
