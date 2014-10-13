@@ -604,8 +604,8 @@
 
         (:name puppet-mode
                :description "A simple mode for editing puppet manifests"
-               :type git
-               :url "git://github.com/puppetlabs/puppet-syntax-emacs.git"
+               :type github
+               :pkgname "lunaryorn/puppet-mode"
                :after (progn
                         (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests" t)
                         (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
