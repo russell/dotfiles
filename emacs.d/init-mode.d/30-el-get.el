@@ -248,6 +248,12 @@
                :build (("make" "requirements"))
                :depends (epc auto-complete))
 
+        (:name znc
+               :description ""
+               :type github
+               :pkgname "sshirokov/ZNC.el"
+               :depends (erc))
+
         (:name po-mode
                :type http
                :url "http://cvs.savannah.gnu.org/viewvc/*checkout*/gettext/gettext/gettext-tools/misc/po-mode.el"
@@ -750,6 +756,7 @@
          ;; erc
          erc
          erc-nick-notify
+         znc
 
          ;; project tools
          dirvars
