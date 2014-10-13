@@ -137,6 +137,8 @@
         (:name helm
                :type git
                :url "git://github.com/emacs-helm/helm.git"
+               :build (("make"))
+               :compile nil
                :depends (ido-hacks)
                :features (helm)
                :compile nil)
