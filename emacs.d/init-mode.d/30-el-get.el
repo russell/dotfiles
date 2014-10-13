@@ -678,9 +678,9 @@
          elisp-slime-expand
          elisp-slime-nav
 
-         ;; internet
+         ;; web
          emacs-w3m
-         nxhtml
+         web-mode
          oauth2
          restclient-mode
 
@@ -690,7 +690,6 @@
          json
 
          ;; python
-         django-mode
          highlight-indentation
          jedi
          pycheckers
