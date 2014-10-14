@@ -12,6 +12,10 @@
 (load-directory (concat user-emacs-directory "init-mode.d"))
 (load-directory (concat user-emacs-directory "init-programming.d"))
 
+;; emacs sync
+(if (file-exists-p "~/projects/lisp/emacs-sync/")
+    (add-to-list 'load-path (expand-file-name "~/projects/lisp/emacs-sync/")))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
