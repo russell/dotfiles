@@ -1,5 +1,7 @@
 ;; -*- Mode: Emacs-Lisp -*-
 
+;;; Code:
+
 (defun load-directory (directory)
   "Load an entire DIRECTORY of elisp files."
   (dolist (f (directory-files directory t ".el"))
@@ -11,6 +13,11 @@
 (load-directory (concat user-emacs-directory "init.d"))
 (load-directory (concat user-emacs-directory "init-mode.d"))
 (load-directory (concat user-emacs-directory "init-programming.d"))
+
+;; emacs sync
+(when (file-exists-p "~/projects/lisp/emacs-sync/")
+    (add-to-list 'load-path (expand-file-name "~/projects/lisp/emacs-sync/"))
+    (load-file (expand-file-name "~/.emacs-sync.el")))
 
 
 (custom-set-variables
