@@ -32,8 +32,9 @@
 (require 'epa-file)
 (epa-file-enable)
 
-(custom-set-variables
- '(safe-local-variable-values (quote ((encoding . utf-8)))))
+
+(add-to-list 'safe-local-variable-values '(encoding . utf-8))
+
 
 ;; TODO manually activate subword mode. so that the keys below work.
 ;; (global-set-key "\M-B" 'backward-word)
