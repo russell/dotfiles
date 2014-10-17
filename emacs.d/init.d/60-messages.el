@@ -52,7 +52,7 @@
                               body))))
     (compose-mail)))
 
-(add-hook 'message-mode-hook 'turn-on-artbollocks-mode)
+(add-hook 'message-mode-hook 'artbollocks-mode)
 (add-hook 'message-mode-hook 'enable-editing-modes)
 (setq w3m-minor-mode-hook nil)
 (add-hook 'w3m-minor-mode-hook
