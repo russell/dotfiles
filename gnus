@@ -342,7 +342,7 @@ See (info \"(gnus)Group Line Specification\")."
 ;; plug this into message-setup-hook
 (add-hook 'message-setup-hook 'my-mml-secure-message-sign-mime)
 
-;; cacheing
+;; Caching
 
 (setq gnus-use-cache t)
 (setq gnus-cache-directory "~/Mail/cache/")
@@ -372,7 +372,7 @@ See (info \"(gnus)Group Line Specification\")."
 (ad-activate 'mm-url-insert)
 
 ;; Render org files to email.
-;; (require 'org-mime)
+(require 'org-mime)
 
 ;; Enable notifications
 (custom-set-variables
