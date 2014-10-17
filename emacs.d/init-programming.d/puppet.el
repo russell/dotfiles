@@ -6,16 +6,6 @@
     (overlay-put overlay 'face 'secondary-selection)
     (run-with-timer (or timeout 0.2) nil 'delete-overlay overlay)))
 
-(defun puppet-block-align ()
-  "align the => characters for a block"
-  (interactive)
-  (save-excursion
-    (let ((apoint (search-backward " {" nil t))
-          (epoint (re-search-forward "}[\n \t]" nil t)))
-      (when apoint
-        (align-regexp apoint epoint "\\(\\s-*\\)=>" 1 1)
-        (puppet-flash-region apoint epoint)))))
-
 (defun flymake-puppet-init ()
   "Construct a command that flymake can use to check puppetscript source."
   (list "puppet-lint"
