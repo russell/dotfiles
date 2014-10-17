@@ -1,6 +1,10 @@
-; TRAMP
-(setq password-cache-expiry 1000)
-(setq tramp-default-method "rsync")
+;; TRAMP
+
+;;; Code:
+
+(require 'tramp)
+
+(setq tramp-default-method "ssh")
 (set-default 'tramp-default-proxies-alist '())
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
@@ -23,5 +27,3 @@
             (tramp-file-name-localname vec)))
        (concat "/sudo:root@localhost:" (buffer-file-name))))
     (goto-char position)))
-
-(require 'tramp)
