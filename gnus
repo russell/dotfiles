@@ -10,6 +10,7 @@
 ;;; Code:
 
 (require 'message)
+(require 'gnus-util)
 (require 'gnus-art)
 (require 'gnus-async)
 (require 'smtpmail)
