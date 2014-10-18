@@ -1,13 +1,23 @@
-; TRAMP
+
+;;; Code:
+
+;; TRAMP
+(require 'tramp)
+
 (setq password-cache-expiry 1000)
-(setq tramp-default-method "rsync")
+(setq tramp-default-method "ssh")
 (set-default 'tramp-default-proxies-alist '())
+(add-to-list 'tramp-default-proxies-alist
+             '(".*home" "\\`root\\'" "/ssh:%h:"))
+(add-to-list 'tramp-default-proxies-alist
+             '(".*\\.rc\\.nectar\\.org\\.au" nil
+               "/ssh:russell@kieran.dev.rc.nectar.org.au:"))
+(add-to-list 'tramp-default-proxies-alist
+             '("kieran.dev.rc.nectar.org.au" nil nil))
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote "localhost") nil nil))
-(add-to-list 'tramp-default-proxies-alist
-             '(".*home" "\\`root\\'" "/ssh:%h:"))
 
 ;; Sudo
 (defun sudo-edit-current-file ()
@@ -23,5 +33,3 @@
             (tramp-file-name-localname vec)))
        (concat "/sudo:root@localhost:" (buffer-file-name))))
     (goto-char position)))
-
-(require 'tramp)
