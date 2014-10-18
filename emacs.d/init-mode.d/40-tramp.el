@@ -1,10 +1,9 @@
+;; TRAMP
 
 ;;; Code:
 
-;; TRAMP
 (require 'tramp)
 
-(setq password-cache-expiry 1000)
 (setq tramp-default-method "ssh")
 (set-default 'tramp-default-proxies-alist '())
 (add-to-list 'tramp-default-proxies-alist

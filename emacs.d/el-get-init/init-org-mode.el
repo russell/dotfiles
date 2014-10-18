@@ -1,3 +1,6 @@
+;;; Code:
+
+(setq org-export-async-init-file "~/.emacs.d/init-org-export.el")
 (setq org-agenda-files (quote ("~/org/")))
 (setq org-directory "~/org/")
 (setq org-hide-leading-stars t)
@@ -11,8 +14,8 @@
 (setq org-src-fontify-natively t)
 (setq org-return-follows-link t)
 (setq org-completion-use-ido t)
+(add-hook 'org-mime-html-hook 'rs/org-html-mime-code-blocks)
 
-;; Org Mode
 (defun lconfig-org-mode ()
   (progn
     (auto-fill-mode)
@@ -29,6 +32,7 @@
                   (interactive)
                   (dired "~/org")))
 
+
 ;; Delete whitespace on save.
 (add-hook 'org-mode-hook
           '(lambda ()
@@ -36,3 +40,9 @@
                        '(lambda()
                           (save-excursion
                             (delete-trailing-whitespace))))))
+
+
+(defun rs/org-html-mime-code-blocks ()
+            (org-mime-change-element-style
+             "pre" (format "color: %s; background-color: %s; padding: 0.5em;"
+                           "#E6E1DC" "#232323")))
