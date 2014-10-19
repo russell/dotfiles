@@ -36,10 +36,11 @@
 (require 'nnir)
 
 ;; Dovecat IMAP server
-(setq gnus-select-method '(nnimap "Mail"
-				  (nnimap-address "localhost")
-				  (nnimap-stream network)
-				  (nnimap-authenticator login)))
+(setq gnus-select-method
+      '(nnimap "Mail"
+               (nnimap-address "localhost")
+               (nnimap-stream network)
+               (nnimap-authenticator login)))
 
 (setq message-send-mail-function 'smtpmail-send-it
       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
@@ -54,10 +55,14 @@
 (setq message-alternative-emails
       (regexp-opt '("russell.sim@gmail.com" "russell.sim@unimelb.edu.au")))
 
+(setq gnus-secondary-select-methods nil)
+
 (when (equal hostname "sparky")
- (setq gnus-secondary-select-methods
-       '((nntp "news.gmane.org")
-         (nntp "news.eternal-september.org"))))
+ (add-to-list 'gnus-secondary-select-methods
+              '(nntp "news.gmane.org"))
+ (add-to-list 'gnus-secondary-select-methods
+              '(nntp "news.eternal-september.org")))
+
 
 ;; don't bother me with dribbles
 ;(setq gnus-always-read-dribble-file t)
