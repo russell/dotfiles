@@ -453,3 +453,9 @@ should be removed.  One way to generate such a RE is using
            (From "russell.sim@unimelb.edu.au")
            (Organization "The University of Melbourne")
            (signature ,message-signature)))))
+
+(setq message-dont-reply-to-names
+      '("russell\\.sim@unimelb\\.edu\\.au"
+        "russell\\.sim@gmail\\.com"))
+
+;;; gnus ends here
