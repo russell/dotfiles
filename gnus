@@ -433,10 +433,7 @@ should be removed.  One way to generate such a RE is using
   (string-equal (message-fetch-field "Resent-From") "russell.sim@unimelb.edu.au"))
 
 
-(let ((message-signature
-        "Cheers,
-Russell
-"))
+(let ((message-signature "Cheers,\nRussell\n"))
   (setq gnus-posting-styles
         `((".*"
            (x-identity "default")
