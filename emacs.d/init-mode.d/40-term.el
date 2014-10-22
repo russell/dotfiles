@@ -92,30 +92,25 @@
 (defvar term-ansi-ignored-progs '("bash" "zsh"))
 
 
-(defadvice term-handle-ansi-terminal-messages (after update-term-buffer-name (message))
+(defadvice term-handle-ansi-terminal-messages
+  (after rs/update-term-buffer-name (message))
   (cond
    ((and term-ansi-at-prog term-ansi-at-user term-ansi-at-host
          (not (member term-ansi-at-prog term-ansi-ignored-progs)))
     (rename-buffer
-      (mapconcat 'identity
-                 `("*"
-                   ,@(when term-ansi-at-prog
-                       (list term-ansi-at-prog ":"))
-                   ,term-ansi-at-user
-                   "@"
-                   ,term-ansi-at-host
-                   "*")
-                 "") t))
+     (format "*%s%s@%s*"
+               (if term-ansi-at-prog
+                    (concat term-ansi-at-prog ":")
+                 "")
+               term-ansi-at-user
+               term-ansi-at-host)
+     t))
 
    ((and term-ansi-at-user term-ansi-at-host)
      (rename-buffer
-      (mapconcat 'identity
-                 `("*"
-                   ,term-ansi-at-user
-                   "@"
-                   ,term-ansi-at-host
-                   "*")
-                 "") t))))
+     (format "*%s@%s*"
+               term-ansi-at-user
+               term-ansi-at-host) t))))
 
 (ad-activate 'term-handle-ansi-terminal-messages)
 
