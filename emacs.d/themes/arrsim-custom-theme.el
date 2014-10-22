@@ -79,6 +79,7 @@
  '(helm-ff-symlink ((t (:foreground nil :background nil :inherit (diredp-link-priv)))))
  '(helm-ff-invalid-symlink ((t (:background "red" :foreground "black"))))
  '(helm-ff-prefix ((t (:foreground "black" :background "yellow"))))
+ '(helm-grep-file ((t :foreground "medium turquoise")))
 
  ;; dired
  '(diredp-dir-heading ((t (:background "#00003F3F3434" :foreground "DodgerBlue" :height 1.3 :weight bold))))
