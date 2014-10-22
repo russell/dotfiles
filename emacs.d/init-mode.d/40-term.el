@@ -119,13 +119,10 @@
 
 (ad-activate 'term-handle-ansi-terminal-messages)
 
-(add-hook 'term-exec-hook (lambda ()
-            (let* ((buff (current-buffer))
-                 (proc (get-buffer-process buff)))
-            (lexical-let ((buff buff))
-               (set-process-sentinel proc (lambda (process event)
-                            (if (string= event "finished\n")
-                                       (kill-buffer buff))))))))
+(defadvice term-handle-exit
+  (after rs/term-kill-buffer-on-exit activate)
+  "Kill term buffers on exiting term (C-d or `exit`)."
+  (kill-buffer))
 
 (defun yas-dont-activate ()
   (yas-minor-mode -1))
