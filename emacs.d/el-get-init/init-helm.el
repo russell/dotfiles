@@ -1,10 +1,12 @@
 ;;; Code:
 
 (require 'helm)
+(require 'helm-files)
 (require 'helm-match-plugin)
+(require 'helm-misc)
 
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x b") 'rs/buffers-list)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-h a") 'helm-apropos)
@@ -37,6 +39,17 @@
      (defalias 'helm-apt-cache-show
        (lambda (package)
          (apt-utils-show-package-1 package t nil)))))
+
+
+(defun rs/buffers-list ()
+  "Preconfigured `helm' to list buffers."
+  (interactive)
+  (let ((helm-ff-transformer-show-only-basename nil))
+    (helm :sources helm-mini-default-sources
+          :buffer "*helm rs/buffers*"
+          :keymap helm-buffer-map
+          :truncate-lines t)))
+
 
 (defun helm-backward-kill (arg)
   "Helm backward kill word."
