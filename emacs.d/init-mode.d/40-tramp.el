@@ -4,15 +4,15 @@
 
 (require 'tramp)
 
-(setq tramp-default-method "ssh")
 (set-default 'tramp-default-proxies-alist '())
 (add-to-list 'tramp-default-proxies-alist
              '(".*home" "\\`root\\'" "/ssh:%h:"))
-(add-to-list 'tramp-default-proxies-alist
-             '(".*\\.rc\\.nectar\\.org\\.au" nil
-               "/ssh:russell@kieran.dev.rc.nectar.org.au:"))
-(add-to-list 'tramp-default-proxies-alist
-             '("kieran.dev.rc.nectar.org.au" nil nil))
+(unless (equal hostname "kieran")
+  (add-to-list 'tramp-default-proxies-alist
+               '(".*\\.rc\\.nectar\\.org\\.au" nil
+                 "/ssh:russell@kieran.dev.rc.nectar.org.au:"))
+  (add-to-list 'tramp-default-proxies-alist
+               '("kieran.dev.rc.nectar.org.au" nil nil)))
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
 (add-to-list 'tramp-default-proxies-alist
