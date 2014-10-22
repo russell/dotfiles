@@ -56,26 +56,6 @@
 
 (add-hook 'erc-join-hook 'enable-editing-modes)
 
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "#emacs" "#python"
-         "#openstack" "#lisp" "#lispcafe"
-         "#clnoobs")
-        ("oftc.net" "#debian" "#debian-mentors")))
-
-(defun irc-oftc ()
-  (interactive)
-  (let ((default-directory (expand-file-name "~")))
-    (erc-tls :server "irc.oftc.net" :port 6697
-             :nick "arrsim" :full-name "Russell Sim"
-             :password oftc-pass)))
-
-(defun irc-freenode ()
-  (interactive)
-  (let ((default-directory (expand-file-name "~")))
-    (erc-tls :server "chat.freenode.net" :port 6697
-             :nick "arrsim" :full-name "Russell Sim"
-             :password freenode-pass)))
-
 (defun irc-bitlbee ()
   (interactive)
   (let ((default-directory (expand-file-name "~")))
@@ -87,10 +67,8 @@
   "Connect to IRC."
   (interactive)
   (let ((default-directory (expand-file-name "~")))
-    (irc-oftc)
-    (irc-freenode)
+    (zrc)
     (irc-bitlbee)))
-
 
 (require 'notifications)
 (defun erc-global-notify (match-type nick message)
