@@ -1,18 +1,13 @@
+;;; Code:
 
-;; helm kill ring
-(global-set-key "\M-y" 'helm-show-kill-ring)
-
-;; helm buffer list
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-
-;; Jump to a definition in the current file. (This is awesome)
-(global-set-key (kbd "C-x C-i") 'helm-imenu)
-
-;; Find files binding
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-
-(require 'helm-match-plugin)
 (require 'helm)
+(require 'helm-match-plugin)
+
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-i") 'helm-imenu)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-h a") 'helm-apropos)
 
 (define-minor-mode ido-helm-mode
   "Advices for ido-mode."
@@ -49,6 +44,8 @@
   (when (helm-alive-p)
     (subword-backward-kill arg)))
 
-(eval-after-load 'helm
-  '(progn
-     (define-key helm-map "\C-w" 'helm-backward-kill)))
+(define-key helm-map (kbd "C-w") 'helm-backward-kill)
+
+(provide 'init-helm)
+
+;;; init-helm.el ends here
