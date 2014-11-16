@@ -30,7 +30,7 @@
 (global-set-key [f1]
                 (lambda ()
                   (interactive)
-                  (dired "~/org")))
+                  (helm-find-files-1 (expand-file-name "~/org/"))))
 
 
 ;; Delete whitespace on save.
