@@ -78,7 +78,7 @@
 
 
 ;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
-(defun rename-file-and-buffer (new-name)
+(defun rs/rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
   (let ((name (buffer-name))
@@ -100,7 +100,7 @@
   (flyspell-mode t))
 
 
-(defun scratch ()
+(defun rs/scratch ()
   (interactive)
   (let ((current-mode major-mode))
     (switch-to-buffer-other-window (get-buffer-create "*scratch*"))
@@ -129,7 +129,7 @@
                              t nil s)))
     (downcase s)))
 
-(defun uncamelcase-word-at-point ()
+(defun rs/uncamelcase-word-at-point ()
   (interactive)
   (let* ((case-fold-search nil)
          (start-point (point))
@@ -149,7 +149,7 @@
             default-directory)))
     (call-interactively 'rgrep)))
 
-(defun pwgen ()
+(defun rs/pwgen ()
   (interactive)
   (insert
    (with-temp-buffer
@@ -160,6 +160,11 @@
      (buffer-substring (point-min) (point-max)))))
 
 
-(defun copy-file-name ()
+(defun rs/copy-file-name ()
   (interactive)
   (kill-new (buffer-file-name)))
+
+
+(defun rs/timestamp ()
+   (interactive)
+   (insert (format-time-string "%Y-%m-%dT%H:%M:%S")))
