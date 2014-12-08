@@ -194,6 +194,11 @@
                 '(:class "Emacs" :instance "emacs-primary-server")))
 (define-key *top-map* (kbd "s-e") "emacs")
 
+(defcommand chrome () ()
+  "Start Google Chrome unless it is already running, in which case focus it."
+  (run-or-raise "google-chrome"
+                '(:class "Google-chrome")))
+
 ;;
 ;; MPD
 ;;
