@@ -230,6 +230,10 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 #export PYTHONDONTWRITEBYTECODE=true
 
+# Openstack RC Files
+osrc() { source ~/.os/$1; }
+compdef "_path_files -f -W ~/.os/" osrc
+
 # PDSH
 export PDSH_RCMD_TYPE="ssh"
 export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
