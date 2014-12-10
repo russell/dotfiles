@@ -67,7 +67,7 @@
   "Connect to IRC."
   (interactive)
   (let ((default-directory (expand-file-name "~")))
-    (zrc)
+    (znc)
     (irc-bitlbee)))
 
 (require 'notifications)
