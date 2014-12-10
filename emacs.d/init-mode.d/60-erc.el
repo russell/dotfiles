@@ -40,17 +40,19 @@
 
 ;; Make query buffers have a high priority
 (defadvice erc-track-find-face (around erc-track-find-face-promote-query activate)
-  (if (erc-query-buffer-p)
+  (if (or (erc-query-buffer-p) (equal erc-channel-key "#nectar"))
       (setq ad-return-value (intern "erc-current-nick-face"))
     ad-do-it))
 
 (defadvice erc-track-modified-channels (around erc-track-modified-channels-promote-query activate)
-  (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'nil))
+  (if (or (erc-query-buffer-p) (equal erc-channel-key "#nectar"))
+      (setq erc-track-priority-faces-only 'nil))
   ad-do-it
-  (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'all)))
+  (if (or (erc-query-buffer-p) (equal erc-channel-key "#nectar"))
+      (setq erc-track-priority-faces-only 'all)))
 
 
-;; try and prevent ERC from flooding the connection when trying to
+;; Try and prevent ERC from flooding the connection when trying to
 ;; reconnect
 (setq erc-server-send-ping-timeout nil)
 
