@@ -14,6 +14,9 @@
 (load-directory (concat user-emacs-directory "init-mode.d"))
 (load-directory (concat user-emacs-directory "init-programming.d"))
 
+(if (file-exists-p "~/.emacs-private.el")
+    (load-file (expand-file-name "~/.emacs-private.el")))
+
 ;; emacs sync
 (when (file-exists-p "~/projects/lisp/emacs-sync/")
     (add-to-list 'load-path (expand-file-name "~/projects/lisp/emacs-sync/"))
