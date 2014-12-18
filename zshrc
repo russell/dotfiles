@@ -284,9 +284,19 @@ e () {
     fi
 }
 
-# edit file with root privs
+# edit file in console
+ec () {
+    emacs -nw "$@"
+}
+
+# edit file with root permissions
 E () {
     emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
+}
+
+# edit file in console with a root permissions.
+EC () {
+    emacs -nw "/sudo:root@localhost:$PWD/$1"
 }
 
 if [ -n "$SSH_CONNECTION" ]
