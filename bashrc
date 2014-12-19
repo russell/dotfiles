@@ -220,20 +220,6 @@ function E() {
          emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
-# Mutt launcher
-m () {
-    offlineimap -1 -u quiet > /dev/null &
-    OPID=$!
-    mutt
-    kill $OPID
-    ps $OPID > /dev/null
-    while [ $? -eq 0 ]; do
-    kill $OPID
-    sleep 3;
-    ps $OPID > /dev/null
-    done
-    offlineimap -o -u basic
-}
 
 if [ $SSH_TTY ]; then
     export GIT_EDITOR="emacs -nw"
