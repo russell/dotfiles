@@ -182,10 +182,12 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 if [ $SSH_TTY ]; then
+    export EDITOR='emacs -nw'
     export GIT_EDITOR="emacs -nw"
     export BZR_EDITOR="emacs -nw"
     alias emacs="emacs -nw"
 else
+    export EDITOR='emacsclient'
     export GIT_EDITOR="emacsclient"
     export BZR_EDITOR="emacsclient"
 fi

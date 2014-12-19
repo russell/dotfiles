@@ -227,10 +227,12 @@ function E() {
 
 
 if [ $SSH_TTY ]; then
+    export EDITOR="emacs -nw"
     export GIT_EDITOR="emacs -nw"
     export BZR_EDITOR="emacs -nw"
     alias emacs="emacs -nw"
 else
+    export EDITOR="emacsclient"
     export GIT_EDITOR="emacsclient"
     export BZR_EDITOR="emacsclient"
 fi
