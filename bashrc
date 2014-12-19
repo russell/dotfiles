@@ -122,6 +122,11 @@ case "$TERM" in
         ;;
 esac
 
+if [ "$COLORTERM" == "gnome-terminal" ]
+then
+    TERM=xterm-256color
+fi
+
 #
 # environment variables
 #

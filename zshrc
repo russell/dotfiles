@@ -212,8 +212,10 @@ setopt auto_cd
 setopt multios
 setopt cdablevarS
 
-# Editor
-export EDITOR='emacsclient'
+if [[ "$COLORTERM" == "gnome-terminal" ]]
+then
+    TERM=xterm-256color
+fi
 
 # Scheme
 function join {
