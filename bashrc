@@ -122,6 +122,17 @@ case "$TERM" in
         ;;
 esac
 
+#
+# environment variables
+#
+export DEBEMAIL="russell.sim@gmail.com"
+export DEBFULLNAME="Russell Sim"
+export MAIL="russell.sim@gmail.com"
+
+export GPGKEY=0x27E94A1A
+
+export CC="gcc"
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
