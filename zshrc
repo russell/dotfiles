@@ -147,11 +147,13 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
         hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
         mailman mailnull mldonkey mysql nagios list proxy libuuid\
         named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
-        operator pcap postfix postgres privoxy pulse pvm quagga radvd \
+        operator pcap postfix privoxy pulse pvm quagga radvd \
         rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs rtkit \
         statd usbmux saned speech-dispatcher hplip dovenull Debian-exim \
         Debian-gdm colord bitlbee backup cl-builder dnsmasq gnats man \
-        messagebus sys www-data
+        messagebus sys memcache mongodb mpd puppet puppetdb uuidd nagios \
+        _graphite
+
 # ... unless we really want to.
 zstyle '*' single-ignored show
 
