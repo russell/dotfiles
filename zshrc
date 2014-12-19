@@ -37,10 +37,21 @@ fi
 
 autoload -U add-zsh-hook
 
-# Example aliases
-alias zshconfig="source ~/.zshrc"
+#
+# environment variables
+#
+export DEBEMAIL="russell.sim@gmail.com"
+export DEBFULLNAME="Russell Sim"
+export MAIL="russell.sim@gmail.com"
 
-# Gtypist
+export GPGKEY=0x27E94A1A
+
+export CC="gcc"
+
+#
+# Aliases
+#
+alias zshconfig="source ~/.zshrc"
 alias gtypist="gtypist -bi"
 
 # set PATH so it includes user's private bin if it exists
