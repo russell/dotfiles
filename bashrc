@@ -235,16 +235,14 @@ m () {
     offlineimap -o -u basic
 }
 
-case "$TERM" in
-    xterm*)
-        export GIT_EDITOR="emacsclient"
-        export BZR_EDITOR="emacsclient"
-        ;;
-    *)
-        export GIT_EDITOR="emacs"
-        export BZR_EDITOR="emacs"
-        ;;
-esac
+if [ $SSH_TTY ]; then
+    export GIT_EDITOR="emacs -nw"
+    export BZR_EDITOR="emacs -nw"
+    alias emacs="emacs -nw"
+else
+    export GIT_EDITOR="emacsclient"
+    export BZR_EDITOR="emacsclient"
+fi
 
 #export PYTHONDONTWRITEBYTECODE=true
 
