@@ -21,3 +21,4 @@ emacs.d/el-get/
 /emacs.d/elpa/
 /emacs.d/helm-adaptive-history
 /emacs.d/bookmarks
+/emacs.d/recentf
