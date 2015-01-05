@@ -18,8 +18,17 @@
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote "localhost") nil nil))
 
-;; Sudo
+
+;; Add global known_hosts file to tramp completion
+(tramp-set-completion-function
+ "ssh"
+ '((tramp-parse-connection-properties "ssh")
+   (tramp-parse-shosts "~/.ssh/known_hosts")
+   (tramp-parse-shosts "/etc/ssh/ssh_known_hosts")))
+
+
 (defun sudo-edit-current-file ()
+  "Reopen the current file using sudo."
   (interactive)
   (let ((position (point)))
     (find-alternate-file
