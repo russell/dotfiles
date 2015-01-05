@@ -70,9 +70,8 @@
 ;; don't bother me with session password
 ;(setq imap-store-password t)
 
-(custom-set-variables
- '(gnus-signature-separator
-   '("^-- $" "^-- *$" "^[.][.][.][.][.][.]* *$")))
+(setq gnus-signature-separator
+      '("^-- $" "^-- *$" "^[.][.][.][.][.][.]* *$"))
 
 (setq gnus-asynchronous t)
 (setq gnus-widen-article-window t)
@@ -161,22 +160,22 @@ See (info \"(gnus)Group Line Specification\")."
 
 (setq gnus-summary-gather-subject-limit nil)
 
-(custom-set-variables
- '(gnus-summary-make-false-root 'adopt)
- '(gnus-simplify-ignored-prefixes "Re: ")
- ;; Setting this will merge all comments into the normal thread.  but
- ;; they will show up as blank lines.  Which makes them hard to
- ;; distinguish.
- ;; '(gnus-simplify-subject-fuzzy-regexp '(" \\[Comment\\]"))
- '(gnus-simplify-subject-functions
-   '(gnus-simplify-subject gnus-simplify-subject-fuzzy gnus-simplify-whitespace))
- '(gnus-summary-make-false-root 'dummy)
- '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
- '(gnus-thread-operation-ignore-subject nil)
- '(gnus-thread-sort-functions
-   '(gnus-thread-sort-by-number (not gnus-thread-sort-by-most-recent-date)))
- '(gnus-subthread-sort-functions
-   '(gnus-thread-sort-by-number gnus-thread-sort-by-date)))
+
+(setq gnus-summary-make-false-root 'adopt)
+(setq gnus-simplify-ignored-prefixes "Re: ")
+;; Setting this will merge all comments into the normal thread.  but
+;; they will show up as blank lines.  Which makes them hard to
+;; distinguish.
+;; '(gnus-simplify-subject-fuzzy-regexp '(" \\[Comment\\]"))
+(setq gnus-simplify-subject-functions
+  '(gnus-simplify-subject gnus-simplify-subject-fuzzy gnus-simplify-whitespace))
+(setq gnus-summary-make-false-root 'dummy)
+(setq gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
+(setq gnus-thread-operation-ignore-subject nil)
+(setq gnus-thread-sort-functions
+  '(gnus-thread-sort-by-number (not gnus-thread-sort-by-most-recent-date)))
+(setq gnus-subthread-sort-functions
+  '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
 
 ; w3m
 (setq mm-text-html-renderer 'shr)
@@ -381,9 +380,9 @@ See (info \"(gnus)Group Line Specification\")."
 (require 'org-mime)
 
 ;; Enable notifications
-(custom-set-variables
- '(gnus-notifications-use-gravatar nil)
- '(gnus-notifications-use-google-contacts nil))
+
+(setq gnus-notifications-use-gravatar nil)
+(setq gnus-notifications-use-google-contacts nil)
 
 (add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 
