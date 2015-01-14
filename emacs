@@ -10,6 +10,8 @@
 (if (file-exists-p "~/.emacs.d/el-get/cedet/cedet-devel-load.el")
     (load-file (expand-file-name "~/.emacs.d/el-get/cedet/cedet-devel-load.el")))
 (setq load-path (cons (expand-file-name "~/.emacs.d/el-get/nognus/lisp") load-path))
+(setq load-path (cons (expand-file-name "~/.emacs.d/el-get/org-mode/lisp") load-path))
+
 (load-directory (concat user-emacs-directory "init.d"))
 (load-directory (concat user-emacs-directory "init-mode.d"))
 (load-directory (concat user-emacs-directory "init-programming.d"))
