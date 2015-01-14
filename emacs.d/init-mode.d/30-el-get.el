@@ -19,8 +19,12 @@
 (require 'el-get)
 (setq el-get-verbose t)
 (setq el-get-user-package-directory "~/.emacs.d/el-get-init/")
-(setq el-get-sources
 
+;; Install use-package first.  It's possibly needed by all packages
+;; for configuration.
+(el-get-bundle 'use-package)
+
+(setq el-get-sources
       '((:name magit
                :website "https://github.com/magit/magit#readme"
                :description "It's Magit! An Emacs mode for Git."
