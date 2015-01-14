@@ -13,3 +13,5 @@
 (setq frame-title-format "%b - emacs")
 
 (setq message-log-max 1000)
+
+(require 'ibuffer)

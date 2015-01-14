@@ -5,9 +5,7 @@
 
 (require 'python)
 
-(custom-set-variables
- )
-
+(require 'eproject)
 (define-project-type generic-python (generic)
   (look-for "setup.py")
   :irrelevant-files ("^[.]" "^[#]"))
