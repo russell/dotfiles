@@ -32,6 +32,7 @@
 (require 'epa-file)
 (epa-file-enable)
 
+(recentf-mode 1)
 
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
 
