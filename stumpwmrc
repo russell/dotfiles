@@ -27,7 +27,9 @@
       (message "Starting swank on port 4000."))))
 
 (setf stumpwm::*debug-level* 1)
-(setf *debug-stream* (open "~/.stumpwm.log" :direction :output :if-exists :supersede))
+(setf *debug-stream* (open "~/.stumpwm.log"
+                           :direction :output
+                           :if-exists :supersede))
 ;; from http://en.wikipedia.org/wiki/User:Gwern/.stumpwmrc
 (defun cat (&rest strings) "A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
