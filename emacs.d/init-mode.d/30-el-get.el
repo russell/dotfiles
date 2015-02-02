@@ -454,22 +454,6 @@
                :url "https://xwl.appspot.com/ref/smart-operator.el"
                :description "Beautify the operators in codes")
 
-        (:name oauth2
-               :type git
-               :url "git://github.com/emacsmirror/oauth2.git")
-
-        (:name google-contacts
-               :features google-contacts
-               :depends oauth2
-               :type git
-               :url "git://git.naquadah.org/google-contacts.el.git")
-
-        (:name google-maps
-               :description "Access Google Maps from Emacs"
-               :type git
-               :url "git://git.naquadah.org/google-maps.git"
-               :features (google-maps org-location-google-maps))
-
         (:name highlight-sexp
                :features highlight-sexp
                :type git
