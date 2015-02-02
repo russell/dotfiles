@@ -1,5 +1,7 @@
 ;;; Code:
 
+(require 'org)
+
 (setq org-export-async-init-file "~/.emacs.d/init-org-export.el")
 (setq org-agenda-files (quote ("~/org/")))
 (setq org-directory "~/org/")
@@ -14,7 +16,9 @@
 (setq org-src-fontify-natively t)
 (setq org-return-follows-link t)
 (setq org-completion-use-ido t)
+(setq org-imenu-depth 3)
 (add-hook 'org-mime-html-hook 'rs/org-html-mime-code-blocks)
+(setq org-babel-sh-command "bash")
 
 (defun lconfig-org-mode ()
   (progn
