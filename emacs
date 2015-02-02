@@ -49,7 +49,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(diredp-exec-priv ((t nil)))
+ '(diredp-no-priv ((t nil)))
+ '(diredp-rare-priv ((t (:foreground "Green"))))
+ '(diredp-read-priv ((t nil)))
+ '(diredp-write-priv ((t nil))))
 
 
 ;; pymacs
