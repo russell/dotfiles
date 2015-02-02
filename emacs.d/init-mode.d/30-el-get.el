@@ -547,7 +547,7 @@
         (:name openstack-mode
                :type git
                :features openstack-mode
-               :depends (request)
+               :depends (web deferred request)
                :url "git@github.com:russell/openstack-mode.git")
 
         (:name erc-nick-notify
