@@ -32,21 +32,22 @@
 (defun cat (&rest strings) "A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
 
-(asdf:initialize-source-registry)
-
-(asdf:oos 'asdf:load-op :stumpwm.contrib.kbd-brightness)
-(asdf:oos 'asdf:load-op :stumpwm.contrib.wifi)
 
 ;; Set sloppy focus
 (setf *mouse-focus-policy* :sloppy)
 
-(set-contrib-dir "/home/russell/projects/lisp/stumpwm-contrib")
+(add-to-load-path "/home/russell/projects/lisp/stumpwm-contrib/")
+
+(asdf:initialize-source-registry)
+(asdf:oos 'asdf:load-op :stumpwm.contrib.kbd-brightness)
+(asdf:oos 'asdf:load-op :stumpwm.contrib.wifi)
 
 ;;
 ;; Mode line
 ;;
 
 (load-module "battery-portable")
+(asdf:oos 'asdf:load-op 'battery-portable)
 
 (setf *mode-line-foreground-color* "Gray50")
 (setf *mode-line-background-color* "Gray20")
