@@ -59,6 +59,8 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+PATH="$HOME/.cask/bin:$PATH"
+
 # Detect OSX
 DARWIN=0
 if [[ $(uname) == "Darwin" ]]; then
@@ -163,7 +165,7 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
         statd usbmux saned speech-dispatcher hplip dovenull Debian-exim \
         Debian-gdm colord bitlbee backup cl-builder dnsmasq gnats man \
         messagebus sys memcache mongodb mpd puppet puppetdb uuidd nagios \
-        _graphite
+        _graphite stunnel4
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
