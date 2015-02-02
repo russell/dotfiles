@@ -160,6 +160,7 @@
     (define-key emacs-lisp-mode-map "\M-/" 'helm-lisp-completion-at-point)
     (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)))
 
+(require 'elisp-slime-expand)
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-expand-mode)
 
 ;;

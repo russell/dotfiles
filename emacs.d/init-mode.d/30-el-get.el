@@ -1,12 +1,13 @@
 ;; el-get
 (if (file-exists-p "~/.emacs.d/el-get/el-get")
     (add-to-list 'load-path "~/.emacs.d/el-get/el-get"))
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
 (require 'package)
 (add-to-list 'package-archives
@@ -19,8 +20,12 @@
 (require 'el-get)
 (setq el-get-verbose t)
 (setq el-get-user-package-directory "~/.emacs.d/el-get-init/")
-(setq el-get-sources
 
+;; Install use-package first.  It's possibly needed by all packages
+;; for configuration.
+(el-get-bundle 'use-package)
+
+(setq el-get-sources
       '((:name magit
                :website "https://github.com/magit/magit#readme"
                :description "It's Magit! An Emacs mode for Git."

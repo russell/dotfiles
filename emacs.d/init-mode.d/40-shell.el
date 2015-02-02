@@ -1,4 +1,11 @@
 ;; Terminal color config
+
+;;; Code:
+
+(require 'ansi-color)
+(require 'comint)
+(require 'term)
+
 (setq ansi-color-names-vector ["black" "tomato" "#8ae234" "#edd400"
 			       "#729fcf" "#ad7fa8" "light cyan" "white"])
 (setf ansi-color-map (ansi-color-make-color-map))
@@ -37,3 +44,5 @@
 (add-hook 'term-mode-hook (lambda ()
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 (add-hook 'term-mode-hook 'add-mode-line-dirtrack)
+
+;;; 40-shell.el ends here

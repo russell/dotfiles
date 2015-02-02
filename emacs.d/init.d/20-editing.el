@@ -32,6 +32,8 @@
 (require 'epa-file)
 (epa-file-enable)
 
+(recentf-mode 1)
+
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
 (add-to-list 'safe-local-variable-values '(Base . 10))
 (add-to-list 'safe-local-variable-values '(Syntax . COMMON-LISP))

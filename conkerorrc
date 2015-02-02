@@ -311,7 +311,7 @@ define_key(default_global_keymap, "C-x r", "readable");
 
 user_pref("devtools.chrome.enabled", true);
 user_pref("devtools.debugger.remote-enabled", true);
-Components.utils.import("resource://gre/modules/devtools/dbg-server.jsm"); 
+Components.utils.import("resource://gre/modules/devtools/dbg-server.jsm");
 
 interactive("debugging-server", null, function (I) {
   DebuggerServer.init(function () { return true; });

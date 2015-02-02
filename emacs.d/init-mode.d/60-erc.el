@@ -17,10 +17,7 @@
  '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
  '(erc-timestamp-only-if-changed-flag nil)
  '(erc-track-exclude-server-buffer t)
- '(erc-track-priority-faces-only 'all)
- '(erc-track-exclude-types
-   (quote
-    ("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353")))
+
  '(erc-header-line-face-method nil)
  '(erc-track-faces-priority-list '(erc-error-face
                                    erc-current-nick-face
@@ -30,7 +27,10 @@
                                    erc-dangerous-host-face
                                    erc-notice-face
                                    erc-prompt-face)))
-
+(setq erc-track-exclude-types
+      '("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353"))
+(setq erc-track-priority-faces-only
+      '("#clnoob" "#debian" "#debian-mentors" "#emacs" "#lisp" "#lispcafe" "#openstack" "#python"))
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-identify-mode 'autodetect)
 (setq erc-server-auto-reconnect nil)
@@ -40,17 +40,9 @@
 
 ;; Make query buffers have a high priority
 (defadvice erc-track-find-face (around erc-track-find-face-promote-query activate)
-  (if (or (erc-query-buffer-p) (equal erc-channel-key "#nectar"))
+  (if (erc-query-buffer-p)
       (setq ad-return-value (intern "erc-current-nick-face"))
     ad-do-it))
-
-(defadvice erc-track-modified-channels (around erc-track-modified-channels-promote-query activate)
-  (if (or (erc-query-buffer-p) (equal erc-channel-key "#nectar"))
-      (setq erc-track-priority-faces-only 'nil))
-  ad-do-it
-  (if (or (erc-query-buffer-p) (equal erc-channel-key "#nectar"))
-      (setq erc-track-priority-faces-only 'all)))
-
 
 ;; Try and prevent ERC from flooding the connection when trying to
 ;; reconnect
@@ -69,7 +61,7 @@
   "Connect to IRC."
   (interactive)
   (let ((default-directory (expand-file-name "~")))
-    (znc)
+    (znc-all)
     (irc-bitlbee)))
 
 (require 'notifications)
@@ -81,3 +73,5 @@
    :urgency 'low))
 
 (add-hook 'erc-text-matched-hook 'erc-global-notify)
+
+;;; 60-erc.el ends here
