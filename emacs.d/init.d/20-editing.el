@@ -32,8 +32,9 @@
 (require 'epa-file)
 (epa-file-enable)
 
-
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
+(add-to-list 'safe-local-variable-values '(Base . 10))
+(add-to-list 'safe-local-variable-values '(Syntax . COMMON-LISP))
 
 
 ;; TODO manually activate subword mode. so that the keys below work.
