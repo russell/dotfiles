@@ -18,15 +18,21 @@
  '(erc-timestamp-only-if-changed-flag nil)
  '(erc-track-exclude-server-buffer t)
 
- '(erc-header-line-face-method nil)
- '(erc-track-faces-priority-list '(erc-error-face
-                                   erc-current-nick-face
-                                   erc-keyword-face
-                                   erc-nick-msg-face
-                                   erc-direct-msg-face
-                                   erc-dangerous-host-face
-                                   erc-notice-face
-                                   erc-prompt-face)))
+ '(erc-header-line-face-method nil))
+
+
+(setq  erc-track-faces-priority-list
+       '(erc-error-face
+         (erc-nick-default-face erc-current-nick-face)
+         erc-current-nick-face erc-keyword-face
+         (erc-nick-default-face erc-pal-face)
+         erc-pal-face erc-nick-msg-face erc-direct-msg-face
+         (erc-nick-default-face erc-dangerous-host-face)
+         erc-dangerous-host-face erc-nick-default-face
+         erc-action-face
+         (erc-nick-default-face erc-fool-face)
+         erc-fool-face erc-notice-face erc-input-face erc-prompt-face))
+
 (setq erc-track-exclude-types
       '("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353"))
 (setq erc-track-priority-faces-only
