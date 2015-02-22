@@ -272,6 +272,9 @@
 ;;; Applications startup
 ;;;
 
+;; Enable scrolling in GTK3 applications
+(sb-posix:setenv "GDK_CORE_DEVICE_EVENTS" "1" 1)
+
 ;; GNOME Keyring
 (let* ((output (run-shell-command "/usr/bin/gnome-keyring-daemon --start" t))
        (lines (loop :for i = 0 :then (1+ j)
