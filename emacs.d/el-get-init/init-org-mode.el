@@ -15,6 +15,7 @@
 (setq org-babel-load-languages (quote ((emacs-lisp . t) (sh . t) (python . t))))
 (setq org-src-fontify-natively t)
 (setq org-return-follows-link t)
+(setq org-use-sub-superscripts '{})
 (setq org-completion-use-ido t)
 (setq org-imenu-depth 3)
 (add-hook 'org-mime-html-hook 'rs/org-html-mime-code-blocks)

@@ -5,10 +5,6 @@
 
 (asdf:oos 'asdf:load-op 'swank)
 
-(when (equal (machine-instance) "kieran")
-  (run-shell-command "xrandr --output DisplayPort-0 --rotate left")
-  (run-shell-command "/usr/bin/xrandr --output DVI-0 --right-of DisplayPort-0"))
-
 ;; load Swank so we can connect with SLIME
 (swank-loader:init)
 (defvar *swank-p* nil)
@@ -171,14 +167,18 @@
 (define-key *top-map* (kbd "M-Left")  "move-window left")
 (define-key *top-map* (kbd "M-Right") "move-window right")
 
-; launch Web browser
+;; Launch Web Browser
+(defcommand chrome () ()
+  "Start Google Chrome or switch to it, if it is already running."
+  (run-or-raise "google-chrome" '(:class "Google-chrome")))
+(define-key *root-map* (kbd "u") "chrome")
+(define-key *top-map* (kbd "s-u") "chrome")
+
 (defcommand conkeror () ()
   "Start Firefox or switch to it, if it is already running."
   (run-or-raise "conkeror" '(:class "Conkeror")))
-(define-key *root-map* (kbd "u") "conkeror")
-(define-key *top-map* (kbd "s-u") "conkeror")
 
-; launch terminal
+;; Launch Terminal
 (defcommand terminator () ()
   "Start Terminator or switch to it, if it's already running."
   (run-or-raise "terminator" '(:class "Terminator")))
@@ -196,11 +196,6 @@
   (run-or-raise "exec /usr/bin/emacs --name emacs-primary-server --eval '(server-start)'"
                 '(:class "Emacs" :instance "emacs-primary-server")))
 (define-key *top-map* (kbd "s-e") "emacs")
-
-(defcommand chrome () ()
-  "Start Google Chrome unless it is already running, in which case focus it."
-  (run-or-raise "google-chrome"
-                '(:class "Google-chrome")))
 
 ;;
 ;; MPD
