@@ -1,4 +1,6 @@
 ;; el-get
+
+;;; Code:
 (if (file-exists-p "~/.emacs.d/el-get/el-get")
     (add-to-list 'load-path "~/.emacs.d/el-get/el-get"))
 
@@ -21,6 +23,7 @@
 (setq el-get-verbose t)
 (setq el-get-user-package-directory "~/.emacs.d/el-get-init/")
 
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 ;; Install use-package first.  It's possibly needed by all packages
 ;; for configuration.
 (el-get-bundle 'use-package)
@@ -534,6 +537,24 @@
                :type git
                :url "git://git.sv.gnu.org/erc.git")
 
+        (:name auctex
+               :website "http://www.gnu.org/software/auctex/"
+               :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)."
+               :type git
+               :module "auctex"
+               :url "/home/russell/projects/auctex"
+               :build `(("./autogen.sh")
+                        ("./configure"
+                         "--without-texmf-dir"
+                         ,(cond
+                           ((eq system-type 'darwin)  "--with-lispdir=`pwd`")
+                           (t ""))
+                         ,(concat "--with-emacs=" el-get-emacs))
+                        "make")
+               :load-path ("." "preview")
+               :load  ("tex-site.el" "preview/preview-latex.el")
+               :info "doc")
+
         (:name restclient-mode
                :type git
                :features restclient
@@ -785,3 +806,5 @@
          )))
 
 (el-get nil rs/packages)
+
+;;; 30-el-get.el ends here
