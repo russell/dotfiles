@@ -43,6 +43,9 @@
   "Preconfigured `helm' to list buffers."
   (interactive)
   (let ((helm-ff-transformer-show-only-basename nil))
+    (unless helm-source-buffers-list
+      (setq helm-source-buffers-list
+            (helm-make-source "Buffers" 'helm-source-buffers)))
     (helm :sources helm-mini-default-sources
           :buffer "*helm rs/buffers*"
           :keymap helm-buffer-map
