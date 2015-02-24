@@ -1,3 +1,5 @@
+;;; Code:
+
 (require 'smart-mode-line)
 
 (sml/setup)
