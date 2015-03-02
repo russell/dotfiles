@@ -43,6 +43,7 @@ fi
 case "$TERM" in
     dumb) ;;
     xterm-color) color_prompt=yes;;
+    xterm-256color) color_prompt=yes;;
     xterm) color_prompt=yes;;
     eterm-color) color_prompt=yes;;
 esac
