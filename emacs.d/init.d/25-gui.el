@@ -17,6 +17,9 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+;; disable all popup tooltips.  They don't work well on OSX
+(tooltip-mode -1)
+
 (setq mode-line-format
       '("%e"
         mode-line-front-space
