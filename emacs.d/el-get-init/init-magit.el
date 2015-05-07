@@ -20,3 +20,5 @@
 (eval-after-load "magit"
   '(add-hook 'magit-refresh-file-buffer-hook
              'diff-hl-update))
+
+(global-set-key (kbd "C-x C-z") 'magit-status)

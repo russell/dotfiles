@@ -29,25 +29,24 @@
 (el-get-bundle 'use-package)
 
 (setq el-get-sources
-      '((:name magit
+      '((:name diff-hl
+               :type git
+               :url "git://github.com/dgutov/diff-hl.git"
+               :features diff-hl)
+
+        (:name magit
                :website "https://github.com/magit/magit#readme"
                :description "It's Magit! An Emacs mode for Git."
                :type github
                :pkgname "magit/magit"
-               :info "."
-               :build (("make" "all"))
-               :after (progn (global-set-key (kbd "C-x C-z") 'magit-status))
-               :build/darwin `(,(concat "make EMACS=" el-get-emacs " all")))
-
-        (:name git-modes
-               :type github
-               :pkgname "magit/git-modes"
-               :features (git-commit-mode git-rebase-mode gitconfig-mode gitignore-mode))
-
-        (:name diff-hl
-               :type git
-               :url "git://github.com/dgutov/diff-hl.git"
-               :features diff-hl)
+               :depends (cl-lib git-modes)
+               ;; use the Makefile to produce the info manual, el-get can
+               ;; handle compilation and autoloads on its own.
+               :compile "magit.*\.el\\'"
+               :build `(("make"))
+               :build/berkeley-unix (("gmake" "docs"))
+               ;; assume windows lacks make and makeinfo
+               :build/windows-nt (progn nil))
 
         (:name auto-complete
                :website "http://cx4a.org/software/auto-complete/"
