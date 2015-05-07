@@ -349,6 +349,10 @@ EC () {
     emacs -nw "/sudo:root@localhost:$PWD/$1"
 }
 
+function ssh-push-key {
+  ssh "$@" "echo '`cat ~/.ssh/id_rsa.pub`' >> ~/.ssh/authorized_keys"
+}
+
 if [ -n "$SSH_CONNECTION" ]
 then
 
