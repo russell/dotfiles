@@ -142,19 +142,21 @@ export CC="gcc"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+elif [ -x /usr/local/bin/gdircolors ]; then
+    test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
 fi
 
 if [ $DARWIN -eq 1 ]; then
     alias ls='ls -G'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+else
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+
 fi
 # some more ls aliases
 alias ll='ls -alF'
@@ -240,12 +242,43 @@ fi
 
 #export PYTHONDONTWRITEBYTECODE=true
 
+function gread_link {
+    TARGET_FILE=$1
+
+    cd `dirname $TARGET_FILE`
+    TARGET_FILE=`basename $TARGET_FILE`
+
+    # Iterate down a (possible) chain of symlinks
+    while [ -L "$TARGET_FILE" ]
+    do
+        TARGET_FILE=`readlink $TARGET_FILE`
+        cd `dirname $TARGET_FILE`
+        TARGET_FILE=`basename $TARGET_FILE`
+    done
+
+    # Compute the canonicalized name by finding the physical path
+    # for the directory we're in and appending the target file.
+    PHYS_DIR=`pwd -P`
+    RESULT=$PHYS_DIR/$TARGET_FILE
+    echo $RESULT
+}
+
 export PDSH_RCMD_TYPE="ssh"
-export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
+export PDSH_GENDERS_FILE=$(gread_link ~/.genders)
 
 # git-buildpackage default target.
 export DIST=unstable
 export ARCH=amd64
+
+alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
+
+# Virtualenv
+export WORKON_HOME=~/.virtualenvs/
+
+# Pip
+export PIP_DOWNLOAD_CACHE=~/.egg-cache
+
+source `which virtualenvwrapper.sh`
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then

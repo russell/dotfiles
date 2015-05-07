@@ -17,7 +17,13 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# android sdk
+# Android SDK
 if [ -d "/opt/android-sdk-linux_x86/tools/" ] ; then
     PATH="/opt/android-sdk-linux_x86/tools/:$PATH"
+fi
+
+# OSX texinfo support
+if [ -d "/usr/texbin/" ]
+then
+    PATH="/usr/texbin/:$PATH"
 fi

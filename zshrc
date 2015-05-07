@@ -3,6 +3,17 @@ ZSHDIR=$HOME/.zsh
 source $ZSHDIR/antigen.zsh
 fpath=($ZSHDIR/completion $fpath)
 
+# Detect OSX
+DARWIN=0
+if [[ $(uname) == "Darwin" ]]; then
+  DARWIN=1;
+fi
+
+if [ $DARWIN -eq 1 ]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+fi
+
+
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git $fpath)
@@ -61,12 +72,6 @@ fi
 
 PATH="$HOME/.cask/bin:$PATH"
 
-# Detect OSX
-DARWIN=0
-if [[ $(uname) == "Darwin" ]]; then
-  DARWIN=1;
-fi
-
 setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
 
 # Use emacs keybindings even if our EDITOR is set to vi
@@ -121,7 +126,11 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
+if [ $DARWIN -eq 1 ]; then
+    eval "$(gdircolors -b)"
+else
+    eval "$(dircolors -b)"
+fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -254,9 +263,30 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 osrc() { source ~/.os/$1; }
 compdef "_path_files -f -W ~/.os/" osrc
 
+function gread_link {
+    TARGET_FILE=$1
+
+    cd `dirname $TARGET_FILE`
+    TARGET_FILE=`basename $TARGET_FILE`
+
+    # Iterate down a (possible) chain of symlinks
+    while [ -L "$TARGET_FILE" ]
+    do
+        TARGET_FILE=`readlink $TARGET_FILE`
+        cd `dirname $TARGET_FILE`
+        TARGET_FILE=`basename $TARGET_FILE`
+    done
+
+    # Compute the canonicalized name by finding the physical path
+    # for the directory we're in and appending the target file.
+    PHYS_DIR=`pwd -P`
+    RESULT=$PHYS_DIR/$TARGET_FILE
+    echo $RESULT
+}
+
 # PDSH
 export PDSH_RCMD_TYPE="ssh"
-export PDSH_GENDERS_FILE=`readlink -f ~/.genders`
+export PDSH_GENDERS_FILE=$(gread_link ~/.genders)
 
 # git-buildpackage default target.
 export DIST=unstable
