@@ -44,7 +44,6 @@
 ;; Mode line
 ;;
 
-(load-module "battery-portable")
 (asdf:oos 'asdf:load-op 'battery-portable)
 
 (setf *mode-line-foreground-color* "Gray50")
