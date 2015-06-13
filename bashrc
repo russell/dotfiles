@@ -281,7 +281,9 @@ export WORKON_HOME=~/.virtualenvs/
 # Pip
 export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
-source `which virtualenvwrapper.sh`
+if which virtualenvwrapper.sh &>/dev/null ; then
+    source `which virtualenvwrapper.sh`
+fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
