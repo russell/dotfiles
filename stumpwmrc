@@ -3,7 +3,7 @@
 
 (in-package :stumpwm)
 
-(asdf:oos 'asdf:load-op 'swank)
+(quicklisp:quickload 'swank)
 
 ;; load Swank so we can connect with SLIME
 (swank-loader:init)
@@ -37,14 +37,14 @@
 (add-to-load-path "/home/russell/projects/lisp/stumpwm-contrib/")
 
 (asdf:initialize-source-registry)
-(asdf:oos 'asdf:load-op :stumpwm.contrib.kbd-brightness)
-(asdf:oos 'asdf:load-op :stumpwm.contrib.wifi)
+(quicklisp:quickload :stumpwm.contrib.kbd-brightness)
+(quicklisp:quickload :stumpwm.contrib.wifi)
 
 ;;
 ;; Mode line
 ;;
 
-(asdf:oos 'asdf:load-op 'battery-portable)
+(quicklisp:quickload 'battery-portable)
 
 (setf *mode-line-foreground-color* "Gray50")
 (setf *mode-line-background-color* "Gray20")
