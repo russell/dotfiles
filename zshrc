@@ -396,6 +396,13 @@ function openstack_clear {
     default_prompt
 }
 
+if [ -d "$HOME/.cim" ]; then
+    CIM_HOME=/home/russell/.cim;
+    if [ -s "$CIM_HOME/init.sh" ]; then
+        . "$CIM_HOME/init.sh"
+    fi
+fi
+
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
