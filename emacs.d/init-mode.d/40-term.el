@@ -130,9 +130,9 @@
                                 (expand-file-name "~/")
                               default-directory))
          (program
-             (if (file-remote-p default-directory)
-                 "/usr/bin/ssh"
-               "/usr/bin/zsh"))
+          (if (file-remote-p default-directory)
+              (locate-file "ssh" exec-path)
+            (locate-file "zsh" exec-path)))
          (switches (when (file-remote-p default-directory 'host)
                      (list (file-remote-p default-directory 'host)
                            "-t"
