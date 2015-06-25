@@ -65,7 +65,13 @@ export CC="gcc"
 alias zshconfig="source ~/.zshrc"
 alias gtypist="gtypist -bi"
 
-# set PATH so it includes user's private bin if it exists
+# Home dir virtualenv
+if [ -d "$HOME/.virtualenv" ]
+then
+    PATH="$HOME/.virtualenv/bin/:$PATH"
+fi
+
+# Set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi

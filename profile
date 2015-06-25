@@ -27,3 +27,9 @@ if [ -d "/usr/texbin/" ]
 then
     PATH="/usr/texbin/:$PATH"
 fi
+
+# Home dir virtualenv
+if [ -d "$HOME/.virtualenv" ]
+then
+    PATH="$HOME/.virtualenv/bin/:$PATH"
+fi
