@@ -152,15 +152,17 @@
             default-directory)))
     (call-interactively 'rgrep)))
 
-(defun rs/pwgen ()
-  (interactive)
-  (insert
-   (with-temp-buffer
-     (shell-command "pwgen -c -n -y -B 15 1" t)
-     (goto-char (point-min))
-     (while (search-forward "\n" nil t)
-       (replace-match "" nil t))
-     (buffer-substring (point-min) (point-max)))))
+(defun rs/pwgen (arg)
+  (interactive "P")
+  (let ((password (with-temp-buffer
+                    (shell-command "pwgen -c -n -y -B 15 1" t)
+                    (goto-char (point-min))
+                    (while (search-forward "\n" nil t)
+                      (replace-match "" nil t))
+                    (buffer-substring (point-min) (point-max)))))
+    (if arg
+        password
+        (insert password))))
 
 
 (defun rs/copy-file-name ()

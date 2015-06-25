@@ -51,3 +51,39 @@
             (org-mime-change-element-style
              "pre" (format "color: %s; background-color: %s; padding: 0.5em;"
                            "#E6E1DC" "#232323")))
+
+(require 'org-passwords)
+(setq org-passwords-file "~/org/passwords.org.gpg")
+(setq org-passwords-random-words-dictionary "/etc/dictionaries-common/words")
+
+(setq org-capture-templates
+      '(("P" "New password entry (auto password)" entry
+         (file "~/passwords.org.gpg")
+         "* %^{Title}
+  :PROPERTIES:
+  :UPDATED: %(org-insert-time-stamp (current-time) t t)
+  :USERNAME: %^{USERNAME}
+  :PASSWORD: %(rs/pwgen 1)
+  :END:
+")
+        ("p" "New password entry" entry
+         (file "~/passwords.org.gpg")
+         "* %^{Title}
+  :PROPERTIES:
+  :UPDATED: %(org-insert-time-stamp (current-time) t t)
+  :USERNAME: %^{USERNAME}
+  :PASSWORD: %^{PASSWORD}
+  :END:
+")))
+
+(eval-after-load "org-passwords"
+  '(progn
+     (define-key org-passwords-mode-map
+       (kbd "C-c u")
+       'org-passwords-copy-username)
+     (define-key org-passwords-mode-map
+       (kbd "C-c p")
+       'org-passwords-copy-password)
+     (define-key org-passwords-mode-map
+       (kbd "C-c o")
+       'org-passwords-open-url)))
