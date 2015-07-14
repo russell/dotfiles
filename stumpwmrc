@@ -166,6 +166,12 @@
 (define-key *top-map* (kbd "M-Left")  "move-window left")
 (define-key *top-map* (kbd "M-Right") "move-window right")
 
+;; Alternative layout for the ergodox
+(define-key *top-map* (kbd "s-p") "move-window up")
+(define-key *top-map* (kbd "s-n") "move-window down")
+(define-key *top-map* (kbd "s-b") "move-window left")
+(define-key *top-map* (kbd "s-f") "move-window right")
+
 ;; Launch Web Browser
 (defcommand chrome () ()
   "Start Google Chrome or switch to it, if it is already running."
