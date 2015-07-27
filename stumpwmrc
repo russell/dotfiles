@@ -238,6 +238,7 @@
 
     ("Sound and Video"
      ("Rhythmbox" "rhythmbox")
+     ("Pithos" "pithos")
      ("Sound Juicer" "sound-juicer")
      ("Totem" "totem"))
 
