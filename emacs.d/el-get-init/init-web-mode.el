@@ -15,6 +15,8 @@
 (setq web-mode-engines-alist
       '(("django" . "\\.html\\'")))
 
+(setq-default web-mode-markup-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
 (provide 'init-web-mode)
 
 ;;; init-web-mode.el ends here
