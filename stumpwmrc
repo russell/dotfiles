@@ -302,5 +302,8 @@
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")
 
-;; xmodmap
+;; redshift
 (run-shell-command "/usr/bin/redshift -l 38:144")
+
+;; xbindkeys
+(run-shell-command "/usr/bin/xbindkeys")
