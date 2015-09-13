@@ -35,8 +35,12 @@ then
 fi
 
 if [ -d "$HOME/.cim" ]; then
-    CIM_HOME=/home/russell/.cim;
+    CIM_HOME=$HOME/.cim;
     if [ -s "$CIM_HOME/init.sh" ]; then
         . "$CIM_HOME/init.sh"
     fi
+fi
+
+if [ -d "$HOME/.cask" ]; then
+  PATH="$HOME/.cask/bin:$PATH"
 fi

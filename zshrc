@@ -65,18 +65,33 @@ export CC="gcc"
 alias zshconfig="source ~/.zshrc"
 alias gtypist="gtypist -bi"
 
-# Home dir virtualenv
+#
+# Paths
+#
+
+# Python Virtualenv
 if [ -d "$HOME/.virtualenv" ]
 then
     PATH="$HOME/.virtualenv/bin/:$PATH"
 fi
 
-# Set PATH so it includes user's private bin if it exists
+# Cask
+if [ -d "$HOME/.cask" ]; then
+  PATH="$HOME/.cask/bin:$PATH"
+fi
+
+# CIM
+if [ -d "$HOME/.cim" ]; then
+    CIM_HOME=/home/russell/.cim;
+    if [ -s "$CIM_HOME/init.sh" ]; then
+        . "$CIM_HOME/init.sh"
+    fi
+fi
+
+# Home dir bin
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
-PATH="$HOME/.cask/bin:$PATH"
 
 setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
 
