@@ -33,3 +33,10 @@ if [ -d "$HOME/.virtualenv" ]
 then
     PATH="$HOME/.virtualenv/bin/:$PATH"
 fi
+
+if [ -d "$HOME/.cim" ]; then
+    CIM_HOME=/home/russell/.cim;
+    if [ -s "$CIM_HOME/init.sh" ]; then
+        . "$CIM_HOME/init.sh"
+    fi
+fi
