@@ -10,4 +10,4 @@
              'python-indent-dedent-line-backspace)
 
 (provide 'init-multiple-cursors)
-;;; init-multiple-cursors.el
+;;; init-multiple-cursors.el ends here
