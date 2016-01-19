@@ -727,6 +727,7 @@
          puppet-mode
 
          ;; org-mode
+         org-passwords
          org-mode
 
          ;; other modes

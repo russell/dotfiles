@@ -202,6 +202,11 @@
                 '(:class "Emacs" :instance "emacs-primary-server")))
 (define-key *top-map* (kbd "s-e") "emacs")
 
+(defcommand toggle-keyboard-map () ()
+  "Toggle XKeyboard map"
+  (run-shell-command "/home/russell/bin/togglexkbmap")
+  (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc"))
+
 ;;
 ;; MPD
 ;;
@@ -238,6 +243,7 @@
 
     ("Sound and Video"
      ("Rhythmbox" "rhythmbox")
+     ("Pithos" "pithos")
      ("Sound Juicer" "sound-juicer")
      ("Totem" "totem"))
 
@@ -296,5 +302,8 @@
 ;; xmodmap
 (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc")
 
-;; xmodmap
+;; redshift
 (run-shell-command "/usr/bin/redshift -l 38:144")
+
+;; xbindkeys
+(run-shell-command "/usr/bin/xbindkeys")

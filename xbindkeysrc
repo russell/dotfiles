@@ -1,0 +1,9 @@
+"/usr/bin/xvkbd -xsendevent -text "\[Left]""
+m:0x0 + b:6
+"/usr/bin/xvkbd -xsendevent -text "\[Right]""
+m:0x0 + b:7
+
+"/usr/bin/xvkbd -xsendevent -text "\[BackSpace]""
+m:0x0 + b:8
+"/usr/bin/xvkbd -xsendevent -text "\[Return]""
+m:0x0 + b:9

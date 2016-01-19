@@ -23,3 +23,6 @@ from the directory containing this file run.
 sudo apt-get install npm
 sudo npm install -g jshint
 sudo apt-get install cvs openssl bzr debian-el git-buildpackage devscripts-el sbcl mercurial stumpwm cl-clx-sbcl curl ssh-askpass pwgen bitlbee libnotify-bin
+
+# xbindkeys
+sudo apt-get install xbindkeys xvkbd

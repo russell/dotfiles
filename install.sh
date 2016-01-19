@@ -29,6 +29,7 @@ stumpwmrc
 vim
 vimrc
 xmodmaprc
+xbindkeysrc
 Xresources
 zsh
 zshrc
