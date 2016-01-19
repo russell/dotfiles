@@ -731,7 +731,7 @@
 
          ;; other modes
          smart-mode-line
-         ace-jump-mode
+         avy
          android-mode
          apache-mode
          artbollocks-mode
