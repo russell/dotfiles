@@ -795,6 +795,7 @@
          helm
          helm-descbinds
          helm-swoop
+         helm-projectile
 
          ;; libraries
          dired+
