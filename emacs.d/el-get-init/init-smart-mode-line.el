@@ -1,12 +1,13 @@
+
+(require 'use-package)
+
 ;;; Code:
 
-(require 'smart-mode-line)
-
-(sml/setup)
-
-(add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":projects:") t)
-
-(sml/apply-theme 'dark)
+(use-package smart-mode-line
+  :config
+  (sml/setup)
+  (add-to-list 'sml/replacer-regexp-list '("^~/projects/" ":projects:") t)
+  (add-hook 'after-init-hook '(lambda () (sml/apply-theme 'dark)) t))
 
 (provide 'init-smart-mode-line)
 
