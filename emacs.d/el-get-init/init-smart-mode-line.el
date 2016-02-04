@@ -1,5 +1,6 @@
 
-(require 'use-package)
+(eval-when-compile
+ (require 'use-package))
 
 ;;; Code:
 

@@ -42,9 +42,7 @@
 (add-hook 'org-mode-hook
           '(lambda ()
              (add-hook 'write-contents-functions
-                       '(lambda()
-                          (save-excursion
-                            (delete-trailing-whitespace))))))
+                       'delete-trailing-whitespace)))
 
 
 (defun rs/org-html-mime-code-blocks ()

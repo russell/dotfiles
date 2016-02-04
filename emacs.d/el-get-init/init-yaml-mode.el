@@ -1,13 +1,15 @@
 
+(eval-when-compile
+  (require 'use-package))
+
 ;;; Code:
 
-(add-hook 'yaml-mode-hook
+(use-package yaml-mode
+  :config
+  (add-hook 'yaml-mode-hook
 	  '(lambda ()
 	     (add-hook 'write-contents-functions
-		       '(lambda()
-			  (save-excursion
-			    (delete-trailing-whitespace))))))
-
+                   'delete-trailing-whitespace))))
 
 (provide 'init-yaml-mode)
 ;;; init-yaml-mode.el ends here

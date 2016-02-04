@@ -1,7 +1,15 @@
+
+(eval-when-compile
+ (require 'use-package))
+
 ;;; Code:
 
-(require 'avy)
+(use-package avy
+  :config
+  (setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s))
+  :bind
+  ("C-'" . avy-goto-word-1))
 
-(setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s))
+(provide 'init-avy)
 
-(global-set-key (kbd "C-'") 'avy-goto-word-1)
+;;; init-avy.el ends here
