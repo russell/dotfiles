@@ -1,3 +1,6 @@
+
+;;; Code:
+
 ;;; Don't show dialogs
 (setq use-dialog-box nil)
 
@@ -41,12 +44,7 @@
 ;;; Display file size in Modeline
 (size-indication-mode 1)
 
-(custom-set-variables
- '(custom-theme-directory "~/.emacs.d/themes/")
- '(custom-safe-themes t)
- '(custom-enabled-themes '(arrsim-custom tsdh-dark)))
-
-(defun rotate-windows ()
+(defun rs/rotate-windows ()
   "Rotate your windows"
   (interactive)
   (let (i numWindows)
@@ -71,7 +69,10 @@
           (set-window-start w2 s1)
           (setq i (1+ i))))))))
 
-(global-set-key (kbd "C-x -") 'rotate-windows)
+(global-set-key (kbd "C-x -") 'rs/rotate-windows)
 
 (when (getenv "DISPLAY")
   (setq browse-url-browser-function 'browse-url-xdg-open))
+
+(provide 'rs-gui)
+;;; rs-gui.el ends here

@@ -1,32 +1,7 @@
-;; el-get
 
 ;;; Code:
-(if (file-exists-p "~/.emacs.d/el-get/el-get")
-    (add-to-list 'load-path "~/.emacs.d/el-get/el-get"))
 
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-
-(require 'package)
-(add-to-list 'package-archives
-             '("marmalade" .
-               "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
-;; el-get configuration
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
-(setq el-get-verbose t)
-(setq el-get-user-package-directory "~/.emacs.d/el-get-init/")
-
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-;; Install use-package first.  It's possibly needed by all packages
-;; for configuration.
-(el-get-bundle 'use-package)
 
 (setq el-get-sources
       '((:name diff-hl
@@ -674,6 +649,7 @@
                 '("compile-apel" "install-apel"))
                :load-path ("site-lisp/apel" "site-lisp/emu"))))
 
+(defvar rs/packages)
 
 (setq rs/packages
       (append
@@ -809,4 +785,5 @@
 
 (el-get nil rs/packages)
 
-;;; 30-el-get.el ends here
+(provide 'rs-packages)
+;;; rs-packages.el ends here

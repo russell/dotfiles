@@ -1,3 +1,8 @@
+
+;;; Code:
+
+(require 'use-package)
+
 ;;;; mailto-compose-mail.el (2010-08-15)
 ;;;; from http://www.emacswiki.org/emacs/MailtoHandler
 ;;;###autoload
@@ -52,9 +57,19 @@
                               body))))
     (compose-mail)))
 
-(add-hook 'message-mode-hook 'artbollocks-mode)
-(add-hook 'message-mode-hook 'enable-editing-modes)
-(setq w3m-minor-mode-hook nil)
-(add-hook 'w3m-minor-mode-hook
-          (lambda ()
-            (define-key w3m-minor-mode-map "\C-m" 'w3m-view-url-with-external-browser)))
+(use-package message
+  :defer t
+  :config
+  (add-hook 'message-mode-hook 'artbollocks-mode)
+  (add-hook 'message-mode-hook 'enable-editing-modes))
+
+(use-package w3m
+  :defer t
+  :config
+  (add-hook 'w3m-minor-mode-hook
+            (lambda ()
+              (define-key w3m-minor-mode-map "\C-m"
+                'w3m-view-url-with-external-browser))))
+
+(provide 'rs-messages)
+;;; rs-messages.el ends here

@@ -1,8 +1,13 @@
+
+;;; Code:
+
+(require 'rs-core)
+
 ;; follow symlinks to version controlled files
 (setq vc-follow-symlinks t)
 
 ;;; Set tab width to 4 spaces
-(setq default-tab-width 4)
+(setq tab-width 4)
 
 ;; Do *not* use tabs for indent
 (setq-default indent-tabs-mode nil)
@@ -26,11 +31,9 @@
 ;; show the current column number
 (column-number-mode)
 
-;; electric indent mode
-;; (electric-indent-mode t)
-
-(require 'epa-file)
-(epa-file-enable)
+(use-package epa-file
+  :config
+  (epa-file-enable))
 
 (recentf-mode 1)
 
@@ -56,10 +59,10 @@
 
 (global-set-key "\C-co" 'occur)
 
-; Remember position in buffers
-(setq save-place-file "~/.emacs.d/saveplace") ;; keep my ~/ clean
-(setq-default save-place t)                   ;; activate it for all buffers
-(require 'saveplace)                          ;; get the package
+(use-package saveplace
+  :config
+  (setq save-place-file "~/.emacs.d/saveplace")
+  (setq-default save-place t))
 
 ;; Dynamic Abbreviations C-<tab>
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
@@ -173,3 +176,18 @@
 (defun rs/timestamp ()
    (interactive)
    (insert (format-time-string "%Y-%m-%dT%H:%M:%S")))
+
+
+(defun rs/compile-current-buffer (&optional comint)
+  "Compile the current buffer"
+  (interactive (list (consp current-prefix-arg)))
+  (let ((command (concat (eval compile-command)
+                         " " (buffer-file-name))))
+    (save-some-buffers (not compilation-ask-about-save) nil)
+    (setq-default compilation-directory default-directory)
+    (compilation-start command comint)))
+
+(global-set-key [f6] 'rs/compile-current-buffer)
+
+(provide 'rs-editing)
+;;; rs-editing.el ends here

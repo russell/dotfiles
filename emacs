@@ -11,8 +11,16 @@
     (load-file (expand-file-name "~/.emacs.d/el-get/cedet/cedet-devel-load.el")))
 (setq load-path (cons (expand-file-name "~/.emacs.d/el-get/nognus/lisp") load-path))
 (setq load-path (cons (expand-file-name "~/.emacs.d/el-get/org-mode/lisp") load-path))
+(setq load-path (cons (concat user-emacs-directory "init.d") load-path))
 
-(load-directory (concat user-emacs-directory "init.d"))
+(require 'rs-el-get)
+(require 'rs-core)
+(require 'rs-packages)
+(require 'rs-debian)
+(require 'rs-gui)
+(require 'rs-messages)
+(require 'rs-editing)
+
 (load-directory (concat user-emacs-directory "init-mode.d"))
 (load-directory (concat user-emacs-directory "init-programming.d"))
 

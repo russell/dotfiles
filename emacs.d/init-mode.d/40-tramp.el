@@ -7,7 +7,7 @@
 (set-default 'tramp-default-proxies-alist '())
 (add-to-list 'tramp-default-proxies-alist
              '(".*home" "\\`root\\'" "/ssh:%h:"))
-(unless (equal hostname "kieran")
+(unless (equal rs/hostname "kieran")
   (add-to-list 'tramp-default-proxies-alist
                '(".*\\.rc\\.nectar\\.org\\.au" nil
                  "/ssh:russell@kieran.dev.rc.nectar.org.au:"))
