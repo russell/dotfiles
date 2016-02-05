@@ -7,16 +7,13 @@
   (dolist (f (directory-files directory t ".el"))
     (load-library (file-name-sans-extension f))))
 
-(if (file-exists-p "~/.emacs.d/el-get/cedet/cedet-devel-load.el")
-    (load-file (expand-file-name "~/.emacs.d/el-get/cedet/cedet-devel-load.el")))
-(setq load-path (cons (expand-file-name "~/.emacs.d/el-get/nognus/lisp") load-path))
-(setq load-path (cons (expand-file-name "~/.emacs.d/el-get/org-mode/lisp") load-path))
 (setq load-path (cons (concat user-emacs-directory "init.d") load-path))
 
 (require 'rs-el-get)
 (require 'rs-core)
 (require 'rs-packages)
 (require 'rs-debian)
+(require 'rs-darwin)
 (require 'rs-gui)
 (require 'rs-messages)
 (require 'rs-editing)
@@ -41,8 +38,6 @@
  )
 
 
-;; recompile hot key
-(global-set-key (kbd "<f9>") 'recompile)
 
 
 ;; Scrolling

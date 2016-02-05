@@ -1,3 +1,9 @@
+
+;;; Code:
+
+(require 'use-package)
+
+
 (require 'desktop)
 
 (custom-set-variables
@@ -14,3 +20,6 @@
 (add-to-list 'desktop-modes-not-to-save 'Man-mode)
 (add-to-list 'desktop-modes-not-to-save 'help-mode)
 (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+
+(provide 'rs-desktop)
+;;; rs-desktop.el ends here

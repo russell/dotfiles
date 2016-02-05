@@ -188,6 +188,7 @@
     (compilation-start command comint)))
 
 (global-set-key [f6] 'rs/compile-current-buffer)
+(global-set-key [f9] 'recompile)
 
 (provide 'rs-editing)
 ;;; rs-editing.el ends here

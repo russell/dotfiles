@@ -1,4 +1,7 @@
-(setq deft-auto-save-interval 30.0)
+
+;;; Code:
+
+(require 'use-package)
 
 
 ;; Automatically add, commit, and push when files change.
@@ -67,11 +70,17 @@
 (add-hook 'find-file-hook 'dustin-visiting-a-file)
 
 
-;; Deft mode hook
-(defun deft-sync-pull ()
-  (let* ((dn deft-directory))
-    (progn
-      (message "schedualed pull for %s" dn)
-      (autocommit-schedule-pull dn))))
+(use-package deft
+  :defer t
+  :config
+  (setq deft-auto-save-interval 30.0)
 
-(add-hook 'deft-mode-hook 'deft-sync-pull)
+ ;; Deft mode hook
+ (defun deft-sync-pull ()
+   (let* ((dn deft-directory))
+     (progn
+       (message "schedualed pull for %s" dn)
+       (autocommit-schedule-pull dn)))))
+
+(provide 'rs-deft)
+;;; rs-deft.el ends here
