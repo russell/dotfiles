@@ -7,13 +7,17 @@
 
 (defalias 'js-mode 'js2-mode)
 
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+
 (use-package js2-mode
   :config
-  (autoload 'js2-mode "js2-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
   (setq-default js2-basic-offset 2)
-  (add-hook 'js2-mode-hook 'smartparens-mode))
+  (add-hook 'js2-mode-hook 'smartparens-mode)
+
+  (defun rs/js2-mode-defaults ()
+    (js2-imenu-extras-mode +1))
+  (add-hook 'js2-mode-hook 'rs/js2-mode-defaults))
 
 (use-package js
   :config
