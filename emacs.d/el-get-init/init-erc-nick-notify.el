@@ -1,6 +1,6 @@
 
 (eval-when-compile
- (require 'use-package))
+  (require 'use-package))
 
 ;;; Code:
 

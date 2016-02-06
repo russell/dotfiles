@@ -1,7 +1,8 @@
 
 ;;; Code:
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 
 ;; Automatically add, commit, and push when files change.

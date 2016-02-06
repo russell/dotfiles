@@ -90,15 +90,6 @@
                :type github
                :pkgname "chmouel/gerrit-download.el")
 
-        (:name autopair
-               :website "http://code.google.com/p/autopair/"
-               :description "Autopair is an extension to the Emacs text editor that automatically pairs braces and quotes."
-               :type http
-               :url "http://autopair.googlecode.com/svn/trunk/autopair.el"
-               :features autopair
-               :after (progn
-                        (setq autopair-blink t)))
-
         (:name django-mode
                :type git
                :url "https://github.com/myfreeweb/django-mode.git")
@@ -324,14 +315,6 @@
         (:name popup
                :type git
                :url "git://github.com/auto-complete/popup-el.git")
-
-        (:name popup-kill-ring
-               :type emacswiki
-               :depends (popup pos-tip)
-               :features popup-kill-ring
-               :post-init (progn
-                            (require 'popup)
-                            (global-set-key "\M-y" 'popup-kill-ring)))
 
         (:name active-menu
                :website "http://www.emacswiki.org/emacs/ActiveMenu"
@@ -676,7 +659,6 @@
 
          ;; python
          highlight-indentation
-         jedi
          pycheckers
          pylookup
          rst-mode
@@ -745,8 +727,9 @@
 
          ;; project tools
          dirvars
-         eproject
+         projectile
          dizzee
+         company-mode
 
          ;; shell
          bash-completion

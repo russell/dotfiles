@@ -2,7 +2,8 @@
 
 ;;; Code:
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 (defun rs/project-name ()
   (file-name-nondirectory

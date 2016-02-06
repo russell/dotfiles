@@ -57,8 +57,6 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
-(global-set-key "\C-co" 'occur)
-
 (use-package saveplace
   :config
   (setq save-place-file "~/.emacs.d/saveplace")
