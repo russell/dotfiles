@@ -3,7 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-hungry-delete-backwards
         helm-show-kill-ring
+        hungry-delete-backward
         hungry-delete-forward
         keyboard-escape-quit
         kill-region
@@ -16,6 +18,7 @@
         paredit-open-round
         paredit-raise-sexp
         paredit-semicolon
+        paredit-splice-sexp
         slime-space
         sp--self-insert-command
         sp-backward-kill-word
@@ -27,8 +30,6 @@
         sp-splice-sexp
         yaml-electric-backspace
         yaml-electric-dash-and-dot
-        hungry-delete-backward
-        c-hungry-delete-backwards
         ))
 
 (setq mc/cmds-to-run-once
