@@ -9,7 +9,7 @@
 (use-package slime-repl
   :defer t
   :config
-  (add-hook 'slime-repl-map-mode-hook 'smartparens-mode)
+  (add-hook 'slime-repl-map-mode-hook 'smartparens-strict-mode)
   (define-key slime-repl-mode-map "\M-/" 'helm-slime-complete))
 
 
@@ -114,7 +114,7 @@
   ;; paren script
   (setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
 
-  (add-hook 'slime-repl-mode 'smartparens-mode)
+  (add-hook 'slime-repl-mode 'smartparens-strict-mode)
 
 
   (defun slime-eval-last-expression-in-repl1 (prefix)
@@ -143,15 +143,15 @@
   (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)
 
   (use-package elisp-slime-expand)
-  (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
+  (add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode)
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-expand-mode)
   (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
   (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 
-  (add-hook 'lisp-mode-hook 'smartparens-mode)
+  (add-hook 'lisp-mode-hook 'smartparens-strict-mode)
 
-  (add-hook 'lisp-interaction-mode-hook 'smartparens-mode))
+  (add-hook 'lisp-interaction-mode-hook 'smartparens-strict-mode))
 
 
 (use-package ielm
@@ -160,7 +160,7 @@
   (define-key ielm-map "\M-/"
     'helm-lisp-completion-at-point)
   (add-hook 'ielm-mode-hook 'eldoc-mode)
-  (add-hook 'ielm-mode-hook 'smartparens-mode))
+  (add-hook 'ielm-mode-hook 'smartparens-strict-mode))
 
 (use-package geiser-mode
   :defer t
@@ -168,12 +168,12 @@
   (define-key geiser-mode-map "\C-c\C-c"
     'geiser-eval-definition)
 
-  (add-hook 'geiser-mode-hook 'smartparens-mode))
+  (add-hook 'geiser-mode-hook 'smartparens-strict-mode))
 
 (use-package scheme-mode
   :defer t
   :config
-  (add-hook 'scheme-mode-hook 'smartparens-mode))
+  (add-hook 'scheme-mode-hook 'smartparens-strict-mode))
 
 (provide 'rs-lang-lisp)
 ;;; rs-lang-lisp.el ends here
