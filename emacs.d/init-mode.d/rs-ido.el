@@ -6,6 +6,7 @@
 
 
 (use-package ido
+  :disabled t
   :bind
   ("C-x B" . ido-switch-buffer-other-window)
   ("C-x M-f" . ido-find-file-other-window)

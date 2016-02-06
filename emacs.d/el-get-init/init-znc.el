@@ -7,5 +7,4 @@
 (use-package znc)
 
 (provide 'init-znc)
-
 ;;; init-znc.el ends here

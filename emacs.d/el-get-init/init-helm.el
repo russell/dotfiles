@@ -1,64 +1,85 @@
+
 ;;; Code:
 
-(require 'helm)
-(require 'helm-files)
-(require 'helm-match-plugin)
-(require 'helm-misc)
+(eval-when-compile
+  (require 'use-package))
 
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'rs/buffers-list)
-(global-set-key (kbd "C-x C-i") 'helm-imenu)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-h a") 'helm-apropos)
+(use-package helm
+  :bind
+  ("C-x b" . rs/buffers-list)
+  :config
 
-(define-minor-mode ido-helm-mode
-  "Advices for ido-mode."
-  nil nil nil :global t
-  (if ido-helm-mode
-      (progn
-        (ad-enable-regexp "^ido-hacks-")
-        (global-set-key (kbd "M-x") 'helm-M-x))
-    (global-set-key (kbd "M-x") 'execute-extended-command)
-    (ad-disable-regexp "^ido-hacks-"))
-  (ad-activate-regexp "^ido-hacks-"))
+  (use-package helm-files)
+  (use-package helm-buffers)
 
-(ido-helm-mode)
+  (defun rs/buffers-list ()
+    "Preconfigured `helm' to list buffers."
+    (interactive)
+    (let ((helm-ff-transformer-show-only-basename nil))
+      (unless helm-source-buffers-list
+        (setq helm-source-buffers-list
+              (helm-make-source "Buffers" 'helm-source-buffers)))
+      (helm :sources helm-mini-default-sources
+            :buffer "*helm rs/buffers*"
+            :keymap helm-buffer-map
+            :truncate-lines t)))
 
-(setq helm-ff-skip-boring-files t)
-(setq helm-boring-file-regexp-list
+  (defun rs/helm-backward-kill (arg)
+    "Helm backward kill word."
+    (interactive "p")
+    (when (helm-alive-p)
+      (subword-backward-kill arg)))
+
+  (define-key helm-map (kbd "C-w") 'rs/helm-backward-kill))
+
+(use-package helm-buffers
+  :defer t
+  :config
+  (setq helm-boring-buffer-regexp-list
+        '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*tramp" "\\*Minibuf" "\\*epc")))
+
+(use-package helm-command
+  :bind
+  ("M-x" . helm-M-x))
+
+(use-package helm-imenu
+  :bind
+  ("C-x C-i" . helm-imenu))
+
+(use-package helm-ring
+  :bind
+  ("M-y" . helm-show-kill-ring))
+
+(use-package helm-files
+  :bind
+  ("C-x C-f" . helm-find-files)
+  :config
+  (setq helm-ff-skip-boring-files t)
+  (setq helm-ff-file-name-history-use-recentf t)
+  (setq helm-boring-file-regexp-list
   '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$"
-    "\\.so$" "\\.a$" "\\.elc$" "\\.fas$" "\\.fasl$" "\\.pyc$" "\\.pyo$"))
-(setq helm-boring-buffer-regexp-list
-  '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*tramp" "\\*Minibuf" "\\*epc"))
+    "\\.so$" "\\.a$" "\\.elc$" "\\.fas$" "\\.fasl$" "\\.pyc$" "\\.pyo$")))
 
-(eval-after-load 'helm-apt
-  '(progn
-     (require 'apt-utils)
-     (defalias 'helm-apt-cache-show
-       (lambda (package)
-         (apt-utils-show-package-1 package t nil)))))
+(use-package helm-elisp
+  :bind
+  ("C-h a" . helm-apropos)
+  ("C-h f" . helm-apropos)
+  ("C-h r" . helm-info-emacs)
+  ("C-h C-l" . helm-locate-library))
 
-
-(defun rs/buffers-list ()
-  "Preconfigured `helm' to list buffers."
-  (interactive)
-  (let ((helm-ff-transformer-show-only-basename nil))
-    (unless helm-source-buffers-list
-      (setq helm-source-buffers-list
-            (helm-make-source "Buffers" 'helm-source-buffers)))
-    (helm :sources helm-mini-default-sources
-          :buffer "*helm rs/buffers*"
-          :keymap helm-buffer-map
-          :truncate-lines t)))
+(use-package helm-tags
+  :defer t
+  :init
+  (substitute-key-definition 'find-tag 'helm-etags-select global-map))
 
 
-(defun helm-backward-kill (arg)
-  "Helm backward kill word."
-  (interactive "p")
-  (when (helm-alive-p)
-    (subword-backward-kill arg)))
-
-(define-key helm-map (kbd "C-w") 'helm-backward-kill)
+(use-package helm-apt
+  :defer t
+  :config
+  (require 'apt-utils)
+  (defalias 'helm-apt-cache-show
+    (lambda (package)
+      (apt-utils-show-package-1 package t nil))))
 
 (provide 'init-helm)
 

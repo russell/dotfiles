@@ -716,10 +716,6 @@
          google-contacts
          mailcrypt
 
-         ;; ido
-         ;; idomenu
-         ido-hacks
-
          ;; erc
          erc
          erc-nick-notify
@@ -752,6 +748,7 @@
          vkill
 
          ;; lookup libraries
+         swiper
          helm
          helm-descbinds
          helm-swoop
