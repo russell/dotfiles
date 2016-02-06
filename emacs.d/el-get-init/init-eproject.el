@@ -4,8 +4,8 @@
 (eval-when-compile
   (require 'use-package))
 
-
 (use-package eproject
+  :defer t
   :config
   (defun eproject-rgrep ()
     "Search the current project."
@@ -16,5 +16,5 @@
               (error nil))))
       (call-interactively 'rgrep))))
 
-(provide 'rs-eproject)
-;;; rs-eproject.el ends here
+(provide 'init-eproject)
+;;; init-eproject.el ends here
