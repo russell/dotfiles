@@ -10,8 +10,9 @@
 
 (use-package flycheck
   :commands flycheck-mode
-  :config
+  :init
   (add-hook 'after-init-hook 'rs/flycheck-reload-emacs-lisp-load-path t)
+  :config
   (setq flycheck-highlighting-mode 'lines)
   (setq flycheck-idle-change-delay 2)
   (setq flycheck-indication-mode 'right-fringe))
