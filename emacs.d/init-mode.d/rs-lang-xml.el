@@ -14,7 +14,7 @@
   :config
   (add-hook 'html-mode-hook 'flyspell-mode)
   ;; diff hl mode
-  (add-hook 'html-mode-hook 'diff-hl-mode)
+  (add-hook 'html-mode-hook 'turn-on-diff-hl-mode)
 
   ;; Delete whitespace on save.
   (add-hook 'html-mode-hook

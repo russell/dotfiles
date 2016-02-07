@@ -27,7 +27,7 @@
     '(progn
        (add-hook 'nxml-mode-hook 'flyspell-mode)
        ;; diff hl mode
-       (add-hook 'nxml-mode-hook 'diff-hl-mode)
+       (add-hook 'nxml-mode-hook 'turn-on-diff-hl-mode)
 
        ;; Delete whitespace on save.
        (add-hook 'nxml-mode-hook

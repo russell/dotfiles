@@ -11,15 +11,17 @@
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 (use-package js2-mode
+  :defer t
   :config
   (setq-default js2-basic-offset 2)
-  (add-hook 'js2-mode-hook 'smartparens-mode)
+  (add-hook 'js2-mode-hook 'smartparens-strict-mode)
 
   (defun rs/js2-mode-defaults ()
     (js2-imenu-extras-mode +1))
   (add-hook 'js2-mode-hook 'rs/js2-mode-defaults))
 
 (use-package js
+  :defer t
   :config
   (setq js-indent-level 2))
 

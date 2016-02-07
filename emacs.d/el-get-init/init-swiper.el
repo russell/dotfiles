@@ -12,7 +12,10 @@
 
 (use-package ivy
   :init
-  (ivy-mode 1))
+  (ivy-mode 1)
+  :config
+  (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-backward-kill-word)
+  (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-partial-or-done))
 
 (provide 'init-swiper)
 ;;; init-swiper.el ends here

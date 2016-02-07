@@ -1,15 +1,23 @@
-;; Locate the helm-swoop folder to your path
-(require 'helm-swoop)
+
+;;; Code:
+
+(eval-when-compile
+  (require 'use-package))
 
 
-(defadvice helm-swoop (around helm-swoop-around)
+(use-package helm-swoop
+  :bind
+  ("C-x g" . helm-swoop)
+
+  :config
+
+  (defadvice helm-swoop (around helm-swoop-around)
   "Mark if the function changes the point."
   (let ((current-point (point)))
     ad-do-it
     (push-mark current-point)))
 
-(ad-activate 'helm-swoop)
+  (ad-activate 'helm-swoop))
 
-
-(global-set-key (kbd "C-x g") 'helm-swoop)
-;; (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(provide 'init-helm-swoop)
+;;; init-helm-swoop.el ends here

@@ -1,24 +1,26 @@
 
 ;;; Code:
+
+(eval-when-compile
+  (require 'use-package))
+
 (require 'cl-lib)
 
-(require 'which-func)
-
-(setq which-func-modes nil)
-
-(which-function-mode)
-
-(setq-default header-line-format
-              '((which-func-mode which-func-format)))
-
-(setq mode-line-misc-info
+(use-package which-func
+  :init
+  (which-function-mode)
+  :config
+  (setq which-func-modes nil)
+  (setq-default header-line-format
+                '((which-func-mode which-func-format)))
+  (setq mode-line-misc-info
       ;; We remove Which Function Mode from the mode line, because it's mostly
       ;; invisible here anyway.
-      (assq-delete-all 'which-func-mode mode-line-misc-info))
+        (assq-delete-all 'which-func-mode mode-line-misc-info))
+  (custom-set-variables
+   '(which-func-format
+     `(:propertize which-func-current face which-func))))
 
-(custom-set-variables
- '(which-func-format
-   `(:propertize which-func-current face which-func)))
 
 (defun toggle-highlight-symbol ()
   (unless (eq major-mode 'slime-xref-mode)
@@ -43,7 +45,8 @@
             (add-to-list 'which-func-modes mode)
 
             ;; diff hl mode
-            (add-hook mode-hook 'diff-hl-mode)
+            (add-to-list 'which-func-modes mode)
+            (add-hook mode-hook 'turn-on-diff-hl-mode)
 
             ;; Delete whitespace on save.
             (add-hook mode-hook
@@ -60,7 +63,9 @@
           (let ((mode-hook (intern (concat (symbol-name 'test-mode) "-hook"))))
             ;; smart parens
             (add-hook mode '(lambda ()
-                              (smartparens-mode)
-                              (sp-use-paredit-bindings)))))
+                              (smartparens-strict-mode)))))
 
         (cl-concatenate 'list c-like-modes '(eshell-mode))))
+
+(provide 'rs-lang-common)
+;;; rs-lang-common.el ends here

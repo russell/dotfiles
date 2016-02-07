@@ -5,7 +5,6 @@
 (eval-when-compile
   (require 'use-package))
 
-
 (use-package slime-repl
   :defer t
   :config
@@ -81,7 +80,6 @@
                   (slime-repl-send-input t))))
     (:one-liner "Quickload a system"))
 
-
   (defslime-repl-shortcut slime-max-debug ("max-debug")
     (:handler
      (lambda ()
@@ -109,7 +107,6 @@
                 (interactive)
                 (slime-repl-shortcut-eval-async '(asdf:initialize-source-registry))))
     (:one-liner "Refresh the ASDF source registry."))
-
 
   ;; paren script
   (setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
