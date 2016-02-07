@@ -262,7 +262,6 @@ export GUILE_LOAD_PATH=$(join ';' `ls -d ~/projects/scheme/*(N)`)
 #
 # grep colors
 #
-export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
 #

@@ -1,13 +1,11 @@
 
 ;;; Code:
 
-(require 'multiple-cursors-core)
+(eval-when-compile
+  (require 'use-package))
 
-(add-to-list 'mc--default-cmds-to-run-for-all
-             'hungry-delete-backward)
-
-(add-to-list 'mc--default-cmds-to-run-for-all
-             'python-indent-dedent-line-backspace)
+(use-package multiple-cursors-core
+  :defer t)
 
 (provide 'init-multiple-cursors)
-;;; init-multiple-cursors.el
+;;; init-multiple-cursors.el ends here

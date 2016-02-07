@@ -23,3 +23,6 @@ emacs.d/el-get/
 /emacs.d/bookmarks
 /emacs.d/recentf
 /emacs.d/.cask
+/emacs.d/request/curl-cookie-jar
+/emacs.d/abbrev_defs
+/emacs.d/projectile-bookmarks.eld

@@ -1,7 +1,16 @@
-(gnus-calendar-setup)
 
-;; to enable optional iCalendar->Org sync functionality
-;; NOTE: both the capture file and the headline(s) inside must already exist
-(setq gnus-calendar-org-capture-file "~/org/agenda.org")
-(setq gnus-calendar-org-capture-headline '("Calendar"))
-(gnus-calendar-org-setup)
+(eval-when-compile
+  (require 'use-package))
+
+;;; Code:
+
+(use-package ical-event
+  :config
+  (setq gnus-calendar-org-capture-file "~/org/agenda.org")
+  (setq gnus-calendar-org-capture-headline '("Calendar"))
+  (gnus-calendar-setup)
+  (gnus-calendar-org-setup))
+
+(provide 'init-ical-event)
+
+;;; init-ical-event.el ends here
