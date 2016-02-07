@@ -5,8 +5,13 @@
 (setq use-dialog-box nil)
 
 ; set font
-(set-frame-font "DejaVu Sans Mono:pixelsize=14")
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono:pixelsize=14"))
+(require 'cl)
+(defun rs/font-candidate (&rest fonts)
+  "Return existing font which first match."
+  (find-if (lambda (f) (find-font (font-spec :name f))) fonts))
+(set-face-attribute 'default nil
+                    :font (rs/font-candidate "Hack:pixelsize=14"
+                                             "DejaVu Sans Mono:pixelsize=14"))
 
 ;; full screen
 (defun fullscreen ()
