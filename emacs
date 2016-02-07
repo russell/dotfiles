@@ -8,6 +8,7 @@
     (load-library (file-name-sans-extension f))))
 
 (setq load-path (cons (concat user-emacs-directory "init.d") load-path))
+(setq load-path (cons (concat user-emacs-directory "init-mode.d") load-path))
 
 (require 'rs-el-get)
 (require 'rs-core)
@@ -19,7 +20,6 @@
 (require 'rs-editing)
 
 (load-directory (concat user-emacs-directory "init-mode.d"))
-(load-directory (concat user-emacs-directory "init-programming.d"))
 
 (if (file-exists-p "~/.emacs-private.el")
     (load-file (expand-file-name "~/.emacs-private.el")))
