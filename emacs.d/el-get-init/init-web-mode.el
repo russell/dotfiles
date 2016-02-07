@@ -21,7 +21,15 @@
         '(("django" . "\\.html\\'")))
 
   (setq-default web-mode-markup-indent-offset 2)
-  (setq web-mode-code-indent-offset 2))
+  (setq web-mode-code-indent-offset 2)
+
+  (add-hook 'web-mode-hook 'flyspell-prog-mode)
+  (add-hook 'web-mode-hook 'toggle-highlight-symbol)
+  (add-hook 'web-mode-hook 'turn-on-diff-hl-mode)
+  (add-hook 'web-mode-hook
+            '(lambda ()
+               (add-hook 'write-contents-functions
+                         'delete-trailing-whitespace))))
 
 (provide 'init-web-mode)
 
