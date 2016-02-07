@@ -6,8 +6,7 @@
 (setq el-get-sources
       '((:name diff-hl
                :type git
-               :url "git://github.com/dgutov/diff-hl.git"
-               :features diff-hl)
+               :url "git://github.com/dgutov/diff-hl.git")
 
         (:name magit
                :website "https://github.com/magit/magit#readme"
@@ -22,19 +21,6 @@
                :build/berkeley-unix (("gmake" "docs"))
                ;; assume windows lacks make and makeinfo
                :build/windows-nt (progn nil))
-
-        (:name auto-complete
-               :website "http://cx4a.org/software/auto-complete/"
-               :description "The most intelligent auto-completion extension."
-               :type git
-               :depends (fuzzy popup)
-               :url "git://github.com/auto-complete/auto-complete.git"
-               :load-path ".")
-
-        (:name fuzzy
-               :type git
-               :url "https://github.com/auto-complete/fuzzy-el"
-               :features fuzzy)
 
         (:name bash-completion
                :type git
@@ -101,20 +87,10 @@
 
         (:name python
                :type git
-               :url "git://github.com/fgallina/python.el.git"
-               :features (python))
+               :url "git://github.com/fgallina/python.el.git")
 
         (:name ipython
                :depends (python-mode))
-
-        (:name helm
-               :type git
-               :url "git://github.com/emacs-helm/helm.git"
-               :build (("make"))
-               :compile nil
-               :depends (ido-hacks)
-               :features (helm)
-               :compile nil)
 
         (:name emms
                :description "The Emacs Multimedia System"
@@ -174,7 +150,6 @@
                :compile nil)
 
         (:name highlight-indentation
-               :features highlight-indentation
                :type git
                :url "https://github.com/antonj/Highlight-Indentation-for-Emacs")
 
@@ -312,10 +287,6 @@
                             ;; C-x 9 key binding:
                             (global-set-key [(control x) (?9)] 'sticky-window-keep-window-visible)))
 
-        (:name popup
-               :type git
-               :url "git://github.com/auto-complete/popup-el.git")
-
         (:name active-menu
                :website "http://www.emacswiki.org/emacs/ActiveMenu"
                :description "Active Menu toggles the display of the menu bar automatically when the mouse comes close to it. Otherwise you get one more line of code."
@@ -347,8 +318,7 @@
 
         (:name artbollocks-mode
                :type git
-               :url "https://github.com/sachac/artbollocks-mode.git"
-               :features "artbollocks-mode")
+               :url "https://github.com/sachac/artbollocks-mode.git")
 
         (:name ldap-mode
                :type http
@@ -357,7 +327,6 @@
 
         (:name gnus-identities
                :description "Change identity when composing a message."
-               :features "gnus-identities"
                :depends (gnus)
                :type github
                :depends (gnus)
@@ -453,8 +422,7 @@
                :description "SLIME FiveAM."
                :type git
                :depends (slime)
-               :url "git@github.com:russell/slime-fiveam.git"
-               :features slime-fiveam)
+               :url "git@github.com:russell/slime-fiveam.git")
 
         (:name hyperspec-info
                :description "info lookup for hyperspec"
@@ -559,15 +527,9 @@
                :features jabber-autoloads
                :url "git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber")
 
-        (:name puppet-flymake
-               :type git
-               :features flymake-puppet
-               :url "git://github.com/grimradical/puppet-flymake.git")
-
         (:name auto-capitalize
                :type emacswiki
-               :website "http://www.emacswiki.org/emacs/auto-capitalize.el"
-               :features auto-capitalize)
+               :website "http://www.emacswiki.org/emacs/auto-capitalize.el")
 
         (:name puppet-mode
                :description "A simple mode for editing puppet manifests"
@@ -576,12 +538,6 @@
                :after (progn
                         (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests" t)
                         (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
-
-        (:name ido-hacks
-               :description "Advices for ido-mode."
-               :type github
-               :pkgname "scottjad/ido-hacks"
-               :features ido-hacks)
 
         (:name free-keys
                :description "Show free bindings."
@@ -593,22 +549,19 @@
                :description "Helm frontend to describe key bindings."
                :type github
                :pkgname "emacs-helm/helm-descbinds"
-               :depends (helm)
-               :features helm-descbinds)
+               :depends (helm))
 
         (:name helm-slime
                :description "Helm frontend for slime"
                :type github
-               :pkgname "emacs-helm/helm-slime"
-               :depends (helm slime)
-               :features helm-slime)
+               :pkgname "russell/helm-slime"
+               :depends (helm slime))
 
         (:name helm-swoop
                :description "Helm Swoop"
                :type github
                :pkgname "ShingoFukuyama/helm-swoop"
-               :depends (helm)
-               :features helm-swoop)
+               :depends (helm))
 
         (:name sql-preset
                :description "Store SQL connections configuration."
