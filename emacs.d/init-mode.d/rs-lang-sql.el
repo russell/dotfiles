@@ -1,17 +1,31 @@
-;;; SQL
 
-;; taken from
+;;; Code:
+
+(eval-when-compile
+  (require 'use-package))
+
+(require 'rs-lang-common)
+
 ;; http://speeves.erikin.com/2011/10/emacs-sql-mode-connect-to-multiple.html
 
-(setq sql-connection-alist
-      '((pool-test
-         (sql-name "test")
-         (sql-product 'postgres)
-         (sql-server "localhost")
-         (sql-user "test")
-         (sql-database "test")
-         (sql-port 5432)
-         (sql-postgres-options '("-P" "pager=off")))))
+(use-package sql
+  :defer t
+  :config
+  (setq sql-connection-alist
+        '((pool-test
+           (sql-name "test")
+           (sql-product 'postgres)
+           (sql-server "localhost")
+           (sql-user "test")
+           (sql-database "test")
+           (sql-port 5432)
+           (sql-postgres-options '("-P" "pager=off")))))
+
+  (rs/add-common-repl-hooks 'sql-interactive-mode)
+  (add-hook 'sql-interactive-mode-hook
+          (lambda ()
+            (setq sql-alternate-buffer-name (sql-make-smart-buffer-name))
+            (sql-rename-buffer))))
 
 
 (defun sql-connect-test ()
@@ -40,7 +54,5 @@
                    "/"))
               sql-database)))
 
-(add-hook 'sql-interactive-mode-hook
-          (lambda ()
-            (setq sql-alternate-buffer-name (sql-make-smart-buffer-name))
-            (sql-rename-buffer)))
+(provide 'rs-lang-sql)
+;;; rs-lang-sql.el ends here

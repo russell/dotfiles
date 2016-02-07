@@ -98,12 +98,6 @@
           (set-buffer-modified-p nil))))))
 
 
-(defun enable-editing-modes ()
-  (interactive)
-  (auto-capitalize-mode t)
-  (flyspell-mode t))
-
-
 (defun rs/scratch ()
   (interactive)
   (let ((current-mode major-mode))

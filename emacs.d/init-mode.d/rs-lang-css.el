@@ -1,19 +1,16 @@
 
-
 ;;; Code:
 
 (eval-when-compile
   (require 'use-package))
 
+(require 'rs-lang-common)
+
 ;; CSS
 (use-package css-mode
   :defer t
   :config
-  (add-hook 'css-mode-hook
-            '(lambda ()
-               (add-hook 'write-contents-functions
-                         'delete-trailing-whitespace))))
-
+  (rs/add-common-programming-hooks 'css-mode))
 
 
 (provide 'rs-lang-css)

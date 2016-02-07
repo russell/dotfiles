@@ -1,14 +1,15 @@
 
-
 ;;; Code:
 
 (eval-when-compile
   (require 'use-package))
 
+(require 'rs-lang-common)
+
 (use-package slime-repl
   :defer t
   :config
-  (add-hook 'slime-repl-map-mode-hook 'smartparens-strict-mode)
+  (rs/add-common-repl-hooks 'slime-repl-mode)
   (define-key slime-repl-mode-map "\M-/" 'helm-slime-complete))
 
 
@@ -19,6 +20,8 @@
                  slime-fancy slime-asdf slime-indentation
                  slime-tramp slime-banner slime-compiler-notes-tree))
   ;; (setq slime-complete-symbol-function 'company-complete)
+
+  (rs/add-common-programming-hooks 'slime-mode)
 
   (define-key slime-mode-map "\M-/" 'helm-slime-complete)
 
@@ -111,8 +114,6 @@
   ;; paren script
   (setq auto-mode-alist (cons '("\\.paren$" . lisp-mode) auto-mode-alist))
 
-  (add-hook 'slime-repl-mode 'smartparens-strict-mode)
-
 
   (defun slime-eval-last-expression-in-repl1 (prefix)
     (interactive "P")
@@ -140,15 +141,15 @@
   (define-key emacs-lisp-mode-map "\C-c\M-c" 'eval-buffer)
 
   (use-package elisp-slime-expand)
-  (add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode)
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-expand-mode)
   (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
   (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
+  (rs/add-common-programming-hooks 'emacs-lisp-mode)
 
-  (add-hook 'lisp-mode-hook 'smartparens-strict-mode)
+  (rs/add-common-programming-hooks 'lisp-mode)
 
-  (add-hook 'lisp-interaction-mode-hook 'smartparens-strict-mode))
+  (rs/add-common-repl-hooks 'lisp-interaction-mode))
 
 
 (use-package ielm
@@ -157,7 +158,7 @@
   (define-key ielm-map "\M-/"
     'helm-lisp-completion-at-point)
   (add-hook 'ielm-mode-hook 'eldoc-mode)
-  (add-hook 'ielm-mode-hook 'smartparens-strict-mode))
+  (rs/add-common-repl-hooks 'ielm-mode))
 
 (use-package geiser-mode
   :defer t
@@ -165,12 +166,12 @@
   (define-key geiser-mode-map "\C-c\C-c"
     'geiser-eval-definition)
 
-  (add-hook 'geiser-mode-hook 'smartparens-strict-mode))
+  (rs/add-common-programming-hooks 'geiser-mode))
 
 (use-package scheme-mode
   :defer t
   :config
-  (add-hook 'scheme-mode-hook 'smartparens-strict-mode))
+  (rs/add-common-programming-hooks 'scheme-mode))
 
 (provide 'rs-lang-lisp)
 ;;; rs-lang-lisp.el ends here

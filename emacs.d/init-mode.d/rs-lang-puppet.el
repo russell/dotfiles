@@ -1,8 +1,10 @@
 
 ;;; Code:
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
+(require 'rs-lang-common)
 
 (use-package puppet-mode
   :defer t
@@ -13,7 +15,8 @@
   ;; Indent without tabs
   (add-hook 'puppet-mode-hook
             (lambda ()
-              (setq indent-tabs-mode nil))))
+              (setq indent-tabs-mode nil)))
+  (rs/add-common-programming-hooks 'puppet-mode))
 
 
 (provide 'rs-lang-puppet)

@@ -2,6 +2,8 @@
 ;;; Code:
 
 (require 'use-package)
+(require 'rs-lang-common)
+
 
 ;;;; mailto-compose-mail.el (2010-08-15)
 ;;;; from http://www.emacswiki.org/emacs/MailtoHandler
@@ -60,8 +62,7 @@
 (use-package message
   :defer t
   :config
-  (add-hook 'message-mode-hook 'artbollocks-mode)
-  (add-hook 'message-mode-hook 'enable-editing-modes))
+  (rs/add-common-editing-hooks 'message-mode))
 
 (use-package w3m
   :defer t

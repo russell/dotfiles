@@ -14,8 +14,8 @@
   (setq-default header-line-format
                 '((which-func-mode which-func-format)))
   (setq mode-line-misc-info
-      ;; We remove Which Function Mode from the mode line, because it's mostly
-      ;; invisible here anyway.
+        ;; We remove Which Function Mode from the mode line, because it's mostly
+        ;; invisible here anyway.
         (assq-delete-all 'which-func-mode mode-line-misc-info))
   (custom-set-variables
    '(which-func-format
@@ -26,46 +26,38 @@
   (unless (eq major-mode 'slime-xref-mode)
     (highlight-symbol-mode)))
 
-(let ((lisp-modes '(slime-mode
-                    geiser-mode
-                    emacs-lisp-mode))
-      (c-like-modes '(python-mode
-                      c-mode-common
-                      sh-mode
-                      conf-mode
-                      puppet-mode
-                      makefile-mode
-                      js2-mode
-                      js-mode)))
 
-  (mapc (lambda (mode)
-          (let ((mode-hook (intern (concat (symbol-name mode) "-hook"))))
+(defun rs/add-common-editing-hooks (mode)
+  (let ((mode-hook (intern (concat (symbol-name mode) "-hook"))))
+    (add-hook mode-hook 'artbollocks-mode)
+    (add-hook mode-hook 'auto-capitalize-mode)
+    (add-hook mode-hook 'auto-fill-mode)
+    (add-hook mode-hook 'flyspell-mode)
+    (add-hook mode-hook 'turn-on-diff-hl-mode)
+    (add-hook mode-hook
+              '(lambda ()
+                 (add-hook 'write-contents-functions
+                           'delete-trailing-whitespace)))))
 
-            ;; enable which func mode
-            (add-to-list 'which-func-modes mode)
 
-            ;; diff hl mode
-            (add-to-list 'which-func-modes mode)
-            (add-hook mode-hook 'turn-on-diff-hl-mode)
+(defun rs/add-common-programming-hooks (mode)
+  (add-to-list 'which-func-modes mode)
+  (let ((mode-hook (intern (concat (symbol-name mode) "-hook"))))
+    (add-hook mode-hook 'fci-mode)
+    (add-hook mode-hook 'flyspell-prog-mode)
+    (add-hook mode-hook 'smartparens-strict-mode)
+    (add-hook mode-hook 'toggle-highlight-symbol)
+    (add-hook mode-hook 'turn-on-diff-hl-mode)
+    (add-hook mode-hook
+              '(lambda ()
+                 (add-hook 'write-contents-functions
+                           'delete-trailing-whitespace)))))
 
-            ;; Delete whitespace on save.
-            (add-hook mode-hook
-                      '(lambda ()
-                         (add-hook 'write-contents-functions
-                                   'delete-trailing-whitespace)))
-            ;; flyspell
-            (add-hook mode-hook 'flyspell-prog-mode)
-            ;; highlight symbol
-            (add-hook mode-hook 'toggle-highlight-symbol)))
+(defun rs/add-common-repl-hooks (mode)
+  (let ((mode-hook (intern (concat (symbol-name mode) "-hook"))))
+   (add-hook mode-hook 'toggle-highlight-symbol)
+   (add-hook mode-hook 'smartparens-strict-mode)))
 
-          (cl-concatenate 'list lisp-modes c-like-modes))
-  (mapc (lambda (mode)
-          (let ((mode-hook (intern (concat (symbol-name 'test-mode) "-hook"))))
-            ;; smart parens
-            (add-hook mode '(lambda ()
-                              (smartparens-strict-mode)))))
-
-        (cl-concatenate 'list c-like-modes '(eshell-mode))))
 
 (provide 'rs-lang-common)
 ;;; rs-lang-common.el ends here

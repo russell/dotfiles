@@ -6,13 +6,12 @@
   (require 'use-package)
   (require 'noflet))
 
+(require 'rs-lang-common)
 
 (use-package python
   :defer t
   :config
-  ;; Smartparens
-  (add-hook 'python-mode-hook 'smartparens-strict-mode)
-
+  (rs/add-common-programming-hooks 'python-mode)
   ;; Flycheck
   (add-hook 'python-mode-hook 'flycheck-mode-on-safe)
 
@@ -25,10 +24,8 @@ one."
 
   (ad-activate 'python-indent-dedent-line-backspace)
 
-
   ;; highlight indentation and symbols
   (add-hook 'python-mode-hook 'highlight-indentation-mode)
-
 
   (defvar rs/python-source-setup-code
     "def source(filename):

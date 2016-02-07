@@ -4,6 +4,8 @@
 (eval-when-compile
   (require 'use-package))
 
+(require 'rs-lang-common)
+
 (load "~/.ercpass")
 
 (use-package erc
@@ -70,7 +72,7 @@
   ;; Try and prevent ERC from flooding the connection when trying to
   ;; reconnect
   (setq erc-server-send-ping-timeout nil)
-  (add-hook 'erc-join-hook 'enable-editing-modes)
+  (rs/add-common-editing-hooks 'erc-join)
   (add-hook 'erc-text-matched-hook 'erc-global-notify))
 
 (defun irc-bitlbee ()

@@ -1,9 +1,10 @@
 
-
 ;;; Code:
 
 (eval-when-compile
   (require 'use-package))
+
+(require 'rs-lang-common)
 
 (defalias 'js-mode 'js2-mode)
 
@@ -14,7 +15,7 @@
   :defer t
   :config
   (setq-default js2-basic-offset 2)
-  (add-hook 'js2-mode-hook 'smartparens-strict-mode)
+  (rs/add-common-programming-hooks 'js2-mode)
 
   (defun rs/js2-mode-defaults ()
     (js2-imenu-extras-mode +1))
@@ -23,7 +24,8 @@
 (use-package js
   :defer t
   :config
-  (setq js-indent-level 2))
+  (setq js-indent-level 2)
+  (rs/add-common-programming-hooks 'js-mode))
 
 (provide 'rs-lang-javascript)
 ;;; rs-lang-javascript.el ends here
