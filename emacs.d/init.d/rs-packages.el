@@ -712,7 +712,6 @@
          dired-plus
          el-get
          emacs-noflet
-         eol-conversion
          recover-buffers
          )))
 
