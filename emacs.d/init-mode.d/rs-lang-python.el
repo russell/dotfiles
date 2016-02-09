@@ -11,8 +11,7 @@
 (use-package python
   :defer t
   :config
-  (rs/add-common-programming-hooks 'python-mode)
-  ;; Flycheck
+  (add-hook 'python-mode-hook 'rs/common-programming-modes)
   (add-hook 'python-mode-hook 'flycheck-mode-on-safe)
 
   (defadvice python-indent-dedent-line-backspace (around python-indent-dedent-line-backspace-around)

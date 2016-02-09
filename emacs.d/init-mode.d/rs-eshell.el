@@ -89,7 +89,7 @@
   (setq eshell-buffer-shorthand t)
   (add-hook 'eshell-mode-hook 'rs/add-mode-line-dirtrack)
   (add-hook 'eshell-mode-hook 'eldoc-mode)
-  (rs/add-common-repl-hooks 'eshell-mode)
+  (add-hook 'eshell-mode-hook 'rs/common-repl-modes)
 
   ;; a stupid hack, seems that helm is leaking into eshell and this is
   ;; the only way to stop it.

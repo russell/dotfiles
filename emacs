@@ -12,12 +12,12 @@
 
 (require 'rs-el-get)
 (require 'rs-core)
-(require 'rs-packages)
+(require 'rs-gui)
 (require 'rs-debian)
 (require 'rs-darwin)
-(require 'rs-gui)
 (require 'rs-messages)
 (require 'rs-editing)
+(require 'rs-packages)
 
 (load-directory (concat user-emacs-directory "init-mode.d"))
 

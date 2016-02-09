@@ -14,7 +14,7 @@
 (use-package html-mode
   :defer t
   :config
-  (rs/add-common-programming-hooks 'mode-hook))
+  (add-hook 'html-mode-hook 'rs/common-programming-modes))
 
 
 (provide 'rs-lang-xml)

@@ -10,7 +10,7 @@
   :defer t
   :config
   (add-hook 'ruby-mode-hook 'flycheck-mode-on-safe)
-  (rs/add-common-programming-hooks 'ruby-mode))
+  (add-hook 'ruby-mode-hook 'rs/common-programming-modes))
 
 
 (provide 'rs-lang-ruby)

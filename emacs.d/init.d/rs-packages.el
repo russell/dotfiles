@@ -695,7 +695,6 @@
          undo-tree
          yasnippet
          hungry-delete
-         fill-column-indicator
 
          ;; other tools
          vkill

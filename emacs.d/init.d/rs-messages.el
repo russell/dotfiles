@@ -62,7 +62,7 @@
 (use-package message
   :defer t
   :config
-  (rs/add-common-editing-hooks 'message-mode))
+  (add-hook 'message-mode-hook 'rs/common-editing-modes))
 
 (use-package w3m
   :defer t

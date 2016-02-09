@@ -26,3 +26,4 @@ emacs.d/el-get/
 /emacs.d/request/curl-cookie-jar
 /emacs.d/abbrev_defs
 /emacs.d/projectile-bookmarks.eld
+/emacs.d/projectile.cache

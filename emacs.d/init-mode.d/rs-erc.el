@@ -72,7 +72,7 @@
   ;; Try and prevent ERC from flooding the connection when trying to
   ;; reconnect
   (setq erc-server-send-ping-timeout nil)
-  (rs/add-common-editing-hooks 'erc-join)
+  (add-hook 'erc-join-hook 'rs/common-editing-modes)
   (add-hook 'erc-text-matched-hook 'erc-global-notify))
 
 (defun irc-bitlbee ()

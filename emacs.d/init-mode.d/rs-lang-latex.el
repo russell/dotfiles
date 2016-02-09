@@ -15,8 +15,9 @@
                            "-draftmode"
                            "-interaction=nonstopmode"
                            file-name)))
-  (rs/add-common-editing-hooks 'latex-mode)
-  (rs/add-common-programming-hooks 'latex-mode))
+
+  (add-hook 'latex-hook 'rs/common-editing-modes)
+  (add-hook 'latex-mode-hook 'rs/common-programming-modes))
 
 (provide 'rs-lang-latex)
 ;;; rs-lang-latex.el ends here

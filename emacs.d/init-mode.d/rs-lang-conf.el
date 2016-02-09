@@ -9,7 +9,7 @@
 (use-package conf-mode
   :defer t
   :config
-  (rs/add-common-programming-hooks 'conf-mode))
+  (add-hook 'conf-mode-hook 'rs/common-programming-modes))
 
 (provide 'rs-lang-conf)
 ;;; rs-lang-conf.el ends here

@@ -27,36 +27,30 @@
     (highlight-symbol-mode)))
 
 
-(defun rs/add-common-editing-hooks (mode)
-  (let ((mode-hook (intern (concat (symbol-name mode) "-hook"))))
-    (add-hook mode-hook 'artbollocks-mode)
-    (add-hook mode-hook 'auto-capitalize-mode)
-    (add-hook mode-hook 'auto-fill-mode)
-    (add-hook mode-hook 'flyspell-mode)
-    (add-hook mode-hook 'turn-on-diff-hl-mode)
-    (add-hook mode-hook
-              '(lambda ()
-                 (add-hook 'write-contents-functions
-                           'delete-trailing-whitespace)))))
+(defun rs/common-editing-modes ()
+  (artbollocks-mode)
+  (auto-capitalize-mode)
+  (auto-fill-mode)
+  (flyspell-mode)
+  (turn-on-diff-hl-mode)
+  (add-hook 'write-contents-functions
+            'delete-trailing-whitespace))
 
 
-(defun rs/add-common-programming-hooks (mode)
-  (add-to-list 'which-func-modes mode)
-  (let ((mode-hook (intern (concat (symbol-name mode) "-hook"))))
-    (add-hook mode-hook 'fci-mode)
-    (add-hook mode-hook 'flyspell-prog-mode)
-    (add-hook mode-hook 'smartparens-strict-mode)
-    (add-hook mode-hook 'toggle-highlight-symbol)
-    (add-hook mode-hook 'turn-on-diff-hl-mode)
-    (add-hook mode-hook
-              '(lambda ()
-                 (add-hook 'write-contents-functions
-                           'delete-trailing-whitespace)))))
+(defun rs/common-programming-modes ()
+  (add-to-list 'which-func-modes major-mode)
+  (setq fill-column 79)
+  (flyspell-prog-mode)
+  (smartparens-strict-mode)
+  (toggle-highlight-symbol)
+  (turn-on-diff-hl-mode)
+  (add-hook 'write-contents-functions
+            'delete-trailing-whitespace))
 
-(defun rs/add-common-repl-hooks (mode)
-  (let ((mode-hook (intern (concat (symbol-name mode) "-hook"))))
-   (add-hook mode-hook 'toggle-highlight-symbol)
-   (add-hook mode-hook 'smartparens-strict-mode)))
+
+(defun rs/common-repl-modes ()
+  (toggle-highlight-symbol)
+  (smartparens-strict-mode))
 
 
 (provide 'rs-lang-common)

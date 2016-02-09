@@ -10,7 +10,7 @@
 (use-package css-mode
   :defer t
   :config
-  (rs/add-common-programming-hooks 'css-mode))
+  (add-hook 'css-mode-hook 'rs/common-programming-modes))
 
 
 (provide 'rs-lang-css)

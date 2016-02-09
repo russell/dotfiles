@@ -15,7 +15,7 @@
   :defer t
   :config
   (setq-default js2-basic-offset 2)
-  (rs/add-common-programming-hooks 'js2-mode)
+  (add-hook 'js2-mode-hook 'rs/common-programming-modes)
 
   (defun rs/js2-mode-defaults ()
     (js2-imenu-extras-mode +1))
@@ -25,7 +25,7 @@
   :defer t
   :config
   (setq js-indent-level 2)
-  (rs/add-common-programming-hooks 'js-mode))
+  (add-hook 'js-mode-hook 'rs/common-programming-modes))
 
 (provide 'rs-lang-javascript)
 ;;; rs-lang-javascript.el ends here
