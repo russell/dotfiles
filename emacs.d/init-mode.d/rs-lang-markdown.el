@@ -10,7 +10,7 @@
 (use-package markdown
   :defer t
   :config
-  (rs/add-common-editing-hooks 'markdown-mode))
+  (add-hook 'markdown-mode-hook 'rs/common-editing-modes))
 
 (provide 'rs-lang-markdown)
 ;;; rs-lang-markdown.el ends here

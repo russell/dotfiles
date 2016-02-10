@@ -696,7 +696,6 @@
          undo-tree
          yasnippet
          hungry-delete
-         fill-column-indicator
 
          ;; other tools
          vkill
@@ -713,7 +712,6 @@
          dired-plus
          el-get
          emacs-noflet
-         eol-conversion
          recover-buffers
          )))
 

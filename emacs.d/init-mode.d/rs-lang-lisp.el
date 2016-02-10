@@ -9,7 +9,7 @@
 (use-package slime-repl
   :defer t
   :config
-  (rs/add-common-repl-hooks 'slime-repl-mode)
+  (add-hook 'slime-repl-mode-hook 'rs/common-repl-modes)
   (define-key slime-repl-mode-map "\M-/" 'helm-slime-complete))
 
 
@@ -21,7 +21,7 @@
                  slime-tramp slime-banner slime-compiler-notes-tree))
   ;; (setq slime-complete-symbol-function 'company-complete)
 
-  (rs/add-common-programming-hooks 'slime-mode)
+  (add-hook 'slime-mode-hook 'rs/common-programming-modes)
 
   (define-key slime-mode-map "\M-/" 'helm-slime-complete)
 
@@ -145,11 +145,11 @@
   (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
   (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
   (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
-  (rs/add-common-programming-hooks 'emacs-lisp-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rs/common-programming-modes)
 
-  (rs/add-common-programming-hooks 'lisp-mode)
+  (add-hook 'lisp-mode-hook 'rs/common-programming-modes)
 
-  (rs/add-common-repl-hooks 'lisp-interaction-mode))
+  (add-hook 'lisp-interaction-mode-hook 'rs/common-repl-modes))
 
 
 (use-package ielm
@@ -158,7 +158,7 @@
   (define-key ielm-map "\M-/"
     'helm-lisp-completion-at-point)
   (add-hook 'ielm-mode-hook 'eldoc-mode)
-  (rs/add-common-repl-hooks 'ielm-mode))
+  (add-hook 'ielm-mode-hook 'rs/common-repl-modes))
 
 (use-package geiser-mode
   :defer t
@@ -166,12 +166,12 @@
   (define-key geiser-mode-map "\C-c\C-c"
     'geiser-eval-definition)
 
-  (rs/add-common-programming-hooks 'geiser-mode))
+  (add-hook 'geiser-mode-hook 'rs/common-programming-modes))
 
 (use-package scheme-mode
   :defer t
   :config
-  (rs/add-common-programming-hooks 'scheme-mode))
+  (add-hook 'scheme-mode-hook 'rs/common-programming-modes))
 
 (provide 'rs-lang-lisp)
 ;;; rs-lang-lisp.el ends here

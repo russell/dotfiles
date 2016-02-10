@@ -21,7 +21,7 @@
            (sql-port 5432)
            (sql-postgres-options '("-P" "pager=off")))))
 
-  (rs/add-common-repl-hooks 'sql-interactive-mode)
+  (add-hook 'sql-interactive-mode-hook 'rs/common-repl-modes)
   (add-hook 'sql-interactive-mode-hook
           (lambda ()
             (setq sql-alternate-buffer-name (sql-make-smart-buffer-name))

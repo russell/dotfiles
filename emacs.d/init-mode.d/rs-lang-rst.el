@@ -9,7 +9,7 @@
 (use-package rst-mode
   :defer t
   :config
-  (rs/add-common-editing-hooks 'rst-mode))
+  (add-hook 'rst-mode-hook 'rs/common-editing-modes))
 
 (provide 'rs-lang-rst)
 ;;; rs-lang-rst.el ends here

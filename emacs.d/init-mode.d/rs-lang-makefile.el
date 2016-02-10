@@ -9,7 +9,7 @@
 (use-package make-mode
   :defer t
   :config
-  (rs/add-common-programming-hooks 'makefile-mode))
+  (add-hook 'makefile-mode-hook 'rs/common-programming-modes))
 
 (provide 'rs-lang-makefile)
 ;;; rs-lang-makefile.el ends here

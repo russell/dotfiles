@@ -5,7 +5,7 @@
 ;;; Code:
 
 (use-package erc-nick-notify
-  :if dbus-runtime-version
+  :if (boundp 'dbus-runtime-version)
   :config
   (setq erc-nick-notify-icon "/usr/share/pixmaps/other/IRC.png")
   :init

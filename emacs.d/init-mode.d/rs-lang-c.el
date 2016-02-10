@@ -21,7 +21,7 @@
   (define-key c-mode-base-map [f9] 'insert-breakpoint)
   (define-key c-mode-base-map [f10] 'step-over)
   (define-key c-mode-base-map [f11] 'step-into)
-  (rs/add-common-programming-hooks 'c-mode-common))
+  (add-hook 'c-mode-hook 'rs/common-programming-modes))
 
 (provide 'rs-lang-c)
 ;;; rs-lang-c.el ends here

@@ -12,7 +12,7 @@
   (setq sh-indentation 4)
 
   (add-hook 'sh-mode-hook 'flycheck-mode-on-safe)
-  (rs/add-common-programming-hooks 'sh-mode))
+  (add-hook 'sh-mode-hook 'rs/common-programming-modes))
 
 (provide 'rs-lang-shell)
 ;;; rs-lang-shell.el ends here

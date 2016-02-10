@@ -16,7 +16,7 @@
   (add-hook 'puppet-mode-hook
             (lambda ()
               (setq indent-tabs-mode nil)))
-  (rs/add-common-programming-hooks 'puppet-mode))
+  (add-hook 'puppet-mode-hook 'rs/common-programming-modes))
 
 
 (provide 'rs-lang-puppet)
