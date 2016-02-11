@@ -175,7 +175,7 @@
 ;; Launch Web Browser
 (defcommand chrome () ()
   "Start Google Chrome or switch to it, if it is already running."
-  (run-or-raise "google-chrome" '(:class "Google-chrome")))
+  (run-or-raise "google-chrome" '(:class "google-chrome")))
 (define-key *root-map* (kbd "u") "chrome")
 (define-key *top-map* (kbd "s-u") "chrome")
 
