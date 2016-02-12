@@ -654,6 +654,7 @@
          highlight-parentheses
          highlight-symbol
          markdown-mode
+         dockerfile-mode
          nginx-mode
          openstack-mode
          po-mode
