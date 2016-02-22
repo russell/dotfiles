@@ -8,8 +8,6 @@ conkerorrc
 common.lisp
 dunstrc
 eclrc
-emacs
-emacs.d
 fonts.conf
 gbp.conf
 gitconfig
@@ -25,6 +23,7 @@ muttrc
 pbuilderrc
 profile
 sbclrc
+spacemacs
 stumpwmrc
 vim
 vimrc
@@ -40,19 +39,19 @@ function symlink {
     name=$1
     target=${2:-"$HOME/.$name"}
     if [ -e $target ]; then
-	    if [ ! -L $target ]; then
-		    echo "WARNING: $target exists but is not a symlink."
-	    fi
+      if [ ! -L $target ]; then
+        echo "WARNING: $target exists but is not a symlink."
+      fi
     else
-	    if [[ $name != *~  && $name != *.orig && $name != \#*\# ]]; then
-	        if [[ $name == *.local ]]; then
-		        echo "added local file $target"
-		        cp "$PWD/$name" "$target"
-	        else
-		        echo "linked in $target"
-		        ln -s "$PWD/$name" "$target"
-	        fi
-	    fi
+      if [[ $name != *~  && $name != *.orig && $name != \#*\# ]]; then
+          if [[ $name == *.local ]]; then
+            echo "added local file $target"
+            cp "$PWD/$name" "$target"
+          else
+            echo "linked in $target"
+            ln -s "$PWD/$name" "$target"
+          fi
+      fi
     fi
 }
 
