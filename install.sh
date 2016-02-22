@@ -60,6 +60,18 @@ for name in $files; do
     symlink $name
 done
 
+if [ ! -e ~/.emacs.d ]; then
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
+
+if [ -L ~/.emacs ]; then
+    rm -f ~/.emacs
+fi
+if [ -L ~/.emacs.d ]; then
+    rm -f ~/.emacs.d
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
+
 mkdir -p ~/.config/gtk-3.0/
 symlink config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
 mkdir -p ~/.local/share/applications/
