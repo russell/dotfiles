@@ -34,6 +34,7 @@ values."
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     systemd
      version-control
      typography
      ansible
@@ -45,6 +46,7 @@ values."
      common-lisp
      emacs-lisp
      scheme
+     racket
      javascript
      html
      restclient
