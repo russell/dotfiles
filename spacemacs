@@ -24,33 +24,32 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; auto-completion
+     ansible
+     auto-completion
      better-defaults
+     common-lisp
+     dockerfile
      emacs-lisp
+     erc
      git
+     html
+     javascript
      markdown
      org
+     osx
+     puppet
+     python
+     racket
+     restclient
+     scheme
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
      systemd
-     version-control
      typography
-     ansible
-     python
-     auto-complete
-     dockerfile
-     puppet
-     erc
-     common-lisp
-     emacs-lisp
-     scheme
-     racket
-     javascript
-     html
-     restclient
-     osx
+     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
