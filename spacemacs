@@ -254,6 +254,10 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  (setq configuration-layer-private-directory
+        (expand-file-name (concat user-home-directory ".spacemacs.d/")))
+  (setq configuration-layer-private-layer-directory
+        (expand-file-name (concat user-home-directory ".spacemacs.d/")))
   (setq powerline-default-separator 'slant)
   (setq ispell-dictionary "british")
   )
