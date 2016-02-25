@@ -71,6 +71,7 @@ if [ -L ~/.emacs.d ]; then
     rm -f ~/.emacs.d
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
+symlink spacemacs-private ~/.emacs.d/private
 
 mkdir -p ~/.config/gtk-3.0/
 symlink config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
