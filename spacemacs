@@ -276,7 +276,12 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ag-use-temp-buffer t)
- '(helm-follow-mode-persistent t))
+ '(helm-follow-mode-persistent t)
+ '(js-indent-level 2)
+ '(js2-basic-offset 2)
+ '(sentence-end-double-space t)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-markup-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
