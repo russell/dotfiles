@@ -9,8 +9,6 @@ conkerorrc
 common.lisp
 dunstrc
 eclrc
-emacs
-emacs.d
 fonts.conf
 gbp.conf
 gitconfig
@@ -26,6 +24,8 @@ muttrc
 pbuilderrc
 profile
 sbclrc
+spacemacs
+spacemacs.d
 stumpwmrc
 vim
 vimrc
@@ -41,19 +41,19 @@ function symlink {
     name=$1
     target=${2:-"$HOME/.$name"}
     if [ -e $target ]; then
-	    if [ ! -L $target ]; then
-		    echo "WARNING: $target exists but is not a symlink."
-	    fi
+      if [ ! -L $target ]; then
+        echo "WARNING: $target exists but is not a symlink."
+      fi
     else
-	    if [[ $name != *~  && $name != *.orig && $name != \#*\# ]]; then
-	        if [[ $name == *.local ]]; then
-		        echo "added local file $target"
-		        cp "$PWD/$name" "$target"
-	        else
-		        echo "linked in $target"
-		        ln -s "$PWD/$name" "$target"
-	        fi
-	    fi
+      if [[ $name != *~  && $name != *.orig && $name != \#*\# ]]; then
+          if [[ $name == *.local ]]; then
+            echo "added local file $target"
+            cp "$PWD/$name" "$target"
+          else
+            echo "linked in $target"
+            ln -s "$PWD/$name" "$target"
+          fi
+      fi
     fi
 }
 
@@ -61,6 +61,18 @@ function symlink {
 for name in $files; do
     symlink $name
 done
+
+if [ ! -e ~/.emacs.d ]; then
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
+
+if [ -L ~/.emacs ]; then
+    rm -f ~/.emacs
+fi
+if [ -L ~/.emacs.d ]; then
+    rm -f ~/.emacs.d
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
 
 mkdir -p ~/.config/gtk-3.0/
 symlink config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini

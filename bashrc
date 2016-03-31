@@ -281,6 +281,10 @@ export WORKON_HOME=~/.virtualenvs/
 # Pip
 export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
+if [ $DARWIN -eq 1 ]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+fi
+
 if which virtualenvwrapper.sh &>/dev/null ; then
     source `which virtualenvwrapper.sh`
 fi
