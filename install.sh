@@ -1,6 +1,7 @@
 #!/bin/bash
 
 files=$(cat <<EOF
+ansible.cfg
 bash_aliases
 bashrc
 bazaar
