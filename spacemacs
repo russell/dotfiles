@@ -13,7 +13,7 @@ values."
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path (list (expand-file-name (concat user-home-directory ".spacemacs.d/")))
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -26,6 +26,7 @@ values."
      ;; auto-completion
      ansible
      arrsim
+     znc
      auto-completion
      better-defaults
      common-lisp
@@ -43,6 +44,7 @@ values."
      racket
      restclient
      scheme
+     scad
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -254,12 +256,11 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  (setq configuration-layer-private-directory
-        (expand-file-name (concat user-home-directory ".spacemacs.d/")))
-  (setq configuration-layer-private-layer-directory
-        (expand-file-name (concat user-home-directory ".spacemacs.d/")))
   (setq powerline-default-separator 'slant)
   (setq ispell-dictionary "british")
+  (setq evil-lisp-state-enter-lisp-state-on-command nil)
+  (with-eval-after-load 'erc
+    (delq 'erc-modules 'youtube))
   )
 
 (defun dotspacemacs/user-config ()
