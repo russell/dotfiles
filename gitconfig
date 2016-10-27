@@ -3,6 +3,7 @@
 [user]
 name = Russell Sim
 email = russell.sim@gmail.com
+signingkey = 22B1092ADDDC47DD
 
 [github]
 user = russell
