@@ -11,6 +11,7 @@ fi
 
 if [ $DARWIN -eq 1 ]; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+    export PATH="/usr/local/bin:$PATH"
 fi
 
 
