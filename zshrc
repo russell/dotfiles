@@ -417,6 +417,12 @@ function openstack_clear {
     default_prompt
 }
 
+function ansible-vault-diff {
+    diff -u \
+         <(ansible-vault view <(git show HEAD^:./${1})) \
+         <(ansible-vault view <(git show HEAD:./${1}))
+}
+
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
