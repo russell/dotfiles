@@ -205,19 +205,19 @@ e () {
     fi
 
     if [ -z "$DISPLAY" ]; then
-        exec $EMACS -n "$@"
+        $EMACS -n "$@"
     else
     if [ $DARWIN -eq 1 ]; then
         if [ -e "$EMACSSERVER" ]; then
-            exec $EMACSCLIENT -n "$@" &
+            $EMACSCLIENT -n "$@" &
         else
-            exec $EMACS --eval "(server-start)" "$@" &
+            $EMACS --eval "(server-start)" "$@" &
         fi
     else
         if [ -e "$EMACSSERVER" ]; then
             $EMACSCLIENT -n "$@"
         else
-            exec $EMACS --eval "(server-start)" "$@" &
+            $EMACS --eval "(server-start)" "$@" &
         fi
     fi
     fi
