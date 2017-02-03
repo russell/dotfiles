@@ -325,10 +325,11 @@ export PIP_DOWNLOAD_CACHE=~/.egg-cache
 e () {
     if [ $DARWIN -eq 1 ]; then
         EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
     else
         EMACS=emacs
+        EMACSCLIENT=emacsclient
     fi
-    EMACSCLIENT=emacsclient
 
     tempuid=`id -u`
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
@@ -358,17 +359,32 @@ e () {
 
 # edit file in console
 ec () {
-    emacs -nw "$@"
+    if [ $DARWIN -eq 1 ]; then
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+    else
+        EMACS=emacs
+    fi
+    $EMACS -nw "$@"
 }
 
 # edit file with root permissions
 E () {
-    emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
+    if [ $DARWIN -eq 1 ]; then
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+    else
+        EMACSCLIENT=emacsclient
+    fi
+    $EMACSCLIENT-n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
 # edit file in console with a root permissions.
 EC () {
-    emacs -nw "/sudo:root@localhost:$PWD/$1"
+    if [ $DARWIN -eq 1 ]; then
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+    else
+        EMACS=emacs
+    fi
+    $EMACS -nw "/sudo:root@localhost:$PWD/$1"
 }
 
 function ssh-push-key {

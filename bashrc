@@ -192,10 +192,11 @@ g () {
 e () {
     if [ $DARWIN -eq 1 ]; then
         EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
     else
         EMACS=emacs
+        EMACSCLIENT=emacsclient
     fi
-    EMACSCLIENT=emacsclient
 
     tempuid=`id -u`
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
@@ -225,7 +226,12 @@ e () {
 
 # edit file with root privs
 function E() {
-         emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
+    if [ $DARWIN -eq 1 ]; then
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+    else
+        EMACSCLIENT=emacsclient
+    fi
+    $EMACSCLIENT-n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
 function ssh-push-key {
