@@ -48,6 +48,9 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     (ruby :variables
+           ruby-version-manager 'chruby
+           )
      spell-checking
      syntax-checking
      systemd

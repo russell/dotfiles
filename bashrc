@@ -295,9 +295,8 @@ if which virtualenvwrapper.sh &>/dev/null ; then
     source `which virtualenvwrapper.sh`
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then
+   source /usr/local/opt/chruby/share/chruby/auto.sh
 fi
 
 if [ -f "$HOME/.bashrc.local" ]; then

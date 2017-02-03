@@ -23,6 +23,7 @@ antigen-bundle robbyrussell/oh-my-zsh plugins/git
 antigen-bundle robbyrussell/oh-my-zsh plugins/debian
 antigen-bundle robbyrussell/oh-my-zsh plugins/pip
 antigen-bundle robbyrussell/oh-my-zsh plugins/virtualenvwrapper
+antigen-bundle robbyrussell/oh-my-zsh plugins/chruby
 antigen-apply
 
 # Disable underline of paths
@@ -439,6 +440,10 @@ function ansible-vault-diff {
          <(ansible-vault view <(git show HEAD^:./${1})) \
          <(ansible-vault view <(git show HEAD:./${1}))
 }
+
+if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then
+    source /usr/local/opt/chruby/share/chruby/auto.sh
+fi
 
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
