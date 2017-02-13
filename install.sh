@@ -8,6 +8,7 @@ bazaar
 conkerorrc
 common.lisp
 dunstrc
+docker
 eclrc
 fonts.conf
 gbp.conf
