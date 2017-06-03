@@ -29,7 +29,11 @@ values."
      ansible
      arrsim
      znc
-     auto-completion
+     (auto-completion :variables
+                      ;; Try to make auto-complete behave
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      common-lisp
      dockerfile
