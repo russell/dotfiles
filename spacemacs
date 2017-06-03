@@ -1,6 +1,8 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+(if (string-equal "darwin" (symbol-name system-type))
+    (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH"))))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
