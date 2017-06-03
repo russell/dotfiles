@@ -286,7 +286,7 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ag-use-temp-buffer t)
- '(helm-follow-mode-persistent t)
+ '(helm-follow-mode-persistent nil)
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(sentence-end-double-space t)
