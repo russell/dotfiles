@@ -28,12 +28,13 @@ then
     PATH="/usr/texbin/:$PATH"
 fi
 
-# Home dir virtualenv
+# Python home dir virtualenv
 if [ -d "$HOME/.virtualenv" ]
 then
     PATH="$HOME/.virtualenv/bin/:$PATH"
 fi
 
+# Common Lisp
 if [ -d "$HOME/.cim" ]; then
     CIM_HOME=$HOME/.cim;
     if [ -s "$CIM_HOME/init.sh" ]; then
@@ -41,12 +42,75 @@ if [ -d "$HOME/.cim" ]; then
     fi
 fi
 
+# Emacs
 if [ -d "$HOME/.cask" ]; then
   PATH="$HOME/.cask/bin:$PATH"
 fi
+
+# NodeJS
+export NPM_PACKAGES="$HOME/.npm-packages"
+PATH="$NPM_PACKAGES/bin:$PATH"
+MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+if [ ! -d "$NPM_PACKAGES" ] ; then
+    mkdir $NPM_PACKAGES
+fi
+
+# Home dir bin
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# Guile scheme path
+join () {
+    local IFS="$1";
+    shift;
+    echo "$*";
+}
+export GUILE_LOAD_PATH=$(join ';' `ls -d ~/projects/scheme/*`)
 
 export GPGKEY=22B1092ADDDC47DD
 
 export MAIL="russell.sim@gmail.com"
 export DEBEMAIL=$MAIL
 export DEBFULLNAME="Russell Sim"
+export CC="gcc"
+
+
+alias gtypist="gtypist -bi"
+
+gread_link () {
+    TARGET_FILE=$1
+
+    cd `dirname $TARGET_FILE`
+    TARGET_FILE=`basename $TARGET_FILE`
+
+    # Iterate down a (possible) chain of symlinks
+    while [ -L "$TARGET_FILE" ]
+    do
+        TARGET_FILE=`readlink $TARGET_FILE`
+        cd `dirname $TARGET_FILE`
+        TARGET_FILE=`basename $TARGET_FILE`
+    done
+
+    # Compute the canonicalized name by finding the physical path
+    # for the directory we're in and appending the target file.
+    PHYS_DIR=`pwd -P`
+    RESULT=$PHYS_DIR/$TARGET_FILE
+    echo $RESULT
+}
+
+# PDSH
+export PDSH_RCMD_TYPE="ssh"
+export PDSH_GENDERS_FILE=$(gread_link ~/.genders)
+
+# git-buildpackage default target.
+export DIST=unstable
+export ARCH=amd64
+
+# Python virtualenv/pip
+export WORKON_HOME=~/.virtualenvs/
+export PIP_DOWNLOAD_CACHE=~/.egg-cache
+
+export PATH
+export MANPATH

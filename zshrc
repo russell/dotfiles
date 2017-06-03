@@ -48,51 +48,11 @@ fi
 
 autoload -U add-zsh-hook
 
-#
-# environment variables
-#
-export GPGKEY=22B1092ADDDC47DD
-
-export DEBEMAIL="russell.sim@gmail.com"
-export DEBFULLNAME="Russell Sim"
-
-export MAIL="russell.sim@gmail.com"
-
-export CC="gcc"
 
 #
 # Aliases
 #
 alias zshconfig="source ~/.zshrc"
-alias gtypist="gtypist -bi"
-
-#
-# Paths
-#
-
-# Python Virtualenv
-if [ -d "$HOME/.virtualenv" ]
-then
-    PATH="$HOME/.virtualenv/bin/:$PATH"
-fi
-
-# Cask
-if [ -d "$HOME/.cask" ]; then
-  PATH="$HOME/.cask/bin:$PATH"
-fi
-
-# CIM
-if [ -d "$HOME/.cim" ]; then
-    CIM_HOME=/home/russell/.cim;
-    if [ -s "$CIM_HOME/init.sh" ]; then
-        . "$CIM_HOME/init.sh"
-    fi
-fi
-
-# Home dir bin
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
 
 setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
 
@@ -252,14 +212,6 @@ then
     TERM=xterm-256color
 fi
 
-# Scheme
-function join {
-    local IFS="$1";
-    shift;
-    echo "$*";
-}
-export GUILE_LOAD_PATH=$(join ';' `ls -d ~/projects/scheme/*(N)`)
-
 #
 # grep colors
 #
@@ -284,41 +236,8 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 osrc() { source ~/.os/$1; }
 compdef "_path_files -f -W ~/.os/" osrc
 
-function gread_link {
-    TARGET_FILE=$1
-
-    cd `dirname $TARGET_FILE`
-    TARGET_FILE=`basename $TARGET_FILE`
-
-    # Iterate down a (possible) chain of symlinks
-    while [ -L "$TARGET_FILE" ]
-    do
-        TARGET_FILE=`readlink $TARGET_FILE`
-        cd `dirname $TARGET_FILE`
-        TARGET_FILE=`basename $TARGET_FILE`
-    done
-
-    # Compute the canonicalized name by finding the physical path
-    # for the directory we're in and appending the target file.
-    PHYS_DIR=`pwd -P`
-    RESULT=$PHYS_DIR/$TARGET_FILE
-    echo $RESULT
-}
-
-# PDSH
-export PDSH_RCMD_TYPE="ssh"
-export PDSH_GENDERS_FILE=$(gread_link ~/.genders)
-
-# git-buildpackage default target.
-export DIST=unstable
-export ARCH=amd64
-
 # Virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
-export WORKON_HOME=~/.virtualenvs/
-
-# Pip
-export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
 # EMACS launcher
 e () {
