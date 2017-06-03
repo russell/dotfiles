@@ -18,6 +18,8 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     sql
+     elm
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -35,6 +37,7 @@ values."
      erc
      git
      html
+     elm
      javascript
      markdown
      org
@@ -281,6 +284,7 @@ layers configuration. You are free to put any user code."
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(sentence-end-double-space t)
+ '(user-mail-address "russell.sim@gmail.com")
  '(web-mode-code-indent-offset 2)
  '(web-mode-markup-indent-offset 2))
 (custom-set-faces
