@@ -192,10 +192,11 @@ g () {
 e () {
     if [ $DARWIN -eq 1 ]; then
         EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
     else
         EMACS=emacs
+        EMACSCLIENT=emacsclient
     fi
-    EMACSCLIENT=emacsclient
 
     tempuid=`id -u`
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
@@ -205,19 +206,19 @@ e () {
     fi
 
     if [ -z "$DISPLAY" ]; then
-        exec $EMACS -n "$@"
+        $EMACS -n "$@"
     else
     if [ $DARWIN -eq 1 ]; then
         if [ -e "$EMACSSERVER" ]; then
-            exec $EMACSCLIENT -n "$@" &
+            $EMACSCLIENT -n "$@" &
         else
-            exec $EMACS --eval "(server-start)" "$@" &
+            $EMACS --eval "(server-start)" "$@" &
         fi
     else
         if [ -e "$EMACSSERVER" ]; then
             $EMACSCLIENT -n "$@"
         else
-            exec $EMACS --eval "(server-start)" "$@" &
+            $EMACS --eval "(server-start)" "$@" &
         fi
     fi
     fi
@@ -225,7 +226,12 @@ e () {
 
 # edit file with root privs
 function E() {
-         emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
+    if [ $DARWIN -eq 1 ]; then
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+    else
+        EMACSCLIENT=emacsclient
+    fi
+    $EMACSCLIENT-n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
 function ssh-push-key {
@@ -289,9 +295,8 @@ if which virtualenvwrapper.sh &>/dev/null ; then
     source `which virtualenvwrapper.sh`
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then
+   source /usr/local/opt/chruby/share/chruby/auto.sh
 fi
 
 if [ -f "$HOME/.bashrc.local" ]; then

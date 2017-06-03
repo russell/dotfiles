@@ -1,6 +1,8 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+(if (string-equal "darwin" (symbol-name system-type))
+    (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH"))))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -29,7 +31,11 @@ values."
      ansible
      arrsim
      znc
-     auto-completion
+     (auto-completion :variables
+                      ;; Try to make auto-complete behave
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      common-lisp
      dockerfile
@@ -51,6 +57,9 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     (ruby :variables
+           ruby-version-manager 'chruby
+           )
      spell-checking
      syntax-checking
      systemd
@@ -280,7 +289,7 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ag-use-temp-buffer t)
- '(helm-follow-mode-persistent t)
+ '(helm-follow-mode-persistent nil)
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(sentence-end-double-space t)

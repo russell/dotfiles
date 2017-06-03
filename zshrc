@@ -11,6 +11,7 @@ fi
 
 if [ $DARWIN -eq 1 ]; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+    export PATH="/usr/local/bin:$PATH"
 fi
 
 
@@ -22,6 +23,7 @@ antigen-bundle robbyrussell/oh-my-zsh plugins/git
 antigen-bundle robbyrussell/oh-my-zsh plugins/debian
 antigen-bundle robbyrussell/oh-my-zsh plugins/pip
 antigen-bundle robbyrussell/oh-my-zsh plugins/virtualenvwrapper
+antigen-bundle robbyrussell/oh-my-zsh plugins/chruby
 antigen-apply
 
 # Disable underline of paths
@@ -243,10 +245,11 @@ export VIRTUAL_ENV_DISABLE_PROMPT="True"
 e () {
     if [ $DARWIN -eq 1 ]; then
         EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
     else
         EMACS=emacs
+        EMACSCLIENT=emacsclient
     fi
-    EMACSCLIENT=emacsclient
 
     tempuid=`id -u`
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
@@ -256,19 +259,19 @@ e () {
     fi
 
     if [ -z "$DISPLAY" ]; then
-        exec $EMACS -n "$@"
+        $EMACS -n "$@"
     else
     if [ $DARWIN -eq 1 ]; then
         if [ -e "$EMACSSERVER" ]; then
-            exec $EMACSCLIENT -n "$@" &
+            $EMACSCLIENT -n "$@" &
         else
-            exec $EMACS --eval "(server-start)" "$@" &
+            $EMACS --eval "(server-start)" "$@" &
         fi
     else
         if [ -e "$EMACSSERVER" ]; then
             $EMACSCLIENT -n "$@"
         else
-            exec $EMACS --eval "(server-start)" "$@" &
+            $EMACS --eval "(server-start)" "$@" &
         fi
     fi
     fi
@@ -276,17 +279,32 @@ e () {
 
 # edit file in console
 ec () {
-    emacs -nw "$@"
+    if [ $DARWIN -eq 1 ]; then
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+    else
+        EMACS=emacs
+    fi
+    $EMACS -nw "$@"
 }
 
 # edit file with root permissions
 E () {
-    emacsclient -n -a emacs "/sudo:root@localhost:$PWD/$1"
+    if [ $DARWIN -eq 1 ]; then
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+    else
+        EMACSCLIENT=emacsclient
+    fi
+    $EMACSCLIENT-n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
 # edit file in console with a root permissions.
 EC () {
-    emacs -nw "/sudo:root@localhost:$PWD/$1"
+    if [ $DARWIN -eq 1 ]; then
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+    else
+        EMACS=emacs
+    fi
+    $EMACS -nw "/sudo:root@localhost:$PWD/$1"
 }
 
 function ssh-push-key {
@@ -335,6 +353,16 @@ function openstack_clear {
     fi
     default_prompt
 }
+
+function ansible-vault-diff {
+    diff -u \
+         <(ansible-vault view <(git show HEAD^:./${1})) \
+         <(ansible-vault view <(git show HEAD:./${1}))
+}
+
+if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then
+    source /usr/local/opt/chruby/share/chruby/auto.sh
+fi
 
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
