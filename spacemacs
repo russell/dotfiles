@@ -40,7 +40,7 @@ values."
      common-lisp
      dockerfile
      emacs-lisp
-     erc
+     rcirc
      git
      html
      elm
@@ -70,7 +70,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(scad-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -84,6 +84,8 @@ This function is called at the very startup of Spacemacs initialization
 before layers configuration.
 You should not put any user code in there besides modifying the variable
 values."
+  (add-to-list 'package-archives
+               '("emacs-pe" . "https://emacs-pe.github.io/packages/"))
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default

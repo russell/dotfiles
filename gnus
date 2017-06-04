@@ -58,17 +58,17 @@
 
 (setq gnus-secondary-select-methods nil)
 
-(when (string= (system-name) "sparky")
- (add-to-list 'gnus-secondary-select-methods
-              '(nntp "news.gmane.org"))
- (add-to-list 'gnus-secondary-select-methods
-              '(nntp "news.eternal-september.org")))
+(when (string= (system-name) "sparky.home")
+  (add-to-list 'gnus-secondary-select-methods
+               '(nntp "news.gmane.org"))
+  (add-to-list 'gnus-secondary-select-methods
+               '(nntp "news.eternal-september.org")))
 
 
 ;; don't bother me with dribbles
-;(setq gnus-always-read-dribble-file t)
+                                        ;(setq gnus-always-read-dribble-file t)
 ;; don't bother me with session password
-;(setq imap-store-password t)
+                                        ;(setq imap-store-password t)
 
 (setq gnus-signature-separator
       '("^-- $" "^-- *$" "^[.][.][.][.][.][.]* *$"))
@@ -101,13 +101,13 @@
 You need to add `Content-Type' to `nnmail-extra-headers' and
 `gnus-extra-headers', see Info node `(gnus)To From Newsgroups'."
   (let ((case-fold-search t)
-	(ctype (or (cdr (assq 'Content-Type (mail-header-extra header)))
-		   "text/plain"))
-	indicator)
+        (ctype (or (cdr (assq 'Content-Type (mail-header-extra header)))
+                   "text/plain"))
+        indicator)
     (when (string-match "^multipart/mixed" ctype)
       (setq indicator "@"))
     (if indicator
-	indicator
+        indicator
       " ")))
 
 (defalias 'gnus-user-format-function-score 'rs-gnus-summary-line-score)
@@ -168,16 +168,16 @@ See (info \"(gnus)Group Line Specification\")."
 ;; distinguish.
 ;; '(gnus-simplify-subject-fuzzy-regexp '(" \\[Comment\\]"))
 (setq gnus-simplify-subject-functions
-  '(gnus-simplify-subject gnus-simplify-subject-fuzzy gnus-simplify-whitespace))
+      '(gnus-simplify-subject gnus-simplify-subject-fuzzy gnus-simplify-whitespace))
 (setq gnus-summary-make-false-root 'dummy)
 (setq gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
 (setq gnus-thread-operation-ignore-subject nil)
 (setq gnus-thread-sort-functions
-  '(gnus-thread-sort-by-number (not gnus-thread-sort-by-most-recent-date)))
+      '(gnus-thread-sort-by-number (not gnus-thread-sort-by-most-recent-date)))
 (setq gnus-subthread-sort-functions
-  '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
+      '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
 
-; w3m
+                                        ; w3m
 (setq mm-text-html-renderer 'shr)
 
 (setq shr-blocked-images nil)
@@ -186,7 +186,7 @@ See (info \"(gnus)Group Line Specification\")."
 (setq shr-color-visible-luminance-min 80)
 (setq mm-w3m-safe-url-regexp nil)
 
-;(setq gnus-mime-display-multipart-related-as-mixed nil)
+                                        ;(setq gnus-mime-display-multipart-related-as-mixed nil)
 
 (require 'gnus-gravatar)
 
@@ -235,19 +235,19 @@ See (info \"(gnus)Group Line Specification\")."
   (interactive "P")
   (with-current-buffer gnus-article-buffer
     (let ((st (point-min))
-	  (nd (point-max))
-	  (w3m-async-exec w3m-async-exec))
+          (nd (point-max))
+          (w3m-async-exec w3m-async-exec))
       (save-restriction
-	(widen)
-	(if (or (> st (point-min)) (< nd (point-max)))
-	    (setq w3m-async-exec nil))
-	(article-goto-body)
-	(goto-char (or (text-property-not-all (point) (point-max)
-					      'w3m-safe-url-regexp nil)
-		       (point)))
-	(if (interactive-p)
-	    (call-interactively 'w3m-toggle-inline-images)
-	  (w3m-toggle-inline-images arg))))))
+        (widen)
+        (if (or (> st (point-min)) (< nd (point-max)))
+            (setq w3m-async-exec nil))
+        (article-goto-body)
+        (goto-char (or (text-property-not-all (point) (point-max)
+                                              'w3m-safe-url-regexp nil)
+                       (point)))
+        (if (interactive-p)
+            (call-interactively 'w3m-toggle-inline-images)
+          (w3m-toggle-inline-images arg))))))
 
 (define-key gnus-summary-mode-map (kbd ">") 'gnus-summary-show-thread)
 (define-key gnus-summary-mode-map (kbd "<") 'gnus-summary-hide-thread)
@@ -258,8 +258,8 @@ See (info \"(gnus)Group Line Specification\")."
 (gnus-add-configuration
  '(article
    (vertical 1.0
-			 (summary 0.25 point)
-			 (article 1.0))))
+             (summary 0.25 point)
+             (article 1.0))))
 
 (setq
  ;; %S   The native news server.
@@ -364,13 +364,13 @@ See (info \"(gnus)Group Line Specification\")."
 (defadvice mm-url-insert (after DE-convert-atom-to-rss () )
   "Converts atom to RSS by calling xsltproc."
   (when (re-search-forward "xmlns=\"http://www.w3.org/.*/Atom\""
-			   nil t)
+                           nil t)
     (goto-char (point-min))
     (message "Converting Atom to RSS... ")
     (call-process-region (point-min) (point-max)
-			 "xsltproc"
-			 t t nil
-			 (expand-file-name "~/.emacs.d/atom2rss.xsl") "-")
+                         "xsltproc"
+                         t t nil
+                         (expand-file-name "~/.emacs.d/atom2rss.xsl") "-")
     (goto-char (point-min))
     (message "Converting Atom to RSS... done")))
 
