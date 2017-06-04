@@ -1,6 +1,8 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+(if (string-equal "darwin" (symbol-name system-type))
+    (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH"))))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -13,11 +15,13 @@ values."
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path (list (expand-file-name (concat user-home-directory ".spacemacs.d/")))
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     sql
+     elm
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -26,7 +30,12 @@ values."
      ;; auto-completion
      ansible
      arrsim
-     auto-completion
+     znc
+     (auto-completion :variables
+                      ;; Try to make auto-complete behave
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      common-lisp
      dockerfile
@@ -34,6 +43,7 @@ values."
      erc
      git
      html
+     elm
      javascript
      markdown
      org
@@ -43,9 +53,13 @@ values."
      racket
      restclient
      scheme
+     scad
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     (ruby :variables
+           ruby-version-manager 'chruby
+           )
      spell-checking
      syntax-checking
      systemd
@@ -254,12 +268,11 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  (setq configuration-layer-private-directory
-        (expand-file-name (concat user-home-directory ".spacemacs.d/")))
-  (setq configuration-layer-private-layer-directory
-        (expand-file-name (concat user-home-directory ".spacemacs.d/")))
   (setq powerline-default-separator 'slant)
   (setq ispell-dictionary "british")
+  (setq evil-lisp-state-enter-lisp-state-on-command nil)
+  (with-eval-after-load 'erc
+    (delq 'erc-modules 'youtube))
   )
 
 (defun dotspacemacs/user-config ()
@@ -276,10 +289,11 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ag-use-temp-buffer t)
- '(helm-follow-mode-persistent t)
+ '(helm-follow-mode-persistent nil)
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(sentence-end-double-space t)
+ '(user-mail-address "russell.sim@gmail.com")
  '(web-mode-code-indent-offset 2)
  '(web-mode-markup-indent-offset 2))
 (custom-set-faces

@@ -28,7 +28,7 @@
                              "^Resent-From:" "^User-Agent:" "^X-Mailer:"))
 (setq mm-verify-option 'known)
 (setq mm-decrypt-option 'known)
-(setq mml-smime-signers (quote ("27E94A1A")))
+(setq mml-smime-signers '("22B1092ADDDC47DD"))
 (setq mm-discouraged-alternatives
       '("multipart/related" "text/html" "text/richtext")
       mm-automatic-display
@@ -58,7 +58,7 @@
 
 (setq gnus-secondary-select-methods nil)
 
-(when (equal hostname "sparky")
+(when (string= (system-name) "sparky")
  (add-to-list 'gnus-secondary-select-methods
               '(nntp "news.gmane.org"))
  (add-to-list 'gnus-secondary-select-methods
