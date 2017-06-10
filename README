@@ -2,6 +2,9 @@
 Install
 =======
 
+# python
+sudo apt-get install python-virtualenv
+
 # vim
 apt-get install python-ropemacs exuberant-ctags
 
@@ -18,6 +21,8 @@ apt-get install urlview
 
 from the directory containing this file run.
 
+# zsh
+sudo apt-get install zsh zsh-syntax-highlighting
 
 # emacs - flymake-js
 sudo apt-get install npm
