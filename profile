@@ -67,7 +67,7 @@ join () {
     shift;
     echo "$*";
 }
-export GUILE_LOAD_PATH=$(join ';' `ls -d ~/projects/scheme/*`)
+export GUILE_LOAD_PATH=$(join ';' `find ~/projects/scheme/ -mindepth 1 -type d`)
 
 export GPGKEY=22B1092ADDDC47DD
 
