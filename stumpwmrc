@@ -179,15 +179,16 @@
 (define-key *root-map* (kbd "u") "chrome")
 (define-key *top-map* (kbd "s-u") "chrome")
 
-(defcommand conkeror () ()
+(defcommand firefox () ()
   "Start Firefox or switch to it, if it is already running."
-  (run-or-raise "conkeror" '(:class "Conkeror")))
+  (run-or-raise "firefox" '(:class "Firefox")))
+(define-key *top-map* (kbd "s-f") "firefox")
 
 ;; Launch Terminal
-(defcommand terminator () ()
+(defcommand terminal () ()
   "Start Terminator or switch to it, if it's already running."
-  (run-or-raise "terminator" '(:class "Terminator")))
-(define-key *top-map* (kbd "s-i") "terminator")
+  (run-or-raise "gnome-terminal" '(:class "Gnome-terminal")))
+(define-key *top-map* (kbd "s-i") "terminal")
 
 ;; log out
 (define-key *root-map* (kbd "^") "quit")
