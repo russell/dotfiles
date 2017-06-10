@@ -44,12 +44,11 @@
 ;;
 ;; Mode line
 ;;
-
 (quicklisp:quickload 'battery-portable)
 
-(setf *mode-line-foreground-color* "Gray50")
+(setf *mode-line-foreground-color* "Gray40")
 (setf *mode-line-background-color* "Gray20")
-(set-focus-color "DarkRed")
+(set-focus-color "Gray40")
 
 (defparameter *vol-status-command*
   "amixer get Master | egrep '[[:digit:]]+%' -o | head -1 | tr -d '\\n'")
