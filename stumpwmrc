@@ -33,12 +33,13 @@
 
 ;; Set sloppy focus
 (setf *mouse-focus-policy* :sloppy)
-
 (add-to-load-path "/home/russell/projects/lisp/stumpwm-contrib/")
+(add-to-load-path "/home/russell/projects/lisp/stumpwm-contrib/modeline/battery-portable")
 
-(asdf:initialize-source-registry)
-(quicklisp:quickload :stumpwm.contrib.kbd-brightness)
-(quicklisp:quickload :stumpwm.contrib.wifi)
+; (asdf:initialize-source-registry)
+;;(quicklisp:quickload :stumpwm.contrib.kbd-brightness)
+;;(quicklisp:quickload :stumpwm.contrib.wifi)
+;; (quicklisp:quickload :battery-portable)
 
 ;;
 ;; Mode line
@@ -101,10 +102,10 @@
 ;; Brightness
 ;;
 
-(load-module "kbd-brightness")
-(setf stumpwm.contrib.kbd-brightness:*keyboard-brightness-display* t)
-(define-key *top-map* (kbd "XF86KbdBrightnessUp") "kbd-brightness 25")
-(define-key *top-map* (kbd "XF86KbdBrightnessDown") "kbd-brightness -25")
+;;(load-module "kbd-brightness")
+;;(setf stumpwm.contrib.kbd-brightness:*keyboard-brightness-display* t)
+;;(define-key *top-map* (kbd "XF86KbdBrightnessUp") "kbd-brightness 25")
+;;(define-key *top-map* (kbd "XF86KbdBrightnessDown") "kbd-brightness -25")
 
 
 ;;
@@ -119,16 +120,16 @@
        :while num
        :collect num))))
 
-(defcommand brightness (value) ((:number "Adjust brightness: "))
-  "Increment brightness."
-  (let ((arg (if (plusp value) "-inc" "-dec")))
-    (run-shell-command (format nil "xbacklight ~a ~a" arg (abs value))))
-  (format nil "Brightness: ~,2f"
-          (parse-string-to-float
-           (run-shell-command "xbacklight" t))))
+;; (defcommand brightness (value) ((:number "Adjust brightness: "))
+;;   "Increment brightness."
+;;   (let ((arg (if (plusp value) "-inc" "-dec")))
+;;     (run-shell-command (format nil "xbacklight ~a ~a" arg (abs value))))
+;;   (format nil "Brightness: ~,2f"
+;;           (parse-string-to-float
+;;            (run-shell-command "xbacklight" t))))
 
-(define-key *top-map* (kbd "XF86MonBrightnessUp") "brightness 10")
-(define-key *top-map* (kbd "XF86MonBrightnessDown") "brightness -10")
+;; (define-key *top-map* (kbd "XF86MonBrightnessUp") "brightness 10")
+;; (define-key *top-map* (kbd "XF86MonBrightnessDown") "brightness -10")
 
 ;;** 2 (info "(stumpwm)Key Bindings")
 
