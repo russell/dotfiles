@@ -208,6 +208,19 @@
   (run-shell-command "/home/russell/bin/togglexkbmap")
   (run-shell-command "/usr/bin/xmodmap ~/.xmodmaprc"))
 
+(defcommand rofi-drun () ()
+  "Rofi DRun"
+  (run-shell-command "rofi -show drun -fg '#f1f1f1' -bg `#333333' -hlfg `#ffffff' -hlbg `#336699' -o 85"))
+(define-key *top-map* (kbd "s-l") "rofi-drun")
+
+(defcommand rofi-run () ()
+  "Rofi Run"
+  (run-shell-command "rofi -show run -fg '#f1f1f1' -bg `#333333' -hlfg `#ffffff' -hlbg `#336699' -o 85"))
+
+(defcommand rofi-window () ()
+  "Rofi window"
+  (run-shell-command "rofi -show window -fg '#f1f1f1' -bg `#333333' -hlfg `#ffffff' -hlbg `#336699' -o 85"))
+
 ;;
 ;; MPD
 ;;
