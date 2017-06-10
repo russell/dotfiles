@@ -26,6 +26,11 @@ antigen-bundle robbyrussell/oh-my-zsh plugins/virtualenvwrapper
 antigen-bundle robbyrussell/oh-my-zsh plugins/chruby
 antigen-apply
 
+# Load syntax highlighting if it's installed
+if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 # Disable underline of paths
 ZSH_HIGHLIGHT_STYLES[path]='none'
 
