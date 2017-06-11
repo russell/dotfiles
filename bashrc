@@ -154,13 +154,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-
-if [ $DARWIN -eq 1 ]; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-fi
-
-if which virtualenvwrapper.sh &>/dev/null ; then
-    source `which virtualenvwrapper.sh`
+if command -v direnv > /dev/null; then
+    eval "$(direnv hook bash)"
 fi
 
 if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then

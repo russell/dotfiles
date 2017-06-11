@@ -175,7 +175,6 @@ fi
 #
 # ls colors
 #
-
 autoload colors; colors;
 
 #setopt no_beep
@@ -187,6 +186,11 @@ if [[ "$COLORTERM" == "gnome-terminal" ]]
 then
     TERM=xterm-256color
 fi
+
+if command -v direnv; then
+    eval "$(direnv hook zsh)"
+fi
+
 
 #export PYTHONDONTWRITEBYTECODE=true
 

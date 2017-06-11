@@ -2,6 +2,38 @@
 
 alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
 
+mkvirtualenv () {
+    local python=$1
+    local name=$2
+    local venv=${WORKON_HOME}/${name}
+
+    if [ -d $venv ]; then
+        echo "ERROR: Virtual env $venv already exists"
+        return 1
+    fi
+
+    if [ -f .envrc ]; then
+        echo "ERROR: envrc already exists"
+        return 1
+    fi
+
+    if ! command -v $python > /dev/null; then
+        echo "ERROR: $python not found"
+        return 1
+    fi
+
+    virtualenv -p $(command -v $python) $venv
+    echo "layout virtualenvwrapper $name" > .envrc
+}
+
+mkvirtualenv2 () {
+    mkvirtualenv python2 $(basename $PWD)
+}
+
+mkvirtualenv3 () {
+    mkvirtualenv python3 $(basename $PWD)
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

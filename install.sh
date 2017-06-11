@@ -6,8 +6,9 @@ bashrc
 bazaar
 conkerorrc
 common.lisp
-dunstrc
+direnvrc
 docker
+dunstrc
 eclrc
 fonts.conf
 gbp.conf

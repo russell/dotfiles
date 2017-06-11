@@ -5,3 +5,4 @@
 .ropeproject
 .emacs-dirvars
 */.#*
+.envrc

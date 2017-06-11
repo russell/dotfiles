@@ -2,6 +2,9 @@
 Install
 =======
 
+# direnv
+sudo apt-get install direnv
+
 # python
 sudo apt-get install python-virtualenv
 
