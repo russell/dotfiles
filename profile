@@ -17,6 +17,15 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+# Debian doesn't seem to have a TMPDIR variable any more :(
+[ -z "$TMPDIR" ] && TMPDIR=/tmp/
+
+
+if [ $DARWIN -eq 1 ]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+    export PATH="/usr/local/bin:$PATH"
+fi
+
 # Android SDK
 if [ -d "/opt/android-sdk-linux_x86/tools/" ] ; then
     PATH="/opt/android-sdk-linux_x86/tools/:$PATH"
@@ -109,8 +118,29 @@ export DIST=unstable
 export ARCH=amd64
 
 # Python virtualenv/pip
+#export PYTHONDONTWRITEBYTECODE=true
 export WORKON_HOME=~/.virtualenvs/
 export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
 export PATH
 export MANPATH
+
+export LSCOLORS="exfxcxdxbxegedabagacad"
+export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+
+#
+# grep colors
+#
+export GREP_COLOR='1;32'
+
+#
+# Less Colors for Man Pages
+#
+
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
