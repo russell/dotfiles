@@ -130,16 +130,6 @@ then
     TERM=xterm-256color
 fi
 
-#
-# environment variables
-#
-export DEBEMAIL="russell.sim@gmail.com"
-export DEBFULLNAME="Russell Sim"
-export MAIL="russell.sim@gmail.com"
-
-export GPGKEY=22B1092ADDDC47DD
-
-export CC="gcc"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -147,27 +137,6 @@ if [ -x /usr/bin/dircolors ]; then
 elif [ -x /usr/local/bin/gdircolors ]; then
     test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
 fi
-
-if [ $DARWIN -eq 1 ]; then
-    alias ls='ls -G'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-else
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-
-fi
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -185,109 +154,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-g () {
-   grep -G -w --color=always --include="*.py" --include="*.xhtml" --include="*.tac" --include="*.po" -R "$@" ~/code/df
-}
-
-
-# EMACS launcher
-e () {
-    if [ $DARWIN -eq 1 ]; then
-        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
-        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
-    else
-        EMACS=emacs
-        EMACSCLIENT=emacsclient
-    fi
-
-    tempuid=`id -u`
-    EMACSSERVER=$TMPDIR/emacs$tempuid/server
-
-    if [ -f $HOME/.emacsconfig ]; then
-        . $HOME/.emacsconfig
-    fi
-
-    if [ -z "$DISPLAY" ]; then
-        $EMACS -n "$@"
-    else
-    if [ $DARWIN -eq 1 ]; then
-        if [ -e "$EMACSSERVER" ]; then
-            $EMACSCLIENT -n "$@" &
-        else
-            $EMACS --eval "(server-start)" "$@" &
-        fi
-    else
-        if [ -e "$EMACSSERVER" ]; then
-            $EMACSCLIENT -n "$@"
-        else
-            $EMACS --eval "(server-start)" "$@" &
-        fi
-    fi
-    fi
-}
-
-# edit file with root privs
-function E() {
-    if [ $DARWIN -eq 1 ]; then
-        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
-    else
-        EMACSCLIENT=emacsclient
-    fi
-    $EMACSCLIENT-n -a emacs "/sudo:root@localhost:$PWD/$1"
-}
-
-function ssh-push-key {
-  ssh "$@" "echo '`cat ~/.ssh/id_rsa.pub`' >> ~/.ssh/authorized_keys"
-}
-
-if [ $SSH_TTY ]; then
-    export EDITOR="emacs -nw"
-    export GIT_EDITOR="emacs -nw"
-    export BZR_EDITOR="emacs -nw"
-    alias emacs="emacs -nw"
-else
-    export EDITOR="emacsclient"
-    export GIT_EDITOR="emacsclient"
-    export BZR_EDITOR="emacsclient"
-fi
-
-#export PYTHONDONTWRITEBYTECODE=true
-
-function gread_link {
-    TARGET_FILE=$1
-
-    cd `dirname $TARGET_FILE`
-    TARGET_FILE=`basename $TARGET_FILE`
-
-    # Iterate down a (possible) chain of symlinks
-    while [ -L "$TARGET_FILE" ]
-    do
-        TARGET_FILE=`readlink $TARGET_FILE`
-        cd `dirname $TARGET_FILE`
-        TARGET_FILE=`basename $TARGET_FILE`
-    done
-
-    # Compute the canonicalized name by finding the physical path
-    # for the directory we're in and appending the target file.
-    PHYS_DIR=`pwd -P`
-    RESULT=$PHYS_DIR/$TARGET_FILE
-    echo $RESULT
-}
-
-export PDSH_RCMD_TYPE="ssh"
-export PDSH_GENDERS_FILE=$(gread_link ~/.genders)
-
-# git-buildpackage default target.
-export DIST=unstable
-export ARCH=amd64
-
-alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
-
-# Virtualenv
-export WORKON_HOME=~/.virtualenvs/
-
-# Pip
-export PIP_DOWNLOAD_CACHE=~/.egg-cache
 
 if [ $DARWIN -eq 1 ]; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python

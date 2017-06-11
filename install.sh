@@ -2,7 +2,6 @@
 
 files=$(cat <<EOF
 ansible.cfg
-bash_aliases
 bashrc
 bazaar
 conkerorrc
@@ -58,10 +57,22 @@ function symlink {
     fi
 }
 
+function maybe_symlink {
+    name=$1
+    target=${2:-"$HOME/.$name"}
+    if [ ! -L $target ]; then
+        symlink $name $target
+    else
+        echo "WARNING: $target exists but is not a symlink."
+    fi
+}
 
 for name in $files; do
     symlink $name
 done
+
+maybe_symlink aliases ~/.bash_aliases
+maybe_symlink aliases ~/.zaliases
 
 if [ ! -e ~/.emacs.d ]; then
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d

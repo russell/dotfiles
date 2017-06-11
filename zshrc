@@ -9,12 +9,6 @@ if [[ $(uname) == "Darwin" ]]; then
   DARWIN=1;
 fi
 
-if [ $DARWIN -eq 1 ]; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-    export PATH="/usr/local/bin:$PATH"
-fi
-
-
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git $fpath)
@@ -33,9 +27,6 @@ fi
 
 # Disable underline of paths
 ZSH_HIGHLIGHT_STYLES[path]='none'
-
-# Debian doesn't seem to have a TMPDIR variable any more :(
-[ -z "$TMPDIR" ] && TMPDIR=/tmp/
 
 # Set up the prompt
 if [[ $TERM == "dumb" ]]; then	# in emacs
@@ -177,37 +168,15 @@ if [ -e $NOVA_DIR ]; then
     autoload -U bashcompinit;bashcompinit;source $NOVA_DIR/tools/nova.bash_completion
 fi
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-if [ $SSH_TTY ]; then
-    export EDITOR='emacs -nw'
-    export GIT_EDITOR="emacs -nw"
-    export BZR_EDITOR="emacs -nw"
-    alias emacs="emacs -nw"
-else
-    export EDITOR='emacsclient'
-    export GIT_EDITOR="emacsclient"
-    export BZR_EDITOR="emacsclient"
+if [ -f ~/.zaliases ]; then
+    . ~/.zaliases
 fi
-
-alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
 
 #
 # ls colors
 #
 
 autoload colors; colors;
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
-
-# Enable ls colors
-if [ "$DISABLE_LS_COLORS" != "true" ]
-then
-  # Find the option for using colors in ls, depending on the version: Linux or BSD
-  ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
-fi
 
 #setopt no_beep
 setopt auto_cd
@@ -219,24 +188,6 @@ then
     TERM=xterm-256color
 fi
 
-#
-# grep colors
-#
-export GREP_COLOR='1;32'
-
-#
-# Less Colors for Man Pages
-#
-
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-
-
 #export PYTHONDONTWRITEBYTECODE=true
 
 # Openstack RC Files
@@ -245,76 +196,6 @@ compdef "_path_files -f -W ~/.os/" osrc
 
 # Virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
-
-# EMACS launcher
-e () {
-    if [ $DARWIN -eq 1 ]; then
-        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
-        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
-    else
-        EMACS=emacs
-        EMACSCLIENT=emacsclient
-    fi
-
-    tempuid=`id -u`
-    EMACSSERVER=$TMPDIR/emacs$tempuid/server
-
-    if [ -f $HOME/.emacsconfig ]; then
-        source $HOME/.emacsconfig
-    fi
-
-    if [ -z "$DISPLAY" ]; then
-        $EMACS -n "$@"
-    else
-    if [ $DARWIN -eq 1 ]; then
-        if [ -e "$EMACSSERVER" ]; then
-            $EMACSCLIENT -n "$@" &
-        else
-            $EMACS --eval "(server-start)" "$@" &
-        fi
-    else
-        if [ -e "$EMACSSERVER" ]; then
-            $EMACSCLIENT -n "$@"
-        else
-            $EMACS --eval "(server-start)" "$@" &
-        fi
-    fi
-    fi
-}
-
-# edit file in console
-ec () {
-    if [ $DARWIN -eq 1 ]; then
-        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
-    else
-        EMACS=emacs
-    fi
-    $EMACS -nw "$@"
-}
-
-# edit file with root permissions
-E () {
-    if [ $DARWIN -eq 1 ]; then
-        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
-    else
-        EMACSCLIENT=emacsclient
-    fi
-    $EMACSCLIENT-n -a emacs "/sudo:root@localhost:$PWD/$1"
-}
-
-# edit file in console with a root permissions.
-EC () {
-    if [ $DARWIN -eq 1 ]; then
-        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
-    else
-        EMACS=emacs
-    fi
-    $EMACS -nw "/sudo:root@localhost:$PWD/$1"
-}
-
-function ssh-push-key {
-  ssh "$@" "echo '`cat ~/.ssh/id_rsa.pub`' >> ~/.ssh/authorized_keys"
-}
 
 if [ -n "$SSH_CONNECTION" ]
 then
@@ -357,12 +238,6 @@ function openstack_clear {
        unset $(env | awk -F '=' '/OS_/ { print $1 }')
     fi
     default_prompt
-}
-
-function ansible-vault-diff {
-    diff -u \
-         <(ansible-vault view <(git show HEAD^:./${1})) \
-         <(ansible-vault view <(git show HEAD:./${1}))
 }
 
 if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then
