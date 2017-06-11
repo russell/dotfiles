@@ -61,10 +61,12 @@ function symlink {
 function maybe_symlink {
     name=$1
     target=${2:-"$HOME/.$name"}
-    if [ ! -L $target ]; then
-        symlink $name $target
+    if [ -e $target ]; then
+        if [ ! -L $target ]; then
+            echo "WARNING: $target exists but is not a symlink."
+        fi
     else
-        echo "WARNING: $target exists but is not a symlink."
+        symlink $name $target
     fi
 }
 
