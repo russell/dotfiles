@@ -30,9 +30,9 @@ shopt -s checkwinsize
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Detect OSX
-DARWIN=0
+DARWIN=false
 if [ $(uname) == "Darwin" ]; then
-  DARWIN=1;
+  DARWIN=true;
 fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
