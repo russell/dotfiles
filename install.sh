@@ -28,6 +28,7 @@ sbclrc
 spacemacs
 spacemacs.d
 stumpwmrc
+tmux.conf
 vim
 vimrc
 xmodmaprc
