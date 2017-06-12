@@ -57,7 +57,7 @@ if [ -d "$HOME/.cim" ]; then
     fi
 fi
 
-# Emacs
+# Cask for OSX
 if [ -d "$HOME/.cask" ]; then
   PATH="$HOME/.cask/bin:$PATH"
 fi
