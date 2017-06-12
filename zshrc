@@ -295,6 +295,3 @@ function openstack_clear {
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
-# BEGIN DOCKER-IMAGES
-source /Users/rsim/zendesk/docker-images/dockmaster/zdi.sh
-# END DOCKER-IMAGES
