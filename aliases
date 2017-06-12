@@ -80,9 +80,18 @@ function ssh-push-key {
 }
 
 
+function rs-in-tmux {
+    if { [[ "$TERM" =~ "screen" ]] && [ -n "$TMUX" ]; }; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 ssh() {
-    if [[ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" =~ "tmux" ]]; then
+    if rs-in-tmux; then
         command ssh "$@"
+        tmux set-window-option automatic-rename "on" 1>/dev/null
         if [ $? -ne 0 ]; then
             printf "\033kssh/*dead\033\\"
         fi
