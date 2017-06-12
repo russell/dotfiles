@@ -19,11 +19,19 @@ fi
 
 layout_virtualenv() {
     local venv_path="$1"
+    if [[ -z $venv_path ]]; then
+        if [[ -d .venv ]]; then
+            venv_path=./.venv
+        fi
+    fi
     source ${venv_path}/bin/activate
 }
 
 layout_virtualenvwrapper() {
     local name=$1;
+    if [[ -z $name ]]; then
+        name=$(basename $PWD)
+    fi
     local venv_path="${WORKON_HOME}/${name}"
     layout_virtualenv $venv_path
 }
