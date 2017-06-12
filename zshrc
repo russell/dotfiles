@@ -172,6 +172,16 @@ if command -v rs-clip >/dev/null; then
     }
     zle -N x-copy-region-as-kill
 
+    x-backward-kill-word-or-region () {
+        if [ $REGION_ACTIVE -eq 0 ]; then
+            zle backward-kill-word
+        else
+            zle kill-region
+            print -rn -- ${CUTBUFFER} | rs-clip copy
+        fi
+    }
+    zle -N x-backward-kill-word-or-region
+
     x-kill-region () {
         zle kill-region
         print -rn -- ${CUTBUFFER} | rs-clip copy
@@ -185,7 +195,7 @@ if command -v rs-clip >/dev/null; then
     zle -N x-yank
 
     bindkey -e '\ew' x-copy-region-as-kill
-    bindkey -e '^W' x-kill-region
+    bindkey -e '^W' x-backward-kill-word-or-region
     bindkey -e '^Y' x-yank
     bindkey '^k' x-copy-line-as-kill
 fi
