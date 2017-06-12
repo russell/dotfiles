@@ -244,10 +244,6 @@ function openstack_clear {
     default_prompt
 }
 
-if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then
-    source /usr/local/opt/chruby/share/chruby/auto.sh
-fi
-
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi

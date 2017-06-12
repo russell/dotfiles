@@ -158,10 +158,6 @@ if command -v direnv > /dev/null; then
     eval "$(direnv hook bash)"
 fi
 
-if [ -f /usr/local/opt/chruby/share/chruby/auto.sh ]; then
-   source /usr/local/opt/chruby/share/chruby/auto.sh
-fi
-
 if [ -f "$HOME/.bashrc.local" ]; then
     . "$HOME/.bashrc.local"
 fi
