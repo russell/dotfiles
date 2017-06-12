@@ -159,6 +159,37 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 # ... unless we really want to.
 zstyle '*' single-ignored show
 
+if command -v rs-clip >/dev/null; then
+    # X Copy
+    x-copy-line-as-kill () {
+        zle kill-line
+        print -rn -- ${CUTBUFFER} | rs-clip copy
+    }
+    zle -N x-copy-line-as-kill
+
+    x-copy-region-as-kill () {
+        zle copy-region-as-kill
+        print -rn -- ${CUTBUFFER} | rs-clip copy
+    }
+    zle -N x-copy-region-as-kill
+
+    x-kill-region () {
+        zle kill-region
+        print -rn -- ${CUTBUFFER} | rs-clip copy
+    }
+    zle -N x-kill-region
+
+    x-yank () {
+        CUTBUFFER=$(rs-clip paste)
+        zle yank
+    }
+    zle -N x-yank
+
+    bindkey -e '\ew' x-copy-region-as-kill
+    bindkey -e '^W' x-kill-region
+    bindkey -e '^Y' x-yank
+    bindkey '^k' x-copy-line-as-kill
+fi
 
 # make deleting part of a dns entry easier.
 WORDCHARS=''
