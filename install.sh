@@ -81,6 +81,8 @@ maybe_symlink aliases ~/.zaliases
 maybe_symlink profile ~/.bash_profile
 maybe_symlink profile ~/.zprofile
 
+maybe_symlink znt ~/.config/znt
+
 if [ ! -e ~/.emacs.d ]; then
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi

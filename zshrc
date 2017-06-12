@@ -17,6 +17,7 @@ antigen-bundle robbyrussell/oh-my-zsh plugins/git
 antigen-bundle robbyrussell/oh-my-zsh plugins/debian
 antigen-bundle robbyrussell/oh-my-zsh plugins/pip
 antigen-bundle robbyrussell/oh-my-zsh plugins/chruby
+antigen bundle psprint/zsh-navigation-tools
 antigen-apply
 
 # Disable underline of paths
@@ -152,6 +153,10 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
+
+zle -N znt-history-widget
+bindkey '^R' znt-history-widget
+setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
 
 if command -v rs-clip >/dev/null; then
     # X Copy
