@@ -18,6 +18,9 @@ status = auto
 interactive = auto
 ui = auto
 
+[color "status"]
+header = white normal dim
+
 [diff]
 renames = true
 tool = meld

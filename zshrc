@@ -187,7 +187,7 @@ then
     TERM=xterm-256color
 fi
 
-if command -v direnv; then
+if command -v direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
@@ -251,3 +251,6 @@ fi
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
+# BEGIN DOCKER-IMAGES
+source /Users/rsim/zendesk/docker-images/dockmaster/zdi.sh
+# END DOCKER-IMAGES

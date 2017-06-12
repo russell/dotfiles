@@ -56,6 +56,7 @@ if [ -d "$HOME/.cask" ]; then
   PATH="$HOME/.cask/bin:$PATH"
 fi
 
+
 # NodeJS
 export NPM_PACKAGES="$HOME/.npm-packages"
 PATH="$NPM_PACKAGES/bin:$PATH"
@@ -77,6 +78,10 @@ join () {
     echo "$*";
 }
 export GUILE_LOAD_PATH=$(join ';' `find ~/projects/scheme/ -mindepth 1 -type d`)
+
+if [ -d "/usr/local/MacGPG2/bin/" ]; then
+    PATH="/usr/local/MacGPG2/bin/:$PATH"
+fi
 
 export GPGKEY=22B1092ADDDC47DD
 
@@ -144,3 +149,8 @@ export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi

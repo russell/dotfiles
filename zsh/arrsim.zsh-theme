@@ -33,6 +33,10 @@ function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
 
+function chruby_info {
+    [ $RUBY_ROOT ] && echo '('`basename $RUBY_ROOT`') '
+}
+
 # local time, color coded by last return code
 time_enabled="%(?.%{$fg[green]%}.%{$fg[red]%})%*%{$reset_color%}"
 time_disabled="%{$fg[green]%}%*%{$reset_color%}"
@@ -41,7 +45,7 @@ time=$time_enabled
 function default_prompt {
     PROMPT='
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
-$(virtualenv_info)$(prompt_char) '
+$(chruby_info)$(virtualenv_info)$(prompt_char) '
     RPROMPT=''
 }
 default_prompt
