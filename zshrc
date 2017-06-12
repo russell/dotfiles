@@ -4,9 +4,9 @@ source $ZSHDIR/antigen.zsh
 fpath=($ZSHDIR/completion $fpath)
 
 # Detect OSX
-DARWIN=0
+DARWIN=false
 if [[ $(uname) == "Darwin" ]]; then
-  DARWIN=1;
+  DARWIN=true;
 fi
 
 antigen-bundle zsh-users/zsh-syntax-highlighting
@@ -106,7 +106,7 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-if [ $DARWIN -eq 1 ]; then
+if $DARWIN; then
     eval "$(gdircolors -b)"
 else
     eval "$(dircolors -b)"

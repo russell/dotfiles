@@ -21,7 +21,7 @@ fi
 [ -z "$TMPDIR" ] && TMPDIR=/tmp/
 
 
-if [ $DARWIN -eq 1 ]; then
+if $DARWIN; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export PATH="/usr/local/bin:$PATH"
 fi
