@@ -161,5 +161,3 @@ fi
 if [ -f "$HOME/.bashrc.local" ]; then
     . "$HOME/.bashrc.local"
 fi
-
-export PATH="$HOME/.yarn/bin:$PATH"

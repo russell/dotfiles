@@ -43,6 +43,12 @@ then
     PATH="$HOME/.virtualenv/bin/:$PATH"
 fi
 
+# Yarn
+if [ -d "$HOME/.yarn/bin" ]
+then
+    export PATH="$HOME/.yarn/bin:$PATH"
+fi
+
 # Common Lisp
 if [ -d "$HOME/.cim" ]; then
     CIM_HOME=$HOME/.cim;
@@ -64,11 +70,6 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 if [ ! -d "$NPM_PACKAGES" ] ; then
     mkdir $NPM_PACKAGES
-fi
-
-# Home dir bin
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
 fi
 
 # Guile scheme path
