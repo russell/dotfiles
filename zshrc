@@ -262,6 +262,23 @@ function eterm-preexec {
     echo -e "\033AnSiTp" $(echo "$1" | cut -d ' ' -f 1)
 }
 
+function tmux-precmd {
+    if [ -n "$DIRENV_DIR" ]; then
+        local project_name=$(basename $(echo $DIRENV_DIR | cut -c 2-))
+        tmux set-window-option automatic-rename-format \
+             "#{?pane_in_mode,[tmux],${project_name}/#{pane_current_command}}#{?pane_dead,[dead],}"
+    else
+        tmux set-window-option automatic-rename-format \
+             "#{?pane_in_mode,[tmux],#{pane_current_command}}#{?pane_dead,[dead],}"
+    fi
+
+}
+
+if rs-in-tmux; then
+    add-zsh-hook precmd tmux-precmd
+fi
+
+
 # Track directory, username, and cwd for remote logons.
 if [ "$TERM" = "eterm-color" ]; then
     add-zsh-hook precmd eterm-precmd
