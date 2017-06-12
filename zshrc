@@ -16,7 +16,6 @@ gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SL
 antigen-bundle robbyrussell/oh-my-zsh plugins/git
 antigen-bundle robbyrussell/oh-my-zsh plugins/debian
 antigen-bundle robbyrussell/oh-my-zsh plugins/pip
-antigen-bundle robbyrussell/oh-my-zsh plugins/virtualenvwrapper
 antigen-bundle robbyrussell/oh-my-zsh plugins/chruby
 antigen-apply
 
