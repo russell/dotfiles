@@ -1,21 +1,31 @@
 # -*- mode: sh -*-
 ZSHDIR=$HOME/.zsh
-source $ZSHDIR/antigen.zsh
-fpath=($ZSHDIR/completion $fpath)
+export ZPLUG_HOME=$HOME/.zplug
+if [ ! -d $ZPLUG_HOME ]; then
+    curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
 
-antigen-bundle zsh-users/zsh-syntax-highlighting
-antigen-bundle zsh-users/zsh-completions
-gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git $fpath)
+source $ZPLUG_HOME/init.zsh
 
-antigen-bundle robbyrussell/oh-my-zsh plugins/git
-antigen-bundle robbyrussell/oh-my-zsh plugins/debian
-antigen-bundle robbyrussell/oh-my-zsh plugins/pip
-antigen-bundle robbyrussell/oh-my-zsh plugins/chruby
-antigen bundle psprint/zsh-navigation-tools
-antigen-apply
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+zplug 'zsh-users/zsh-completions'
+zplug 'plugins/git', from:oh-my-zsh
+zplug 'plugins/debian', from:oh-my-zsh
+zplug 'plugins/pip', from:oh-my-zsh
+zplug 'plugins/chruby', from:oh-my-zsh
 
-# Disable underline of paths
-ZSH_HIGHLIGHT_STYLES[path]='none'
+# zplug check returns true if all packages are installed
+# Therefore, when it returns false, run zplug install
+if ! zplug check; then
+    zplug install
+fi
+
+zplug load
+
+if zplug check 'zsh-users/zsh-syntax-highlighting'; then
+    # Disable underline of paths
+    ZSH_HIGHLIGHT_STYLES[path]='none'
+fi
 
 # Set up the prompt
 if [[ $TERM == "dumb" ]]; then	# in emacs
