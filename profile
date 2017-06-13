@@ -8,6 +8,17 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
+# Detect OSX
+DARWIN=false
+if [[ $(uname) == "Darwin" ]]; then
+    DARWIN=true;
+fi
+
+if $DARWIN; then
+    eval "$(gdircolors -b)"
+else
+    eval "$(dircolors -b)"
+fi
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

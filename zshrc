@@ -3,12 +3,6 @@ ZSHDIR=$HOME/.zsh
 source $ZSHDIR/antigen.zsh
 fpath=($ZSHDIR/completion $fpath)
 
-# Detect OSX
-DARWIN=false
-if [[ $(uname) == "Darwin" ]]; then
-  DARWIN=true;
-fi
-
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 gfpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git $fpath)
@@ -101,11 +95,6 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-if $DARWIN; then
-    eval "$(gdircolors -b)"
-else
-    eval "$(dircolors -b)"
-fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
