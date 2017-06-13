@@ -53,10 +53,23 @@ alias zshconfig="source ~/.zshrc"
 
 setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
 
+if [ -e $HOME/.fzf.zsh ]; then
+    FZF_TMUX=1
+    source $HOME/.fzf.zsh
+else
+    zplug 'psprint/zsh-navigation-tools'
+    if ! zplug check; then
+        zplug install
+    fi
+    zplug load
+    zle -N znt-history-widget
+    bindkey '^R' znt-history-widget
+    setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
+fi
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 bindkey '\ew' kill-region
-bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history
 bindkey "^[[6~" down-line-or-history
 
@@ -152,10 +165,6 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
-
-zle -N znt-history-widget
-bindkey '^R' znt-history-widget
-setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
 
 if command -v rs-clip >/dev/null; then
     # X Copy
