@@ -88,8 +88,12 @@ join () {
     local IFS="$1";
     shift;
     echo "$*";
+
 }
-export GUILE_LOAD_PATH=$(join ';' `find ~/projects/scheme/ -mindepth 1 -type d`)
+
+if [ -d ~/projects/scheme/ ]; then
+    export GUILE_LOAD_PATH=$(join ';' `find ~/projects/scheme/ -mindepth 1 -type d`)
+fi
 
 if [ -d "/usr/local/MacGPG2/bin/" ]; then
     PATH="/usr/local/MacGPG2/bin/:$PATH"
