@@ -13,6 +13,7 @@ zplug 'plugins/git', from:oh-my-zsh
 zplug 'plugins/debian', from:oh-my-zsh
 zplug 'plugins/pip', from:oh-my-zsh
 zplug 'plugins/chruby', from:oh-my-zsh
+zplug 'lib/history', from:oh-my-zsh
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
