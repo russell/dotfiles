@@ -55,6 +55,7 @@ setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
 
 if [ -e $HOME/.fzf.zsh ]; then
     FZF_TMUX=1
+    FZF_DEFAULT_OPTS="--reverse --inline-info"
     source $HOME/.fzf.zsh
 else
     zplug 'psprint/zsh-navigation-tools'
