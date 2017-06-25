@@ -4,6 +4,15 @@
 (if (string-equal "darwin" (symbol-name system-type))
     (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH"))))
 
+(setq rs/system-name
+      (cond
+       ((string-equal "marvin.home" system-name)
+        'marvin)
+       ((string-equal "sparky" system-name)
+        'sparky)
+       ))
+
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -142,7 +151,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Inconsolata"
-                               :size 14
+                               :size (if (eq rs/system-name 'marvin) 16 14)
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
