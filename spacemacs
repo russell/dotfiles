@@ -2,7 +2,9 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 (if (string-equal "darwin" (symbol-name system-type))
-    (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH"))))
+    (progn
+      (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
+      (setq epg-gpg-program "/usr/local/bin/gpg2")))
 
 (setq rs/system-name
       (cond
@@ -302,7 +304,6 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(epg-gpg-program "/usr/local/bin/gpg2")
  '(helm-ag-use-temp-buffer t)
  '(helm-follow-mode-persistent nil)
  '(js-indent-level 2)
