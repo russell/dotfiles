@@ -140,8 +140,8 @@ export ARCH=amd64
 
 # Python virtualenv/pip
 #export PYTHONDONTWRITEBYTECODE=true
-export WORKON_HOME=~/.virtualenvs/
-export PIP_DOWNLOAD_CACHE=~/.egg-cache
+export WORKON_HOME=${HOME}/.virtualenvs
+export PIP_DOWNLOAD_CACHE=${HOME}/.egg-cache
 
 export PATH
 export MANPATH
