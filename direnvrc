@@ -19,12 +19,16 @@ fi
 
 layout_virtualenv() {
     local venv_path="$1"
-    if [[ -z $venv_path ]]; then
+    if [[ -z "$venv_path" ]]; then
         if [[ -d .venv ]]; then
             venv_path=./.venv
         fi
     fi
-    source ${venv_path}/bin/activate
+    if [[ -e "$venv_path" ]]; then
+        source ${venv_path}/bin/activate
+    else
+        echo "ERROR: can't find virtualenv ${venv_path}"
+    fi
 }
 
 layout_virtualenvwrapper() {
