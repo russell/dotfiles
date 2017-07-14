@@ -1,5 +1,11 @@
 # -*- mode: sh -*-
 
+DARWIN=false
+if [[ $(uname) == "Darwin" ]]; then
+    DARWIN=true;
+fi
+
+
 alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
 
 mkvirtualenv () {
