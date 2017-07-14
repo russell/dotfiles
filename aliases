@@ -19,8 +19,7 @@ mkvirtualenv () {
     fi
 
     if [ -f .envrc ]; then
-        echo "ERROR: envrc already exists"
-        return 1
+        echo "WARNING: envrc already exists"
     fi
 
     if ! command -v $python > /dev/null; then
@@ -29,7 +28,9 @@ mkvirtualenv () {
     fi
 
     virtualenv -p $(command -v $python) $venv
-    echo "layout virtualenvwrapper $name" > .envrc
+    if [ ! -f .envrc ]; then
+        echo "layout virtualenvwrapper $name" > .envrc
+    fi
 }
 
 mkvirtualenv2 () {
@@ -84,7 +85,6 @@ fi
 function ssh-push-key {
   ssh "$@" "echo '`cat ~/.ssh/id_rsa.pub`' >> ~/.ssh/authorized_keys"
 }
-
 
 function rs-in-tmux {
     if { [[ "$TERM" =~ "screen" ]] && [ -n "$TMUX" ]; }; then
