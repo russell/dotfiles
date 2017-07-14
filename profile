@@ -29,7 +29,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # Debian doesn't seem to have a TMPDIR variable any more :(
-[ -z "$TMPDIR" ] && TMPDIR=/tmp/
+[ -z "$TMPDIR" ] && export TMPDIR=/tmp/
 
 
 if $DARWIN; then
