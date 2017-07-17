@@ -92,7 +92,7 @@ join () {
 }
 
 if [ -d ~/projects/scheme/ ]; then
-    export GUILE_LOAD_PATH=$(join ';' `find ~/projects/scheme/ -mindepth 1 -type d`)
+    export GUILE_LOAD_PATH=$(join ':' `find ~/projects/scheme/ -mindepth 1 -maxdepth 1 -type d`)
 fi
 
 if [ -d "/usr/local/MacGPG2/bin/" ]; then
