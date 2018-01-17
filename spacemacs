@@ -52,7 +52,7 @@ values."
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
      common-lisp
-     dockerfile
+     docker
      emacs-lisp
      rcirc
      git
