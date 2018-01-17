@@ -288,6 +288,7 @@ any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
   (setq powerline-default-separator 'slant)
   (setq ispell-dictionary "british")
+  (setq ispell-program-name "aspell")
   (setq evil-lisp-state-enter-lisp-state-on-command nil)
   (with-eval-after-load 'erc
     (delq 'erc-modules 'youtube))
