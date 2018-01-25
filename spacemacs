@@ -64,6 +64,7 @@ values."
      osx
      puppet
      python
+     purescript
      racket
      restclient
      scheme
