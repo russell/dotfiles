@@ -171,6 +171,11 @@ export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
 
+# add the .local/bin directory to the path
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
