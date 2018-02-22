@@ -6,9 +6,12 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 
+alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
+
 mkvirtualenv () {
     local python=$1
-    local venv=./.venv
+    local name=$2
+    local venv=${WORKON_HOME}/${name}
 
     if [ -d $venv ]; then
         echo "ERROR: Virtual env $venv already exists"
@@ -26,16 +29,16 @@ mkvirtualenv () {
 
     virtualenv -p $(command -v $python) $venv
     if [ ! -f .envrc ]; then
-        echo "layout virtualenv" > .envrc
+        echo "layout virtualenvwrapper $name" > .envrc
     fi
 }
 
 mkvirtualenv2 () {
-    mkvirtualenv python2
+    mkvirtualenv python2 $(basename $PWD)
 }
 
 mkvirtualenv3 () {
-    mkvirtualenv python3
+    mkvirtualenv python3 $(basename $PWD)
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
