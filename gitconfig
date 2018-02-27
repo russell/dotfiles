@@ -9,7 +9,7 @@ signingkey = 22B1092ADDDC47DD
 user = russell
 
 [core]
-excludesfile = /home/russell/.gitignore
+excludesfile = ~/.gitignore
 
 [color]
 diff = auto
