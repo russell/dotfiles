@@ -34,3 +34,18 @@ sudo apt-get install cvs openssl bzr debian-el git-buildpackage devscripts-el sb
 
 # xbindkeys
 sudo apt-get install xbindkeys xvkbd
+
+
+OSX
+===
+
+brew install coreutils zsh direnv
+brew install chruby ruby-install
+
+# For tmux
+brew install reattach-to-user-namespace
+
+# For grepping projects instead of using AG
+brew install ripgrep
+
+brew install aspell
