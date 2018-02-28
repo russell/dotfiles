@@ -220,8 +220,8 @@ if [ -f ~/.zaliases ]; then
     . ~/.zaliases
 fi
 
-# Node Version Manager
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Node Version Manager -- load completion if it exists locally
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 #
 # ls colors

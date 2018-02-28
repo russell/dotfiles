@@ -15,6 +15,11 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 if $DARWIN; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+    export PATH="/usr/local/bin:$PATH"
+fi
+
+if $DARWIN; then
     eval "$(gdircolors -b)"
 else
     eval "$(dircolors -b)"
@@ -30,12 +35,6 @@ fi
 
 # Debian doesn't seem to have a TMPDIR variable any more :(
 [ -z "$TMPDIR" ] && export TMPDIR=/tmp/
-
-
-if $DARWIN; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-    export PATH="/usr/local/bin:$PATH"
-fi
 
 # Android SDK
 if [ -d "/opt/android-sdk-linux_x86/tools/" ] ; then
@@ -83,9 +82,13 @@ if [ ! -d "$NPM_PACKAGES" ] ; then
     mkdir $NPM_PACKAGES
 fi
 
-# Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    if $DARWIN; then
+        source "/usr/local/opt/nvm/nvm.sh"
+    else
+        source "$NVM_DIR/nvm.sh"
+fi
 
 # Guile scheme path
 join () {
