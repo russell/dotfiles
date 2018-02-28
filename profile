@@ -83,6 +83,10 @@ if [ ! -d "$NPM_PACKAGES" ] ; then
     mkdir $NPM_PACKAGES
 fi
 
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # Guile scheme path
 join () {
     local IFS="$1";

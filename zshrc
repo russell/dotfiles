@@ -46,6 +46,9 @@ fi
 
 autoload -U add-zsh-hook
 
+# Load bash compatibility
+autoload bashcompinit
+bashcompinit
 
 #
 # Aliases
@@ -210,12 +213,15 @@ WORDCHARS=''
 
 NOVA_DIR=/usr/local/src/python-novaclient
 if [ -e $NOVA_DIR ]; then
-    autoload -U bashcompinit;bashcompinit;source $NOVA_DIR/tools/nova.bash_completion
+    source $NOVA_DIR/tools/nova.bash_completion
 fi
 
 if [ -f ~/.zaliases ]; then
     . ~/.zaliases
 fi
+
+# Node Version Manager
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #
 # ls colors
