@@ -88,7 +88,12 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(scad-mode
                                       chronos
-                                      jsonnet-mode)
+                                      jsonnet-mode
+                                      (beancount :location (recipe
+                                                            :fetcher bitbucket
+                                                            :repo "blais/beancount"
+                                                            :files ("editors/emacs/beancount.el")))
+)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
