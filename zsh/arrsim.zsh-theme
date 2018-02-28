@@ -6,6 +6,26 @@ zstyle ':vcs_info:*' enable hg git bzr svn
 zstyle ':vcs_info:*' actionformats '%s' ' on  %F{2}%b%F{9} doing %F{1}%a%F{5}'
 zstyle ':vcs_info:*' formats '%s' ' on %F{5}%b%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+
+### git: Show remote branch name for remote-tracking branches
+zstyle ':vcs_info:git*+set-message:*' hooks git-remotebranch
+
+function +vi-git-remotebranch() {
+    local remote
+
+    # Are we on a remote-tracking branch?
+    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+                   --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+
+    # The first test will show a tracking branch whenever there is one. The
+    # second test, however, will only show the remote branch's name if it
+    # differs from the local one.
+    if [[ -n ${remote} ]] ; then
+        #if [[ -n ${remote} && ${remote#*/} != ${hook_com[branch]} ]] ; then
+        hook_com[branch]="${hook_com[branch]} [${remote}]"
+    fi
+}
+
 function precmd {
     vcs_info
     case $TERM in
