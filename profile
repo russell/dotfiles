@@ -88,6 +88,7 @@ if [ -d "$HOME/.nvm" ]; then
         source "/usr/local/opt/nvm/nvm.sh"
     else
         source "$NVM_DIR/nvm.sh"
+    fi
 fi
 
 # Guile scheme path
