@@ -90,6 +90,7 @@ values."
    dotspacemacs-additional-packages '(scad-mode
                                       chronos
                                       jsonnet-mode
+                                      groovy-mode
                                       (beancount :location (recipe
                                                             :fetcher bitbucket
                                                             :repo "blais/beancount"
