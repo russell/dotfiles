@@ -74,8 +74,9 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      (ruby :variables
+           ruby-test-runner 'rspec
            ruby-version-manager 'chruby
-           )
+           ruby-enable-enh-ruby-mode t)
      spell-checking
      syntax-checking
      systemd
