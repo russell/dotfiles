@@ -30,6 +30,10 @@ mkvirtualenv () {
     fi
     grep -q -F "layout virtualenvwrapper $name" .envrc || echo "layout virtualenvwrapper $name" >> .envrc
     grep -q -F "PATH_add bin" .envrc || echo "PATH_add bin" >> .envrc
+
+    if [ ! -f .venv ]; then
+        echo "$name" > .venv
+    fi
 }
 
 mkvirtualenv2 () {
