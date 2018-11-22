@@ -22,6 +22,7 @@ inputrc
 keysnail.js
 mutt
 muttrc
+nvmrc
 pbuilderrc
 profile
 sbclrc
