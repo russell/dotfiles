@@ -15,22 +15,21 @@ mkvirtualenv () {
 
     if [ -d $venv ]; then
         echo "ERROR: Virtual env $venv already exists"
-        return 1
+    else
+        if ! command -v $python > /dev/null; then
+            echo "ERROR: $python not found"
+            return 1
+        fi
+
+        virtualenv -p $(command -v $python) $venv
     fi
 
-    if [ -f .envrc ]; then
-        echo "WARNING: envrc already exists"
-    fi
-
-    if ! command -v $python > /dev/null; then
-        echo "ERROR: $python not found"
-        return 1
-    fi
-
-    virtualenv -p $(command -v $python) $venv
+    # Setup .envrc file
     if [ ! -f .envrc ]; then
-        echo "layout virtualenvwrapper $name" > .envrc
+        touch .envrc
     fi
+    grep -q -F "layout virtualenvwrapper $name" .envrc || echo "layout virtualenvwrapper $name" >> .envrc
+    grep -q -F "PATH_add bin" .envrc || echo "PATH_add bin" >> .envrc
 }
 
 mkvirtualenv2 () {

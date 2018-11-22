@@ -39,6 +39,8 @@ sudo apt-get install xbindkeys xvkbd
 OSX
 ===
 
+brew install python@2
+
 brew install coreutils zsh direnv
 brew install chruby ruby-install
 
