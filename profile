@@ -12,6 +12,10 @@
 DARWIN=false
 if [[ $(uname) == "Darwin" ]]; then
     DARWIN=true;
+
+    # Do stuff because we are using OSX
+    [ -d /usr/local/opt/findutils/libexec/gnubin ] && export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+    [ -d /usr/local/opt/coreutils/libexec/gnubin ] && export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 fi
 
 if $DARWIN; then
@@ -146,7 +150,12 @@ export PDSH_GENDERS_FILE=$(gread_link ~/.genders)
 export DIST=unstable
 export ARCH=amd64
 
+
 # Python virtualenv/pip
+
+# OSX brew python
+[ -d /usr/local/opt/python@2/libexec/bin ] && export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
+
 #export PYTHONDONTWRITEBYTECODE=true
 export WORKON_HOME=${HOME}/.virtualenvs
 export PIP_DOWNLOAD_CACHE=${HOME}/.egg-cache
