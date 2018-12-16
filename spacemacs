@@ -67,6 +67,7 @@ values."
      python
      purescript
      racket
+     rust
      restclient
      scheme
      scala

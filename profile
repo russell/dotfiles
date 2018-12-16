@@ -73,9 +73,13 @@ fi
 
 # Cask for OSX
 if [ -d "$HOME/.cask" ]; then
-  PATH="$HOME/.cask/bin:$PATH"
+    PATH="$HOME/.cask/bin:$PATH"
 fi
 
+# Rust Cargo
+if [ -d "$HOME/.cargo" ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # NodeJS
 export NPM_PACKAGES="$HOME/.npm-packages"
@@ -197,3 +201,7 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+export CPATH=$CPATH:~/.local/include
+export LIBRARY_PATH=$LIBRARY_PATH:~/.local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
