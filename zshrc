@@ -61,6 +61,9 @@ if [ -e $HOME/.fzf.zsh ]; then
     FZF_TMUX=1
     FZF_DEFAULT_OPTS="--reverse --inline-info"
     source $HOME/.fzf.zsh
+
+    # Replace bindkey that FZF sets for C-t
+    bindkey '^t' transpose-chars
 elif [ -e /usr/share/doc/fzf/examples/completion.zsh ] \
          && [ -e /usr/share/doc/fzf/examples/key-bindings.zsh ];
 then
@@ -68,6 +71,8 @@ then
     FZF_DEFAULT_OPTS="--reverse --inline-info"
     source /usr/share/doc/fzf/examples/completion.zsh
     source /usr/share/doc/fzf/examples/key-bindings.zsh
+    # Replace bindkey that FZF sets for C-t
+    bindkey '^t' transpose-chars
 else
     zplug 'psprint/zsh-navigation-tools'
     if ! zplug check; then
@@ -298,7 +303,6 @@ function tmux-precmd {
         tmux set-window-option automatic-rename-format \
              "#{?pane_in_mode,[tmux],#{pane_current_command}}#{?pane_dead,[dead],}"
     fi
-
 }
 
 if rs-in-tmux; then
