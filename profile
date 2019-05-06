@@ -90,15 +90,6 @@ if [ ! -d "$NPM_PACKAGES" ] ; then
     mkdir $NPM_PACKAGES
 fi
 
-if [ -d "$HOME/.nvm" ]; then
-    export NVM_DIR="$HOME/.nvm"
-    if $DARWIN; then
-        source "/usr/local/opt/nvm/nvm.sh"
-    else
-        source "$NVM_DIR/nvm.sh"
-    fi
-fi
-
 # Guile scheme path
 join () {
     local IFS="$1";
