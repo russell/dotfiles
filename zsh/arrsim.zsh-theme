@@ -3,8 +3,8 @@
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable hg git bzr svn
-zstyle ':vcs_info:*' actionformats '%s' ' on  %F{2}%b%F{9} doing %F{1}%a%F{5}'
-zstyle ':vcs_info:*' formats '%s' ' on %F{5}%b%f '
+zstyle ':vcs_info:*' actionformats '%s' ' $fg_bold[grey]on  %F{2}%b%F{9} doing %F{1}%a%F{5}'
+zstyle ':vcs_info:*' formats '%s' ' %F{8}on %F{5}%b%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
 ### git: Show remote branch name for remote-tracking branches
@@ -22,7 +22,7 @@ function +vi-git-remotebranch() {
     # differs from the local one.
     if [[ -n ${remote} ]] ; then
         #if [[ -n ${remote} && ${remote#*/} != ${hook_com[branch]} ]] ; then
-        hook_com[branch]="${hook_com[branch]} [${remote}]"
+        hook_com[branch]="${hook_com[branch]}%F{15}->%F{5}${remote}"
     fi
 }
 
@@ -34,7 +34,6 @@ function precmd {
             ;;
     esac
 }
-
 
 function prompt_char {
     case ${vcs_info_msg_0_} in
@@ -57,16 +56,20 @@ function chruby_info {
     [ $RUBY_ROOT ] && echo '('`basename $RUBY_ROOT`') '
 }
 
-# local time, color coded by last return code
-time_enabled="%(?.%{$fg[green]%}.%{$fg[red]%})%*%{$reset_color%}"
-time_disabled="%{$fg[green]%}%*%{$reset_color%}"
-time=$time_enabled
+function colorise_path {
+    local basename=`basename $PWD`
+    local dir=`dirname $PWD`
+    echo "%{$fg_bold[red]%}${dir/#$HOME\//%{$fg_bold[grey]%\}~/%{$fg_bold[red]%\}}/%{$fg[white]%}$basename/%{$reset_color%}"
+}
+
+export REPORTTIME=5
+TIMEFMT="'$fg[green]%J$reset_color' time: $fg[blue]%*Es$reset_color, cpu: $fg[blue]%P$reset_color"
 
 function default_prompt {
     PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
+%{$fg_bold[blue]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%} %F{8}in $(colorise_path)%{$reset_color%}${vcs_info_msg_1_}
 $(chruby_info)$(virtualenv_info)$(prompt_char) '
-    RPROMPT=''
+    RPROMPT='[%(?.%{$fg[green]%}.%{$fg[red]%})%?%{$reset_color%}]'
 }
 default_prompt
 
@@ -111,4 +114,12 @@ function openstack_prompt {
 ☁  %{$fg[magenta]%}${OS_USERNAME}%{$reset_color%}@%{$fg[yellow]%}${OS_TENANT_NAME}%{$reset_color%} %{$fg_bold[green]%}$(openstack_keystone).$(openstack_cloud):$(openstack_url_type)%{$reset_color%}/%{$fg[yellow]%}${OS_REGION_NAME}%{$reset_color%}
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
 $(virtualenv_info)$(prompt_char) '
+}
+
+function kubernetes_prompt {
+    PROMPT='
+%{$fg[blue]%}Kubernetes: $ZSH_KUBECTL_PROMPT
+%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
+$(chruby_info)$(virtualenv_info)$(prompt_char) '
+    RPROMPT=''
 }
