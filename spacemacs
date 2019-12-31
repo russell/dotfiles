@@ -308,8 +308,6 @@ in `dotspacemacs/user-config'."
   (setq ispell-dictionary "british")
   (setq ispell-program-name "aspell")
   (setq evil-lisp-state-enter-lisp-state-on-command nil)
-  (with-eval-after-load 'erc
-    (delq 'erc-modules 'youtube))
   )
 
 (defun dotspacemacs/user-config ()
