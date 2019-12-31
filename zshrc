@@ -298,6 +298,8 @@ if rs-in-tmux; then
     add-zsh-hook precmd tmux-precmd
 fi
 
+# NVM
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Track directory, username, and cwd for remote logons.
 if [ "$TERM" = "eterm-color" ]; then
