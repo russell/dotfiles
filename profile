@@ -155,9 +155,6 @@ export ARCH=amd64
 export WORKON_HOME=${HOME}/.virtualenvs
 export PIP_DOWNLOAD_CACHE=${HOME}/.egg-cache
 
-export PATH
-export MANPATH
-
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
@@ -193,6 +190,24 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export CPATH=$CPATH:~/.local/include
-export LIBRARY_PATH=$LIBRARY_PATH:~/.local/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
+
+if [ -z "$CPATH" ]; then
+    export CPATH=~/.local/include
+else
+    export CPATH=$CPATH:~/.local/include
+fi
+
+if [ -z "$LIBRARY_PATH" ]; then
+    export LIBRARY_PATH=~/.local/lib
+else
+    export LIBRARY_PATH=$LIBRARY_PATH:~/.local/lib
+fi
+
+if [ -z "$LD_LIBRARY_PATH" ]; then
+    export LD_LIBRARY_PATH=~/.local/lib
+else
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
+fi
+
+export PATH
+export MANPATH
