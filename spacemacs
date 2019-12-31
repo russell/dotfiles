@@ -47,7 +47,6 @@ values."
      ;; auto-completion
      ansible
      arrsim
-     znc
      (auto-completion :variables
                       ;; Try to make auto-complete behave
                       auto-completion-return-key-behavior nil
@@ -57,7 +56,6 @@ values."
      common-lisp
      docker
      emacs-lisp
-     rcirc
      git
      html
      elm
