@@ -95,6 +95,9 @@ values."
                                       chronos
                                       jsonnet-mode
                                       groovy-mode
+                                      kubernetes
+                                      org-caldav
+                                      helm-system-packages
                                       (dhall-mode :location (recipe
                                                              :repo "psibi/dhall-mode"
                                                              :fetcher github
