@@ -327,6 +327,9 @@ if (( $+commands[kubectl] )); then
     unset __KUBECTL_COMPLETION_FILE
 fi
 
+# Krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
