@@ -61,6 +61,13 @@ if [ -e $HOME/.fzf.zsh ]; then
     FZF_TMUX=1
     FZF_DEFAULT_OPTS="--reverse --inline-info"
     source $HOME/.fzf.zsh
+elif [ -e /usr/share/doc/fzf/examples/completion.zsh ] \
+         && [ -e /usr/share/doc/fzf/examples/key-bindings.zsh ];
+then
+    FZF_TMUX=1
+    FZF_DEFAULT_OPTS="--reverse --inline-info"
+    source /usr/share/doc/fzf/examples/completion.zsh
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
 else
     zplug 'psprint/zsh-navigation-tools'
     if ! zplug check; then
