@@ -70,7 +70,6 @@ values."
      rust
      restclient
      scheme
-     scala
      scad
      (shell :variables
             shell-default-height 30
