@@ -172,7 +172,10 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font `("Inconsolata"
-                               :size ,(if (string-equal system-name "marvin") 16 14)
+                               :size ,(case (intern system-name)
+                                        ('sleipnir 18)
+                                        ('marvin 16)
+                                        (t 14))
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
