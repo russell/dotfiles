@@ -1,6 +1,8 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+(require 'cl-lib)
+
 (if (string-equal "darwin" (symbol-name system-type))
     (progn
       (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
@@ -174,7 +176,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font `("Inconsolata"
-                               :size ,(case (intern system-name)
+                               :size ,(cl-case (intern system-name)
                                         ('sleipnir 18)
                                         ('marvin 16)
                                         (t 14))
