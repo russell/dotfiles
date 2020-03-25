@@ -81,6 +81,11 @@ if [ -d "$HOME/.cargo" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# Kubernetes Krew
+if [ -d "$HOME/.krew" ]; then
+    PATH="$HOME/.krew/bin:$PATH"
+fi
+
 # NodeJS
 export NPM_PACKAGES="$HOME/.npm-packages"
 PATH="$NPM_PACKAGES/bin:$PATH"
