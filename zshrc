@@ -223,11 +223,6 @@ fi
 # make deleting part of a dns entry easier.
 WORDCHARS=''
 
-NOVA_DIR=/usr/local/src/python-novaclient
-if [ -e $NOVA_DIR ]; then
-    source $NOVA_DIR/tools/nova.bash_completion
-fi
-
 if [ -f ~/.zaliases ]; then
     . ~/.zaliases
 fi
