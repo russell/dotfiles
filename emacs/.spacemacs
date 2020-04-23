@@ -136,7 +136,9 @@ This function should only modify configuration layer settings."
                                                             :fetcher bitbucket
                                                             :repo "blais/beancount"
                                                             :files ("editors/emacs/beancount.el")))
-)
+                                      wgrep-ag
+
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-excluded-packages '()
 
