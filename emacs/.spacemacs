@@ -132,6 +132,7 @@ This function should only modify configuration layer settings."
                                                              :repo "psibi/dhall-mode"
                                                              :fetcher github
                                                              :files ("dhall-mode.el")))
+                                      terraform-mode
                                       (beancount :location (recipe
                                                             :fetcher bitbucket
                                                             :repo "blais/beancount"
