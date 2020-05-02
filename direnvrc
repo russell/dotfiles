@@ -17,25 +17,27 @@ if [ -f /usr/local/share/chruby/chruby.sh ]; then
     }
 fi
 
-layout_virtualenv() {
-    local venv_path="$1"
-    if [[ -z "$venv_path" ]]; then
-        if [[ -d .venv ]]; then
-            venv_path=./.venv
-        fi
-    fi
-    if [[ -e "$venv_path" ]]; then
-        source ${venv_path}/bin/activate
-    else
-        echo "ERROR: can't find virtualenv ${venv_path}"
+# use a certain pyenv version
+use_python() {
+    if [ -n "$(which pyenv)" ]; then
+        local pyversion=$1
+        pyenv local ${pyversion}
     fi
 }
 
-layout_virtualenvwrapper() {
-    local name=$1;
-    if [[ -z $name ]]; then
-        name=$(basename $PWD)
+layout_virtualenv() {
+    local pyversion=$1
+    local pvenv=$2
+    if [ ! -d $(pyenv root)/versions/${pvenv}-${pyversion} ]; then
+        pyenv virtualenv --force --quiet ${pyversion} ${pvenv}-${pyversion}
     fi
-    local venv_path="${WORKON_HOME}/${name}"
-    layout_virtualenv $venv_path
+    pyenv local --unset
+}
+
+layout_activate() {
+    local pyversion=$1
+    local pvenv=$2
+    if [ -n "$(which pyenv)" ]; then
+        source $(pyenv root)/versions/${pvenv}-${pyversion}/bin/activate
+    fi
 }
