@@ -64,6 +64,7 @@ values."
      html
      elm
      javascript
+     (lsp :variables lsp-rust-server 'rust-analyzer)
      markdown
      org
      osx
