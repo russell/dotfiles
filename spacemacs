@@ -336,6 +336,9 @@ layers configuration. You are free to put any user code."
           `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
     )
 
+  ;; Start a server if there isn't one
+  (unless (server-running-p) (server-start))
+  )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
