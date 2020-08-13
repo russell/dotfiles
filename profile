@@ -81,6 +81,11 @@ if [ -d "$HOME/.cargo" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
+if [ -d "$ASDF_DIR" ]; then
+    source "$ASDF_DIR/asdf.sh"
+fi
+
 # Kubernetes Krew
 if [ -d "{KREW_ROOT:-$HOME/.krew}/.krew" ]; then
     PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
