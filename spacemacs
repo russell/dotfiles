@@ -100,6 +100,7 @@ values."
                                       kubernetes
                                       org-caldav
                                       helm-system-packages
+                                      no-littering
                                       (dhall-mode :location (recipe
                                                              :repo "psibi/dhall-mode"
                                                              :fetcher github
@@ -322,7 +323,20 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (put 'set-goal-column 'disabled nil)
-  )
+
+  ;; Disable creating .#file lockiles
+  (setq create-lockfiles nil)
+
+  (use-package no-littering
+    :init
+    (setq no-littering-etc-directory "~/.emacs-etc/")
+    (setq no-littering-var-directory "~/.emacs-var/")
+    :config
+    (setq auto-save-file-name-transforms
+          `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+    )
+
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
