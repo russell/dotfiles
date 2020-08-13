@@ -1,4 +1,6 @@
 # -*- mode: sh -*-
+# zmodload zsh/zprof
+
 ZSHDIR=$HOME/.zsh
 export ZPLUG_HOME=$HOME/.zplug
 if [ ! -d $ZPLUG_HOME ]; then
@@ -9,10 +11,10 @@ source $ZPLUG_HOME/init.zsh
 
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'zsh-users/zsh-completions'
+zplug 'plugins/asdf', from:oh-my-zsh
 zplug 'plugins/git', from:oh-my-zsh
 zplug 'plugins/debian', from:oh-my-zsh
 zplug 'plugins/pip', from:oh-my-zsh
-zplug 'plugins/chruby', from:oh-my-zsh
 zplug 'lib/history', from:oh-my-zsh
 
 # zplug check returns true if all packages are installed
@@ -227,18 +229,6 @@ if [ -f ~/.zaliases ]; then
     . ~/.zaliases
 fi
 
-# PyEnv installation
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d $PYENV_ROOT ]; then
-    export PATH="${PYENV_ROOT}/bin:$PATH"
-    if command -v pyenv 1>/dev/null 2>&1; then
-        eval "$(pyenv init -)"
-    fi
-fi
-
-# Node Version Manager -- load completion if it exists locally
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 #
 # ls colors
 #
@@ -257,9 +247,6 @@ fi
 if command -v direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
-
-
-#export PYTHONDONTWRITEBYTECODE=true
 
 # Openstack RC Files
 osrc() { source ~/.os/$1; }
@@ -313,9 +300,6 @@ if rs-in-tmux; then
     add-zsh-hook precmd tmux-precmd
 fi
 
-# NVM
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 # Track directory, username, and cwd for remote logons.
 if [ "$TERM" = "eterm-color" ]; then
     add-zsh-hook precmd eterm-precmd
@@ -342,9 +326,8 @@ if (( $+commands[kubectl] )); then
     unset __KUBECTL_COMPLETION_FILE
 fi
 
-# Krew
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
+
+# zprof

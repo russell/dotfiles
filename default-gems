@@ -1,0 +1,5 @@
+bundler
+pry
+pry-rescue
+pry-stack_explorer
+solargraph

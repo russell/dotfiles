@@ -82,8 +82,8 @@ if [ -d "$HOME/.cargo" ]; then
 fi
 
 # Kubernetes Krew
-if [ -d "$HOME/.krew" ]; then
-    PATH="$HOME/.krew/bin:$PATH"
+if [ -d "{KREW_ROOT:-$HOME/.krew}/.krew" ]; then
+    PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
 # NodeJS

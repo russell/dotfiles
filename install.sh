@@ -2,10 +2,12 @@
 
 files=$(cat <<EOF
 ansible.cfg
+asdfrc
 bashrc
 bazaar
 conkerorrc
 common.lisp
+default-gems
 direnvrc
 docker
 dunstrc
