@@ -8,6 +8,7 @@ bazaar
 conkerorrc
 common.lisp
 default-gems
+default-npm-packages
 direnvrc
 docker
 dunstrc
