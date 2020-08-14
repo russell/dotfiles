@@ -77,8 +77,10 @@ values."
      scheme
      scad
      (shell :variables
+            shell-enable-smart-eshell t
             shell-default-height 30
             shell-default-position 'bottom)
+     shell-scripts
      (ruby :variables
            ruby-test-runner 'rspec
            ruby-version-manager 'chruby
