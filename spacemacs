@@ -64,6 +64,7 @@ values."
      html
      elm
      javascript
+     jsonnet
      (lsp :variables lsp-rust-server 'rust-analyzer)
      markdown
      org
@@ -97,7 +98,6 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(scad-mode
                                       chronos
-                                      jsonnet-mode
                                       groovy-mode
                                       kubernetes
                                       org-caldav
