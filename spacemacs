@@ -101,6 +101,8 @@ values."
                                       groovy-mode
                                       kubernetes
                                       org-caldav
+                                      jq-mode
+                                      haskell-tab-indent
                                       helm-system-packages
                                       no-littering
                                       (dhall-mode :location (recipe
