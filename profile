@@ -100,6 +100,11 @@ if [ ! -d "$NPM_PACKAGES" ] ; then
     mkdir $NPM_PACKAGES
 fi
 
+# Nix
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+    source "$HOME/.nix-profile/etc/profile.d/nix.sh";
+fi
+
 # Guile scheme path
 join () {
     local IFS="$1";
