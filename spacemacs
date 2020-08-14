@@ -336,6 +336,8 @@ layers configuration. You are free to put any user code."
           `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
     )
 
+  (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
+
   ;; Start a server if there isn't one
   (unless (server-running-p) (server-start))
   )
