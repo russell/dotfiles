@@ -105,6 +105,8 @@ values."
                                       haskell-tab-indent
                                       helm-system-packages
                                       no-littering
+                                      bash-completion
+                                      fish-completion
                                       (dhall-mode :location (recipe
                                                              :repo "psibi/dhall-mode"
                                                              :fetcher github
@@ -342,6 +344,13 @@ layers configuration. You are free to put any user code."
 
   (setq eshell-destroy-buffer-when-process-dies t)
   (setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
+
+  (use-package fish-completion
+    :config
+    (when (and (executable-find "fish")
+               (require 'fish-completion nil t))
+      (global-fish-completion-mode))
+    )
 
   (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
 
