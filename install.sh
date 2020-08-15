@@ -1,48 +1,5 @@
 #!/bin/bash
 
-files=$(cat <<EOF
-ansible.cfg
-asdfrc
-bashrc
-bazaar
-conkerorrc
-common.lisp
-default-gems
-default-npm-packages
-direnvrc
-docker
-dunstrc
-eclrc
-fonts.conf
-gbp.conf
-gitconfig
-gitignore
-gnus
-gtkrc-2.0
-gvimrc
-hgrc
-inputrc
-keysnail.js
-mutt
-muttrc
-nvmrc
-pbuilderrc
-profile
-sbclrc
-spacemacs
-spacemacs.d
-stumpwmrc
-tmux.conf
-vim
-vimrc
-xmodmaprc
-xbindkeysrc
-Xresources
-zsh
-zshrc
-EOF
-)
-
 function symlink {
     name=$1
     target=${2:-"$HOME/.$name"}
@@ -75,17 +32,12 @@ function maybe_symlink {
     fi
 }
 
-for name in $files; do
-    symlink $name
-done
-
 maybe_symlink aliases ~/.bash_aliases
 maybe_symlink aliases ~/.zaliases
 
 maybe_symlink profile ~/.bash_profile
 maybe_symlink profile ~/.zprofile
 
-maybe_symlink znt ~/.config/znt
 
 if [ ! -e ~/.emacs.d ]; then
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -98,9 +50,3 @@ if [ -L ~/.emacs.d ]; then
     rm -f ~/.emacs.d
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
-
-mkdir -p ~/.config/gtk-3.0/
-symlink config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
-mkdir -p ~/.local/share/applications/
-symlink local/share/applications/conkeror.desktop ~/.local/share/applications/conkeror.desktop
-symlink local/share/applications/gnus.desktop ~/.local/share/applications/gnus.desktop
