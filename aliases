@@ -122,6 +122,7 @@ e () {
 
     tempuid=`id -u`
     EMACSSERVER=$TMPDIR/emacs$tempuid/server
+    XDG_EMACSSERVER=/run/user/$tempuid/emacs
 
     if [ -f $HOME/.emacsconfig ]; then
         source $HOME/.emacsconfig
@@ -131,6 +132,8 @@ e () {
         $EMACS -n "$@"
     else
         if [ -e "$EMACSSERVER" ]; then
+            $EMACSCLIENT -n "$@" &
+        elif [ -e "$XDG_EMACSSERVER" ]; then
             $EMACSCLIENT -n "$@" &
         else
             $EMACS --eval "(server-start)" "$@" &
