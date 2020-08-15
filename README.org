@@ -1,6 +1,4 @@
-=======
-Install
-=======
+* Install
 
 # direnv
 sudo apt-get install direnv
@@ -36,8 +34,8 @@ sudo apt-get install cvs openssl bzr debian-el git-buildpackage devscripts-el sb
 sudo apt-get install xbindkeys xvkbd
 
 
-OSX
-===
+* OSX
+
 
 brew install python@2
 
@@ -51,3 +49,12 @@ brew install reattach-to-user-namespace
 brew install ripgrep
 
 brew install aspell
+
+
+* Migration to stow
+
+Remove all old symlinks
+: rm ~/.local/share/applications/conkeror.desktop
+: rm ~/.local/share/applications/gnus.desktop
+: rm ~/.config/znt
+: ls -la ~ | awk '/dotfiles\// { print $9 }' | xargs rm

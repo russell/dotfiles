@@ -1,5 +1,32 @@
 #!/bin/bash
 
+set -e
+packages=$(cat <<EOF
+ansible
+asdf
+bash
+bazaar
+conkeror
+debian
+direnv
+docker
+dunst
+emacs
+git
+keysnail
+lisp
+mercurial
+mutt
+shell
+stumpwm
+tmux
+vim
+x11
+znt
+zsh
+EOF
+)
+
 function symlink {
     name=$1
     target=${2:-"$HOME/.$name"}
@@ -32,11 +59,16 @@ function maybe_symlink {
     fi
 }
 
-maybe_symlink aliases ~/.bash_aliases
-maybe_symlink aliases ~/.zaliases
+for name in $packages; do
+    echo "Stowing package $name"
+    stow -t "$HOME" -v $name
+done
 
-maybe_symlink profile ~/.bash_profile
-maybe_symlink profile ~/.zprofile
+# maybe_symlink aliases ~/.bash_aliases
+# maybe_symlink aliases ~/.zaliases
+
+# maybe_symlink profile ~/.bash_profile
+# maybe_symlink profile ~/.zprofile
 
 
 if [ ! -e ~/.emacs.d ]; then
