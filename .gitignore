@@ -1,3 +1,4 @@
+*~
 *.sync-conflict-*
 vim/.vim/cache
 emacs-old/emacs.d/ac-comphist.dat
@@ -15,7 +16,6 @@ emacs-old/emacs.d/saveplace
 emacs-old/emacs.d/tramp
 emacs-old/emacs.d/.mc-lists.el
 emacs-old/emacs.d/srecode-map.el
-/.#gnus.bak
 *.elc
 emacs-old/emacs.d/.emacs.desktop
 emacs-old/emacs.d/.emacs.desktop.lock
@@ -28,5 +28,6 @@ emacs-old/emacs.d/request/curl-cookie-jar
 emacs-old/emacs.d/abbrev_defs
 emacs-old/emacs.d/projectile-bookmarks.eld
 emacs-old/emacs.d/projectile.cache
-/znt/.config/znt/privhist.db
-/vim/.vim/.netrwhist
+znt/.config/znt/privhist.db
+vim/.vim/.netrwhist
+docker/.docker/machine/
