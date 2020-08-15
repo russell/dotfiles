@@ -64,13 +64,6 @@ for name in $packages; do
     stow -t "$HOME" -v $name
 done
 
-# maybe_symlink aliases ~/.bash_aliases
-# maybe_symlink aliases ~/.zaliases
-
-# maybe_symlink profile ~/.bash_profile
-# maybe_symlink profile ~/.zprofile
-
-
 if [ ! -e ~/.emacs.d ]; then
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
