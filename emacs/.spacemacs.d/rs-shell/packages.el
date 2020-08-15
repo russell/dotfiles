@@ -32,6 +32,7 @@
 (defconst rs-shell-packages
   '(bash-completion
     fish-completion
+    (eshell :location built-in)
     )
   "The list of Lisp packages required by the rs-shell layer.
 
@@ -70,4 +71,13 @@ Each entry is either:
     )
   )
 
+(defun rs-shell/init-eshell ()
+  (use-package eshell
+    :defer t
+    :init
+    (progn
+        (setq eshell-destroy-buffer-when-process-dies t)
+        )
+    )
+  )
 ;;; packages.el ends here
