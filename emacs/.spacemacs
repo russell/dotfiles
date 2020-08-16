@@ -183,10 +183,11 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font `("Inconsolata"
+   dotspacemacs-default-font `("Iosevka SS11"
                                :size ,(cl-case (intern system-name)
                                         ('sleipnir 18)
                                         ('marvin 16)
+                                        ('mowgli 15)
                                         (t 14))
                                :weight normal
                                :width normal
