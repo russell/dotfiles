@@ -31,3 +31,4 @@ emacs-old/emacs.d/projectile.cache
 znt/.config/znt/privhist.db
 vim/.vim/.netrwhist
 docker/.docker/machine/
+/emacs/.spacemacs.d/.spacemacs.env
