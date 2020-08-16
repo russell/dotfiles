@@ -75,10 +75,10 @@ Each entry is either:
   )
 
 (defun rs-writing/post-init-markdown-mode ()
-  (use-package writegood-mode
-    :init
+  (use-package markdown-mode
+    :config
     (progn
-      (add-to-list gfm-mode-hook 'writegood-mode)
+      (add-to-list 'gfm-mode-hook 'writegood-mode)
       )
     )
   )
