@@ -61,6 +61,12 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
+(defun rs-shell/init-bash-completion ()
+  (use-package bash-completion
+    :after eshell
+    )
+  )
+
 (defun rs-shell/init-fish-completion ()
   (use-package fish-completion
     :after eshell
@@ -71,13 +77,25 @@ Each entry is either:
     )
   )
 
-(defun rs-shell/init-eshell ()
-  (use-package eshell
-    :defer t
-    :init
-    (progn
-        (setq eshell-destroy-buffer-when-process-dies t)
-        )
-    )
-  )
+(defun rs-shell/post-init-eshell ()
+      (setq eshell-destroy-buffer-when-process-dies t)
+      (setq eshell-modules-list
+            '(eshell-alias
+              eshell-banner
+              eshell-basic
+              eshell-cmpl
+              eshell-dirs
+              eshell-glob
+              eshell-hist
+              eshell-ls
+              eshell-pred
+              eshell-prompt
+              eshell-rebind
+              eshell-script
+              eshell-smart
+              eshell-term
+              eshell-tramp
+              eshell-unix
+              eshell-xtra))
+      )
 ;;; packages.el ends here
