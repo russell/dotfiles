@@ -50,6 +50,19 @@ brew install ripgrep
 
 brew install aspell
 
+** asdf
+
+asdf plugin add ruby
+asdf install ruby latest
+asdf global ruby 2.7.1
+
+asdf plugin add python
+asdf python install latest
+asdf global python 3.8.5
+
+asdf plugin add nodejs
+asdf install nodejs latest
+asdf global  nodejs 14.8.0
 
 * Migration to stow
 
