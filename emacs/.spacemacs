@@ -68,6 +68,7 @@ This function should only modify configuration layer settings."
      ansible
      arrsim
      rs-shell
+     rs-writing
      (auto-completion :variables
                       ;; Try to make auto-complete behave
                       auto-completion-return-key-behavior nil
