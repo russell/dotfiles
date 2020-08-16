@@ -85,6 +85,7 @@ This function should only modify configuration layer settings."
      (lsp :variables lsp-rust-server 'rust-analyzer)
      markdown
      multiple-cursors
+     notmuch
      org
      osx
      puppet
@@ -561,8 +562,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq powerline-default-separator 'slant)
   (setq ispell-dictionary "british")
   (setq ispell-program-name "aspell")
-  (setq evil-lisp-state-enter-lisp-state-on-command nil)
-  )
+  (setq evil-lisp-state-enter-lisp-state-on-command nil))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -579,7 +579,7 @@ before packages are loaded."
 
   (use-package no-littering
     :init
-    (setq no-littering-etc-directory "~/.emacs-etc/")
+    (setq no-littering-etc-directory "~/.spacemacs.d/etc/")
     (setq no-littering-var-directory "~/.emacs-var/")
     :config
     (setq auto-save-file-name-transforms
