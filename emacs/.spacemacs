@@ -74,7 +74,8 @@ values."
      python
      purescript
      racket
-     rust
+     (rust :variables
+           rust-backend 'lsp)
      restclient
      scheme
      scad
