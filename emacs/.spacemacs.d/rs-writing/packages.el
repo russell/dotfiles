@@ -30,7 +30,9 @@
 ;;; Code:
 
 (defconst rs-writing-packages
-  '(writegood-mode)
+  '(writegood-mode
+    markdown-mode
+    (org-mode :location built-in))
   "The list of Lisp packages required by the rs-writing layer.
 
 Each entry is either:
@@ -72,7 +74,7 @@ Each entry is either:
         '(text-mode markdown-mode gfm-mode message-mode org-mode))
   )
 
-(defun rs-writing/init-gfm-mode ()
+(defun rs-writing/post-init-markdown-mode ()
   (use-package writegood-mode
     :init
     (progn
@@ -92,6 +94,20 @@ Each entry is either:
             )
       )
     )
+  )
+
+(defun rs-writing/init-org-mode ()
+  (setq org-modules '(ol-bbdb
+                      ol-bibtex
+                      ol-docview
+                      ol-eww
+                      ol-gnus
+                      ol-info
+                      ol-irc
+                      ol-mhe
+                      ol-rmail
+                      org-tempo
+                      ol-w3m))
   )
 
 ;;; packages.el ends here
