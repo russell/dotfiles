@@ -589,7 +589,6 @@ before packages are loaded."
   (setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
 
   (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
-  )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
