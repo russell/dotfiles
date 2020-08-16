@@ -33,6 +33,7 @@ sudo apt-get install cvs openssl bzr debian-el git-buildpackage devscripts-el sb
 # xbindkeys
 sudo apt-get install xbindkeys xvkbd
 
+sudo apt-get install python3-proselint 
 
 * OSX
 
