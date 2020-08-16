@@ -586,6 +586,13 @@ before packages are loaded."
           `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
     )
 
+  (setq helm-ag-use-temp-buffer t)
+  (setq helm-follow-mode-persistent nil)
+  (setq js-indent-level 2)
+  (setq js2-basic-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+
   (setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
 
   (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
@@ -593,28 +600,3 @@ before packages are loaded."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(dhall-format-command "")
- '(helm-ag-use-temp-buffer t)
- '(helm-follow-mode-persistent nil)
- '(js-indent-level 2)
- '(js2-basic-offset 2)
- '(package-selected-packages
-   (quote
-    (phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode chronos lua-mode csv-mode sql-indent znc yapfify yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typo toc-org tagedit systemd spacemacs-theme spaceline smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs rbenv rake rainbow-delimiters racket-mode quelpa pyvenv pytest pyenv-mode py-isort puppet-mode pug-mode popwin pip-requirements persp-mode pbcopy paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-http neotree mwim multi-term move-text monokai-theme mmm-mode minitest markdown-toc magit-gitflow lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc jinja2-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ git-auto-commit-mode gh-md geiser flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks emmet-mode elisp-slime-nav dumb-jump diff-hl cython-mode company-web company-tern company-statistics company-anaconda common-lisp-snippets column-enforce-mode coffee-mode clean-aindent-mode chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ansible-doc ansible aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(sentence-end-double-space t)
- '(user-mail-address "russell.sim@gmail.com")
- '(web-mode-code-indent-offset 2)
- '(web-mode-markup-indent-offset 2))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;; (fset 'ruby-var-unless-nil (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([67108896 19 46 134217847 5 32 117 110 108 101 115 115 32 25 110 105 108 63 14 1] 0 "%d")) arg)))
