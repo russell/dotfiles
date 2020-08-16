@@ -575,6 +575,8 @@ before packages are loaded."
   ;; Disable creating .#file lockiles
   (setq create-lockfiles nil)
 
+  (setq history-delete-duplicates t)
+
   (use-package no-littering
     :init
     (setq no-littering-etc-directory "~/.emacs-etc/")
