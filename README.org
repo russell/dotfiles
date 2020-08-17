@@ -60,7 +60,10 @@ brew install proselint
 brew tap homebrew/cask-fonts
 brew cask install font-iosevka-ss11
 
-** asdf
+# Disable document icon
+defaults write org.gnu.Emacs HideDocumentIcon YES
+
+* asdf
 
 asdf plugin add ruby
 asdf install ruby latest
