@@ -28,6 +28,7 @@ tool = meld
 [alias]
 
 status = status -sb
+branch-name = !"git for-each-ref --format=\"%(refname:short)\" $(git symbolic-ref HEAD)"
 st = status -sb
 d = diff
 ci = commit -v
@@ -41,10 +42,14 @@ llt = log -p trunk..
 lm = log master..
 llm = log -p master..
 b = branch -va
-cherry-pick-svn =  !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick -e
+pu = !"git push -u origin `git branch-name`:`git branch-name`"
+fp = push --force-with-lease
+cherry-pick-svn = !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick -e
 spull = !git svn fetch && git svn rebase
 spush = svn dcommit
 change-id = !GIT_EDITOR='sed -i -e /^Change-Id:/d' git commit --amend
+pr = pull --rebase
+zpush = !"git push -u origin `git branch-name`:$USER.`git branch-name`"
 
 # log
 l = log --graph --date=short
@@ -78,3 +83,6 @@ default = tracking
 
 [gitreview]
 username = russell-sim
+
+[url "git@github.com:"]
+insteadOf = https://github.com/
