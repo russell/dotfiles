@@ -81,7 +81,12 @@ if [ -d "$HOME/.cargo" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
+if $DARWIN; then
+    ASDF_DIR=$(brew --prefix asdf)
+else
+    ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
+fi
+
 if [ -d "$ASDF_DIR" ]; then
     source "$ASDF_DIR/asdf.sh"
 fi
