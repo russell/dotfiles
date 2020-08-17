@@ -36,12 +36,9 @@
 
 (require 'nnir)
 
-;; Dovecat IMAP server
 (setq gnus-select-method
-      '(nnimap "Mail"
-               (nnimap-address "localhost")
-               (nnimap-stream network)
-               (nnimap-authenticator login)))
+      '(nntp "news.gmane.io")
+      )
 
 (setq message-send-mail-function 'smtpmail-send-it
       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
@@ -54,15 +51,20 @@
 
 ;; Set the correct from address when composing an email.
 (setq message-alternative-emails
-      (regexp-opt '("russell.sim@gmail.com" "russell.sim@unimelb.edu.au")))
+      (regexp-opt '("russell.sim@gmail.com")))
 
 (setq gnus-secondary-select-methods nil)
 
-(when (string= (system-name) "sparky.home")
-  (add-to-list 'gnus-secondary-select-methods
-               '(nntp "news.gmane.org"))
-  (add-to-list 'gnus-secondary-select-methods
-               '(nntp "news.eternal-september.org")))
+(add-to-list 'gnus-secondary-select-methods
+             '(nnimap "cloud-sync"
+                      (nnimap-address "mail.simopolis.xyz")
+                      (nnimap-server-port 993)
+                      (nnimap-stream tls)
+                      (nnimap-authenticator login))
+             )
+
+(add-to-list 'gnus-secondary-select-methods
+             '(nntp "news.eternal-september.org"))
 
 
 ;; don't bother me with dribbles
@@ -73,28 +75,28 @@
 (setq gnus-signature-separator
       '("^-- $" "^-- *$" "^[.][.][.][.][.][.]* *$"))
 
-(setq gnus-asynchronous t)
 (setq gnus-widen-article-window t)
 
 
 ;; turn on mail icon
 (setq display-time-use-mail-icon t)
 
-(setq gnus-score-over-mark ?↑)          ; ↑ ☀
-(setq gnus-score-below-mark ?↓)         ; ↓ ☂
-(setq gnus-ticked-mark ?⚑)
-(setq gnus-dormant-mark ?⚐)
-(setq gnus-expirable-mark ?♻)
-(setq gnus-read-mark ?✓)
-(setq gnus-del-mark ?✗)
-(setq gnus-killed-mark ?☠)
-(setq gnus-replied-mark ?↺)
-(setq gnus-forwarded-mark ?↪)
+(setq gnus-score-over-mark (string-to-char (all-the-icons-faicon "angle-double-up")))
+(setq gnus-score-below-mark (string-to-char (all-the-icons-faicon "angle-double-down")))
+(setq gnus-ticked-mark (string-to-char (all-the-icons-material "star")))
+(setq gnus-dormant-mark (string-to-char (all-the-icons-material "star_border")))
+(setq gnus-expirable-mark (string-to-char (all-the-icons-material "delete_sweep")))
+(setq gnus-read-mark (string-to-char (all-the-icons-octicon "mail")))
 
-(setq gnus-cached-mark ?☍)
-(setq gnus-recent-mark ?★)
-(setq gnus-unseen-mark ?✩)
-(setq gnus-unread-mark ?✉)
+(setq gnus-del-mark (string-to-char (all-the-icons-material "delete_forever")))
+(setq gnus-killed-mark (string-to-char (all-the-icons-material "delete")))
+(setq gnus-replied-mark (string-to-char (all-the-icons-material "reply")))
+(setq gnus-forwarded-mark (string-to-char (all-the-icons-material "forward")))
+
+(setq gnus-cached-mark (string-to-char (all-the-icons-material "cached")))
+(setq gnus-recent-mark (string-to-char (all-the-icons-material "fiber_new")))
+(setq gnus-unseen-mark (string-to-char (all-the-icons-material "new_releases")))
+(setq gnus-unread-mark (string-to-char (all-the-icons-material "markunread")))
 
 (defun gnus-user-format-function-@ (header)
   "Display @ for message with attachment in summary line.
@@ -149,7 +151,7 @@ See (info \"(gnus)Group Line Specification\")."
        "\t"
        "%3{│%}"
        " "
-       "%1{%B%}"
+       "%B"
        "%s\n"))
 
 (setq gnus-summary-dummy-line-format
@@ -169,7 +171,6 @@ See (info \"(gnus)Group Line Specification\")."
 ;; '(gnus-simplify-subject-fuzzy-regexp '(" \\[Comment\\]"))
 (setq gnus-simplify-subject-functions
       '(gnus-simplify-subject gnus-simplify-subject-fuzzy gnus-simplify-whitespace))
-(setq gnus-summary-make-false-root 'dummy)
 (setq gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
 (setq gnus-thread-operation-ignore-subject nil)
 (setq gnus-thread-sort-functions
@@ -300,7 +301,7 @@ See (info \"(gnus)Group Line Specification\")."
  ;; %G hides the method (nnfolder, etc).
  ;; %c preserves the method and last n elements of the name unexpanded,
  ;; where n is set by `gnus-group-uncollapsed-levels'.
- gnus-group-line-format "%M%S%p%P%5y: %(%-40,40G%)%l %4I\n")
+ gnus-group-line-format "%M%S%p%P%6y:%B%(%g%)\n")
 
 (setq gnus-use-adaptive-scoring t)
 (setq gnus-score-expiry-days 30)
