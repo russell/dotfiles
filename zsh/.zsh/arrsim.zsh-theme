@@ -3,7 +3,7 @@
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable hg git bzr svn
-zstyle ':vcs_info:*' actionformats '%s' ' $fg_bold[grey]on  %F{2}%b%F{9} doing %F{1}%a%F{5}'
+zstyle ':vcs_info:*' actionformats '%s' ' %F{8}on %F{2}%b%F{9} doing %F{1}%a%F{5}'
 zstyle ':vcs_info:*' formats '%s' ' %F{8}on %F{5}%b%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
