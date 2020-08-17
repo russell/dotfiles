@@ -128,7 +128,7 @@ e () {
         source $HOME/.emacsconfig
     fi
 
-    if [ -z "$DISPLAY" ]; then
+    if ! $DARWIN && [ -z "$DISPLAY" ]; then
         $EMACS -n "$@"
     else
         if [ -e "$EMACSSERVER" ]; then
@@ -158,7 +158,7 @@ E () {
     else
         EMACSCLIENT=emacsclient
     fi
-    $EMACSCLIENT-n -a emacs "/sudo:root@localhost:$PWD/$1"
+    $EMACSCLIENT -n -a emacs "/sudo:root@localhost:$PWD/$1"
 }
 
 # edit file in console with a root permissions.
