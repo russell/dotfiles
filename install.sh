@@ -61,7 +61,7 @@ function maybe_symlink {
 
 for name in $packages; do
     echo "Stowing package $name"
-    stow -t "$HOME" -v $name
+    stow --dotfiles -t "$HOME" -v $name
 done
 
 if [ ! -e ~/.emacs.d ]; then

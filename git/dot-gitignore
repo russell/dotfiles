@@ -6,3 +6,5 @@
 .emacs-dirvars
 */.#*
 .envrc
+.direnv
+.tool-versions
