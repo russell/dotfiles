@@ -67,6 +67,7 @@ This function should only modify configuration layer settings."
      better-defaults
      ansible
      arrsim
+     rs-notmuch
      rs-shell
      rs-writing
      (auto-completion :variables
