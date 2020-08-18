@@ -9,42 +9,18 @@ gopath () {
     echo 'export GOPATH=$(PWD)' >> .envrc
 }
 
-alias mkvirtualenv1='mkvirtualenv $(basename $PWD)'
-
-mkvirtualenv () {
-    local python=$1
-    local name=$2
-    local venv=${WORKON_HOME}/${name}
-
-    if [ -d $venv ]; then
-        echo "ERROR: Virtual env $venv already exists"
-    else
-        if ! command -v $python > /dev/null; then
-            echo "ERROR: $python not found"
-            return 1
-        fi
-
-        virtualenv -p $(command -v $python) $venv
-    fi
-
-    # Setup .envrc file
-    if [ ! -f .envrc ]; then
-        touch .envrc
-    fi
-    grep -q -F "layout virtualenvwrapper $name" .envrc || echo "layout virtualenvwrapper $name" >> .envrc
+_mkvirtualenv () {
+    version=$1
+    grep -q -F "layout ${version}" .envrc || echo "layout ${version}" >> .envrc
     grep -q -F "PATH_add bin" .envrc || echo "PATH_add bin" >> .envrc
-
-    if [ ! -f .venv ]; then
-        echo "$name" > .venv
-    fi
 }
 
 mkvirtualenv2 () {
-    mkvirtualenv python2 $(basename $PWD)
+    _mkvirtualenv "python2"
 }
 
 mkvirtualenv3 () {
-    mkvirtualenv python3 $(basename $PWD)
+    _mkvirtualenv "python2"
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
