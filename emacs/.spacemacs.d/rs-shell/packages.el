@@ -32,6 +32,7 @@
 (defconst rs-shell-packages
   '(bash-completion
     fish-completion
+    esh-autosuggest
     (eshell :location built-in)
     )
   "The list of Lisp packages required by the rs-shell layer.
@@ -60,6 +61,13 @@ Each entry is either:
 
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
+
+(defun rs-shell/init-esh-autosuggest ()
+  (use-package esh-autosuggest
+    :hook (eshell-mode . esh-autosuggest-mode)
+    :after eshell
+    )
+  )
 
 (defun rs-shell/init-bash-completion ()
   (use-package bash-completion
@@ -90,7 +98,6 @@ Each entry is either:
               eshell-ls
               eshell-pred
               eshell-prompt
-              eshell-rebind
               eshell-script
               eshell-smart
               eshell-term
