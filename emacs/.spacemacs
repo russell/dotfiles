@@ -590,6 +590,7 @@ before packages are loaded."
           `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
     )
 
+  (setq vc-follow-symlinks t)
   (setq helm-ag-use-temp-buffer t)
   (setq helm-follow-mode-persistent nil)
   (setq js-indent-level 2)
