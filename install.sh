@@ -25,39 +25,10 @@ x11
 znt
 zsh
 EOF
-)
+        )
 
-function symlink {
-    name=$1
-    target=${2:-"$HOME/.$name"}
-    if [ -e $target ]; then
-      if [ ! -L $target ]; then
-        echo "WARNING: $target exists but is not a symlink."
-      fi
-    else
-      if [[ $name != *~  && $name != *.orig && $name != \#*\# ]]; then
-          if [[ $name == *.local ]]; then
-            echo "added local file $target"
-            cp "$PWD/$name" "$target"
-          else
-            echo "linked in $target"
-            ln -s "$PWD/$name" "$target"
-          fi
-      fi
-    fi
-}
-
-function maybe_symlink {
-    name=$1
-    target=${2:-"$HOME/.$name"}
-    if [ -e $target ]; then
-        if [ ! -L $target ]; then
-            echo "WARNING: $target exists but is not a symlink."
-        fi
-    else
-        symlink $name $target
-    fi
-}
+# Remove all the .DS_Store files
+find . -name .DS_Store -exec rm {} \;
 
 for name in $packages; do
     echo "Stowing package $name"
