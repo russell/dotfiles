@@ -80,7 +80,7 @@ Each entry is either:
         ))
 
 
-(defun rs-notmuch/init-notmuch ()
+(defun rs-notmuch/post-init-notmuch ()
 
   )
 ;;; packages.el ends here
