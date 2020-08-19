@@ -66,6 +66,7 @@ Each entry is either:
        (list
         :name folder
         :query (concat "folder:\"" folder "\"")
+        :count-query (concat "folder:\"" folder "\" and tag:unread")
         )
        )
      )
@@ -73,7 +74,7 @@ Each entry is either:
 
 (defun rs-notmuch/setup-saved-searches ()
   (mapc (lambda (saved-search)
-          (add-to-list 'notmuch-saved-searches 
+          (add-to-list 'notmuch-saved-searches
                        saved-search)
           )
         (rs-notmuch/find-folder-searches "~/Mail/gmail/")
@@ -81,6 +82,17 @@ Each entry is either:
 
 
 (defun rs-notmuch/post-init-notmuch ()
-
+  (setq
+   notmuch-hello-tag-list-make-query "tag:unread"
+   notmuch-show-logo nil
+   notmuch-saved-searches '(
+                            (:name "inbox" :query "tag:inbox" :key "i")
+                            (:name "unread" :query "tag:unread" :key "u")
+                            (:name "flagged" :query "tag:flagged" :key "f")
+                            (:name "sent" :query "tag:sent" :key "t")
+                            (:name "drafts" :query "tag:draft" :key "d")
+                            (:name "all mail" :query "*" :key "a"))
+   )
+  (rs-notmuch/setup-saved-searches)
   )
 ;;; packages.el ends here
