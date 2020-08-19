@@ -85,6 +85,10 @@ Each entry is either:
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
+   notmuch-tag-formats '(("unread"
+                          (all-the-icons-material "email"))
+                         ("flagged"
+                          (all-the-icons-material "star")))
    notmuch-saved-searches '(
                             (:name "inbox" :query "tag:inbox" :key "i")
                             (:name "unread" :query "tag:unread" :key "u")
