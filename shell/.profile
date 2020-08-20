@@ -210,6 +210,10 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# add the gopath
+if [ -d "$HOME/go/bin" ] ; then
+    PATH="$HOME/go/bin:$PATH"
+fi
 
 if [ -z "$CPATH" ]; then
     export CPATH=~/.local/include
