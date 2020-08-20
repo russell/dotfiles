@@ -96,7 +96,16 @@ Each entry is either:
                             (:name "sent" :query "tag:sent" :key "t")
                             (:name "drafts" :query "tag:draft" :key "d")
                             (:name "all mail" :query "*" :key "a"))
+   notmuch-hello-sections '(notmuch-hello-insert-header
+                            notmuch-hello-insert-search
+                            notmuch-hello-insert-inbox
+                            notmuch-hello-insert-saved-searches
+                            notmuch-hello-insert-recent-searches
+                            notmuch-hello-insert-alltags
+                            notmuch-hello-insert-footer
+                            )
    )
+  
   (rs-notmuch/setup-saved-searches)
   )
 ;;; packages.el ends here
