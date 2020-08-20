@@ -86,9 +86,9 @@ Each entry is either:
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
    notmuch-tag-formats '(("unread"
-                          (all-the-icons-material "email"))
+                          (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
                          ("flagged"
-                          (all-the-icons-material "star")))
+                          (all-the-icons-material "star" :height 0.9 :v-adjust -0.1)))
    notmuch-saved-searches '(
                             (:name "inbox" :query "tag:inbox" :key "i")
                             (:name "unread" :query "tag:unread" :key "u")
@@ -105,7 +105,7 @@ Each entry is either:
                             notmuch-hello-insert-footer
                             )
    )
-  
+
   (rs-notmuch/setup-saved-searches)
   )
 ;;; packages.el ends here
