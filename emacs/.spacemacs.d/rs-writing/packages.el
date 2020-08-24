@@ -32,6 +32,8 @@
 (defconst rs-writing-packages
   '(writegood-mode
     markdown-mode
+    mixed-pitch
+    olivetti
     (org-mode :location built-in))
   "The list of Lisp packages required by the rs-writing layer.
 
@@ -66,8 +68,8 @@ Each entry is either:
     :command ("proselint" source-inplace)
     :error-patterns
     ((warning line-start (file-name) ":" line ":" column ": "
-	            (id (one-or-more (not (any " "))))
-	            (message) line-end))
+              (id (one-or-more (not (any " "))))
+              (message) line-end))
     :modes (text-mode markdown-mode gfm-mode org-mode))
   (add-to-list 'flycheck-checkers 'proselint)
   (mapc (lambda (mode) (spacemacs/enable-flycheck mode))
@@ -79,6 +81,28 @@ Each entry is either:
     :config
     (progn
       (add-to-list 'gfm-mode-hook 'writegood-mode)
+      )
+    )
+  )
+
+(defun rs-writing/post-init-olivetti-mode ()
+  (use-package olivetti
+    :config
+    (progn
+      (setq olivetti-body-width 100)
+      )
+    )
+  )
+
+(defun rs-writing/post-init-mixed-pitch ()
+  (use-package mixed-pitch
+    :init
+    (progn
+      (mapc (lambda (mode-hook) (add-to-list mode-hook 'mixed-pitch-mode))
+            '(org-mode-hook
+              markdown-mode-hook
+              notmuch-show-hook)
+            )
       )
     )
   )

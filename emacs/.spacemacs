@@ -128,7 +128,6 @@ This function should only modify configuration layer settings."
                                       jq-mode
                                       haskell-tab-indent
                                       ox-hugo
-                                      olivetti
                                       helm-system-packages
                                       no-littering
                                       (dhall-mode :location (recipe
