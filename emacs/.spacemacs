@@ -127,6 +127,8 @@ This function should only modify configuration layer settings."
                                       org-caldav
                                       jq-mode
                                       haskell-tab-indent
+                                      ox-hugo
+                                      olivetti
                                       helm-system-packages
                                       no-littering
                                       (dhall-mode :location (recipe
@@ -563,6 +565,11 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
+  (use-package ox-hugo
+    :ensure t          ;Auto-install the package from Melpa (optional)
+    :after ox)
+
   (setq powerline-default-separator 'slant)
   (setq ispell-dictionary "british")
   (setq ispell-program-name "aspell")
