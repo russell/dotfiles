@@ -58,29 +58,6 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-(defun rs-notmuch/find-folder-searches (directory)
-  "List the mail folder directories"
-  (mapcar
-   (lambda (folder)
-     (let ((folder (substring folder (length directory) -4)))
-       (list
-        :name folder
-        :query (concat "folder:\"" folder "\"")
-        :count-query (concat "folder:\"" folder "\" and tag:unread")
-        )
-       )
-     )
-   (directory-files-recursively directory "^cur$" t)))
-
-(defun rs-notmuch/setup-saved-searches ()
-  (mapc (lambda (saved-search)
-          (add-to-list 'notmuch-saved-searches
-                       saved-search)
-          )
-        (rs-notmuch/find-folder-searches "~/Mail/gmail/")
-        ))
-
-
 (defun rs-notmuch/post-init-notmuch ()
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"
@@ -89,7 +66,7 @@ Each entry is either:
    notmuch-tag-formats '(("unread"
                           (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
                          ("flagged"
-                          (all-the-icons-material "star" :height 0.9 :v-adjust -0.1)))  
+                          (all-the-icons-material "star" :height 0.9 :v-adjust -0.1)))
    notmuch-hello-sections '(notmuch-hello-insert-header
                             notmuch-hello-insert-search
                             (notmuch-hello-insert-tags-section
@@ -106,6 +83,5 @@ Each entry is either:
                             notmuch-hello-insert-footer)
    )
 
-  (rs-notmuch/setup-saved-searches)
   )
 ;;; packages.el ends here
