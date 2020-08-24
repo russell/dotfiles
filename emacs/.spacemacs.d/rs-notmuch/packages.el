@@ -85,25 +85,25 @@ Each entry is either:
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
+   shr-use-colors nil
    notmuch-tag-formats '(("unread"
                           (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
                          ("flagged"
-                          (all-the-icons-material "star" :height 0.9 :v-adjust -0.1)))
-   notmuch-saved-searches '(
-                            (:name "inbox" :query "tag:inbox" :key "i")
-                            (:name "unread" :query "tag:unread" :key "u")
-                            (:name "flagged" :query "tag:flagged" :key "f")
-                            (:name "sent" :query "tag:sent" :key "t")
-                            (:name "drafts" :query "tag:draft" :key "d")
-                            (:name "all mail" :query "*" :key "a"))
+                          (all-the-icons-material "star" :height 0.9 :v-adjust -0.1)))  
    notmuch-hello-sections '(notmuch-hello-insert-header
                             notmuch-hello-insert-search
-                            notmuch-hello-insert-inbox
+                            (notmuch-hello-insert-tags-section
+                             "Inbox"
+                             :filter "tag:inbox and not tag:github"
+                             :filter-count "tag:inbox and tag:unread and not tag:github" nil nil)
+                            (notmuch-hello-insert-tags-section
+                             "Github Reviews"
+                             :filter "tag:github and (tag:github-mention or github-review_requested) and tag:unread"
+                             :filter-count "tag:github and (tag:github-mention or github-review_requested) and tag:unread" nil nil)
                             notmuch-hello-insert-saved-searches
                             notmuch-hello-insert-recent-searches
                             notmuch-hello-insert-alltags
-                            notmuch-hello-insert-footer
-                            )
+                            notmuch-hello-insert-footer)
    )
 
   (rs-notmuch/setup-saved-searches)
