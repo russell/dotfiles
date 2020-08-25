@@ -32,8 +32,6 @@
 (defconst rs-writing-packages
   '(writegood-mode
     markdown-mode
-    mixed-pitch
-    olivetti
     (org-mode :location built-in))
   "The list of Lisp packages required by the rs-writing layer.
 
@@ -85,28 +83,6 @@ Each entry is either:
     )
   )
 
-(defun rs-writing/post-init-olivetti-mode ()
-  (use-package olivetti
-    :config
-    (progn
-      (setq olivetti-body-width 100)
-      )
-    )
-  )
-
-(defun rs-writing/post-init-mixed-pitch ()
-  (use-package mixed-pitch
-    :init
-    (progn
-      (mapc (lambda (mode-hook) (add-to-list mode-hook 'mixed-pitch-mode))
-            '(org-mode-hook
-              markdown-mode-hook
-              notmuch-show-hook)
-            )
-      )
-    )
-  )
-
 (defun rs-writing/init-writegood-mode ()
   (use-package writegood-mode
     :init
@@ -120,18 +96,27 @@ Each entry is either:
     )
   )
 
+
 (defun rs-writing/init-org-mode ()
-  (setq org-modules '(ol-bbdb
-                      ol-bibtex
-                      ol-docview
-                      ol-eww
-                      ol-gnus
-                      ol-info
-                      ol-irc
-                      ol-mhe
-                      ol-rmail
-                      org-tempo
-                      ol-w3m))
+  (use-package org
+    :config
+    (progn
+      (add-to-list 'org-mode-hook 'centered-cursor-mode)
+      (add-to-list 'org-mode-hook 'variable-pitch-mode)
+      )
+    )
+  (setq
+   org-modules '(ol-bbdb
+                 ol-bibtex
+                 ol-docview
+                 ol-eww
+                 ol-gnus
+                 ol-info
+                 ol-irc
+                 ol-mhe
+                 ol-rmail
+                 org-tempo
+                 ol-w3m))
   )
 
 ;;; packages.el ends here
