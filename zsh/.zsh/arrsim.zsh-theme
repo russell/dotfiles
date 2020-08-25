@@ -59,7 +59,7 @@ function chruby_info {
 function colorise_path {
     local basename=`basename $PWD`
     local dir=`dirname $PWD`
-    echo "%{$fg_bold[red]%}${dir/#$HOME\//%{$fg_bold[grey]%\}~/%{$fg_bold[red]%\}}/%{$fg[white]%}$basename/%{$reset_color%}"
+    echo "%{$fg_bold[red]%}${dir/#$HOME\//%{$fg_bold[grey]%\}~/%{$fg_bold[red]%\}}/%{$fg_bold[blue]%}$basename/%{$reset_color%}"
 }
 
 export REPORTTIME=5
