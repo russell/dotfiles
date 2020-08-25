@@ -103,6 +103,7 @@ Each entry is either:
     (progn
       (add-to-list 'org-mode-hook 'centered-cursor-mode)
       (add-to-list 'org-mode-hook 'variable-pitch-mode)
+      (add-to-list 'org-mode-hook 'auto-fill-mode)
       )
     )
   (setq
