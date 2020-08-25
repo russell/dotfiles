@@ -62,8 +62,8 @@ Each entry is either:
   (use-package notmuch
     :config
     (progn
-      (set-face-attribute 'notmuch-message-summary-face
-                          nil :box '(:line-width (2 . 2) :color "grey75" :style released-button)))
+     (set-face-attribute 'notmuch-message-summary-face
+                         nil :box '(:line-width 1 :color "grey75" :style released-button)))
     )
 
   (setq
