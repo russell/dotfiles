@@ -5,6 +5,7 @@
 
 (defun spacemacs-buffer/goto-buffer (&optional refresh))
 (defun spacemacs-buffer/display-startup-note ())
+(defun spacemacs-buffer//startup-hook ())
 
 (if (string-equal "darwin" (symbol-name system-type))
     (progn
