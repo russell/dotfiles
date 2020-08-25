@@ -2,4 +2,5 @@ bundler
 pry
 pry-rescue
 pry-stack_explorer
+pry-byebug
 solargraph
