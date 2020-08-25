@@ -69,6 +69,7 @@ Each entry is either:
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
+   notmuch-fcc-dirs nil
    shr-use-colors nil
    notmuch-tag-formats '(("unread"
                           (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
@@ -89,6 +90,5 @@ Each entry is either:
                             notmuch-hello-insert-alltags
                             notmuch-hello-insert-footer)
    )
-
   )
 ;;; packages.el ends here
