@@ -93,7 +93,6 @@ This function should only modify configuration layer settings."
      multiple-cursors
      notmuch
      (org :variables
-          org-enable-sticky-header t
           org-enable-hugo-support t)
      osx
      puppet
