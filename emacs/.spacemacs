@@ -113,6 +113,10 @@ This function should only modify configuration layer settings."
            ruby-test-runner 'rspec
            ruby-version-manager 'chruby
            ruby-enable-enh-ruby-mode t)
+     (geolocation :variables
+                  geolocation-enable-automatic-theme-changer t
+                  geolocation-enable-location-service t
+                  geolocation-enable-weather-forecast t)
      spell-checking
      syntax-checking
      systemd
@@ -281,7 +285,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai)
+   dotspacemacs-themes '(poet poet-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -302,9 +306,7 @@ It should only modify the values of Spacemacs settings."
                                         ('sleipnir 18)
                                         ('marvin 16)
                                         ('mowgli 15)
-                                        (t 14))
-                               :weight normal
-                               :width normal)
+                                        (t 14)))
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -582,6 +584,14 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (put 'set-goal-column 'disabled nil)
+
+  (set-face-attribute 'default nil :family "Iosevka" :height 130)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+  (set-face-attribute 'variable-pitch nil :family "Baskerville")
+
+  (setq calendar-location-name "Copenhagen, Denmark"
+        calendar-latitude 55.68
+        calendar-longitude 12.57)
 
   ;; Disable creating .#file lockiles
   (setq create-lockfiles nil)
