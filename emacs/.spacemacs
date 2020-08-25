@@ -586,8 +586,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (put 'set-goal-column 'disabled nil)
 
-  (set-face-attribute 'default nil :family "Iosevka" :height 130)
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+  (set-face-attribute 'default nil :family "Iosevka Fixed SS11" :height 130)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed SS11")
   (set-face-attribute 'variable-pitch nil :family "Baskerville")
 
   (setq calendar-location-name "Copenhagen, Denmark"
