@@ -59,8 +59,13 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
 (defun rs-notmuch/post-init-notmuch ()
-  (set-face-attribute 'notmuch-message-summary-face
-                      nil :box '(:line-width (2 . 2) :color "grey75" :style released-button))
+  (use-package notmuch
+    :config
+    (progn
+      (set-face-attribute 'notmuch-message-summary-face
+                          nil :box '(:line-width (2 . 2) :color "grey75" :style released-button)))
+    )
+
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
