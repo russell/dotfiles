@@ -137,6 +137,7 @@ This function should only modify configuration layer settings."
                                       kubernetes
                                       org-caldav
                                       jq-mode
+                                      envrc
                                       haskell-tab-indent
                                       helm-system-packages
                                       no-littering
@@ -598,6 +599,9 @@ before packages are loaded."
   (setq create-lockfiles nil)
 
   (setq history-delete-duplicates t)
+
+  (use-package envrc
+    :config (envrc-global-mode))
 
   (use-package no-littering
     :init
