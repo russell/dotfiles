@@ -79,6 +79,8 @@ Each entry is either:
     :config
     (progn
       (add-to-list 'gfm-mode-hook 'writegood-mode)
+      (add-to-list 'gfm-mode-hook 'variable-pitch-mode)
+      (add-to-list 'markdown-mode-hook 'variable-pitch-mode)
       )
     )
   )
