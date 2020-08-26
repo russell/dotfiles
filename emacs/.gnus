@@ -26,32 +26,15 @@
                              "^Posted-To:" "^Mail-Copies-To:" "^Mail-Followup-To:"
                              "^Apparently-To:" "^Gnus-Warning:"
                              "^Resent-From:" "^User-Agent:" "^X-Mailer:"))
-(setq mm-verify-option 'known)
-(setq mm-decrypt-option 'known)
-(setq mml-smime-signers '("22B1092ADDDC47DD"))
-(setq mm-discouraged-alternatives
-      '("multipart/related" "text/html" "text/richtext")
-      mm-automatic-display
-      (remove "text/html" mm-automatic-display))
 
 (require 'nnir)
 
 (setq gnus-select-method
-      '(nntp "news.gmane.io")
+      '(nntp "news.gmane.io" (nnir-search-engine gmane))
       )
-
-(setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587)
 
 ;; Make Gnus NOT ignore [Gmail] mailboxes
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
-
-;; Set the correct from address when composing an email.
-(setq message-alternative-emails
-      (regexp-opt '("russell.sim@gmail.com")))
 
 (setq gnus-secondary-select-methods nil)
 
@@ -415,19 +398,6 @@ should be removed.  One way to generate such a RE is using
              ", "))
 
 
-(defun rs/dont-cc-self ()
-  "Remove my addresses from the CC header."
-  (save-excursion
-    (when (message-fetch-field "Cc")
-      (let ((case-fold-search t)
-            (cc-content (rs/remove-address message-alternative-emails
-                                           (message-fetch-field "Cc"))))
-        (gnus-article-goto-header "Cc")
-        (message-delete-line)
-        (insert (concat "Cc: " cc-content "\n"))))))
-
-(add-hook 'message-header-setup-hook 'rs/dont-cc-self)
-
 
 (defun rc/sent-from-unimelb-p ()
   (string-equal (message-fetch-field "Resent-From") "russell.sim@unimelb.edu.au"))
@@ -453,9 +423,5 @@ should be removed.  One way to generate such a RE is using
            (From "russell.sim@unimelb.edu.au")
            (Organization "The University of Melbourne")
            (signature ,message-signature)))))
-
-(setq message-dont-reply-to-names
-      '("russell\\.sim@unimelb\\.edu\\.au"
-        "russell\\.sim@gmail\\.com"))
 
 ;;; gnus ends here
