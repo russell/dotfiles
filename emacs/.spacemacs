@@ -112,7 +112,7 @@ This function should only modify configuration layer settings."
      shell-scripts
      (ruby :variables
            ruby-test-runner 'rspec
-           ruby-version-manager 'chruby
+           ruby-backend 'lsp
            ruby-enable-enh-ruby-mode t)
      (geolocation :variables
                   geolocation-enable-automatic-theme-changer t
