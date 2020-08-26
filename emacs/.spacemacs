@@ -589,7 +589,7 @@ before packages are loaded."
 
   (set-face-attribute 'default nil :family "Iosevka Fixed SS11" :height 130)
   (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed SS11")
-  (set-face-attribute 'variable-pitch nil :family "CMU Serif")
+  (set-face-attribute 'variable-pitch nil :family "CMU Serif" :height 150)
 
   (setq calendar-location-name "Copenhagen, Denmark"
         calendar-latitude 55.68
