@@ -235,3 +235,7 @@ fi
 
 export PATH
 export MANPATH
+
+if [ -f "$HOME/.profile.local" ]; then
+    source "$HOME/.profile.local"
+fi
