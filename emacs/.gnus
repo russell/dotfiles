@@ -13,8 +13,10 @@
 (require 'gnus-util)
 (require 'gnus-art)
 (require 'gnus-async)
+(require 'gnus-cloud)
 (require 'smtpmail)
 
+(setq gnus-cloud-epg-encrypt-to '("22B1092ADDDC47DD"))
 (setq message-from-style 'angles)
 
 (setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"
