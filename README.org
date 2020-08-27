@@ -65,23 +65,31 @@ defaults write org.gnu.Emacs HideDocumentIcon YES
 
 * asdf
 
+  #+begin_src sh
 asdf plugin add ruby
 asdf install ruby latest
-for version in 2.0.0-p648 2.2.10 2.3.8 2.4.10 2.5.8 2.6.6 2.7.1; do asdf install ruby $version; done
-
-for version in $(asdf list ruby); do asdf shell ruby && gem update --system ; done
-
 asdf global ruby 2.7.1
+  #+end_src
 
+#+begin_src sh
+for version in 2.0.0-p648 2.2.10 2.3.8 2.4.10 2.5.8 2.6.6 2.7.1; do asdf install ruby $version; done
+#+end_src
 
+#+begin_src sh
+for version in $(asdf list ruby); do asdf shell ruby && gem update --system ; done
+#+end_src
 
+#+begin_src sh
 asdf plugin add python
 asdf install python latest
 asdf global python 3.8.5
+#+end_src
 
+#+begin_src sh
 asdf plugin add nodejs
 asdf install nodejs latest
 asdf global nodejs 14.8.0
+#+end_src
 
 * Migration to stow
 
