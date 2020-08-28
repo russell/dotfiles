@@ -63,7 +63,10 @@ Each entry is either:
     :config
     (progn
      (set-face-attribute 'notmuch-message-summary-face
-                         nil :box '(:line-width 1 :color "grey75" :style released-button)))
+                         nil
+                         :box '(:line-width 1 :color "grey75" :style released-button)
+                         :background nil)
+     )
     )
 
   (setq
@@ -71,6 +74,7 @@ Each entry is either:
    notmuch-show-logo nil
    notmuch-fcc-dirs nil
    shr-use-colors nil
+   notmuch-show-text/html-blocked-images nil
    notmuch-tag-formats '(("unread"
                           (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
                          ("flagged"
