@@ -17,6 +17,8 @@
 (require 'smtpmail)
 
 (setq gnus-cloud-epg-encrypt-to '("22B1092ADDDC47DD"))
+(setq gnus-cloud-synced-files '((:directory "~/News" :match ".*.SCORE\\'")))
+
 (setq message-from-style 'angles)
 
 (setq gnus-buttonized-mime-types '("multipart/signed" "multipart/encrypted"
