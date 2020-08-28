@@ -1,6 +1,6 @@
 ;;; packages.el --- scad layer packages file for Spacemacs.
 ;;
-;; Copyright (c) 2012-2016 Sylvain Benner & Contributors
+;; Copyright (c) 2020 Russell Sim
 ;;
 ;; Author: Russell Sim <russell@marvin.home>
 ;; URL: https://github.com/syl20bnr/spacemacs

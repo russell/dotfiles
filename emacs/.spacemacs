@@ -74,6 +74,7 @@ This function should only modify configuration layer settings."
      rs-notmuch
      rs-shell
      rs-writing
+     rs-gnus
      (auto-completion :variables
                       ;; Try to make auto-complete behave
                       auto-completion-use-company-box t

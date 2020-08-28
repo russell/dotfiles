@@ -1,6 +1,6 @@
 ;;; packages.el --- rs-notmuch layer packages file for Spacemacs.
 ;;
-;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
+;; Copyright (c) 2020 Russell Sim
 ;;
 ;; Author: Russell Sim <russell@sleipnir>
 ;; URL: https://github.com/syl20bnr/spacemacs
