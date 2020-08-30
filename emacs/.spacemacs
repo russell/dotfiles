@@ -622,6 +622,7 @@ before packages are loaded."
   (setq web-mode-markup-indent-offset 2)
 
   (setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
+  (setq helm-mode-handle-completion-in-region nil)
 
   (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
 )
