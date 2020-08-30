@@ -12,23 +12,22 @@
 
   # vim
   #+begin_src sh
-    apt-get install python-ropemacs exuberant-ctags
+    sudo apt-get install python-ropemacs exuberant-ctags
 
     cd vim/python/ropevim
     python setup.py install
   #+end_src
 
-
   # emacs
   #+begin_src sh
-    apt-get install python-ropemacs bzr subversion git-core links2 silversearcher-ag
-    apt-get install debian-el devscripts-el  # adds debian modes
-    apt-get install fonts-cmu
+    sudo apt-get install python-ropemacs bzr subversion git-core links2 silversearcher-ag
+    sudo apt-get install debian-el devscripts-el  # adds debian modes
+    sudo apt-get install fonts-cmu
   #+end_src
 
   # mutt
   #+begin_src sh
-    apt-get install urlview
+    sudo apt-get install urlview
   #+end_src
 
   from the directory containing this file run.
