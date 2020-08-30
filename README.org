@@ -1,100 +1,129 @@
 * Install
 
-# direnv
-sudo apt-get install direnv
+  # direnv
+  #+begin_src sh
+    sudo apt-get install direnv
+  #+end_src
 
-# python
-sudo apt-get install python-virtualenv
+  # python
+  #+begin_src sh
+    sudo apt-get install python-virtualenv
+  #+end_src
 
-# vim
-apt-get install python-ropemacs exuberant-ctags
+  # vim
+  #+begin_src sh
+    apt-get install python-ropemacs exuberant-ctags
 
-cd vim/python/ropevim
-python setup.py install
+    cd vim/python/ropevim
+    python setup.py install
+  #+end_src
 
 
-# emacs
-apt-get install python-ropemacs bzr subversion git-core links2 silversearcher-ag
-apt-get install debian-el devscripts-el  # adds debian modes
+  # emacs
+  #+begin_src sh
+    apt-get install python-ropemacs bzr subversion git-core links2 silversearcher-ag
+    apt-get install debian-el devscripts-el  # adds debian modes
+    apt-get install fonts-cmu
+  #+end_src
 
-# mutt
-apt-get install urlview
+  # mutt
+  #+begin_src sh
+    apt-get install urlview
+  #+end_src
 
-from the directory containing this file run.
+  from the directory containing this file run.
 
-# zsh
-sudo apt-get install zsh zsh-syntax-highlighting
+  # zsh
+  #+begin_src sh
+    sudo apt-get install zsh zsh-syntax-highlighting
+  #+end_src
 
-# emacs - flymake-js
-sudo apt-get install npm
-sudo npm install -g jshint
-sudo apt-get install cvs openssl bzr debian-el git-buildpackage devscripts-el sbcl mercurial stumpwm cl-clx-sbcl curl ssh-askpass pwgen bitlbee libnotify-bin
+  # emacs - flymake-js
+  #+begin_src sh
+    sudo apt-get install npm
+    sudo npm install -g jshint
+    sudo apt-get install cvs openssl bzr debian-el git-buildpackage devscripts-el sbcl mercurial stumpwm cl-clx-sbcl curl ssh-askpass pwgen bitlbee libnotify-bin
+  #+end_src
 
-# xbindkeys
-sudo apt-get install xbindkeys xvkbd
+  # xbindkeys
+  #+begin_src sh
+    sudo apt-get install xbindkeys xvkbd
+  #+end_src
 
-sudo apt-get install python3-proselint
+  #+begin_src sh
+    sudo apt-get install python3-proselint
+  #+end_src
 
 * OSX
 
 
-brew install python@2
+  #+begin_src sh
+    brew install python@2
 
-brew install coreutils zsh direnv
-brew install chruby ruby-install
+    brew install coreutils zsh direnv
+    brew install chruby ruby-install
+  #+end_src
 
-# For tmux
-brew install reattach-to-user-namespace
+  # For tmux
+  #+begin_src sh
+    brew install reattach-to-user-namespace
+  #+end_src
 
-# For grepping projects instead of using AG
-brew install ripgrep
+  # For grepping projects instead of using AG
+  #+begin_src sh
+    brew install ripgrep
 
-brew install aspell
+    brew install aspell
 
-brew install stow
+    brew install stow
 
-brew install asdf
+    brew install asdf
 
-brew install proselint
+    brew install proselint
 
-brew tap homebrew/cask-fonts
-brew cask install font-iosevka-ss11
+    brew tap homebrew/cask-fonts
+    brew cask install font-iosevka-ss11
+  #+end_src
 
-# Disable document icon
-defaults write org.gnu.Emacs HideDocumentIcon YES
+  # Disable document icon
+  #+begin_src sh
+    defaults write org.gnu.Emacs HideDocumentIcon YES
+  #+end_src
 
 * asdf
 
   #+begin_src sh
-asdf plugin add ruby
-asdf install ruby latest
-asdf global ruby 2.7.1
+    asdf plugin add ruby
+    asdf install ruby latest
+    asdf global ruby 2.7.1
   #+end_src
 
-#+begin_src sh
-for version in 2.0.0-p648 2.2.10 2.3.8 2.4.10 2.5.8 2.6.6 2.7.1; do asdf install ruby $version; done
-#+end_src
+  #+RESULTS:
 
-#+begin_src sh
-for version in $(asdf list ruby); do asdf shell ruby && gem update --system ; done
-#+end_src
+  #+begin_src sh
+    for version in 2.0.0-p648 2.2.10 2.3.8 2.4.10 2.5.8 2.6.6 2.7.1; do asdf install ruby $version; done
+  #+end_src
 
-#+begin_src sh
-asdf plugin add python
-asdf install python latest
-asdf global python 3.8.5
-#+end_src
+  #+begin_src sh
+    for version in $(asdf list ruby); do asdf shell ruby && gem update --system ; done
+  #+end_src
 
-#+begin_src sh
-asdf plugin add nodejs
-asdf install nodejs latest
-asdf global nodejs 14.8.0
-#+end_src
+  #+begin_src sh
+    asdf plugin add python
+    asdf install python latest
+    asdf global python 3.8.5
+  #+end_src
+
+  #+begin_src sh
+    asdf plugin add nodejs
+    asdf install nodejs latest
+    asdf global nodejs 14.8.0
+  #+end_src
 
 * Migration to stow
 
-Remove all old symlinks
-: rm ~/.local/share/applications/conkeror.desktop
-: rm ~/.local/share/applications/gnus.desktop
-: rm ~/.config/znt
-: ls -la ~ | awk '/dotfiles\// { print $9 }' | xargs rm
+  Remove all old symlinks
+  : rm ~/.local/share/applications/conkeror.desktop
+  : rm ~/.local/share/applications/gnus.desktop
+  : rm ~/.config/znt
+  : ls -la ~ | awk '/dotfiles\// { print $9 }' | xargs rm
