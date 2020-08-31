@@ -1,8 +1,8 @@
 ;;; packages.el --- znc layer packages file for Spacemacs.
 ;;
-;; Copyright (c) 2012-2016 Sylvain Benner & Contributors
+;; Copyright (c) 2020 Russell Sim
 ;;
-;; Author: Russell Sim <russell@marvin.home>
+;; Author: Russell Sim <russell.sim@github.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
 ;;
 ;; This file is not part of GNU Emacs.

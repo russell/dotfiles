@@ -2,7 +2,7 @@
 ;;
 ;; Copyright (c) 2020 Russell Sim
 ;;
-;; Author: Russell Sim <russell@sleipnir>
+;; Author: Russell Sim <russell.sim@github.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
 ;;
 ;; This file is not part of GNU Emacs.
