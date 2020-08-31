@@ -61,8 +61,33 @@ Each entry is either:
 (defun rs-org/init-org-variable-pitch()
   (use-package org-variable-pitch
     :config
-    (add-to-list 'org-mode-hook 'org-variable-pitch-mode)
+    (progn
+      (add-to-list 'org-mode-hook 'org-variable-pitch-minor-mode)
+      (setq 'org-variable-pitch-fixed-font "Iosevka Fixed SS11"))
     )
   )
+
+;; (defun rs-org/post-init-org()
+;;   (let ((pitch-fixed-faces '(org-block
+;;                              org-block-begin-line
+;;                              org-block-end-line
+;;                              ;; org-code
+;;                              ;; org-document-info-keyword
+;;                              org-done
+;;                              org-formula
+;;                              ;; org-meta-line
+;;                              ;; org-special-keyword
+;;                              font-lock-comment-face
+;;                              org-table
+;;                              org-todo
+;;                              ;; org-verbatim
+;;                              shadow
+;;                              org-date
+;;                              )))
+;;     (dolist (face pitch-fixed-faces)
+;;       (set-face-attribute face nil :inherit 'fixed-pitch)
+;;     ))
+
+;;   )
 
 ;;; packages.el ends here
