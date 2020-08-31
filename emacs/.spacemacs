@@ -73,6 +73,7 @@ This function should only modify configuration layer settings."
      arrsim
      rs-notmuch
      rs-shell
+     rs-org
      rs-writing
      rs-gnus
      (auto-completion :variables
