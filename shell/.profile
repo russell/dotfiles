@@ -92,7 +92,7 @@ if [ -d "$ASDF_DIR" ]; then
 fi
 
 # Kubernetes Krew
-if [ -d "{KREW_ROOT:-$HOME/.krew}/.krew" ]; then
+if [ -d "${KREW_ROOT:-$HOME/.krew}" ]; then
     PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
