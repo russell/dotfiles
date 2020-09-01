@@ -165,9 +165,6 @@ export PDSH_GENDERS_FILE=$(gread_link ~/.genders)
 export DIST=unstable
 export ARCH=amd64
 
-
-# Python virtualenv/pip
-
 # OSX brew python
 [ -d /usr/local/opt/python@2/libexec/bin ] && export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
 
