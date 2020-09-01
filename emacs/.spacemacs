@@ -71,6 +71,7 @@ This function should only modify configuration layer settings."
      better-defaults
      ansible
      arrsim
+     rs-autocomplete
      rs-notmuch
      rs-shell
      rs-org
