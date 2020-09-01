@@ -64,7 +64,7 @@ Each entry is either:
     (progn
       (add-to-list 'org-mode-hook 'org-variable-pitch-minor-mode)
       (add-to-list 'org-variable-pitch-fixed-faces 'org-link)
-      (setq 'org-variable-pitch-fixed-font "Iosevka Fixed SS11"))
+      (setq org-variable-pitch-fixed-font "Iosevka Fixed SS11"))
     )
   )
 
