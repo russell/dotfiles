@@ -99,7 +99,7 @@ fi
 # NodeJS
 export NPM_PACKAGES="$HOME/.npm-packages"
 PATH="$NPM_PACKAGES/bin:$PATH"
-MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+MANPATH=":$NPM_PACKAGES/share/man"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 if [ ! -d "$NPM_PACKAGES" ] ; then
     mkdir $NPM_PACKAGES
