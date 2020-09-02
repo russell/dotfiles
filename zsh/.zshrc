@@ -75,6 +75,8 @@ then
     source /usr/share/doc/fzf/examples/key-bindings.zsh
     # Replace bindkey that FZF sets for C-t
     bindkey '^t' transpose-chars
+    # Replace bindkey that FZF sets for M-c
+    bindkey '\ec' capitalize-word
 else
     zplug 'psprint/zsh-navigation-tools'
     if ! zplug check; then
