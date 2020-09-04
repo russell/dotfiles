@@ -588,6 +588,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (setq confirm-kill-emacs (quote yes-or-no-p))
   (put 'set-goal-column 'disabled nil)
 
   (set-face-attribute 'default nil :family "Iosevka Fixed SS11" :height 130)
