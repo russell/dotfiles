@@ -34,9 +34,12 @@
     :config
     (progn
       (require 'org-id)
-      (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
-      (setq org-agenda-files '("~/org/"))
-      ))
+      (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+            org-agenda-files '("~/org/")
+            org-outline-path-complete-in-steps nil
+            org-refile-use-outline-path 'file
+            org-refile-targets '((org-agenda-files :maxlevel . 4))
+            org-refile-allow-creating-parent-nodes 'confirm)))
   ;; (let ((pitch-fixed-faces '(org-block
   ;;                            org-block-begin-line
   ;;                            org-block-end-line
