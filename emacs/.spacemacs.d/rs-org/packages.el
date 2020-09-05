@@ -12,7 +12,12 @@
 ;;; Code:
 
 (defconst rs-org-packages
-  '(org-variable-pitch))
+  '(org-variable-pitch
+    org-ql
+    org
+    (org-super-links :location (recipe
+                                :fetcher github
+                                :repo "toshism/org-super-links"))))
 
 (defun rs-org/init-org-variable-pitch()
   (use-package org-variable-pitch
@@ -25,7 +30,13 @@
   )
 
 (defun rs-org/post-init-org()
-  (setq org-agenda-files '("~/org/"))
+  (use-package org
+    :config
+    (progn
+      (require 'org-id)
+      (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+      (setq org-agenda-files '("~/org/"))
+      ))
   ;; (let ((pitch-fixed-faces '(org-block
   ;;                            org-block-begin-line
   ;;                            org-block-end-line
@@ -66,8 +77,28 @@
     :defer t
     :init
     (progn
-
+      (setq org-journal-dir "~/org/journal")
       )
+    )
+  )
+
+(defun rs-org/init-org-super-links()
+  (use-package org-super-links
+    :defer t
+    :init
+    (progn
+      (require 'org-ql)
+      (require 'helm-org-ql)
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode
+        "l" 'sl-link
+        )
+      )
+    )
+  )
+
+(defun rs-org/init-org-ql()
+  (use-package org-ql
+    :defer t
     )
   )
 
