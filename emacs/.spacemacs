@@ -95,9 +95,6 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      notmuch
-     (org :variables
-          org-enable-jira-support t
-          org-enable-hugo-support t)
      osx
      puppet
      python

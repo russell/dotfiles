@@ -48,4 +48,27 @@
 
   )
 
+(defun rs-org/post-init-deft()
+  (use-package deft
+    :defer t
+    :init
+    (progn
+      (setq deft-directory "~/org"
+            deft-recursive t
+            deft-use-filename-as-title nil
+            deft-use-filter-string-for-filename nil)
+      )
+    )
+  )
+
+(defun rs-org/post-init-org-journal()
+  (use-package org-journal
+    :defer t
+    :init
+    (progn
+
+      )
+    )
+  )
+
 ;;; packages.el ends here
