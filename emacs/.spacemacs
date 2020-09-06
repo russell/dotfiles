@@ -79,7 +79,6 @@ This function should only modify configuration layer settings."
      rs-gnus
      (auto-completion :variables
                       ;; Try to make auto-complete behave
-                      auto-completion-use-company-box t
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete
                       auto-completion-enable-snippets-in-popup t)

@@ -13,6 +13,7 @@
 
 (defconst rs-autocomplete-packages
   '(company
+    company-posframe
     auto-complete))
 
 (defun rs-autocomplete/post-init-company ()
@@ -24,12 +25,15 @@
     ))
 
 (defun rs-autocomplete/post-init-auto-complete ()
-  (message "ran init")
   (use-package auto-complete
     :init
     (progn
       (setq tab-always-indent t)
       )
     ))
+
+(defun rs-autocomplete/init-company-posframe ()
+  (use-package company-posframe
+    :hook '(company-mode . company-posframe-mode)))
 
 ;;; packages.el ends here
