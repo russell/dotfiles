@@ -16,3 +16,4 @@
                                          org-enable-jira-support t
                                          org-enable-hugo-support t
                                          org-enable-org-journal-support t))
+(configuration-layer/declare-layer 'plantuml)
