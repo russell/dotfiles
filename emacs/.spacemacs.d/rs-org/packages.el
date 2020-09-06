@@ -14,6 +14,9 @@
 (defconst rs-org-packages
   '(org-variable-pitch
     org-ql
+    org-roam
+    org-journal
+    deft
     org
     (org-super-links :location (recipe
                                 :fetcher github
@@ -34,6 +37,7 @@
     :config
     (progn
       (require 'org-id)
+      (require 'org-protocol)
       (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
             org-agenda-files '("~/org/")
             org-outline-path-complete-in-steps nil
@@ -67,20 +71,22 @@
     :defer t
     :init
     (progn
-      (setq deft-directory "~/org"
+      (setq deft-directory "~/org/roam"
             deft-recursive t
-            deft-use-filename-as-title nil
-            deft-use-filter-string-for-filename nil)
+            deft-use-filename-as-title t
+            deft-use-filter-string-for-filename t)
       )
     )
   )
 
 (defun rs-org/post-init-org-journal()
   (use-package org-journal
-    :defer t
     :init
     (progn
-      (setq org-journal-dir "~/org/journal")
+      (setq org-journal-dir "~/org/roam/journal/"
+            org-journal-date-prefix "#+title: "
+            org-journal-file-format "%Y-%m-%d.org"
+            org-journal-date-format "%A, %d %B %Y")
       )
     )
   )
@@ -104,5 +110,55 @@
     :defer t
     )
   )
+
+(defun rs-org/init-org-roam()
+  (use-package org-roam
+    :ensure t
+    :hook
+    (after-init . org-roam-mode)
+    :custom
+    ((org-roam-directory "~/org/roam"))
+    :config
+    (progn
+      (require 'org-roam-capture)
+      (require 'org-roam-protocol)
+      (setq org-roam-capture-ref-templates
+            '(("r" "ref" plain (function org-roam-capture--get-point)
+               "%i%?"
+               :file-name "${slug}"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n%i"
+               :unnarrowed t)))
+      (setq org-capture-templates
+            '(
+              ("d" "default" plain (function org-roam--capture-get-point)
+               "%?"
+               :file-name "%<%Y%m%d%H%M%S>-${slug}"
+               :head "#+title: ${title}\n"
+               :unnarrowed t)
+              ("t" "personal TODO" entry
+               (file+headline "~/org/todo.org" "Inbox"))
+              ("w" "work TODO" entry
+               (file+headline "~/org/todo_zendesk.org" "Inbox"))
+              ("j" "journal note" entry
+               (file org-journal--get-entry-path)
+               "* Event: %?\n\n  %i\n\n  From: %a"
+               :empty-lines 1)
+              ("p" "protocol - capture a link and quote" entry (function rs/goto-current-journal)
+               "* %(format-time-string org-journal-time-format)%^{Title}\n   [[%:link][%:description]]\n\n   #+BEGIN_QUOTE\n   %i\n   #+END_QUOTE\n\n%?"
+               :head "#+title: ${title}\n"
+               :empty-lines 1)
+              ("L" "protocol - capture a link" entry (function rs/goto-current-journal)
+               "* %(format-time-string org-journal-time-format)%^{Title}\n   [[%:link][%:description]]\n\n%?"
+               :head "#+title: $(format-time-string org-journal-date-format)\n"
+               :empty-lines 1)
+              )
+            ))
+    :bind (:map org-roam-mode-map
+                (("C-c n l" . org-roam)
+                 ("C-c n f" . org-roam-find-file)
+                 ("C-c n g" . org-roam-graph-show))
+                :map org-mode-map
+                (("C-c n i" . org-roam-insert))
+                (("C-c n I" . org-roam-insert-immediate)))))
 
 ;;; packages.el ends here

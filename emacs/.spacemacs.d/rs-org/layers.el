@@ -1,4 +1,4 @@
-;;; packages.el --- rs-org layer packages file for Spacemacs.
+;;; layers.el --- rs-org layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2020 Russell Sim
 ;;
