@@ -18,6 +18,7 @@
     org-journal
     deft
     org
+    plantuml-mode
     (org-super-links :location (recipe
                                 :fetcher github
                                 :repo "toshism/org-super-links"))))
@@ -160,5 +161,14 @@
                 :map org-mode-map
                 (("C-c n i" . org-roam-insert))
                 (("C-c n I" . org-roam-insert-immediate)))))
+
+(defun rs-org/init-plantuml-mode()
+  (use-package plantuml-mode
+    :config
+    (progn
+      (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"
+            plantuml-jar-path "/usr/share/plantuml/plantuml.jar"))
+    )
+  )
 
 ;;; packages.el ends here
