@@ -86,6 +86,7 @@
     (progn
       (setq org-journal-dir "~/org/roam/journal/"
             org-journal-date-prefix "#+title: "
+            org-journal-time-prefix "* "
             org-journal-file-format "%Y-%m-%d.org"
             org-journal-date-format "%A, %d %B %Y")
       )
