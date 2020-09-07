@@ -9,6 +9,7 @@
 
 (if (string-equal "darwin" (symbol-name system-type))
     (progn
+      (setq default-directory (concat (getenv "HOME") "/"))
       (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
       (setq epg-gpg-program "/usr/local/bin/gpg2")))
 
