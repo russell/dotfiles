@@ -20,8 +20,8 @@
   (use-package company
     :config
     (progn
+      ;; Discussed here https://github.com/company-mode/company-mode/issues/433
       (setq company-dabbrev-char-regexp "[a-z-_'/]"))
-
     ))
 
 (defun rs-autocomplete/post-init-auto-complete ()
