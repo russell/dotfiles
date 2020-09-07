@@ -162,7 +162,7 @@
                 (("C-c n i" . org-roam-insert))
                 (("C-c n I" . org-roam-insert-immediate)))))
 
-(defun rs-org/init-plantuml-mode()
+(defun rs-org/post-init-plantuml-mode()
   (use-package plantuml-mode
     :config
     (progn
