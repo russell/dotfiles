@@ -55,12 +55,11 @@
 
 * OSX
 
-
   #+begin_src sh
     brew install python@2
 
-    brew install coreutils zsh direnv
-    brew install chruby ruby-install
+    brew install coreutils zsh direnv asdf
+    brew install stow
   #+end_src
 
   # For tmux
@@ -74,18 +73,12 @@
 
     brew install aspell
 
-    brew install stow
-
-    brew install asdf
-
-    brew install proselint
 
     brew tap homebrew/cask-fonts
     brew cask install font-iosevka-ss11
   #+end_src
 
-  # Emacs
-
+** Emacs
   #+begin_src sh
     brew tap d12frosted/emacs-plus
     brew install emacs-plus@27 --with-xwidgets
@@ -95,6 +88,12 @@
   # Disable document icon
   #+begin_src sh
     defaults write org.gnu.Emacs HideDocumentIcon YES
+  #+end_src
+
+*** Linting
+
+  #+begin_src sh
+    brew install proselint
   #+end_src
 
 * asdf
