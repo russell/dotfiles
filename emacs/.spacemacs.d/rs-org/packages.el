@@ -128,7 +128,7 @@
             '(("r" "ref" plain (function org-roam-capture--get-point)
                "%i%?"
                :file-name "${slug}"
-               :head "#+title: ${title}\n#+roam_key: ${ref}\n%i"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n"
                :unnarrowed t)))
       (setq org-capture-templates
             '(
