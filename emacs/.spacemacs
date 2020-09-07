@@ -572,7 +572,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-
+  (setq custom-file (expand-file-name "~/.spacemacs.d/.spacemacs.custom.el"))
   (setq powerline-default-separator 'slant)
   (setq ispell-dictionary "british")
   (setq ispell-program-name "aspell")
