@@ -84,6 +84,14 @@
     brew cask install font-iosevka-ss11
   #+end_src
 
+  # Emacs
+
+  #+begin_src sh
+    brew tap d12frosted/emacs-plus
+    brew install emacs-plus@27 --with-xwidgets
+    brew linkapps emacs-plus@27
+  #+end_src
+
   # Disable document icon
   #+begin_src sh
     defaults write org.gnu.Emacs HideDocumentIcon YES
