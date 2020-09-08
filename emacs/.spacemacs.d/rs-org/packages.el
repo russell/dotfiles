@@ -39,6 +39,7 @@
     (progn
       (require 'org-id)
       (require 'org-protocol)
+      (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
       (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
             org-agenda-files '("~/org/")
             org-outline-path-complete-in-steps nil
@@ -46,17 +47,21 @@
             org-refile-targets '((org-agenda-files :maxlevel . 4))
             org-refile-allow-creating-parent-nodes 'confirm)
       (setq org-agenda-custom-commands
-            '(("p" "Agenda and all TODOs"
+            '(("p" "Personal TODOs"
                ((agenda "")
                 (tags-todo "+personal+projects")
-                (tags-todo "+personal+areas")))
-              ("P" "Lost personal todos"
+                (tags-todo "+personal+areas"))
+               nil
+               ("~/org/todo_personal.html"))
+              ("P" "Lost personal TODOS"
                ((agenda "")
                 (tags-todo "+personal-projects-areas")))
               ("z" "Zendesk TODOs"
                ((agenda "")
                 (tags-todo "+zendesk+projects")
-                (tags-todo "+zendesk+areas")))
+                (tags-todo "+zendesk+areas"))
+               nil
+               ("~/org/todo_zendesk.html"))
               ("Z" "Lost Zendesk TODOs"
                ((agenda "")
                 (tags-todo "+zendesk-projects-areas")))))
