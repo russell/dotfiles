@@ -44,7 +44,25 @@
             org-outline-path-complete-in-steps nil
             org-refile-use-outline-path 'file
             org-refile-targets '((org-agenda-files :maxlevel . 4))
-            org-refile-allow-creating-parent-nodes 'confirm)))
+            org-refile-allow-creating-parent-nodes 'confirm)
+      (setq org-agenda-custom-commands
+            '(("p" "Agenda and all TODOs"
+               ((agenda "")
+                (tags-todo "+personal+projects")
+                (tags-todo "+personal+areas")))
+              ("P" "Lost personal todos"
+               ((agenda "")
+                (tags-todo "+personal-projects-areas")))
+              ("z" "Zendesk TODOs"
+               ((agenda "")
+                (tags-todo "+zendesk+projects")
+                (tags-todo "+zendesk+areas")))
+              ("Z" "Lost Zendesk TODOs"
+               ((agenda "")
+                (tags-todo "+zendesk-projects-areas")))))
+      ))
+
+
   ;; (let ((pitch-fixed-faces '(org-block
   ;;                            org-block-begin-line
   ;;                            org-block-end-line
@@ -145,16 +163,22 @@
                (file org-journal--get-entry-path)
                "* Event: %?\n\n  %i\n\n  From: %a"
                :empty-lines 1)
-              ("p" "protocol - capture a link and quote" entry (function rs/goto-current-journal)
-               "* %(format-time-string org-journal-time-format)%^{Title}\n   [[%:link][%:description]]\n\n   #+BEGIN_QUOTE\n   %i\n   #+END_QUOTE\n\n%?"
+              ("p" "protocol:personal - capture a link and quote" entry (function rs/goto-current-journal)
+               "* %(format-time-string org-journal-time-format)%^{Title} :personal:\n   [[%:link][%:description]]\n\n   #+BEGIN_QUOTE\n   %i\n   #+END_QUOTE\n\n%?"
                :head "#+title: ${title}\n"
                :empty-lines 1)
-              ("L" "protocol - capture a link" entry (function rs/goto-current-journal)
-               "* %(format-time-string org-journal-time-format)%^{Title}\n   [[%:link][%:description]]\n\n%?"
+              ("P" "protocol:personal - capture a link" entry (function rs/goto-current-journal)
+               "* %(format-time-string org-journal-time-format)%^{Title} :personal:\n   [[%:link][%:description]]\n\n%?"
                :head "#+title: $(format-time-string org-journal-date-format)\n"
                :empty-lines 1)
-              )
-            ))
+              ("z" "protocol:zendesk - capture a link and quote" entry (function rs/goto-current-journal)
+               "* %(format-time-string org-journal-time-format)%^{Title} :zendesk:\n   [[%:link][%:description]]\n\n   #+BEGIN_QUOTE\n   %i\n   #+END_QUOTE\n\n%?"
+               :head "#+title: ${title}\n"
+               :empty-lines 1)
+              ("Z" "protocol:zendesk - capture a link" entry (function rs/goto-current-journal)
+               "* %(format-time-string org-journal-time-format)%^{Title} :zendesk:\n   [[%:link][%:description]]\n\n%?"
+               :head "#+title: $(format-time-string org-journal-date-format)\n"
+               :empty-lines 1))))
     :bind (:map org-roam-mode-map
                 (("C-c n l" . org-roam)
                  ("C-c n f" . org-roam-find-file)
