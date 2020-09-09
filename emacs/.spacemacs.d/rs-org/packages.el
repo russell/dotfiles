@@ -42,10 +42,13 @@
       (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
       (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
             org-agenda-files '("~/org/")
+            org-agenda-include-diary t
             org-outline-path-complete-in-steps nil
             org-refile-use-outline-path 'file
             org-refile-targets '((org-agenda-files :maxlevel . 4))
             org-refile-allow-creating-parent-nodes 'confirm)
+      (add-hook 'diary-list-entries-hook 'diary-include-other-diary-files)
+      (add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files)
       (setq org-agenda-custom-commands
             '(("p" "Personal TODOs"
                ((agenda "")

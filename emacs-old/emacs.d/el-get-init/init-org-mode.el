@@ -1,4 +1,3 @@
-
 ;;; Code:
 
 (eval-when-compile

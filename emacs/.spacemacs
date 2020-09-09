@@ -626,7 +626,7 @@ before packages are loaded."
   (setq helm-mode-handle-completion-in-region nil)
 
   (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
-)
+  (load-file "~/.emacs-private.el"))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
