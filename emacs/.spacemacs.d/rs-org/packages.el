@@ -116,7 +116,7 @@
             org-journal-file-format "%Y-%m-%d.org"
             org-journal-date-format "%A, %d %B %Y")
       (spacemacs/set-leader-keys
-        "aojc" 'org-journal-open-current-journal-file)))
+        "aojc" 'org-journal-open-current-journal-file))))
 
 (defun rs-org/init-org-super-links()
   (use-package org-super-links
