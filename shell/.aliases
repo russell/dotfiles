@@ -94,9 +94,12 @@ ssh() {
 
 # EMACS launcher
 e () {
-    if $DARWIN; then
+    if $DARWIN && [ -e /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]; then
         EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
         EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+    elif $DARWIN; then
+        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+        EMACSCLIENT=emacsclient
     else
         EMACS=emacs
         EMACSCLIENT=emacsclient
@@ -125,8 +128,8 @@ e () {
 
 # edit file in console
 ec () {
-    if $DARWIN; then
-        EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+    if $DARWIN && [ -e /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]; then
+        EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
     else
         EMACS=emacs
     fi
@@ -135,7 +138,7 @@ ec () {
 
 # edit file with root permissions
 E () {
-    if $DARWIN; then
+    if $DARWIN && [ -e /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]; then
         EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
     else
         EMACSCLIENT=emacsclient
@@ -164,12 +167,11 @@ function ansible-vault-diff {
 }
 
 magit (){
-    if $DARWIN; then
+    if $DARWIN && [ -e /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]; then
         EMACSCLIENT=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
     else
         EMACSCLIENT=emacsclient
     fi
-
     $EMACSCLIENT -n -a emacs --eval "(progn (select-frame-set-input-focus (selected-frame)) (magit-status \"$(git rev-parse --show-toplevel)\") (delete-other-windows))"
 }
 
