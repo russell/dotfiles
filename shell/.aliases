@@ -48,6 +48,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias tmux='tmux -u'
+
 # Enable ls colors
 if [ "$DISABLE_LS_COLORS" != "true" ]
 then
