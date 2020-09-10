@@ -1,8 +1,8 @@
-;;; rs-core.el --- Core                              -*- lexical-binding: t; -*-
+;;; rs-jsonnet.el --- Jsonnet                        -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Russell Sim
 
-;; Author: Russell Sim <russell@mowgli>
+;; Author: Russell Sim <russell.sim@gmail.com>
 ;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,23 +24,8 @@
 
 ;;; Code:
 
-(setq confirm-kill-emacs 'yes-or-no-p)
-(put 'set-goal-column 'disabled nil)
-(setq history-delete-duplicates t)
-
-;; Disable creating .#file lockiles
-(setq create-lockfiles nil)
-
-(setq vc-follow-symlinks t)
+(prelude-require-packages '(jsonnet-mode))
 
 
-(if (string-equal "darwin" (symbol-name system-type))
-    (progn
-      (setq default-directory (concat (getenv "HOME") "/"))
-      (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
-      (setq epg-gpg-program "/usr/local/bin/gpg2")))
-
-
-
-(provide 'rs-core)
-;;; rs-core.el ends here
+(provide 'rs-jsonnet)
+;;; rs-jsonnet.el ends here

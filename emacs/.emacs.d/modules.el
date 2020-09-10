@@ -26,6 +26,12 @@
 
 (require 'rs-appearance)
 (require 'rs-personal)
+(require 'rs-gnus)
+(require 'rs-notmuch)
+(require 'rs-org)
+(require 'rs-shell)
+(require 'rs-jsonnet)
+(require 'rs-helm)
 
 ;; Emacs IRC client
 ;; (require 'prelude-erc)

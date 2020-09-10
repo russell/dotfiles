@@ -1,8 +1,8 @@
-;;; rs-core.el --- Core                              -*- lexical-binding: t; -*-
+;;; rs-helm.el --- Helm                              -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Russell Sim
 
-;; Author: Russell Sim <russell@mowgli>
+;; Author: Russell Sim <russell.sim@gmail.com>
 ;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,23 +24,17 @@
 
 ;;; Code:
 
-(setq confirm-kill-emacs 'yes-or-no-p)
-(put 'set-goal-column 'disabled nil)
-(setq history-delete-duplicates t)
+(prelude-require-packages '(helm-swoop helm-rg))
 
-;; Disable creating .#file lockiles
-(setq create-lockfiles nil)
+;; (setq helm-follow-mode-persistent nil)
+(setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
+(setq helm-mode-handle-completion-in-region nil)
 
-(setq vc-follow-symlinks t)
+(setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
+(setq helm-mode-handle-completion-in-region nil)
 
+(use-package helm-swoop
+  :bind (("C-S-s" . helm-swoop)))
 
-(if (string-equal "darwin" (symbol-name system-type))
-    (progn
-      (setq default-directory (concat (getenv "HOME") "/"))
-      (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
-      (setq epg-gpg-program "/usr/local/bin/gpg2")))
-
-
-
-(provide 'rs-core)
-;;; rs-core.el ends here
+(provide 'rs-helm)
+;;; rs-helm.el ends here
