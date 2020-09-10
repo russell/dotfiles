@@ -24,6 +24,7 @@
 
 ;;; Code:
 
+(require 'rs-core)
 (require 'rs-appearance)
 (require 'rs-personal)
 (require 'rs-gnus)
