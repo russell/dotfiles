@@ -36,5 +36,5 @@ for name in $packages; do
 done
 
 if [ ! -e ~/.emacs-prelude.d ]; then
-    git clone git://github.com/bbatsov/prelude.git .emacs-prelude.d
+    git clone git://github.com/bbatsov/prelude.git ~/.emacs-prelude.d
 fi
