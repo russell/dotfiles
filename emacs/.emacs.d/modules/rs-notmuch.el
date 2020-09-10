@@ -27,7 +27,8 @@
 (prelude-require-packages '(notmuch))
 
 (use-package notmuch
-  :bind (("C-M-m n" . notmuch))
+  :bind (:map rs-applications-map
+              ("n" . notmuch))
   :init
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"

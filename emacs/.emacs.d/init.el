@@ -45,6 +45,7 @@
   )
 
 (require 'rs-packages)
+(require 'rs-keybinding)
 
 (load rs-modules)
 

@@ -45,7 +45,8 @@
 
 (use-package org
   :bind
-  (("C-M-m a" . org-agenda))
+  (:map rs-applications-map
+        ("a" . org-agenda))
     :config
     (progn
       (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
@@ -108,8 +109,9 @@
           org-journal-file-format "%Y-%m-%d.org"
           org-journal-date-format "%A, %d %B %Y")
     )
-  :bind (("C-M-m j j" . org-journal-new-entry)
-         ("C-M-m j c" . org-journal-open-current-journal-file)))
+  :bind (:map rs-applications-map
+              ("j j" . org-journal-new-entry)
+              ("j c" . org-journal-open-current-journal-file)))
 
 (use-package org-super-links
   :defer t

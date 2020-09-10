@@ -1,4 +1,4 @@
-;;; rs-gnus.el --- Gnus                              -*- lexical-binding: t; -*-
+;;; Rs;-gnus.el --- Gnus                              -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Russell Sim
 
@@ -25,7 +25,8 @@
 ;;; Code:
 
 (use-package gnus
-  :bind (("C-M-m g" . gnus)))
+  :bind (:map rs-applications-map
+              ("C-M-m g" . gnus)))
 
 (use-package gnus-cloud
   :config
