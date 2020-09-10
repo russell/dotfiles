@@ -29,6 +29,7 @@
                             org-roam
                             org-journal
                             helm-org
+                            helm-org-rifle
                             plantuml-mode))
 
 (rs-require-package '(org-super-links :fetcher github
@@ -43,12 +44,22 @@
     (setq org-variable-pitch-fixed-font "Iosevka Fixed SS11"))
   )
 
+(use-package helm-org-rifle
+  :bind (:map rs-applications-map
+              ("o r" . 'helm-org-rifle-org-directory)))
+
+(use-package diary-lib
+  :defer t
+  :config
+  (add-hook 'diary-list-entries-hook 'diary-include-other-diary-files)
+  (add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files))
+
 (use-package org
   :bind
   (:map rs-applications-map
         ("a" . org-agenda))
-    :config
-    (progn
+  :config
+  (progn
       (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
             org-src-fontify-natively t
             org-src-tab-acts-natively t
@@ -70,15 +81,11 @@
                           ol-eshell
                           ol-notmuch
                           org-toc)
-            org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
             org-agenda-files '("~/org/")
-            org-agenda-include-diary t
             org-outline-path-complete-in-steps nil
             org-refile-use-outline-path 'file
             org-refile-targets '((org-agenda-files :maxlevel . 4))
             org-refile-allow-creating-parent-nodes 'confirm)
-      (add-hook 'diary-list-entries-hook 'diary-include-other-diary-files)
-      (add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files)
       (setq org-agenda-custom-commands
             '(("p" "Personal TODOs"
                ((agenda "")
@@ -99,6 +106,18 @@
                ((agenda "")
                 (tags-todo "+zendesk-projects-areas")))))
       ))
+
+(use-package org-agenda
+  :defer t
+  :config
+  (progn
+    (setq org-agenda-include-diary t)))
+
+(use-package org-id
+  :defer t
+  :config
+  (progn
+    (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)))
 
 (use-package org-journal
   :config
