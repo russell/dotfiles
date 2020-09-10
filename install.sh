@@ -35,14 +35,6 @@ for name in $packages; do
     stow --dotfiles -t "$HOME" -v $name
 done
 
-if [ ! -e ~/.emacs.d ]; then
-    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-fi
-
-if [ -L ~/.emacs ]; then
-    rm -f ~/.emacs
-fi
-if [ -L ~/.emacs.d ]; then
-    rm -f ~/.emacs.d
-    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+if [ ! -e ~/.emacs-prelude.d ]; then
+    git clone git://github.com/bbatsov/prelude.git .emacs-prelude.d
 fi

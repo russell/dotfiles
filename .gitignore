@@ -33,3 +33,7 @@ vim/.vim/.netrwhist
 docker/.docker/machine/
 /emacs/.spacemacs.d/.spacemacs.env
 .DS_Store
+*.eln
+emacs/.emacs.d/elpa/gnupg
+/emacs/.emacs.d/quelpa/
+emacs/.emacs.d/projectile-bookmarks.eld
