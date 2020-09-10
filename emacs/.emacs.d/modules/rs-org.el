@@ -48,10 +48,28 @@
   (("C-M-m a" . org-agenda))
     :config
     (progn
-      (require 'org-id)
-      (require 'org-protocol)
-      (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
-      (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+      (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
+            org-src-fontify-natively t
+            org-src-tab-acts-natively t
+            org-modules '(ol-bbdb
+                          ol-bibtex
+                          org-crypt
+                          ol-docview
+                          ol-eww
+                          ol-gnus
+                          org-habit
+                          org-id
+                          org-protocol
+                          ol-info
+                          ol-irc
+                          ol-mhe
+                          ol-rmail
+                          org-tempo
+                          ol-w3m
+                          ol-eshell
+                          ol-notmuch
+                          org-toc)
+            org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
             org-agenda-files '("~/org/")
             org-agenda-include-diary t
             org-outline-path-complete-in-steps nil
