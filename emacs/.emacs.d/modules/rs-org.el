@@ -28,12 +28,15 @@
                             org-ql
                             org-roam
                             org-journal
+                            org-gcal
                             helm-org
                             helm-org-rifle
                             plantuml-mode))
 
+
 (rs-require-package '(org-super-links :fetcher github
                                       :repo "toshism/org-super-links"))
+(use-package org-gcal)
 
 (use-package org-variable-pitch
   :hook
