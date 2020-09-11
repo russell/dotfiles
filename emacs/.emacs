@@ -41,6 +41,5 @@
 
 (setq prelude-personal-dir (expand-file-name "~/.emacs.d/"))
 (load "~/.emacs-prelude.d/init.el")
-(prelude-require-package 'slime)
 
 (load "~/.emacs.d/modules.el")
