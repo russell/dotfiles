@@ -39,10 +39,6 @@ function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
 
-function chruby_info {
-    [ $RUBY_ROOT ] && echo '('`basename $RUBY_ROOT`') '
-}
-
 function colorise_path {
     local basename=`basename $PWD`
     local dir=`dirname $PWD`
@@ -55,7 +51,7 @@ TIMEFMT="'$fg[green]%J$reset_color' time: $fg[blue]%*Es$reset_color, cpu: $fg[bl
 function default_prompt {
     PROMPT='
 [%(?.%{$fg[green]%}.%{$fg[red]%})%?%{$reset_color%}] %{$fg_bold[blue]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%} %F{8}in $(colorise_path)%{$reset_color%}${vcs_info_msg_1_}
-$(chruby_info)$(virtualenv_info)\$ '
+$(virtualenv_info)\$ '
     RPROMPT=''
 }
 default_prompt
@@ -64,6 +60,6 @@ function kubernetes_prompt {
     PROMPT='
 %{$fg[blue]%}Kubernetes: $ZSH_KUBECTL_PROMPT
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
-$(chruby_info)$(virtualenv_info)$(prompt_char) '
+$(virtualenv_info)$(prompt_char) '
     RPROMPT=''
 }
