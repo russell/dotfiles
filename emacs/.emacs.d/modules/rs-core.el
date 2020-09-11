@@ -26,6 +26,14 @@
 
 (prelude-require-packages '(envrc winum eyebrowse))
 
+(setq frame-title-format '("" invocation-name " - "
+                          (:eval
+                           (if
+                               (buffer-file-name)
+                               (abbreviate-file-name
+                                (buffer-file-name))
+                             "%b"))))
+
 (setq confirm-kill-emacs 'yes-or-no-p)
 (put 'set-goal-column 'disabled nil)
 (setq history-delete-duplicates t)
