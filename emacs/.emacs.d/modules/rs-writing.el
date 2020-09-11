@@ -24,7 +24,11 @@
 
 ;;; Code:
 
-(prelude-require-packages '(google-translate markdown-mode writegood-mode))
+(prelude-require-packages
+ '(google-translate
+   darkroom
+   markdown-mode
+   writegood-mode))
 
 (use-package google-translate)
 
@@ -45,11 +49,14 @@
 
 (use-package text-mode
   :hook
-  (text-mode . writegood-mode))
+  ((text-mode . writegood-mode)
+   (text-mode . centered-cursor-mode)
+   (text-mode . darkroom-tentative-mode)))
 
-(use-package markdown-mode
-  :hook
-  ((gfm-mode markdown-mode) . writegood-mode))
+(use-package markdown-mode)
+
+(use-package darkroom
+  :defer t)
 
 (provide 'rs-writing)
 ;;; rs-writing.el ends here

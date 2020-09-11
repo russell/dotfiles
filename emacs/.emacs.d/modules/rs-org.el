@@ -68,9 +68,7 @@
         ("a" . org-agenda))
   :config
   (progn
-    (add-to-list 'org-mode-hook 'centered-cursor-mode)
     (add-to-list 'org-mode-hook 'auto-fill-mode)
-    (add-to-list 'org-mode-hook 'writegood-mode)
 
     (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
           org-src-fontify-natively t
@@ -149,7 +147,6 @@
           org-journal-time-prefix "* "
           org-journal-file-format "%Y-%m-%d.org"
           org-journal-date-format "%A, %d %B %Y")
-    (add-to-list 'org-journal-mode-hook 'centered-cursor-mode)
     (add-to-list 'org-journal-mode-hook 'auto-fill-mode)
     (add-to-list 'org-journal-mode-hook 'writegood-mode))
   :bind (:map rs-applications-map
