@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(prelude-require-packages '(envrc))
+
 (setq confirm-kill-emacs 'yes-or-no-p)
 (put 'set-goal-column 'disabled nil)
 (setq history-delete-duplicates t)
@@ -47,6 +49,10 @@
   :config
   ;; avy use Dvorak keys for jumping
   (setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s)))
+
+(use-package envrc
+  :init
+  (envrc-global-mode))
 
 (provide 'rs-core)
 ;;; rs-core.el ends here
