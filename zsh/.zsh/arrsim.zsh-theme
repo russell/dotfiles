@@ -35,19 +35,6 @@ function precmd {
     esac
 }
 
-function prompt_char {
-    case ${vcs_info_msg_0_} in
-        git)
-            echo '±';;
-        hg)
-            echo 'Hg';;
-        "")
-            echo "\$";;
-        *)
-            echo "${vcs_info_msg_0_} \$";;
-    esac
-}
-
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
@@ -67,54 +54,11 @@ TIMEFMT="'$fg[green]%J$reset_color' time: $fg[blue]%*Es$reset_color, cpu: $fg[bl
 
 function default_prompt {
     PROMPT='
-%{$fg_bold[blue]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%} %F{8}in $(colorise_path)%{$reset_color%}${vcs_info_msg_1_}
-$(chruby_info)$(virtualenv_info)$(prompt_char) '
-    RPROMPT='[%(?.%{$fg[green]%}.%{$fg[red]%})%?%{$reset_color%}]'
+[%(?.%{$fg[green]%}.%{$fg[red]%})%?%{$reset_color%}] %{$fg_bold[blue]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%} %F{8}in $(colorise_path)%{$reset_color%}${vcs_info_msg_1_}
+$(chruby_info)$(virtualenv_info)\$ '
+    RPROMPT=''
 }
 default_prompt
-
-function openstack_url_type {
-    OS_PORT=$(echo $OS_AUTH_URL | awk 'BEGIN { FS = "[:/]" } { print $5 }')
-    case $OS_PORT in
-        35357)
-            echo "admin"
-            ;;
-        5000)
-            echo "public"
-            ;;
-        *)
-            echo "unknown"
-            ;;
-    esac
-
-}
-
-function openstack_cloud {
-    OS_HOSTNAME=$(echo $OS_AUTH_URL | awk 'BEGIN { FS = "[:/]" } { print $4 }')
-    case $OS_HOSTNAME in
-        *dev*)
-            echo "dev"
-            ;;
-        *test*)
-            echo "test"
-            ;;
-        *)
-            echo "prod"
-            ;;
-    esac
-}
-
-function openstack_keystone {
-    OS_HOSTNAME=$(echo $OS_AUTH_URL | awk 'BEGIN { FS = "[.:/]" } { print $4 }')
-    echo $OS_HOSTNAME
-}
-
-function openstack_prompt {
-    PROMPT='
-☁  %{$fg[magenta]%}${OS_USERNAME}%{$reset_color%}@%{$fg[yellow]%}${OS_TENANT_NAME}%{$reset_color%} %{$fg_bold[green]%}$(openstack_keystone).$(openstack_cloud):$(openstack_url_type)%{$reset_color%}/%{$fg[yellow]%}${OS_REGION_NAME}%{$reset_color%}
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}${vcs_info_msg_1_}
-$(virtualenv_info)$(prompt_char) '
-}
 
 function kubernetes_prompt {
     PROMPT='
