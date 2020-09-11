@@ -93,22 +93,34 @@
             org-refile-allow-creating-parent-nodes 'confirm)
       (setq org-agenda-custom-commands
             '(("p" "Personal TODOs"
-               ((agenda "" ('(org-agenda-skip-function (org-agenda-skip-if))))
+               ((agenda "" ((org-agenda-files '("~/org/todo_personal.org"
+                                                "~/org/calendar_personal.org"
+                                                "~/org/calendar_cph_events.org"
+                                                "~/org/calendar_garmin.org"))))
                 (tags-todo "+personal+projects")
                 (tags-todo "+personal+areas"))
                nil
                ("~/org/todo_personal.html"))
               ("P" "Lost personal TODOS"
-               ((agenda "")
+               ((agenda "" ((org-agenda-files '("~/org/todo_personal.org"
+                                                "~/org/calendar_personal.org"
+                                                "~/org/calendar_cph_events.org"
+                                                "~/org/calendar_garmin.org"))))
                 (tags-todo "+personal-projects-areas")))
               ("z" "Zendesk TODOs"
-               ((agenda "")
+               ((agenda "" ((org-agenda-span 3)
+                            (org-agenda-files '("~/org/todo_zendesk.org"
+                                                "~/org/calendar_zendesk.org"
+                                                "~/org/calendar_zendesk_comet.org"))))
                 (tags-todo "+zendesk+projects")
                 (tags-todo "+zendesk+areas"))
                nil
                ("~/org/todo_zendesk.html"))
               ("Z" "Lost Zendesk TODOs"
-               ((agenda "")
+               ((agenda "" ((org-agenda-span 3)
+                            (org-agenda-files '("~/org/todo_zendesk.org"
+                                                "~/org/calendar_zendesk.org"
+                                                "~/org/calendar_zendesk_comet.org"))))
                 (tags-todo "+zendesk-projects-areas")))))
       ))
 
