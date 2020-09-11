@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(envrc winum))
+(prelude-require-packages '(envrc winum eyebrowse))
 
 (setq confirm-kill-emacs 'yes-or-no-p)
 (put 'set-goal-column 'disabled nil)
@@ -54,7 +54,6 @@
   :init
   (envrc-global-mode))
 
-
 (use-package winum
   :init
   (winum-mode)
@@ -70,6 +69,8 @@
    ("M-8" . 'winum-select-window-8)
    ("M-9" . 'winum-select-window-9)))
 
+(use-package eyebrowse
+  :init (eyebrowse-mode))
 
 (provide 'rs-core)
 ;;; rs-core.el ends here
