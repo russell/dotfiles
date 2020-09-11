@@ -34,6 +34,7 @@
 (require 'rs-jsonnet)
 (require 'rs-helm)
 (require 'rs-git)
+(require 'rs-writing)
 
 ;; Emacs IRC client
 ;; (require 'prelude-erc)
