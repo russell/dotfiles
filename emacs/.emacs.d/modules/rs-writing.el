@@ -41,15 +41,15 @@
       :modes (text-mode markdown-mode gfm-mode org-mode org-journal-mode-hook))
     (add-to-list 'flycheck-checkers 'proselint)))
 
-(use-package writegood-mode
-  :init
-  (progn
-    (mapc (lambda (mode-hook) (add-to-list mode-hook 'writegood-mode))
-          '(org-mode-hook
-            org-journal-mode-hook
-            gfm-mode-hook
-            markdown-mode-hook
-            text-mode-hook))))
+(use-package writegood-mode :defer t)
+
+(use-package text-mode
+  :hook
+  (text-mode . writegood-mode))
+
+(use-package markdown-mode
+  :hook
+  ((gfm-mode markdown-mode) . writegood-mode))
 
 (provide 'rs-writing)
 ;;; rs-writing.el ends here
