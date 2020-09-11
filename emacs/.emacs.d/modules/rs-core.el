@@ -40,7 +40,8 @@
       (setenv "PATH" (concat "/opt/local/bin:/opt/local/sbin:" (getenv "PATH")))
       (setq epg-gpg-program "/usr/local/bin/gpg2")))
 
-
+;; Only show some whitespace
+(setq whitespace-style '(face tabs empty trailing missing-newline-at-eof))
 
 (provide 'rs-core)
 ;;; rs-core.el ends here
