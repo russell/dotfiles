@@ -24,8 +24,25 @@
 
 ;;; Code:
 
-(prelude-require-packages '(esh-autosuggest bash-completion fish-completion))
+(prelude-require-packages
+ '(esh-autosuggest
+   bash-completion
+   fish-completion
+   eshell-prompt-extras
+   eshell-z
+   project-shells))
 
+(use-package project-shells
+  :defer t)
+
+(use-package eshell-z
+  :after eshell)
+
+(use-package eshell-prompt-extras
+  :commands epe-theme-lambda
+  :init
+  (setq eshell-highlight-prompt nil
+        eshell-prompt-function 'epe-theme-multiline-with-status))
 
 (use-package esh-autosuggest
   :hook (eshell-mode . esh-autosuggest-mode)
