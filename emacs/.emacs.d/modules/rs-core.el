@@ -43,5 +43,10 @@
 ;; Only show some whitespace
 (setq whitespace-style '(face tabs empty trailing missing-newline-at-eof))
 
+(use-package avy
+  :config
+  ;; avy use Dvorak keys for jumping
+  (setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s)))
+
 (provide 'rs-core)
 ;;; rs-core.el ends here
