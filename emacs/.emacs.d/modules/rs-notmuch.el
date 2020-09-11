@@ -59,10 +59,8 @@
   (progn
     (set-face-attribute 'notmuch-message-summary-face
                         nil
-                        :box '(:line-width 1 :color "grey75" :style released-button)
-                        :background nil)
-    )
-  )
+                        :box '(:line-width 2 :style released-button)
+                        :background nil)))
 
 (provide 'rs-notmuch)
 ;;; rs-notmuch.el ends here
