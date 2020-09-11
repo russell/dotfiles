@@ -24,14 +24,15 @@
 
 ;;; Code:
 
-(prelude-require-packages '(org-variable-pitch
-                            org-ql
-                            org-roam
-                            org-journal
-                            org-gcal
-                            helm-org
-                            helm-org-rifle
-                            plantuml-mode))
+(prelude-require-packages
+ '(org-variable-pitch
+   org-ql
+   org-roam
+   org-journal
+   org-gcal
+   helm-org
+   helm-org-rifle
+   plantuml-mode))
 
 
 (rs-require-package '(org-super-links :fetcher github
@@ -91,7 +92,12 @@
             org-refile-use-outline-path 'file
             org-refile-targets '((org-agenda-files :maxlevel . 4))
             org-refile-allow-creating-parent-nodes 'confirm)
-      (setq org-agenda-custom-commands
+      ))
+
+(use-package org-agenda
+  :config
+  (progn
+    (setq org-agenda-custom-commands
             '(("p" "Personal TODOs"
                ((agenda "" ((org-agenda-files '("~/org/todo_personal.org"
                                                 "~/org/calendar_personal.org"
@@ -121,10 +127,7 @@
                             (org-agenda-files '("~/org/todo_zendesk.org"
                                                 "~/org/calendar_zendesk.org"
                                                 "~/org/calendar_zendesk_comet.org"))))
-                (tags-todo "+zendesk-projects-areas")))))
-      ))
-
-(use-package org-agenda)
+                (tags-todo "+zendesk-projects-areas")))))))
 
 (use-package org-id
   :defer t
@@ -150,8 +153,7 @@
   :init
   (progn
     (require 'org-ql)
-    (require 'helm-org-ql)
-    )
+    (require 'helm-org-ql))
   :bind (:map org-mode-map ("C-c C-S-L" . sl-link)))
 
 (use-package org-roam
