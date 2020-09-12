@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2020  Russell Sim
 
-;; Author: Russell Sim <russell@mowgli>
+;; Author: Russell Sim <russell.sim@gmail.com>
 ;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -208,13 +208,12 @@
              "* %(format-time-string org-journal-time-format)%^{Title} :zendesk:\n   [[%:link][%:description]]\n\n%?"
              :head "#+title: $(format-time-string org-journal-date-format)\n"
              :empty-lines 1))))
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-graph-show))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
+  :bind (:map rs-applications-map
+              (("r l" . org-roam)
+               ("r f" . org-roam-find-file)
+               ("r g" . org-roam-graph-show)
+               ("r i" . org-roam-insert)
+               ("r I" . org-roam-insert-immediate))))
 
 (use-package plantuml-mode
   :config
