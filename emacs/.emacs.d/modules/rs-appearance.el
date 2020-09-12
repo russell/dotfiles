@@ -28,7 +28,7 @@
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed SS11")
 (set-face-attribute 'variable-pitch nil :family "CMU Serif" :height 150)
 
-(prelude-require-packages '(circadian gruvbox-theme doom-modeline))
+(prelude-require-packages '(circadian gruvbox-theme doom-modeline treemacs))
 
 (use-package circadian
   :ensure t
@@ -42,6 +42,11 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+(use-package treemacs-icons-dired
+  :after dired
+  :ensure t
+  :config (treemacs-icons-dired-mode))
 
 (provide 'rs-appearance)
 
