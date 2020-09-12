@@ -33,13 +33,14 @@
    project-shells))
 
 (use-package project-shells
-  :defer t)
+  :init
+  (global-project-shells-mode))
 
 (use-package eshell-z
   :after eshell)
 
 (use-package eshell-prompt-extras
-  :commands epe-theme-lambda
+  :commands epe-theme-multiline-with-status
   :init
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-multiline-with-status))
@@ -63,8 +64,7 @@
 
 (use-package eshell
   :config
-  (setq eshell-destroy-buffer-when-process-dies t
-        eshell-modules-list
+  (setq eshell-modules-list
         '(eshell-alias
           eshell-banner
           eshell-basic
@@ -82,5 +82,11 @@
           eshell-unix
           eshell-xtra)))
 
+(use-package em-term
+  :config
+  (progn
+    (setq eshell-destroy-buffer-when-process-dies t
+          eshell-visual-subcommands '(("git" "log" "diff" "show")
+                                      ("kubectl" "ctx")))))
 (provide 'rs-shell)
 ;;; rs-shell.el ends here
