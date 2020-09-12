@@ -26,7 +26,7 @@
 
 (use-package gnus
   :bind (:map rs-applications-map
-              ("C-M-m g" . gnus)))
+              ("g" . gnus)))
 
 (use-package gnus-cloud
   :config
