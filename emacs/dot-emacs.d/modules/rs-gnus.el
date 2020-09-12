@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(prelude-require-packages '(org-mime))
+
+
 (use-package gnus
   :bind (:map rs-applications-map
               ("g" . gnus)))
@@ -31,6 +34,7 @@
 (use-package gnus-cloud
   :config
   (progn
+    (eval-when-compile (require 'epg)) ;; setf-method for `epg-context-armor'
 
     (defcustom gnus-cloud-epg-encrypt-to nil
       "Recipient(s) used for encrypting files.
