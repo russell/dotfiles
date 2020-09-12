@@ -27,14 +27,26 @@
 (prelude-require-packages '(helm-swoop helm-rg))
 
 ;; (setq helm-follow-mode-persistent nil)
-(setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
-(setq helm-mode-handle-completion-in-region nil)
+(use-package helm-elisp
+  :config
+  (progn
+    (setq helm-show-completion-display-function 'helm-show-completion-default-display-function)))
 
-(setq helm-show-completion-display-function 'helm-show-completion-default-display-function)
-(setq helm-mode-handle-completion-in-region nil)
+(use-package helm-mode
+  :config
+  (progn
+    (setq helm-mode-handle-completion-in-region nil)))
 
 (use-package helm-swoop
-  :bind (("C-S-s" . helm-swoop)))
+  :bind (("C-S-s" . helm-swoop))
+  :config
+  (progn
+    (defadvice helm-swoop (around helm-swoop-around)
+      "Mark if the function changes the point."
+      (xref-push-marker-stack)
+      ad-do-it)
+
+    (ad-activate 'helm-swoop)))
 
 (provide 'rs-helm)
 ;;; rs-helm.el ends here
