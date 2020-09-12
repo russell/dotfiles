@@ -51,7 +51,10 @@
       (setq epg-gpg-program "/usr/local/bin/gpg2")))
 
 ;; Only show some whitespace
-(setq whitespace-style '(face tabs empty trailing missing-newline-at-eof))
+(use-package whitespace
+  :config
+  (setq whitespace-style '(face tabs empty trailing missing-newline-at-eof)))
+
 
 (use-package avy
   :config
