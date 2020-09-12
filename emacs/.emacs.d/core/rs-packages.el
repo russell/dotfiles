@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2020  Russell Sim
 
-;; Author: Russell Sim <russell@mowgli>
+;; Author: Russell Sim <russell.sim@gmail.com>
 ;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
