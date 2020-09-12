@@ -26,15 +26,24 @@
 
 (prelude-require-packages '(notmuch))
 
+(use-package shr
+  :config
+  (progn
+    (setq shr-use-colors nil)))
+
 (use-package notmuch
-  :bind (:map rs-applications-map
-              ("n" . notmuch))
+  :bind
+  (:map
+   rs-applications-map
+   ("n" . notmuch)
+   :map
+   notmuch-show-mode-map
+   ("C-c C-o" . org-open-at-point))
   :init
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
    notmuch-fcc-dirs nil
-   shr-use-colors nil
    notmuch-show-text/html-blocked-images nil
    notmuch-tag-formats '(("unread"
                           (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
@@ -43,18 +52,21 @@
    notmuch-hello-sections '(notmuch-hello-insert-header
                             notmuch-hello-insert-search
                             (notmuch-hello-insert-tags-section
+                             "Flagged"
+                             :filter "tag:flagged and tag:inbox"
+                             :filter-count "tag:flagged and tag:inbox" nil nil)
+                            (notmuch-hello-insert-tags-section
                              "Inbox"
                              :filter "tag:inbox and not tag:github"
                              :filter-count "tag:inbox and tag:unread and not tag:github" nil nil)
                             (notmuch-hello-insert-tags-section
                              "Github Reviews"
-                             :filter "tag:github and (tag:github-mention or github-review_requested) and tag:unread"
-                             :filter-count "tag:github and (tag:github-mention or github-review_requested) and tag:unread" nil nil)
+                             :filter "tag:github and (tag:github-mention or github-review_requested) and (tag:unread or tag:flagged)"
+                             :filter-count "tag:github and (tag:github-mention or github-review_requested) and (tag:unread or tag:flagged)" nil nil)
                             notmuch-hello-insert-saved-searches
                             notmuch-hello-insert-recent-searches
                             notmuch-hello-insert-alltags
-                            notmuch-hello-insert-footer)
-   )
+                            notmuch-hello-insert-footer))
   :config
   (progn
     (set-face-attribute 'notmuch-message-summary-face
