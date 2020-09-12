@@ -1,5 +1,5 @@
-;;; .emacs ---
-;;
+;; -*- mode: emacs-lisp -*-
+;;; .emacs --- The entrypoint to all my configuration 
 ;; Copyright (c) 2020 Russell Sim
 ;;
 ;; Author: Russell Sim <russell.sim@gmail.com>

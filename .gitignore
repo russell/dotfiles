@@ -1,6 +1,6 @@
 *~
 *.sync-conflict-*
-vim/.vim/cache
+vim/dot-vim/cache
 emacs-old/emacs.d/ac-comphist.dat
 emacs-old/emacs.d/el-get/
 *.pyc
@@ -28,12 +28,12 @@ emacs-old/emacs.d/request/curl-cookie-jar
 emacs-old/emacs.d/abbrev_defs
 emacs-old/emacs.d/projectile-bookmarks.eld
 emacs-old/emacs.d/projectile.cache
-znt/.config/znt/privhist.db
-vim/.vim/.netrwhist
+znt/dot-config/znt/privhist.db
+vim/dot-vim/.netrwhist
 docker/.docker/machine/
 /emacs/.spacemacs.d/.spacemacs.env
 .DS_Store
 *.eln
-emacs/.emacs.d/elpa/gnupg
-/emacs/.emacs.d/quelpa/
-emacs/.emacs.d/projectile-bookmarks.eld
+emacs/dot-emacs.d/elpa/gnupg
+emacs/dot-emacs.d/quelpa/
+emacs/dot-emacs.d/projectile-bookmarks.eld
