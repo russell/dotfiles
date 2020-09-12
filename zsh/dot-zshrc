@@ -77,15 +77,6 @@ then
     bindkey '^t' transpose-chars
     # Replace bindkey that FZF sets for M-c
     bindkey '\ec' capitalize-word
-else
-    zplug 'psprint/zsh-navigation-tools'
-    if ! zplug check; then
-        zplug install
-    fi
-    zplug load
-    zle -N znt-history-widget
-    bindkey '^R' znt-history-widget
-    setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
 fi
 
 # Use emacs keybindings even if our EDITOR is set to vi
