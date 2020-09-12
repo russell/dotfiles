@@ -33,6 +33,7 @@
 (require 'rs-shell)
 (require 'rs-jsonnet)
 (require 'rs-helm)
+(require 'rs-tramp)
 (require 'rs-git)
 (require 'rs-writing)
 
