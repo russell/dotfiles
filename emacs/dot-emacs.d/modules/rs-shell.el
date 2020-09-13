@@ -89,5 +89,11 @@
     (setq eshell-destroy-buffer-when-process-dies t
           eshell-visual-subcommands '(("git" "log" "diff" "show")
                                       ("kubectl" "ctx")))))
+
+(use-package comint
+  :config
+  (progn
+    (setq comint-input-ignoredups t)))
+
 (provide 'rs-shell)
 ;;; rs-shell.el ends here
