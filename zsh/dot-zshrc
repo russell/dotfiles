@@ -15,7 +15,6 @@ zplug 'plugins/asdf', from:oh-my-zsh
 zplug 'plugins/git', from:oh-my-zsh
 zplug 'plugins/debian', from:oh-my-zsh
 zplug 'plugins/pip', from:oh-my-zsh
-zplug 'lib/history', from:oh-my-zsh
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
@@ -57,7 +56,7 @@ bashcompinit
 #
 alias zshconfig="source ~/.zshrc"
 
-setopt appendhistory histignorealldups sharehistory autocd extendedglob dvorak
+setopt autocd extendedglob dvorak
 
 if [ -e $HOME/.fzf.zsh ]; then
     FZF_TMUX=1
@@ -106,7 +105,15 @@ bindkey "\e[3~" delete-char
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.zsh_history
+setopt hist_ignore_dups hist_ignore_space hist_expire_dups_first hist_verify
+
+if [ -z "$HISTFILE" ] && [ -z "$INSIDE_EMACS" ]; then
+    setopt sharehistory
+    HISTFILE=~/.zsh_history
+    alias history='fc -il 1'
+else
+    setopt inc_append_history hist_save_no_dups
+fi
 
 # Use modern completion system
 autoload -Uz compinit
