@@ -41,6 +41,7 @@
 
 (use-package eshell-prompt-extras
   :commands epe-theme-multiline-with-status
+  :after em-prompt
   :init
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-multiline-with-status))
