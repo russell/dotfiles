@@ -28,15 +28,18 @@
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed SS11")
 (set-face-attribute 'variable-pitch nil :family "CMU Serif" :height 150)
 
-(prelude-require-packages '(circadian gruvbox-theme doom-modeline treemacs))
+(prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs))
+
+;; Disable beacon mode
+(beacon-mode 0)
 
 (use-package circadian
   :ensure t
   :config
   (setq calendar-latitude 49.0)
   (setq calendar-longitude 8.5)
-  (setq circadian-themes '((:sunrise . gruvbox-light-hard)
-                           (:sunset  . gruvbox-dark-medium)))
+  (setq circadian-themes '((:sunrise . modus-operandi)
+                           (:sunset  . modus-vivendi)))
   (circadian-setup))
 
 (use-package doom-modeline
