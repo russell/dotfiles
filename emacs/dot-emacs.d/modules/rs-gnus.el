@@ -1,4 +1,4 @@
-;;; Rs;-gnus.el --- Gnus                              -*- lexical-binding: t; -*-
+;;; rs-gnus.el --- Gnus                              -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Russell Sim
 
