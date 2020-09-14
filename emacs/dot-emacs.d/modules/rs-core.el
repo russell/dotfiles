@@ -43,6 +43,12 @@
 
 (setq vc-follow-symlinks t)
 
+;; Disable undo-tree, it seems to be responsible for hanging while
+;; recording history
+(global-undo-tree-mode 0)
+
+;; Tab only tabs, doesn't trigger completion.
+(setq tab-always-indent t)
 
 (if (string-equal "darwin" (symbol-name system-type))
     (progn
