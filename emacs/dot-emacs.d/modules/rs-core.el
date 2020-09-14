@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(envrc winum eyebrowse))
+(prelude-require-packages '(envrc winum eyebrowse gcmh))
 
 (setq frame-title-format '("" invocation-name " - "
                           (:eval
@@ -88,6 +88,13 @@
 
 (use-package eyebrowse
   :init (eyebrowse-mode))
+
+(use-package gcmh
+  :init (gcmh-mode)
+  :config
+  (progn
+    (setq gcmh-idle-delay 5
+          gcmh-high-cons-threshold (* 16 1024 1024)))) ; 16mb
 
 (provide 'rs-core)
 ;;; rs-core.el ends here
