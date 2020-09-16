@@ -24,13 +24,54 @@
 
 ;;; Code:
 
-(prelude-require-packages '(helm-swoop helm-rg))
+(prelude-require-packages '(helm-swoop helm-rg helm-notmuch))
+
+(use-package helm
+  :config
+  (setq helm-reuse-last-window-split-state        t
+        helm-always-two-windows                   t
+        helm-split-window-inside-p                nil
+        helm-commands-using-frame                 '(helm-apropos
+                                                    helm-eshell-prompts
+                                                    helm-imenu
+                                                    helm-imenu-in-all-buffers)
+        helm-actions-inherit-frame-settings       t
+        helm-use-frame-when-more-than-two-windows t
+        helm-use-frame-when-dedicated-window      t
+        helm-frame-background-color nil
+        helm-show-action-window-other-window      'left
+        helm-frame-alpha                          90
+        helm-allow-mouse                          t
+        helm-move-to-line-cycle-in-source         t
+        helm-autoresize-max-height                80 ; it is %.
+        helm-autoresize-min-height                20 ; it is %.
+        helm-display-buffer-height                30
+        helm-display-buffer-width                 110
+        ))
 
 ;; (setq helm-follow-mode-persistent nil)
 (use-package helm-elisp
   :config
   (progn
     (setq helm-show-completion-display-function 'helm-show-completion-default-display-function)))
+
+(use-package helm-buffers
+  :config
+  (setq helm-buffers-fuzzy-matching       t
+        helm-buffer-skip-remote-checking  t
+        helm-buffer-max-length            22
+        helm-buffers-end-truncated-string "…")
+
+(use-package helm-adaptive
+  :config
+  (helm-adaptive-mode 1))
+
+(use-package helm-files
+  :config
+  (setq helm-ff-auto-update-initial-value        t
+        helm-ff-allow-non-existing-file-at-point t
+        helm-ff-cache-mode-post-delay            0.3
+        helm-ff-refresh-cache-delay              0.3))
 
 (use-package helm-mode
   :config
@@ -48,6 +89,8 @@
                   " --colors 'match:style:nobold'"
                   " --no-heading"
                   " -S -n %s %s %s")
+          helm-grep-ag-pipe-cmd-switches
+          '("--colors 'match:bg:yellow' --colors 'match:fg:black'")
           helm-grep-file-path-style 'relative)))
 
 (use-package helm-swoop
@@ -60,6 +103,14 @@
       ad-do-it)
 
     (ad-activate 'helm-swoop)))
+
+(use-package helm-locate
+  :config
+  (setq helm-locate-fuzzy-match t))
+
+(use-package helm-notmuch
+  :bind (:map rs-applications-map
+              ("N" . helm-notmuch)))
 
 (provide 'rs-helm)
 ;;; rs-helm.el ends here
