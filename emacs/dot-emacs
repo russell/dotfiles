@@ -1,5 +1,5 @@
 ;; -*- mode: emacs-lisp -*-
-;;; .emacs --- The entrypoint to all my configuration 
+;;; .emacs --- The entrypoint to all my configuration
 ;; Copyright (c) 2020 Russell Sim
 ;;
 ;; Author: Russell Sim <russell.sim@gmail.com>
@@ -40,6 +40,8 @@
 ;(package-initialize)
 
 (setq prelude-personal-dir (expand-file-name "~/.emacs.d/"))
+(setq prelude-theme nil)
+
 (load "~/.emacs-prelude.d/init.el")
 
 (load "~/.emacs.d/modules.el")
