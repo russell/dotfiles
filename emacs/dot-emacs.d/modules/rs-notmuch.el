@@ -44,6 +44,7 @@
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
    notmuch-fcc-dirs nil
+   notmuch-archive-tags '("-inbox" "-flagged")
    notmuch-show-text/html-blocked-images nil
    notmuch-tag-formats '(("unread"
                           (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
