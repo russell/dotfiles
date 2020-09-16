@@ -43,11 +43,11 @@
     (setq helm-grep-ag-command
           (concat "rg"
                   " --no-config"
-                  ;; " --hidden"
                   " --color=always"
                   " --colors 'match:fg:yellow'"
                   " --colors 'match:style:nobold'"
-                  " --no-heading -S -n %s %s %s")
+                  " --no-heading"
+                  " -S -n %s %s %s")
           helm-grep-file-path-style 'relative)))
 
 (use-package helm-swoop
