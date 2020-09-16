@@ -86,6 +86,9 @@
    ("M-8" . 'winum-select-window-8)
    ("M-9" . 'winum-select-window-9)))
 
+;; disable ace-window
+(global-set-key [remap other-window] 'other-window)
+
 (use-package eyebrowse
   :init (eyebrowse-mode))
 
