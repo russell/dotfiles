@@ -17,6 +17,7 @@ keysnail
 lisp
 mercurial
 mutt
+pry
 shell
 stumpwm
 tmux
