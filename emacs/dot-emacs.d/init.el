@@ -37,8 +37,9 @@
 
 (use-package no-littering
   :init
-  (setq no-littering-etc-directory "~/.emacs.d/etc/")
-  (setq no-littering-var-directory "~/.emacs-var/")
+  (setq prelude-savefile-dir "~/.emacs-var/"
+        no-littering-etc-directory "~/.emacs.d/etc/"
+        no-littering-var-directory "~/.emacs-var/")
   :config
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
