@@ -58,12 +58,12 @@
                              :filter-count "tag:flagged and tag:inbox" nil nil)
                             (notmuch-hello-insert-tags-section
                              "Inbox"
-                             :filter "tag:inbox and not tag:github"
-                             :filter-count "tag:inbox and tag:unread and not tag:github" nil nil)
+                             :filter "tag:inbox"
+                             :filter-count "tag:inbox and tag:unread" nil nil)
                             (notmuch-hello-insert-tags-section
                              "Github Reviews"
-                             :filter "tag:github and (tag:github-mention or github-review_requested) and (tag:unread or tag:flagged)"
-                             :filter-count "tag:github and (tag:github-mention or github-review_requested) and (tag:unread or tag:flagged)" nil nil)
+                             :filter "tag:github and (tag:github-mention or github-review_requested) and (tag:unread or tag:flagged or tag:inbox)"
+                             :filter-count "tag:github and (tag:github-mention or github-review_requested) and (tag:unread or tag:flagged or tag:inbox)" nil nil)
                             notmuch-hello-insert-saved-searches
                             notmuch-hello-insert-recent-searches
                             notmuch-hello-insert-alltags
