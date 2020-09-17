@@ -40,9 +40,8 @@
         helm-use-frame-when-dedicated-window      t
         helm-frame-background-color nil
         helm-show-action-window-other-window      'left
-        helm-frame-alpha                          90
+        helm-frame-alpha                          100
         helm-allow-mouse                          t
-        helm-move-to-line-cycle-in-source         t
         helm-autoresize-max-height                80 ; it is %.
         helm-autoresize-min-height                20 ; it is %.
         helm-display-buffer-height                30
