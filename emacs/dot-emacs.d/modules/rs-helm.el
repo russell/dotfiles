@@ -38,9 +38,7 @@
         helm-actions-inherit-frame-settings       t
         helm-use-frame-when-more-than-two-windows t
         helm-use-frame-when-dedicated-window      t
-        helm-frame-background-color nil
         helm-show-action-window-other-window      'left
-        helm-frame-alpha                          100
         helm-allow-mouse                          t
         helm-autoresize-max-height                80 ; it is %.
         helm-autoresize-min-height                20 ; it is %.
@@ -59,7 +57,7 @@
   (setq helm-buffers-fuzzy-matching       t
         helm-buffer-skip-remote-checking  t
         helm-buffer-max-length            22
-        helm-buffers-end-truncated-string "…")
+        helm-buffers-end-truncated-string "…"))
 
 (use-package helm-adaptive
   :config
