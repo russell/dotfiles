@@ -43,7 +43,8 @@
   :config
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  )
+  (require 'recentf)
+  (recentf-mode +1))
 
 (require 'rs-packages)
 (require 'rs-keybindings)
