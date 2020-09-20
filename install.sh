@@ -23,7 +23,6 @@ stumpwm
 tmux
 vim
 x11
-znt
 zsh
 EOF
         )
