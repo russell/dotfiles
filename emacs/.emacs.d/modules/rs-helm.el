@@ -31,13 +31,10 @@
   (setq helm-reuse-last-window-split-state        t
         helm-always-two-windows                   t
         helm-split-window-inside-p                nil
-        helm-commands-using-frame                 '(helm-apropos
-                                                    helm-eshell-prompts
-                                                    helm-imenu
-                                                    helm-imenu-in-all-buffers)
+        helm-commands-using-frame                 nil
         helm-actions-inherit-frame-settings       t
-        helm-use-frame-when-more-than-two-windows t
-        helm-use-frame-when-dedicated-window      t
+        helm-use-frame-when-more-than-two-windows nil
+        helm-use-frame-when-dedicated-window      nil
         helm-show-action-window-other-window      'left
         helm-allow-mouse                          t
         helm-autoresize-max-height                80 ; it is %.
