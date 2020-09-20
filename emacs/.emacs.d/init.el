@@ -44,7 +44,8 @@
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (require 'recentf)
-  (recentf-mode +1))
+  (recentf-mode +1)
+  (recentf-load-list))
 
 (require 'rs-packages)
 (require 'rs-keybindings)
