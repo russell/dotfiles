@@ -43,6 +43,8 @@
 
 (setq vc-follow-symlinks t)
 
+(setq kill-do-not-save-duplicates t)
+
 ;; Disable undo-tree, it seems to be responsible for hanging while
 ;; recording history
 (global-undo-tree-mode 0)
