@@ -24,7 +24,9 @@
 
 ;;; Code:
 
-(set-face-attribute 'default nil :family "Iosevka Fixed SS11" :height 130)
+(set-face-attribute 'default nil :family "Iosevka Fixed SS11" :height (if (equal (system-name) "14985-rsim")
+                                                                          140
+                                                                          130))
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed SS11")
 (set-face-attribute 'variable-pitch nil :family "CMU Serif" :height 150)
 
