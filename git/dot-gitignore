@@ -8,3 +8,4 @@
 .envrc
 .direnv
 .tool-versions
+.dir-locals.el
