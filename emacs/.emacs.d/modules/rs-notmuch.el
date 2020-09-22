@@ -47,19 +47,23 @@
    notmuch-archive-tags '("-inbox" "-flagged")
    notmuch-show-text/html-blocked-images nil
    notmuch-tag-formats '(("unread"
-                          (all-the-icons-material "email" :height 0.9 :v-adjust -0.1))
+                          (all-the-icons-material "email" :height 0.9 :v-adjust -0.2))
                          ("flagged"
-                          (all-the-icons-material "star" :height 0.9 :v-adjust -0.1)))
+                          (all-the-icons-material "star" :height 0.9 :v-adjust -0.2))
+                         ("github-merged"
+                          (all-the-icons-octicon "git-branch" :height 0.9 :v-adjust 0.0))
+                         ("Archive"
+                          (all-the-icons-material "save" :height 0.9 :v-adjust -0.2)))
    notmuch-hello-sections '(notmuch-hello-insert-header
                             notmuch-hello-insert-search
                             (notmuch-hello-insert-tags-section
                              "Flagged"
-                             :filter "tag:flagged and tag:inbox"
-                             :filter-count "tag:flagged and tag:inbox" nil nil)
+                             :filter "tag:flagged and tag:inbox and NOT (tag:deleted or tag:spam)"
+                             :filter-count "tag:flagged and tag:inbox and NOT (tag:deleted or tag:spam)" nil nil)
                             (notmuch-hello-insert-tags-section
                              "Inbox"
-                             :filter "tag:inbox"
-                             :filter-count "tag:inbox and tag:unread" nil nil)
+                             :filter "tag:inbox and NOT (tag:deleted or tag:spam)"
+                             :filter-count "tag:inbox and tag:unread and NOT (tag:deleted or tag:spam)" nil nil)
                             (notmuch-hello-insert-tags-section
                              "Github Reviews"
                              :filter "tag:github and (tag:github-mention or github-review_requested) and (tag:unread or tag:flagged or tag:inbox)"
