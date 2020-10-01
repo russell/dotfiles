@@ -29,8 +29,10 @@
    bash-completion
    fish-completion
    eshell-prompt-extras
-   eshell-z
-   project-shells))
+   eshell-z))
+
+(rs-require-package '(project-shells :fetcher github
+                                     :repo "russell/project-shells"))
 
 (use-package project-shells
   :init
