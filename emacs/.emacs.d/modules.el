@@ -37,6 +37,7 @@
 (require 'rs-tramp)
 (require 'rs-git)
 (require 'rs-writing)
+(require 'rs-rust)
 
 ;; Emacs IRC client
 ;; (require 'prelude-erc)
