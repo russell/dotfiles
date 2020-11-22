@@ -1,6 +1,17 @@
 # -*- mode: sh -*-
 # zmodload zsh/zprof
 
+if [[ $TERM == "dumb" ]]; then	# in emacs
+    PS1='%(?..[%?])%!:%~%# '
+    # for tramp to not hang, need the following. cf:
+    # http://www.emacswiki.org/emacs/TrampMode
+    unsetopt zle
+    unsetopt prompt_cr
+    setopt prompt_subst
+    source ~/.zsh/emacs.zsh-theme
+    return
+fi
+
 ZSHDIR=$HOME/.zsh
 export ZPLUG_HOME=$HOME/.zplug
 if [ ! -d $ZPLUG_HOME ]; then
@@ -29,21 +40,10 @@ if zplug check 'zsh-users/zsh-syntax-highlighting'; then
     ZSH_HIGHLIGHT_STYLES[path]='none'
 fi
 
-# Set up the prompt
-if [[ $TERM == "dumb" ]]; then	# in emacs
-    PS1='%(?..[%?])%!:%~%# '
-    # for tramp to not hang, need the following. cf:
-    # http://www.emacswiki.org/emacs/TrampMode
-    unsetopt zle
-    unsetopt prompt_cr
-    setopt prompt_subst
-    source ~/.zsh/emacs.zsh-theme
-else
-    setopt prompt_subst
-    autoload -U colors
-    colors
-    source ~/.zsh/arrsim.zsh-theme
-fi
+setopt prompt_subst
+autoload -U colors
+colors
+source ~/.zsh/arrsim.zsh-theme
 
 autoload -U add-zsh-hook
 
