@@ -26,7 +26,6 @@
 
 (prelude-require-packages
  '(google-translate
-   darkroom
    markdown-mode
    writegood-mode))
 
@@ -49,9 +48,7 @@
 
 (use-package text-mode
   :hook
-  ((text-mode . writegood-mode)
-   (text-mode . centered-cursor-mode)
-   (text-mode . darkroom-tentative-mode)))
+  ((text-mode . writegood-mode)))
 
 (use-package markdown-mode)
 
