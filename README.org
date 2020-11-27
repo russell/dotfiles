@@ -53,6 +53,11 @@
     sudo apt-get install python3-proselint
   #+end_src
 
+  # git crypt
+  #+begin_src sh
+    sudo apt-get install git-crypt
+  #+end_src
+
 * OSX
 
   #+begin_src sh
