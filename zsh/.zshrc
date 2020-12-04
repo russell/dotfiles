@@ -303,13 +303,6 @@ if [ "$TERM" = "eterm-color" ]; then
     add-zsh-hook preexec eterm-preexec
 fi
 
-function openstack_clear {
-    if [ -n "$(env | awk -F '=' '/OS_/ { print $1 }')" ]; then
-       unset $(env | awk -F '=' '/OS_/ { print $1 }')
-    fi
-    default_prompt
-}
-
 # Kubernetes Completion (lazy)
 if [ $commands[kubectl] ]; then
     kubectl() {
