@@ -36,6 +36,7 @@ zplug load
 
 # ASDF Function Path
 fpath=(${ASDF_DIR}/completions $fpath)
+fpath=(${HOME}/.zsh/completions $fpath)
 
 setopt prompt_subst
 autoload -U colors
@@ -43,10 +44,6 @@ colors
 source ~/.zsh/arrsim.zsh-theme
 
 autoload -U add-zsh-hook
-
-# Load bash compatibility
-autoload bashcompinit
-bashcompinit
 
 #
 # Aliases
@@ -303,19 +300,9 @@ if [ "$TERM" = "eterm-color" ]; then
     add-zsh-hook preexec eterm-preexec
 fi
 
-# Kubernetes Completion (lazy)
-if [ $commands[kubectl] ]; then
-    kubectl() {
-        unfunction "$0"
-        source <(kubectl completion zsh)
-        $0 "$@"
-    }
-fi
-
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
-
 
 # zprof
 # zmodload zsh/zprof
