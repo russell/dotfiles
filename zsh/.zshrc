@@ -18,11 +18,10 @@ if [ ! -d $ZPLUG_HOME ]; then
     curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
+# export ZPLUG_LOADFILE=~/.packages.zsh
 source $ZPLUG_HOME/init.zsh
 
-zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'zsh-users/zsh-completions'
-zplug 'plugins/asdf', from:oh-my-zsh
 zplug 'plugins/git', from:oh-my-zsh
 zplug 'plugins/debian', from:oh-my-zsh
 zplug 'plugins/pip', from:oh-my-zsh
@@ -35,10 +34,8 @@ fi
 
 zplug load
 
-if zplug check 'zsh-users/zsh-syntax-highlighting'; then
-    # Disable underline of paths
-    ZSH_HIGHLIGHT_STYLES[path]='none'
-fi
+# ASDF Function Path
+fpath=(${ASDF_DIR}/completions $fpath)
 
 setopt prompt_subst
 autoload -U colors
@@ -326,4 +323,6 @@ if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
 fi
 
+
 # zprof
+# zmodload zsh/zprof
