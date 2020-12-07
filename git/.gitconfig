@@ -10,6 +10,8 @@ user = russell
 
 [core]
 excludesfile = ~/.gitignore
+	quotePath = false
+	commitGraph = true
 
 [color]
 diff = auto
@@ -86,3 +88,9 @@ username = russell-sim
 
 [url "git@github.com:"]
 insteadOf = https://github.com/
+[receive]
+	advertisePushOptions = true
+[gc]
+	writeCommitGraph = true
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
