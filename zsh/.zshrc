@@ -99,7 +99,7 @@ bindkey "\e[3~" delete-char
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
 SAVEHIST=10000
-setopt hist_ignore_dups hist_ignore_space hist_expire_dups_first hist_verify
+setopt hist_ignore_space hist_expire_dups_first hist_verify
 
 if [ -z "$HISTFILE" ] && [ -z "$INSIDE_EMACS" ]; then
     setopt sharehistory
