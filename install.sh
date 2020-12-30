@@ -14,6 +14,7 @@ dunst
 emacs
 git
 keysnail
+kitty
 lisp
 mercurial
 mutt
