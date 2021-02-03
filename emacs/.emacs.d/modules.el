@@ -35,6 +35,7 @@
 (require 'rs-bazel)
 (require 'rs-lsp)
 (require 'rs-helm)
+(require 'rs-typescript)
 (require 'rs-tramp)
 (require 'rs-git)
 (require 'rs-writing)
