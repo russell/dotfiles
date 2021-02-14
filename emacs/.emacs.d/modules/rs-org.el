@@ -27,6 +27,7 @@
 (prelude-require-packages
  '(centered-cursor-mode
    helm-org
+   helm-org-ql
    helm-org-rifle
    org-gcal
    org-journal
