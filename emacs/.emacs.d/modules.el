@@ -32,6 +32,7 @@
 (require 'rs-org)
 (require 'rs-shell)
 (require 'rs-jsonnet)
+(require 'rs-bazel)
 (require 'rs-lsp)
 (require 'rs-helm)
 (require 'rs-tramp)
