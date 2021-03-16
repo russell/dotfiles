@@ -82,14 +82,11 @@ if [ -d "$HOME/.cargo" ]; then
 fi
 
 if $DARWIN; then
-    ASDF_DIR=$(brew --prefix asdf)
+    export ASDF_DIR=$(brew --prefix asdf)
 else
-    ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
+    export ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
 fi
-
-if [ -d "$ASDF_DIR" ]; then
-    source "$ASDF_DIR/asdf.sh"
-fi
+export ASDF_DATA_DIR="$HOME/.asdf"
 
 # Kubernetes Krew
 if [ -d "${KREW_ROOT:-$HOME/.krew}" ]; then

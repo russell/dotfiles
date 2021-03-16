@@ -242,9 +242,9 @@ if command -v direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
-# Openstack RC Files
-osrc() { source ~/.os/$1; }
-compdef "_path_files -f -W ~/.os/" osrc
+if [ -d "$ASDF_DIR" ]; then
+    source "$ASDF_DIR/asdf.sh"
+fi
 
 # Virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT="True"
