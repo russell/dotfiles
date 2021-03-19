@@ -203,3 +203,5 @@ function kube-get-roles() {
       (.roleRef.kind + \"/\" + .roleRef.name)
     "
 }
+
+alias bazel=bazelisk
