@@ -6,6 +6,7 @@ ansible
 asdf
 bash
 bazaar
+bazel
 conkeror
 debian
 direnv

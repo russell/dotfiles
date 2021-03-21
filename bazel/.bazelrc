@@ -1,0 +1,2 @@
+test --test_env ASDF_DATA_DIR --test_env ASDF_DIR
+build --action_env ASDF_DATA_DIR --test_env ASDF_DIR
