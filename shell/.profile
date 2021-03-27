@@ -18,6 +18,15 @@ if [ $(uname) = "Darwin" ]; then
     [ -d /usr/local/opt/coreutils/libexec/gnubin ] && export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 fi
 
+# Nix
+if $DARWIN; then
+    if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+        source "$HOME/.nix-profile/etc/profile.d/nix.sh";
+    fi
+else
+    PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+fi
+
 if $DARWIN; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export PATH="/usr/local/bin:$PATH"
@@ -100,11 +109,6 @@ MANPATH=":$NPM_PACKAGES/share/man"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 if [ ! -d "$NPM_PACKAGES" ] ; then
     mkdir $NPM_PACKAGES
-fi
-
-# Nix
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-    source "$HOME/.nix-profile/etc/profile.d/nix.sh";
 fi
 
 # Guile scheme path
