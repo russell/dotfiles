@@ -138,6 +138,11 @@ elif [ -x /usr/local/bin/gdircolors ]; then
     test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
 fi
 
+# Nix home-manager uses bashmatic
+if [[ -d ${HOME}/.bashmatic ]]; then
+    source ${HOME}/.bashmatic/init.sh
+fi
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
