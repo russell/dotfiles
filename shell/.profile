@@ -30,7 +30,6 @@ fi
 export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
 if $DARWIN; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export PATH="/usr/local/bin:$PATH"
 fi
 
