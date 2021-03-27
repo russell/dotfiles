@@ -26,6 +26,8 @@ if $DARWIN; then
 else
     PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
 fi
+# Set the nix path for home-manager
+export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
 if $DARWIN; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
