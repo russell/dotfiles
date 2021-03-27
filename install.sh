@@ -19,6 +19,7 @@ kitty
 lisp
 mercurial
 mutt
+nix
 pry
 shell
 stumpwm
