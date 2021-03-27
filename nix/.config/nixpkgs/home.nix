@@ -13,6 +13,11 @@
     pkgs.argo
     pkgs.argocd
     pkgs.asdf
+    (pkgs.linkFarm "bazel" [ {
+      name = "bin/bazel";
+      path = "${pkgs.bazelisk}/bin/bazelisk";
+    } ])
+    pkgs.bazelisk
     pkgs.direnv
     pkgs.fzf
     pkgs.gh
@@ -23,8 +28,10 @@
     pkgs.proselint
     pkgs.qbec
     pkgs.ripgrep
+    pkgs.rust-analyzer
     pkgs.stern
     pkgs.stow
+    pkgs.tektoncd-cli
     pkgs.yq
   ];
 
