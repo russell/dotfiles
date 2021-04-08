@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'rs-core)
+(require 'rs-osx)
 (require 'rs-appearance)
 (require 'rs-personal)
 (require 'rs-gnus)
@@ -40,6 +41,7 @@
 (require 'rs-git)
 (require 'rs-writing)
 (require 'rs-rust)
+(require 'rs-ruby)
 
 ;; Emacs IRC client
 ;; (require 'prelude-erc)
