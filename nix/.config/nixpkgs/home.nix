@@ -35,6 +35,7 @@
     pkgs.stern
     pkgs.stow
     pkgs.tektoncd-cli
+    pkgs.tree
     pkgs.yq
   ];
 
