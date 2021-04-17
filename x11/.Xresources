@@ -62,8 +62,12 @@
 ! *color15: #ffffff
 
 !! Xft Appearance
-Xft*antialias:          true
-Xft*autohint:           true
+! Xft.antialias:  true
+! Xft.autohint:   true
+! Xft.rgba:       rgb
+! Xft.hinting:    true
+! Xft.hintstyle:  hintmedium
+! Xft.lcdfilter:  lcddefault
 
 !! URxvt Appearance
 URxvt.font: xft:Iosevka Fixed SS11:style=Regular:size=13
