@@ -1,13 +1,94 @@
+!! Colorscheme
+!! Modus Operandi
+*background: #ffffff
+*foreground: #000000
+*cursorColor: #000000
+*cursorColor2: #ffffff
+
+! black
+*color0: #000000
+*color8: #595959
+! red
+*color1: #a60000
+*color9: #972500
+! green
+*color2: #005e00
+*color10: #315b00
+! yellow
+*color3: #813e00
+*color11: #70480f
+! blue
+*color4: #0031a9
+*color12: #2544bb
+! magenta
+*color5: #721045
+*color13: #5317ac
+! cyan
+*color6: #00538b
+*color14: #005a5f
+! white
+*color7: #bfbfbf
+*color15: #ffffff
+
+! !! Modus Vivendi
+! *background: #000000
+! *foreground: #ffffff
+! *cursorColor: #ffffff
+! *cursorColor2: #000000
+
+! ! black
+! *color0: #000000
+! *color8: #595959
+! ! red
+! *color1: #ff8059
+! *color9: #f4923b
+! ! green
+! *color2: #44bc44
+! *color10: #70c900
+! ! yellow
+! *color3: #eecc00
+! *color11: #cfdf30
+! ! blue
+! *color4: #2fafff
+! *color12: #79a8ff
+! ! magenta
+! *color5: #feacd0
+! *color13: #b6a0ff
+! ! cyan
+! *color6: #00d3d0
+! *color14: #6ae4b9
+! ! white
+! *color7: #bfbfbf
+! *color15: #ffffff
+
+!! Xft Appearance
 Xft*antialias:          true
 Xft*autohint:           true
-XTerm*background:   black
-XTerm*foreground:   grey
-XTerm*cursorColor:  grey
+
+!! URxvt Appearance
+URxvt.font: xft:Iosevka Fixed SS11:style=Regular:size=13
+URxvt.boldFont: xft:Iosevka Fixed SS11:style=Bold:size=13
+URxvt.italicFont: xft:Iosevka Fixed SS11:style=Italic:size=13
+URxvt.boldItalicfont: xft:Iosevka Fixed SS11:style=Bold Italic:size=13
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+URxvt.internalBorder: 1
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.iso14755: false
+
+!! XTerm Appearance
 XTerm.vt100.geometry:   79x25
 XTerm*scrollBar:    false
 XTerm*rightScrollBar:   true
-XTerm*saveLines:    10000
-XTerm*faceName:     DejaVu Sans Mono
+XTerm*saveLines:    2048
+XTerm*faceName:     Iosevka Fixed SS11
 XTerm*faceSize:     10
 XTerm*toolBar:      off
 XTerm*metaSendsEscape: true
