@@ -4,6 +4,7 @@ set -e
 packages=$(cat <<EOF
 ansible
 asdf
+awesome
 bash
 bazaar
 bazel
