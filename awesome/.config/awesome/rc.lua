@@ -13,6 +13,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -114,11 +115,14 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local keymap_switch = require("obvious.keymap_switch")
+keymap_switch.set_layouts({ "us", "us(dvorak)" })
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+clock = wibox.widget.textclock()
+
+local battery = require("obvious.battery")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -172,6 +176,13 @@ local function set_wallpaper(s)
     end
 end
 
+local vert_sep = wibox.widget {
+   widget = wibox.widget.separator,
+   orientation = "vertical",
+   forced_width = 16,
+   color = "#ddafc3",
+}
+
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -221,9 +232,11 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
+            vert_sep,
+            battery(),
+            vert_sep,
+            clock,
             s.mylayoutbox,
         },
     }
