@@ -32,9 +32,6 @@
 
 (prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs))
 
-;; Disable beacon mode
-(beacon-mode 0)
-
 (use-package circadian
   :ensure t
   :config
