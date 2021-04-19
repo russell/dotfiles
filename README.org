@@ -138,3 +138,7 @@
   : rm ~/.local/share/applications/gnus.desktop
   : rm ~/.config/znt
   : ls -la ~ | awk '/dotfiles\// { print $9 }' | xargs rm
+* Fonts
+
+  Install the following into ~/.fonts
+  https://github.com/be5invis/Iosevka/releases/download/v5.2.1/ttf-iosevka-fixed-ss11-5.2.1.zip
