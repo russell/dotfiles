@@ -625,6 +625,9 @@ beautiful.useless_gap = 5
 -- Applications
 
 awful.spawn.with_shell("nm-applet")
+if awesome.hostname == "sleipnir" then
+   awful.spawn.with_shell("xfce4-power-manager")
+end
 
 -- Colours
 
