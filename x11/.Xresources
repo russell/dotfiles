@@ -70,11 +70,14 @@
 ! Xft.lcdfilter:  lcddefault
 
 !! URxvt Appearance
-URxvt.font: xft:Iosevka Fixed SS11:style=Regular:size=13
-URxvt.boldFont: xft:Iosevka Fixed SS11:style=Bold:size=13
-URxvt.italicFont: xft:Iosevka Fixed SS11:style=Italic:size=13
-URxvt.boldItalicfont: xft:Iosevka Fixed SS11:style=Bold Italic:size=13
-URxvt.letterSpace: 0
+#define font1         Iosevka Fixed SS11
+#define font2         Symbola
+
+URxvt*font:           xft:font1:pixelsize=16, xft:font2
+URxvt*boldFont:       xft:font1:bold:pixelsize=16, xft:font2
+URxvt*italicFont:     xft:font1:italic:pixelsize=16, xft:font2
+URxvt*boldItalicFont: xft:font1:bold:italic:pixelsize=16, xft:font2
+URxvt.letterSpace: 1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
 URxvt.internalBorder: 1

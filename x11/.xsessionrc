@@ -1,2 +1,6 @@
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
+
+if [ ! 'x$PROILE_EXPORTED' = 'xtrue' ]; then
+    source $HOME/.profile
+fi

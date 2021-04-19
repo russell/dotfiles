@@ -240,3 +240,5 @@ export MANPATH
 if [ -f "$HOME/.profile.local" ]; then
     source "$HOME/.profile.local"
 fi
+
+export PROILE_EXPORTED='true'
