@@ -270,13 +270,28 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey,           }, "e",
        function ()
-          awful.spawn.raise_or_spawn("emacs")
+          awful.spawn.raise_or_spawn(
+             {"emacs", "--name", "emacs-primary-server", "--eval", "(server-start)"},
+             {},
+             function(c)
+                return awful.rules.match(c, {
+                                            class = 'Emacs',
+                                            instance = 'emacs-primary-server'
+                })
+             end
+          )
        end,
        {description = "run or raise Emacs", group = "applications"}
     ),
     awful.key({ modkey,           }, "i",
        function ()
-          awful.spawn.raise_or_spawn("x-terminal-emulator")
+          awful.spawn.raise_or_spawn(
+             "gnome-terminal",
+             {},
+             function(c)
+                return awful.rules.match(c, {class = "Gnome-terminal"})
+             end
+          )
        end,
        {description = "run or raise Terminal", group = "applications"}
     ),
