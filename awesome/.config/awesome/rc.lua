@@ -644,6 +644,10 @@ if awesome.hostname == "sleipnir" then
    awful.spawn.with_shell("xfce4-power-manager")
 end
 
+if awesome.hostname == "mowgli" then
+   awful.spawn.with_shell("xfce4-power-manager")
+end
+
 -- Colours
 
 local xresources = require("beautiful.xresources")
