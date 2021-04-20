@@ -287,10 +287,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "i",
        function ()
           awful.spawn.raise_or_spawn(
-             "gnome-terminal",
+             "xterm",
              {},
              function(c)
-                return awful.rules.match(c, {class = "Gnome-terminal"})
+                return awful.rules.match(c, {class = "XTerm"})
              end
           )
        end,
