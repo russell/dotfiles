@@ -13,6 +13,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local lain = require("lain")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -64,24 +65,24 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-   awful.layout.suit.spiral.dwindle,
-   awful.layout.suit.spiral,
-   awful.layout.suit.tile,
-   awful.layout.suit.tile.left,
-   awful.layout.suit.tile.bottom,
-   awful.layout.suit.tile.top,
-   awful.layout.suit.fair,
-   awful.layout.suit.fair.horizontal,
-   awful.layout.suit.floating,
-   -- awful.layout.suit.max,
-   -- awful.layout.suit.max.fullscreen,
-   -- awful.layout.suit.magnifier,
-   -- awful.layout.suit.corner.nw,
-   -- awful.layout.suit.corner.ne,
-   -- awful.layout.suit.corner.sw,
-   -- awful.layout.suit.corner.se,
-}
+awful.layout.layouts = {}
+
+if awesome.hostname == "mowgli" then
+   lain.layout.termfair.nmaster = 3
+   lain.layout.termfair.ncol    = 2
+   table.insert(awful.layout.layouts, lain.layout.termfair.center)
+end
+
+table.insert(awful.layout.layouts, awful.layout.suit.spiral.dwindle)
+table.insert(awful.layout.layouts, awful.layout.suit.spiral)
+table.insert(awful.layout.layouts, awful.layout.suit.tile)
+table.insert(awful.layout.layouts, awful.layout.suit.tile.left)
+table.insert(awful.layout.layouts, awful.layout.suit.tile.bottom)
+table.insert(awful.layout.layouts, awful.layout.suit.tile.top)
+table.insert(awful.layout.layouts, awful.layout.suit.fair)
+table.insert(awful.layout.layouts, awful.layout.suit.fair.horizontal)
+table.insert(awful.layout.layouts, awful.layout.suit.floating)
+
 -- }}}
 
 -- {{{ Menu
