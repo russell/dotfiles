@@ -649,6 +649,10 @@ if awesome.hostname == "mowgli" then
    awful.spawn.with_shell("xfce4-power-manager")
 end
 
+if awesome.hostname == "C02F6083MD6V-1" then
+   awful.spawn.with_shell("vmware-user-suid-wrapper")
+end
+
 -- Colours
 
 local xresources = require("beautiful.xresources")
