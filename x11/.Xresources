@@ -5,7 +5,7 @@
 *cursorColor: #000000
 *cursorColor2: #ffffff
 
-! black
+! blackp
 *color0: #000000
 *color8: #595959
 ! red
@@ -96,7 +96,7 @@ XTerm*scrollBar:    false
 XTerm*rightScrollBar:   true
 XTerm*saveLines:    2048
 XTerm*faceName:     Iosevka Fixed SS11
-XTerm*faceSize:     10
+XTerm*faceSize:     12
 XTerm*toolBar:      off
 XTerm*metaSendsEscape: true
 XTerm*eightBitInput: false
