@@ -3,6 +3,6 @@ export SSH_AUTH_SOCK
 
 xrdb ~/.Xresources
 
-if [ ! 'x$PROILE_EXPORTED' = 'xtrue' ]; then
+if [ ! 'x$PROFILE_EXPORTED' = 'xtrue' ]; then
     source $HOME/.profile
 fi

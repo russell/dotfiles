@@ -241,4 +241,4 @@ if [ -f "$HOME/.profile.local" ]; then
     source "$HOME/.profile.local"
 fi
 
-export PROILE_EXPORTED='true'
+export PROFILE_EXPORTED='true'
