@@ -187,6 +187,17 @@ local vert_sep = wibox.widget {
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+--Volume bar
+local volume = lain.widget.alsabar(
+   {
+      width=20, height=10, followtag = true,
+      ticks = true, ticks_size = 2
+   }
+)
+
+local volume_widget = wibox.container.background(volume.bar)
+volume_widget.bgimage=beautiful.widget_display
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -241,6 +252,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             vert_sep,
+            volume_widget,
             battery(),
             vert_sep,
             clock,
@@ -391,7 +403,31 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "c", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+       {description = "show the menubar", group = "launcher"}),
+
+    -- Volume Keys
+    awful.key({}, "XF86AudioLowerVolume", function ()
+          awful.util.spawn("amixer -q -D pulse sset Master 5%-", false)
+          volume.update()
+    end),
+    awful.key({}, "XF86AudioRaiseVolume", function ()
+          awful.util.spawn("amixer -q -D pulse sset Master 5%+", false)
+          volume.update()
+    end),
+    awful.key({}, "XF86AudioMute", function ()
+          awful.util.spawn("amixer -D pulse set Master 1+ toggle", false)
+          volume.update()
+    end),
+    -- Media Keys
+    awful.key({}, "XF86AudioPlay", function()
+          awful.util.spawn("playerctl play-pause", false)
+    end),
+    awful.key({}, "XF86AudioNext", function()
+          awful.util.spawn("playerctl next", false)
+    end),
+    awful.key({}, "XF86AudioPrev", function()
+          awful.util.spawn("playerctl previous", false)
+    end)
 )
 
 clientkeys = gears.table.join(
