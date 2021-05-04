@@ -54,7 +54,7 @@ setopt autocd extendedglob dvorak
 
 if [ -e $HOME/.fzf.zsh ]; then
     FZF_TMUX=1
-    FZF_DEFAULT_OPTS="--reverse --inline-info"
+    FZF_DEFAULT_OPTS="--reverse --inline-info --color=light"
     source $HOME/.fzf.zsh
 
     # Replace bindkey that FZF sets for C-t
