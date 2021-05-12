@@ -29,6 +29,7 @@
     pkgs.goreleaser
     pkgs.jq
     pkgs.kapp
+    pkgs.kind
     pkgs.proselint
     pkgs.qbec
     pkgs.ripgrep
