@@ -37,6 +37,7 @@
     pkgs.tektoncd-cli
     pkgs.tree
     pkgs.yq
+    pkgs.cue
   ];
 
   # This value determines the Home Manager release that your
