@@ -21,6 +21,7 @@
       path = "${pkgs.bazelisk}/bin/bazelisk";
     } ])
     pkgs.bazelisk
+    pkgs.cue
     pkgs.direnv
     pkgs.fzf
     pkgs.gh
@@ -37,7 +38,6 @@
     pkgs.tektoncd-cli
     pkgs.tree
     pkgs.yq
-    pkgs.cue
   ];
 
   # This value determines the Home Manager release that your
