@@ -2,6 +2,7 @@
 
 set -e
 packages=$(cat <<EOF
+alacritty
 ansible
 asdf
 awesome
