@@ -14,6 +14,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local lain = require("lain")
+local screenshot = require("screenshot.screenshot")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -386,6 +387,16 @@ globalkeys = gears.table.join(
                   end
               end,
               {description = "restore minimized", group = "client"}),
+
+    -- Screenshot
+    awful.key({ }, "Print", scrot_window,
+       {description = "Take a screenshot of focused window", group = "screenshot"}),
+    awful.key({ modkey, }, "Print", scrot_selection,
+       {description = "Take a screenshot of selection", group = "screenshot"}),
+    awful.key({ "Shift" }, "Print", scrot_full,
+       {description = "Take a screenshot of entire screen", group = "screenshot"}),
+    awful.key({ "Ctrl" }, "Print", scrot_delay,
+       {description = "Take a screenshot of delay", group = "screenshot"}),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,

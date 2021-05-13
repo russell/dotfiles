@@ -1,3 +1,6 @@
 [submodule "awesome/.config/awesome/lain"]
 	path = awesome/.config/awesome/lain
 	url = https://github.com/lcpz/lain.git
+[submodule "awesome/.config/awesome/screenshot"]
+	path = awesome/.config/awesome/screenshot
+	url = https://github.com/denisoster/awesomewm-screenshot.git
