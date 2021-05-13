@@ -150,7 +150,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  #size: 11.0
+  size: 8.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -176,11 +176,11 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-#colors:
+colors:
   # Default colors
-  #primary:
-  #  background: '#1d1f21'
-  #  foreground: '#c5c8c6'
+  primary:
+   background: '#ffffff'
+   foreground: '#000000'
 
     # Bright and dim foreground colors
     #
@@ -249,26 +249,26 @@ font:
   #  background: CellForeground
 
   # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
-  #  red:     '#cc6666'
-  #  green:   '#b5bd68'
-  #  yellow:  '#f0c674'
-  #  blue:    '#81a2be'
-  #  magenta: '#b294bb'
-  #  cyan:    '#8abeb7'
-  #  white:   '#c5c8c6'
+  normal:
+   black:   '#000000'
+   red:     '#a60000'
+   green:   '#005e00'
+   yellow:  '#813e00'
+   blue:    '#0031a9'
+   magenta: '#721045'
+   cyan:    '#00538b'
+   white:   '#bfbfbf'
 
   # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#d54e53'
-  #  green:   '#b9ca4a'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#c397d8'
-  #  cyan:    '#70c0b1'
-  #  white:   '#eaeaea'
+  bright:
+   black:   '#595959'
+   red:     '#972500'
+   green:   '#315b00'
+   yellow:  '#70480f'
+   blue:    '#2544bb'
+   magenta: '#5317ac'
+   cyan:    '#005a5f'
+   white:   '#ffffff'
 
   # Dim colors
   #
@@ -680,7 +680,9 @@ font:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
+  - { key: Y,              mods: Control,                    action: Paste            }
+
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
