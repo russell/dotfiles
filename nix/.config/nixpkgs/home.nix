@@ -13,9 +13,11 @@
   home.homeDirectory = (builtins.getEnv "HOME");
 
   home.packages = [
+    pkgs.alacritty
     pkgs.argo
     pkgs.argocd
     pkgs.asdf
+    pkgs.bat
     (pkgs.linkFarm "bazel" [ {
       name = "bin/bazel";
       path = "${pkgs.bazelisk}/bin/bazelisk";
@@ -30,13 +32,17 @@
     pkgs.jq
     pkgs.kapp
     pkgs.kind
+    pkgs.procs
     pkgs.proselint
     pkgs.qbec
     pkgs.ripgrep
     pkgs.rust-analyzer
+    pkgs.starship
     pkgs.stern
     pkgs.stow
+    pkgs.tealdeer
     pkgs.tektoncd-cli
+    pkgs.tokei
     pkgs.tree
     pkgs.yq
   ];
