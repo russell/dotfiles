@@ -13,7 +13,6 @@
   home.homeDirectory = (builtins.getEnv "HOME");
 
   home.packages = [
-    pkgs.alacritty
     pkgs.argo
     pkgs.argocd
     pkgs.asdf
