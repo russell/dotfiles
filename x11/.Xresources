@@ -100,3 +100,4 @@ XTerm*faceSize:     12
 XTerm*toolBar:      off
 XTerm*metaSendsEscape: true
 XTerm*eightBitInput: false
+XTerm*selectToClipboard: true
