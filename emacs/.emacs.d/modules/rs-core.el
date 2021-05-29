@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(envrc winum eyebrowse gcmh))
+(prelude-require-packages '(envrc winum eyebrowse gcmh popper))
 
 (setq frame-title-format '("" invocation-name " - "
                           (:eval
@@ -92,14 +92,28 @@
 (global-set-key [remap other-window] 'other-window)
 
 (use-package eyebrowse
-  :init (eyebrowse-mode))
+  :config (eyebrowse-mode))
 
 (use-package gcmh
-  :init (gcmh-mode)
+  :init
+  (setq gcmh-idle-delay 5
+        gcmh-high-cons-threshold (* 16 1024 1024)) ; 16mb
   :config
-  (progn
-    (setq gcmh-idle-delay 5
-          gcmh-high-cons-threshold (* 16 1024 1024)))) ; 16mb
+  (gcmh-mode))
+
+(use-package popper
+  :ensure t ; or :straight t
+  :bind (("C-`"   . popper-toggle-latest)
+         ("M-`"   . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-group-function #'popper-group-by-projectile
+        popper-reference-buffers '("\\*Messages\\*$"
+                                   \"Output\\*$\"
+                                   help-mode
+                                   compilation-mode))
+  :config
+  (popper-mode))
 
 (provide 'rs-core)
 ;;; rs-core.el ends here
