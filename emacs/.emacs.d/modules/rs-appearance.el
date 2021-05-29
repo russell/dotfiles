@@ -34,20 +34,21 @@
 
 (use-package circadian
   :ensure t
-  :config
+  :init
   (setq calendar-latitude 49.0)
   (setq calendar-longitude 8.5)
   (setq circadian-themes '((:sunrise . modus-operandi)
                            (:sunset  . modus-vivendi)))
   (add-to-list 'circadian-after-load-theme-hook 'treemacs-icons-dired-mode)
+  :config
   (circadian-setup))
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
-  :config
+  :init
   (progn
-    (setq-default doom-modeline-height 28)))
+    (setq-default doom-modeline-height 28))
+  :config (doom-modeline-mode 1))
 
 (use-package treemacs-icons-dired
   :after dired

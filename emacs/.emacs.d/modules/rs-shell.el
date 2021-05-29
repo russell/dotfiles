@@ -35,7 +35,7 @@
                                      :repo "russell/project-shells"))
 
 (use-package project-shells
-  :init
+  :config
   (global-project-shells-mode))
 
 (use-package eshell-z
