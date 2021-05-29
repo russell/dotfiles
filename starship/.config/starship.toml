@@ -1,0 +1,119 @@
+# Which is equivalent to
+format = """
+$status\
+$cmd_duration\
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$line_break\
+$cmake\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$custom\
+$lua\
+$jobs\
+$time\
+$shell\
+\\$ """
+
+
+# Disable the package module, hiding it from the prompt completely
+[battery]
+disabled = true
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "[$user]($style)@"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format =  "[$hostname](bold red) "
+trim_at = ""
+disabled = false
+
+[directory]
+truncate_to_repo = false
+truncation_length = 5
+format = "in [$path]($style)[$read_only]($read_only_style) "
+
+[directory.substitutions]
+"~/projects" = "~/p…"
+"~/zendesk" = "~/z…"
+
+[status]
+style = "bold red"
+symbol = ""
+format = "\\[[$symbol$status]($style)\\] "
+map_symbol = false
+disabled = false
+recognize_signal_code = false
+
+[jobs]
+disabled = false
+threshold = 1
+format = "[$symbol$number]($style) "
+
+[git_branch]
+always_show_remote = true
+format = "on [$symbol$branch->$remote_name/$remote_branch]($style) "
+
+[package]
+disabled = true
+
+[python]
+format = '[${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[rust]
+disabled = true
+format = "[$symbol($version )]($style)"
+
+[ruby]
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+format = "[$symbol($version )]($style)"

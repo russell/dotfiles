@@ -24,6 +24,7 @@ mutt
 nix
 pry
 shell
+starship
 stumpwm
 tmux
 vim
