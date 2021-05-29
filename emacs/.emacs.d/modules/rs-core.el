@@ -109,6 +109,7 @@
   :init
   (setq popper-group-function #'popper-group-by-projectile
         popper-reference-buffers '("\\*Messages\\*$"
+                                   "\\*Warnings\\*$"
                                    \"Output\\*$\"
                                    help-mode
                                    compilation-mode))
