@@ -39,8 +39,8 @@
   (setq calendar-longitude 8.5)
   (setq circadian-themes '((:sunrise . modus-operandi)
                            (:sunset  . modus-vivendi)))
-  (add-to-list 'circadian-after-load-theme-hook 'treemacs-icons-dired-mode)
   :config
+  (add-to-list 'circadian-after-load-theme-hook 'treemacs-icons-dired-mode)
   (circadian-setup))
 
 (use-package doom-modeline
