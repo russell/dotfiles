@@ -41,7 +41,11 @@ fpath=(${HOME}/.zsh/completions $fpath)
 setopt prompt_subst
 autoload -U colors
 colors
-source ~/.zsh/arrsim.zsh-theme
+if command -v starship &> /dev/null; then
+    eval $(starship init zsh)
+else
+    source ~/.zsh/arrsim.zsh-theme
+fi
 
 autoload -U add-zsh-hook
 
