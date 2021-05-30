@@ -5,6 +5,7 @@ packages=$(cat <<EOF
 alacritty
 ansible
 asdf
+autokey
 awesome
 bash
 bazaar
