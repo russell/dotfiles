@@ -24,12 +24,23 @@
 
 ;;; Code:
 
+(prelude-require-packages
+ '(rubocop))
+
 (use-package ruby-mode
-  :init
+  :config
   (add-hook 'ruby-mode-hook
             (lambda ()
               (setq-local flycheck-command-wrapper-function
-                          (lambda (command) (append `(,(funcall flycheck-executable-find "bundle") "exec") command))))))
+                          (lambda (command) (append `(,(funcall flycheck-executable-find "bundle") "exec") command)))))
+  (add-hook 'ruby-mode-hook #'rubocop-mode))
+
+(use-package rubocop
+  :config
+  (setq
+   rubocop-check-command "rubocop --format emacs"
+   rubocop-autocorrect-command "rubocop -A --format emacs"
+   rubocop-format-command "rubocop -x --format emacs"))
 
 (provide 'rs-ruby)
 ;;; rs-ruby.el ends here
