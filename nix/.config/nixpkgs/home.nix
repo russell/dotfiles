@@ -27,6 +27,7 @@
     pkgs.fzf
     pkgs.gh
     pkgs.git-crypt
+    pkgs.gocode
     pkgs.goreleaser
     pkgs.jq
     pkgs.kapp
