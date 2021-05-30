@@ -64,15 +64,15 @@ $shell\
 disabled = true
 
 [username]
-style_user = "white bold"
-style_root = "black bold"
+style_user = "green"
+style_root = "red bold"
 format = "[$user]($style)@"
 disabled = false
 show_always = true
 
 [hostname]
 ssh_only = false
-format =  "[$hostname](bold red) "
+format =  "[$hostname](black) "
 trim_at = ""
 disabled = false
 
@@ -82,8 +82,8 @@ truncation_length = 5
 format = "in [$path]($style)[$read_only]($read_only_style) "
 
 [directory.substitutions]
-"~/projects" = "~/p…"
-"~/zendesk" = "~/z…"
+"~/projects" = "~/p"
+"~/zendesk" = "~/z"
 
 [status]
 style = "bold red"
