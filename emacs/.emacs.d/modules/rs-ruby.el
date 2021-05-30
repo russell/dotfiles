@@ -25,7 +25,7 @@
 ;;; Code:
 
 (prelude-require-packages
- '(rubocop))
+ '(rubocop rspec-mode))
 
 (use-package ruby-mode
   :config
@@ -41,6 +41,8 @@
    rubocop-check-command "rubocop --format emacs"
    rubocop-autocorrect-command "rubocop -A --format emacs"
    rubocop-format-command "rubocop -x --format emacs"))
+
+(use-package rspec-mode)
 
 (provide 'rs-ruby)
 ;;; rs-ruby.el ends here
