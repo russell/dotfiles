@@ -101,6 +101,19 @@
   :config
   (gcmh-mode))
 
+(defun rs-popper-select-popup-at-bottom (buffer &optional _alist)
+  "Display and switch to popup-buffer BUFFER at the bottom of the screen."
+  (let ((window (display-buffer-in-side-window
+                 buffer
+                 '((window-height . (lambda (win)
+                                      (fit-window-to-buffer
+                                       win
+                                       (floor (frame-height) 3)
+                                       (floor (frame-height) 6))))
+                   (side . bottom)
+                   (slot . 1)))))
+    (select-window window)))
+
 (use-package popper
   :ensure t ; or :straight t
   :bind (("C-`"   . popper-toggle-latest)
@@ -108,11 +121,24 @@
          ("C-M-`" . popper-toggle-type))
   :init
   (setq popper-group-function #'popper-group-by-projectile
+        popper-display-function #'rs-popper-select-popup-at-bottom
         popper-reference-buffers '("\\*Messages\\*$"
                                    "\\*Warnings\\*$"
                                    \"Output\\*$\"
                                    help-mode
-                                   compilation-mode))
+                                   compilation-mode
+
+                                   ;; Ruby buffers
+                                   "^\\*RuboCop "
+                                   "^\\*rspec-compilation\\*"
+
+                                   ;; Terminal Modes
+                                   eshell-mode
+                                   shell-mode
+                                   term-mode
+
+                                   ;; Lisp Buffer mode
+                                   inferior-emacs-lisp-mode))
   :config
   (popper-mode))
 
