@@ -30,6 +30,11 @@
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed SS11")
 (set-face-attribute 'variable-pitch nil :family "CMU Serif" :height 150)
 
+;; enable emoji fonts on  all platforms
+(set-fontset-font t 'symbol "Apple Color Emoji")
+(set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
+(set-fontset-font t 'symbol "Symbola" nil 'append)
+
 (prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs))
 
 (use-package circadian
