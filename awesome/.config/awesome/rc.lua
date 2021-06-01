@@ -691,6 +691,7 @@ awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("xfce4-power-manager")
 
 if awesome.hostname == "sleipnir" then
+   awful.spawn.with_shell("picom")
 end
 
 if awesome.hostname == "mowgli" then
