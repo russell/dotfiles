@@ -54,7 +54,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "gtk/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -300,7 +300,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "i",
        function ()
           awful.spawn.raise_or_spawn(
-             "xterm",
+             terminal,
              {},
              function(c)
                 return awful.rules.match(c, {class = "XTerm"})
