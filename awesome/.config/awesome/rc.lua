@@ -605,6 +605,20 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = true }
     },
 
+    -- Center dialogs w.r.t. their parents
+    { rule_any = {
+         type = { "dialog" },
+         class = {
+            "Gcr-prompter",  -- GPG pinentry; does not report itself as dialog
+         },
+    },
+      properties = { placement = function(c)
+                        parent = c.transient_for or client.focus or awful.screen.focused()
+                        awful.placement.centered(c, { parent = parent })
+                        return awful.placement.no_offscreen(c)
+                   end }
+    },
+
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
