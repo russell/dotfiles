@@ -44,6 +44,7 @@
     pkgs.tektoncd-cli
     pkgs.tokei
     pkgs.tree
+    pkgs.vendir
     pkgs.yq
   ];
 
