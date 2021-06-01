@@ -23,6 +23,7 @@ lisp
 mercurial
 mutt
 nix
+picom
 pry
 shell
 starship
