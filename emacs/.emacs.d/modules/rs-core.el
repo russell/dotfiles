@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(require 'warnings)
+
 (prelude-require-packages '(envrc winum eyebrowse gcmh popper))
 
 (setq frame-title-format '("" invocation-name " - "
@@ -48,6 +50,9 @@
 ;; Disable undo-tree, it seems to be responsible for hanging while
 ;; recording history
 (global-undo-tree-mode 0)
+
+(push 'comp warning-suppress-types)
+(push 'bytecomp warning-suppress-types)
 
 ;; Tab only tabs, doesn't trigger completion.
 (setq tab-always-indent t)
