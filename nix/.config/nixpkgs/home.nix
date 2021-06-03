@@ -46,6 +46,7 @@
     pkgs.tree
     pkgs.vendir
     pkgs.yq
+    pkgs.xkeysnail
   ];
 
   # This value determines the Home Manager release that your
