@@ -120,7 +120,8 @@
     (select-window window)))
 
 (use-package popper
-  :ensure t ; or :straight t
+  :ensure t
+  :defer nil
   :bind (("C-`"   . popper-toggle-latest)
          ("M-`"   . popper-cycle)
          ("C-M-`" . popper-toggle-type))
