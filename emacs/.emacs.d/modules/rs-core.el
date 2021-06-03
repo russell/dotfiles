@@ -47,6 +47,8 @@
 
 (setq kill-do-not-save-duplicates t)
 
+(setq x-wait-for-event-timeout 0.001) ;; default 0.1
+
 ;; Disable undo-tree, it seems to be responsible for hanging while
 ;; recording history
 (global-undo-tree-mode 0)
