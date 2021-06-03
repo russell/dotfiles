@@ -92,7 +92,11 @@
                         org-tempo
                         org-toc
                         )
-
+          org-babel-load-languages '((emacs-lisp . t)
+                                     (awk . t)
+                                     (python . t)
+                                     (ruby . t)
+                                     (shell . t))
           org-agenda-files '("~/org/")
           org-outline-path-complete-in-steps nil
           org-refile-use-outline-path 'file
