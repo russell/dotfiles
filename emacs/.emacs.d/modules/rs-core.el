@@ -55,6 +55,7 @@
 
 (push 'comp warning-suppress-types)
 (push 'bytecomp warning-suppress-types)
+(setq warning-minimum-level 'error)
 
 ;; Tab only tabs, doesn't trigger completion.
 (setq tab-always-indent t)
