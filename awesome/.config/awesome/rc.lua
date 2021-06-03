@@ -612,11 +612,30 @@ awful.rules.rules = {
             "Gcr-prompter",  -- GPG pinentry; does not report itself as dialog
          },
     },
-      properties = { placement = function(c)
-                        parent = c.transient_for or client.focus or awful.screen.focused()
-                        awful.placement.centered(c, { parent = parent })
-                        return awful.placement.no_offscreen(c)
-                   end }
+      properties = {
+         placement = function(c)
+            parent = c.transient_for or client.focus or awful.screen.focused()
+            awful.placement.centered(c, { parent = parent })
+            return awful.placement.no_offscreen(c)
+         end
+      }
+    },
+
+    -- Helm
+    { rule = {
+         class = "Emacs",
+         name = "Helm",
+    },
+      properties = {
+         placement = function(c)
+            parent = c.transient_for or client.focus or awful.screen.focused()
+            awful.placement.top(c, { parent = parent })
+            awful.placement.maximize_horizontally(c, { parent = parent })
+            return awful.placement.no_offscreen(c)
+      end,
+         titlebars_enabled = false,
+         floating = true,
+      }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
