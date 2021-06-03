@@ -109,5 +109,10 @@
   :bind (:map rs-applications-map
               ("N" . helm-notmuch)))
 
+(use-package helm-rg
+  :bind (:map helm-rg-map
+              ("M-b" . backward-char)
+              ("C-c C-p" . helm-rg--bounce)))
+
 (provide 'rs-helm)
 ;;; rs-helm.el ends here
