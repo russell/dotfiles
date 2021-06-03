@@ -41,7 +41,10 @@
         helm-autoresize-min-height                20 ; it is %.
         helm-display-buffer-height                30
         helm-display-buffer-width                 110
-        ))
+        )
+  (remove-hook 'helm-before-initialize-hook 'delete-other-windows))
+
+
 
 ;; (setq helm-follow-mode-persistent nil)
 (use-package helm-elisp
