@@ -111,11 +111,7 @@
   "Display and switch to popup-buffer BUFFER at the bottom of the screen."
   (let ((window (display-buffer-in-side-window
                  buffer
-                 '((window-height . (lambda (win)
-                                      (fit-window-to-buffer
-                                       win
-                                       (floor (frame-height) 3)
-                                       (floor (frame-height) 6))))
+                 `((window-height . ,(floor (frame-height) 3))
                    (side . bottom)
                    (slot . 1)))))
     (select-window window)))
