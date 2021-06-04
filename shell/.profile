@@ -21,7 +21,7 @@ fi
 # Nix
 if $DARWIN; then
     if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-        source "$HOME/.nix-profile/etc/profile.d/nix.sh";
+        . "$HOME/.nix-profile/etc/profile.d/nix.sh";
     fi
 else
     PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
@@ -238,7 +238,7 @@ export PATH
 export MANPATH
 
 if [ -f "$HOME/.profile.local" ]; then
-    source "$HOME/.profile.local"
+    . "$HOME/.profile.local"
 fi
 
 export PROFILE_EXPORTED='true'
