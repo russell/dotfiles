@@ -133,6 +133,7 @@
                                    "\\*Warnings\\*$"
                                    \"Output\\*$\"
                                    help-mode
+                                   helpful-mode
                                    compilation-mode
 
                                    ;; Ruby buffers
@@ -147,7 +148,7 @@
                                    ;; Lisp Buffer mode
                                    inferior-emacs-lisp-mode))
   :config
-  (popper-mode))
+  (popper-mode 1))
 
 (provide 'rs-core)
 ;;; rs-core.el ends here
