@@ -731,6 +731,7 @@ end
 
 if awesome.hostname == "C02F6083MD6V-1" then
    awful.spawn.with_shell("vmware-user-suid-wrapper")
+   awful.spawn.with_shell("picom")
 end
 
 -- Colours
