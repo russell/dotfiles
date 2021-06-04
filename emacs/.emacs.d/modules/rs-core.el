@@ -26,7 +26,7 @@
 
 (require 'warnings)
 
-(prelude-require-packages '(envrc winum eyebrowse gcmh popper))
+(prelude-require-packages '(envrc winum eyebrowse gcmh popper helpful))
 
 (setq frame-title-format '("" invocation-name " - "
                           (:eval
