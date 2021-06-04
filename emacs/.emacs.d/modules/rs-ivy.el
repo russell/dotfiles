@@ -38,6 +38,7 @@
 
 (use-package counsel
   :config
+  (global-set-key (kbd "M-y") 'counsel-yank-pop)
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable))
 
