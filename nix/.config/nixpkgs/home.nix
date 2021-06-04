@@ -12,6 +12,15 @@
   home.username = (builtins.getEnv "USER");
   home.homeDirectory = (builtins.getEnv "HOME");
 
+  # Set man pages according to
+  # https://github.com/nix-community/home-manager/issues/432#issuecomment-434817038
+  programs.man.enable = false;
+  home.extraOutputsToInstall = [ "man" ];
+
+  home.sessionVariables = {
+    LANG = "en_AU.UTF-8";
+  };
+
   home.packages = [
     pkgs.argo
     pkgs.argocd
