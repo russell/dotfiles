@@ -109,6 +109,10 @@
   :bind (:map rs-applications-map
               ("N" . helm-notmuch)))
 
+(use-package helm-descbinds
+  :config
+  (setq helm-descbinds-window-style 'default))
+
 (use-package helm-rg
   :bind (:map helm-rg-map
               ("M-b" . backward-char)
