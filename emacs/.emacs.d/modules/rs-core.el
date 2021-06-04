@@ -53,9 +53,7 @@
 ;; recording history
 (global-undo-tree-mode 0)
 
-(push 'comp warning-suppress-types)
-(push 'bytecomp warning-suppress-types)
-(setq warning-minimum-level 'error)
+(setq comp-async-report-warnings-errors nil)
 
 ;; Tab only tabs, doesn't trigger completion.
 (setq tab-always-indent t)
