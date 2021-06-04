@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(ivy-rich all-the-icons-ivy-rich))
+(prelude-require-packages '(ivy-rich all-the-icons-ivy-rich counsel-projectile))
 
 (use-package ivy-rich
   :ensure t
@@ -40,6 +40,10 @@
   :config
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable))
+
+(use-package counsel-projectile
+  :ensure t
+  :config (counsel-projectile-mode 1))
 
 (provide 'rs-ivy)
 ;;; rs-ivy.el ends here
