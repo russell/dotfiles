@@ -42,6 +42,10 @@
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable))
 
+(use-package swiper
+  :config
+  (global-set-key (kbd "C-S-s") 'swiper-thing-at-point))
+
 (use-package counsel-projectile
   :ensure t
   :config (counsel-projectile-mode 1))
