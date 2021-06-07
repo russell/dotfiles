@@ -49,8 +49,7 @@
   :config
   (progn
     (add-to-list 'org-variable-pitch-fixed-faces 'org-link)
-    (setq org-variable-pitch-fixed-font "Iosevka Fixed SS11"))
-  )
+    (setq org-variable-pitch-fixed-font "Iosevka Fixed SS11")))
 
 (use-package helm-org-rifle
   :bind (:map rs-applications-map
@@ -74,8 +73,7 @@
     (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
           org-src-fontify-natively t
           org-src-tab-acts-natively t
-          org-modules '(
-                        ol-bbdb
+          org-modules '(ol-bbdb
                         ol-bibtex
                         ol-docview
                         ol-eshell
@@ -90,18 +88,19 @@
                         org-id
                         org-protocol
                         org-tempo
-                        org-toc
-                        )
+                        org-toc)
           org-babel-load-languages '((emacs-lisp . t)
                                      (awk . t)
                                      (python . t)
                                      (ruby . t)
+                                     (eshell . t)
                                      (shell . t))
           org-agenda-files '("~/org/")
           org-outline-path-complete-in-steps nil
           org-refile-use-outline-path 'file
           org-refile-targets '((org-agenda-files :maxlevel . 4))
-          org-refile-allow-creating-parent-nodes 'confirm)))
+          org-refile-allow-creating-parent-nodes 'confirm)
+    (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)))
 
 (use-package org-agenda
   :config
