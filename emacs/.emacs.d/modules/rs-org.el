@@ -73,6 +73,7 @@
     (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
           org-src-fontify-natively t
           org-src-tab-acts-natively t
+          org-src-preserve-indentation t
           org-modules '(ol-bbdb
                         ol-bibtex
                         ol-docview
