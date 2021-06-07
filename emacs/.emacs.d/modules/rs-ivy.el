@@ -29,7 +29,9 @@
 (use-package ivy-rich
   :ensure t
   :after (ivy)
-  :config (ivy-rich-mode 1))
+  :config
+  (ivy-rich-mode 1)
+  (ivy-rich-project-root-cache-mode))
 
 (use-package all-the-icons-ivy-rich
   :ensure t
