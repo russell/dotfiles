@@ -25,8 +25,7 @@
 ;;; Code:
 
 (prelude-require-packages
- '(esh-autosuggest
-   bash-completion
+ '(bash-completion
    fish-completion
    eshell-prompt-extras
    eshell-z))
@@ -48,22 +47,15 @@
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-multiline-with-status))
 
-(use-package esh-autosuggest
-  :hook (eshell-mode . esh-autosuggest-mode)
-  :after eshell
-  )
-
 (use-package bash-completion
-  :after eshell
-  )
+  :after eshell)
 
 (use-package fish-completion
   :after eshell
   :config
   (when (and (executable-find "fish")
              (require 'fish-completion nil t))
-    (global-fish-completion-mode))
-  )
+    (global-fish-completion-mode)))
 
 (use-package eshell
   :config
