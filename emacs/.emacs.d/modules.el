@@ -44,6 +44,7 @@
 (require 'rs-writing)
 (require 'rs-rust)
 (require 'rs-ruby)
+(require 'rs-exwm)
 
 ;; Emacs IRC client
 ;; (require 'prelude-erc)
