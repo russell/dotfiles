@@ -49,6 +49,10 @@
 
 (setq x-wait-for-event-timeout 0.001) ;; default 0.1
 
+;; Enable focus follows mouse in EXWM
+(setq mouse-autoselect-window t
+      focus-follows-mouse t)
+
 ;; Disable undo-tree, it seems to be responsible for hanging while
 ;; recording history
 (global-undo-tree-mode 0)
