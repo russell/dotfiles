@@ -1,0 +1,12 @@
+[Unit]
+Description=picom
+Documentation=man:picom(1)
+|ConditionHost=C02F6083MD6V-1
+|ConditionHost=sleipnir
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/picom
+
+[Install]
+WantedBy=xsession.target
