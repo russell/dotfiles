@@ -34,6 +34,7 @@
 (require 'rs-shell)
 (require 'rs-jsonnet)
 (require 'rs-bazel)
+(require 'rs-cue)
 (require 'rs-lsp)
 ;; (require 'rs-helm)
 (require 'rs-ivy)
