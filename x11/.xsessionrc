@@ -6,3 +6,6 @@ xrdb ~/.Xresources
 if [ ! 'x$PROFILE_EXPORTED' = 'xtrue' ]; then
     . $HOME/.profile
 fi
+
+systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS
+systemctl --no-block --user start xsession.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Xfce4 Power Manager
+Documentation=man:xfce4-power-manager(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xfce4-power-manager
+
+[Install]
+WantedBy=xsession.target
