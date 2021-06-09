@@ -55,7 +55,7 @@
 
 ;; Disable undo-tree, it seems to be responsible for hanging while
 ;; recording history
-(global-undo-tree-mode 0)
+;; (global-undo-tree-mode 0)
 
 (setq comp-async-report-warnings-errors nil)
 
