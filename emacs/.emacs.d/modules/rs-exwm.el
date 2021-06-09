@@ -28,6 +28,36 @@
 
 (use-package exwm
   :config
+
+  (setq exwm-input-global-keys
+        `(
+          ;; 's-r': Reset (to line-mode).
+          ([?\s-r] . exwm-input-toggle-keyboard)
+          ;; 's-w': Switch workspace.
+          ([?\s-w] . exwm-workspace-switch)
+          ;; 's-&': Launch application.
+          ([?\s-&] . (lambda (command)
+                       (interactive (list (read-shell-command "$ ")))
+                       (start-process-shell-command command nil command)))
+          ;; 's-N': Switch to certain workspace.
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-%d" i)) .
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+                    (number-sequence 0 9))))
+  (setq exwm-input-simulation-keys
+        '(([?\C-b] . [left])
+          ([?\C-f] . [right])
+          ([?\C-p] . [up])
+          ([?\C-n] . [down])
+          ([?\C-a] . [home])
+          ([?\C-e] . [end])
+          ([?\M-v] . [prior])
+          ([?\C-v] . [next])
+          ([?\C-d] . [delete])
+          ([?\C-k] . [S-end delete])))
+
   (require 'exwm-systemtray)
   (exwm-systemtray-enable))
 
