@@ -1,6 +1,9 @@
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
+# EXWM can't support java windows reparenting
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 xrdb ~/.Xresources
 
 if [ ! 'x$PROFILE_EXPORTED' = 'xtrue' ]; then
