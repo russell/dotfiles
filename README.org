@@ -80,6 +80,10 @@
   https://superuser.com/questions/759759/writing-a-service-that-depends-on-xorg
 
   #+begin_src shell
+     apt-get install network-manager-gnome
+  #+end_src
+
+  #+begin_src shell
      systemctl --user enable picom.service
      systemctl --user enable nm-applet.service
      systemctl --user enable xfce4-power-manager.service
