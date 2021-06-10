@@ -75,7 +75,9 @@
           eshell-term
           eshell-tramp
           eshell-unix
-          eshell-xtra)))
+          eshell-xtra))
+  (add-hook 'eshell-mode-hook 'with-editor-export-editor))
+
 
 (use-package em-term
   :config
@@ -84,10 +86,24 @@
           eshell-visual-subcommands '(("git" "log" "diff" "show")
                                       ("kubectl" "ctx")))))
 
+(defun rs-disable-pcomplete-in-org (orig-fun &rest args)
+  (when (not (eq org-src-window-setup 'switch-invisibly))
+    (apply orig-fun args)))
+
+(advice-add 'pcomplete-completions-at-point :around #'rs-disable-pcomplete-in-org)
+
 (use-package comint
   :config
   (progn
     (setq comint-input-ignoredups t)))
+
+(use-package term
+  :config
+  (add-hook 'term-exec-hook   'with-editor-export-editor))
+
+(use-package shell
+  :config
+  (add-hook 'shell-mode-hook  'with-editor-export-editor))
 
 (provide 'rs-shell)
 ;;; rs-shell.el ends here
