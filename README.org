@@ -89,6 +89,16 @@
      systemctl --user enable xfce4-power-manager.service
      systemctl --user enable vmware-user-suid-wrapper.service
   #+end_src
+** EXWM
+   this needs to go into /usr/share/xsessions/emacs.desktop
+
+   #+begin_example
+   [Desktop Entry]
+   Name=Emacs
+   Exec=emacs -f exwm-enable
+   Type=Application
+   #+end_example
+
 * asdf
 
   #+begin_src sh
