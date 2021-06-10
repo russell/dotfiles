@@ -39,13 +39,10 @@
           ([?\s-&] . (lambda (command)
                        (interactive (list (read-shell-command "$ ")))
                        (start-process-shell-command command nil command)))
-          ;; 's-N': Switch to certain workspace.
+          ;; 's-N': Switch to windows.
           ,@(mapcar (lambda (i)
-                      `(,(kbd (format "s-%d" i)) .
-                        (lambda ()
-                          (interactive)
-                          (exwm-workspace-switch-create ,i))))
-                    (number-sequence 0 9))))
+                      `(,(kbd (format "s-%d" i)) . ,(intern (concat "winum-select-window-" (int-to-string i)))))
+                    (number-sequence 1 9))))
   (setq exwm-input-simulation-keys
         '(([?\C-b] . [left])
           ([?\C-f] . [right])
