@@ -1,0 +1,11 @@
+[Unit]
+Description=vmware-user-suid-wrapper
+Documentation=man:vmware-user-suid-wrapper(1)
+|ConditionHost=C02F6083MD6V-1
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/vmware-user-suid-wrapper
+
+[Install]
+WantedBy=xsession.target

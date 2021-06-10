@@ -1,0 +1,10 @@
+[Unit]
+Description=nm-applet
+Documentation=man:nm-applet(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nm-applet
+
+[Install]
+WantedBy=xsession.target
