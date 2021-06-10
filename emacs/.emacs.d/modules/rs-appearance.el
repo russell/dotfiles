@@ -36,6 +36,7 @@
 (set-fontset-font t 'symbol "Symbola" nil 'append)
 
 (prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs))
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (use-package circadian
   :ensure t

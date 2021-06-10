@@ -42,6 +42,7 @@
 (setq prelude-personal-dir (expand-file-name "~/.emacs.d/"))
 (setq prelude-theme nil)
 (setq prelude-super-keybindings nil)
+(setq prelude-minimalistic-ui t)
 
 (load "~/.emacs-prelude.d/init.el")
 
