@@ -26,7 +26,7 @@
 
 (require 'warnings)
 
-(prelude-require-packages '(envrc winum eyebrowse gcmh popper helpful))
+(prelude-require-packages '(envrc winum eyebrowse gcmh popper helpful deadgrep))
 
 (setq frame-title-format '("" invocation-name " - "
                           (:eval
@@ -119,6 +119,8 @@
                    (side . bottom)
                    (slot . 1)))))
     (select-window window)))
+
+(use-package deadgrep)
 
 (use-package popper
   :ensure t
