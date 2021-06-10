@@ -718,22 +718,6 @@ beautiful.hotkeys_description_font = "Iosevka Fixed SS11 13"
 
 beautiful.useless_gap = 5
 
--- Applications
-
-awful.spawn.with_shell("nm-applet")
-
-if awesome.hostname == "sleipnir" then
-   awful.spawn.with_shell("picom")
-end
-
-if awesome.hostname == "mowgli" then
-end
-
-if awesome.hostname == "C02F6083MD6V-1" then
-   awful.spawn.with_shell("vmware-user-suid-wrapper")
-   awful.spawn.with_shell("picom")
-end
-
 -- Colours
 
 local xresources = require("beautiful.xresources")
