@@ -35,8 +35,9 @@
 (set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
 (set-fontset-font t 'symbol "Symbola" nil 'append)
 
-(prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs))
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+(prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs perfect-margin))
 
 (use-package circadian
   :ensure t
@@ -60,6 +61,10 @@
   :after dired
   :ensure t
   :config (treemacs-icons-dired-mode))
+
+(use-package perfect-margin
+  :ensure t
+  :config (perfect-margin-mode 1))
 
 (provide 'rs-appearance)
 
