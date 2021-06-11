@@ -170,6 +170,8 @@ export ARCH=amd64
 # OSX brew python
 [ -d /usr/local/opt/python@2/libexec/bin ] && export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
 
+export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
+
 #export PYTHONDONTWRITEBYTECODE=true
 export WORKON_HOME=${HOME}/.virtualenvs
 export PIP_DOWNLOAD_CACHE=${HOME}/.egg-cache
