@@ -37,7 +37,11 @@
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
-(prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs perfect-margin))
+(prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs))
+
+(rs-require-package '(perfect-margin :fetcher github
+                                     :repo "russell/perfect-margin"
+                                     :branch "only-hide-fringes-sometimes"))
 
 (use-package circadian
   :ensure t
