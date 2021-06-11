@@ -76,7 +76,8 @@
           eshell-tramp
           eshell-unix
           eshell-xtra))
-  (add-hook 'eshell-mode-hook 'with-editor-export-editor))
+  ;; (add-hook 'eshell-mode-hook 'with-editor-export-editor)
+  )
 
 
 (use-package em-term
@@ -99,11 +100,13 @@
 
 (use-package term
   :config
-  (add-hook 'term-exec-hook   'with-editor-export-editor))
+  ;; (add-hook 'term-exec-hook   'with-editor-export-editor)
+  )
 
 (use-package shell
   :config
-  (add-hook 'shell-mode-hook  'with-editor-export-editor))
+  ;; (add-hook 'shell-mode-hook  'with-editor-export-editor)
+  )
 
 (provide 'rs-shell)
 ;;; rs-shell.el ends here
