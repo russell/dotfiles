@@ -27,6 +27,7 @@
 (define-prefix-command 'rs-applications-map)
 
 (global-set-key (kbd "M-M") 'rs-applications-map)
+(define-key prelude-mode-map (kbd "C-c s") nil)
 
 (provide 'rs-keybindings)
 ;;; rs-keybindings.el ends here
