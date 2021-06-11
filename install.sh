@@ -29,7 +29,6 @@ shell
 starship
 stumpwm
 tmux
-vim
 x11
 zsh
 EOF
