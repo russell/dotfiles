@@ -38,3 +38,6 @@ emacs/dot-emacs.d/elpa/gnupg
 emacs/dot-emacs.d/quelpa/
 emacs/dot-emacs.d/projectile-bookmarks.eld
 /emacs/.emacs.d/eln-cache/
+/emacs/.emacs.d/quelpa/
+/emacs/.emacs.d/elpa/
+/emacs/.emacs.d/.cask/
