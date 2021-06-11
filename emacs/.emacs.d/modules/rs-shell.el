@@ -85,12 +85,6 @@
           eshell-visual-subcommands '(("git" "log" "diff" "show")
                                       ("kubectl" "ctx")))))
 
-(defun rs-disable-pcomplete-in-org (orig-fun &rest args)
-  (when (not (eq org-src-window-setup 'switch-invisibly))
-    (apply orig-fun args)))
-
-(advice-add 'pcomplete-completions-at-point :around #'rs-disable-pcomplete-in-org)
-
 (use-package comint
   :config
   (progn
