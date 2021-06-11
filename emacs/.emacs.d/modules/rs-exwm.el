@@ -46,14 +46,22 @@
   (setq exwm-input-simulation-keys
         '(([?\C-b] . [left])
           ([?\C-f] . [right])
+          ([?\M-b] . [C-left])
+          ([?\M-f] . [C-right])
           ([?\C-p] . [up])
           ([?\C-n] . [down])
           ([?\C-a] . [home])
           ([?\C-e] . [end])
+          ([?\C-s] . [C-f])
           ([?\M-v] . [prior])
           ([?\C-v] . [next])
           ([?\C-d] . [delete])
-          ([?\C-k] . [S-end delete])))
+          ([?\M-d] . [C-S-right backspace])
+          ([?\C-k] . [S-end delete])
+
+          ;; copy and paste
+          ([?\M-w] . [C-c])
+          ([?\C-y] . [C-v])))
 
   (require 'exwm-systemtray)
   (exwm-systemtray-enable))
