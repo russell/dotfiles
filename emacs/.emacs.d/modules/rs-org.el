@@ -69,6 +69,7 @@
   :config
   (progn
     (add-to-list 'org-mode-hook 'auto-fill-mode)
+    (add-hook 'org-mode-hook (lambda () (add-hook 'before-save-hook 'time-stamp nil 'local)))
 
     (setq org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
           org-src-fontify-natively t
