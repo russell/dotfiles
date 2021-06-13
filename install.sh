@@ -25,6 +25,7 @@ mutt
 nix
 picom
 pry
+qutebrowser
 shell
 starship
 stumpwm
