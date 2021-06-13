@@ -28,7 +28,8 @@
  '(bash-completion
    fish-completion
    eshell-prompt-extras
-   eshell-z))
+   eshell-z
+   vterm))
 
 (rs-require-package '(project-shells :fetcher github
                                      :branch "vterm"
@@ -91,6 +92,8 @@
   :config
   (progn
     (setq comint-input-ignoredups t)))
+
+(use-package vterm)
 
 (provide 'rs-shell)
 ;;; rs-shell.el ends here
