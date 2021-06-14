@@ -38,6 +38,7 @@
     pkgs.git-crypt
     pkgs.gocode
     pkgs.goreleaser
+    pkgs.hugo
     pkgs.jq
     pkgs.kapp
     pkgs.kind
