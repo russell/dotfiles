@@ -309,4 +309,3 @@ if [ -f "$HOME/.zshrc.local" ]; then
 fi
 
 # zprof
-# zmodload zsh/zprof
