@@ -25,6 +25,8 @@
 ;;; Code:
 
 (require 'rs-core)
+(require 'rs-global-mode)
+(require 'rs-edit-mode)
 (require 'rs-osx)
 (require 'rs-appearance)
 (require 'rs-personal)

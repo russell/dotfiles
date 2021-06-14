@@ -45,5 +45,7 @@
 (setq prelude-minimalistic-ui t)
 
 (load "~/.emacs-prelude.d/init.el")
+;; Disable prelude mode by default
+(prelude-mode -1)
 
 (load "~/.emacs.d/modules.el")
