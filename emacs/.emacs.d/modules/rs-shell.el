@@ -31,10 +31,12 @@
    eshell-z))
 
 (rs-require-package '(project-shells :fetcher github
+                                     :branch "vterm"
                                      :repo "russell/project-shells"))
 
 (use-package project-shells
   :config
+  (setq project-shells-vterm-keys '("1" "2" "3" "4" "5" "6" "7" "8" "9" "0"))
   (global-project-shells-mode))
 
 (use-package eshell-z
