@@ -40,12 +40,12 @@
   :lighter " RS-GL"
   :keymap rs-global-mode-map)
 
-(defcustom rs-mode-disabled-major-modes '()
+(defcustom rs-global-mode-disabled-major-modes '()
   "List of major modes that should not use `rs-global-mode'."
   :type 'sexp)
 
 (defun rs-global-mode-on ()
-  (unless (member major-mode rs-mode-disabled-major-modes)
+  (unless (member major-mode rs-global-mode-disabled-major-modes)
     (rs-global-mode)))
 
 ;;;###autoload

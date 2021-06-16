@@ -65,12 +65,12 @@
   :lighter " RS-ED"
   :keymap rs-edit-mode-map)
 
-(defcustom rs-mode-disabled-major-modes '(vterm-mode term-mode eshell-mode shell-mode)
+(defcustom rs-edit-mode-disabled-major-modes '(vterm-mode term-mode eshell-mode shell-mode)
   "List of major modes that should not use `rs-edit-mode'."
   :type 'sexp)
 
 (defun rs-edit-mode-on ()
-  (unless (member major-mode rs-mode-disabled-major-modes)
+  (unless (member major-mode rs-edit-mode-disabled-major-modes)
     (rs-edit-mode)))
 
 ;;;###autoload
