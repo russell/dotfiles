@@ -36,15 +36,12 @@
   :custom (completion-styles '(orderless)))
 
 (use-package marginalia
-  :ensure t
   :after (ivy)
-  :config
-  (marginalia-mode 1))
-
-(use-package all-the-icons-ivy-rich
-  :ensure t
-  :after (ivy-rich)
-  :init (all-the-icons-ivy-rich-mode 1))
+  :init
+  (marginalia-mode 1)
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle)))
 
 (use-package counsel
   :config
