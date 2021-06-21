@@ -104,6 +104,13 @@
           org-refile-allow-creating-parent-nodes 'confirm)
     (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)))
 
+(use-package ob-core
+  :defer t
+  :config
+  (progn
+    (require 'inheritenv)
+    (inheritenv-add-advice #'org-babel-execute-src-block)))
+
 (use-package org-agenda
   :config
   (progn
