@@ -33,7 +33,6 @@
         ivy-initial-inputs-alist '((counsel-minor . "^+")
                                    (counsel-package . "^+")
                                    (counsel-org-capture . "^")
-                                   (counsel-M-x . "^")
                                    (org-refile . "^")
                                    (org-agenda-refile . "^")
                                    (org-capture-refile . "^")
