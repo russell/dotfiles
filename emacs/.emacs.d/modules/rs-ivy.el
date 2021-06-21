@@ -24,14 +24,22 @@
 
 ;;; Code:
 
-(prelude-require-packages '(ivy-rich all-the-icons-ivy-rich counsel-projectile))
+(prelude-require-packages '(counsel-projectile marginalia orderless))
 
-(use-package ivy-rich
+(use-package ivy
+  :defer t
+  :config
+  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder))))
+
+(use-package orderless
+  :ensure t
+  :custom (completion-styles '(orderless)))
+
+(use-package marginalia
   :ensure t
   :after (ivy)
   :config
-  (ivy-rich-mode 1)
-  (ivy-rich-project-root-cache-mode))
+  (marginalia-mode 1))
 
 (use-package all-the-icons-ivy-rich
   :ensure t
