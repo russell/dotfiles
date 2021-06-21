@@ -39,6 +39,10 @@
 
 (rs-require-package '(org-super-links :fetcher github
                                       :repo "toshism/org-super-links"))
+
+(rs-require-package '(beancount :fetcher github
+                                :repo "beancount/beancount-mode"))
+
 (use-package org-gcal
   :hook
   (org-agenda-mode-hook . org-gcal-sync))
