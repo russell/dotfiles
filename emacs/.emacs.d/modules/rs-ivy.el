@@ -29,7 +29,16 @@
 (use-package ivy
   :defer t
   :config
-  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder))))
+  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder))
+        ivy-initial-inputs-alist '((counsel-minor . "^+")
+                                   (counsel-package . "^+")
+                                   (counsel-org-capture . "^")
+                                   (counsel-M-x . "^")
+                                   (org-refile . "^")
+                                   (org-agenda-refile . "^")
+                                   (org-capture-refile . "^")
+                                   (Man-completion-table . "^")
+                                   (woman . "^"))))
 
 (use-package orderless
   :ensure t
