@@ -54,6 +54,7 @@
 
 (use-package swiper
   :config
+  (global-set-key (kbd "C-r") 'swiper-backward)
   (global-set-key (kbd "C-S-s") 'swiper-thing-at-point))
 
 (use-package counsel-projectile
