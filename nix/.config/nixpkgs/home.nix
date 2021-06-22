@@ -37,11 +37,14 @@
     pkgs.gh
     pkgs.git-crypt
     pkgs.gocode
+    pkgs.gopls
     pkgs.goreleaser
     pkgs.hugo
     pkgs.jq
     pkgs.kapp
     pkgs.kind
+    pkgs.nodePackages.bash-language-server
+    pkgs.nodePackages.typescript-language-server
     pkgs.procs
     pkgs.proselint
     pkgs.qbec

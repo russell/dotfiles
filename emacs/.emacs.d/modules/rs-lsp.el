@@ -24,20 +24,15 @@
 
 ;;; Code:
 
-(defun rs-lsp-mode-hook()
-  ;; `read-process-output-max' is only available on recent development
-  ;; builds of Emacs 27 and above.
-  (setq-local read-process-output-max (* 1024 1024))
-  ;; REVIEW LSP causes a lot of allocations, with or without Emacs 27+'s
-  ;;        native JSON library, so we up the GC threshold to stave off
-  ;;        GC-induced slowdowns/freezes. Doom uses `gcmh' to enforce its GC
-  ;;        strategy, so we modify its variables rather than
-  ;;        `gc-cons-threshold' directly.
-  (setq-local gcmh-high-cons-threshold (* 2 (default-value 'gcmh-high-cons-threshold))))
 
-(use-package lsp-mode
+(prelude-require-packages '(eglot))
+
+(use-package eglot
   :config
-  (add-hook 'lsp-mode-hook 'rs-lsp-mode-hook))
+  (add-hook 'sh-mode-hook 'eglot-ensure)
+  (add-hook 'ruby-mode-hook 'eglot-ensure)
+  (add-hook 'typescript-mode-hook 'eglot-ensure)
+  (add-hook 'rust-mode-hook 'eglot-ensure))
 
 (provide 'rs-lsp)
 ;;; rs-lsp.el ends here
