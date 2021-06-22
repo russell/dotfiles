@@ -73,6 +73,7 @@
   :config
   (setq whitespace-style '(face tabs empty trailing missing-newline-at-eof)))
 
+(put 'list-threads 'disabled nil)
 
 (use-package avy
   :config
