@@ -39,10 +39,6 @@
 
 (prelude-require-packages '(circadian modus-vivendi-theme modus-operandi-theme doom-modeline treemacs))
 
-(rs-require-package '(perfect-margin :fetcher github
-                                     :repo "russell/perfect-margin"
-                                     :branch "only-hide-fringes-sometimes"))
-
 (use-package circadian
   :ensure t
   :init
@@ -65,10 +61,6 @@
   :after dired
   :ensure t
   :config (treemacs-icons-dired-mode))
-
-(use-package perfect-margin
-  :ensure t
-  :config (perfect-margin-mode 1))
 
 (provide 'rs-appearance)
 
