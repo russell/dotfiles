@@ -42,9 +42,26 @@
 ;; You may prefer to use `initials' instead of `partial-completion'.
 (use-package orderless
   :init
+
+  (defun rs/orderless-literal-dispatcher (pattern _index _total)
+    "Literal style dispatcher using the equals sign as a suffix.
+It matches PATTERN _INDEX and _TOTAL according to how Orderless
+parses its input."
+    (when (string-suffix-p "=" pattern)
+      `(orderless-literal . ,(substring pattern 0 -1))))
+
+  (defun rs/orderless-flex-dispatcher (pattern _index _total)
+    "Flex  dispatcher using the tilde suffix.
+It matches PATTERN _INDEX and _TOTAL according to how Orderless
+parses its input."
+    (when (string-suffix-p "~" pattern)
+      `(orderless-flex . ,(substring pattern 0 -1))))
+
   (setq completion-styles '(orderless)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
+        completion-category-overrides '((file (styles . (partial-completion))))
+        orderless-matching-styles '(orderless-prefixes orderless-strict-leading-initialism orderless-regexp)
+        orderless-style-dispatchers '(rs/orderless-literal-dispatcher rs/orderless-flex-dispatcher)))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
@@ -243,7 +260,6 @@
   ;; auto-updating embark collect buffer
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
-
 
 (provide 'rs-completion)
 ;;; rs-completion.el ends here
