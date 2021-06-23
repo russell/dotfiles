@@ -47,6 +47,7 @@
     pkgs.nodePackages.typescript-language-server
     pkgs.procs
     pkgs.proselint
+    pkgs.python37Packages.python-language-server
     pkgs.qbec
     pkgs.ripgrep
     pkgs.rust-analyzer
