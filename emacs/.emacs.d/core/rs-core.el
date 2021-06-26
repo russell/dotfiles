@@ -26,7 +26,7 @@
 
 (require 'warnings)
 
-(prelude-require-packages '(envrc inheritenv winum eyebrowse gcmh popper helpful deadgrep))
+(prelude-require-packages '(envrc inheritenv winum gcmh popper helpful deadgrep))
 
 (setq frame-title-format '("" invocation-name " - "
                           (:eval
@@ -101,9 +101,6 @@
 
 ;; disable ace-window
 (global-set-key [remap other-window] 'other-window)
-
-(use-package eyebrowse
-  :config (eyebrowse-mode))
 
 (use-package gcmh
   :init
