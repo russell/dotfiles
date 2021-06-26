@@ -109,6 +109,12 @@
   :config
   (gcmh-mode))
 
+(use-package helpful
+  :bind
+  ("C-h f" . #'helpful-callable)
+  ("C-h v" . #'helpful-variable)
+  ("C-h k" . #'helpful-key))
+
 (defun rs-popper-select-popup-at-bottom (buffer &optional _alist)
   "Display and switch to popup-buffer BUFFER at the bottom of the screen."
   (let ((window (display-buffer-in-side-window
