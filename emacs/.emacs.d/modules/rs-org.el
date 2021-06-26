@@ -34,6 +34,7 @@
    org-ql
    org-roam
    org-variable-pitch
+   org-tree-slide
    plantuml-mode))
 
 
@@ -102,10 +103,7 @@
                                      (eshell . t)
                                      (shell . t))
           org-agenda-files '("~/org/")
-          org-outline-path-complete-in-steps nil
-          org-refile-use-outline-path 'file
-          org-refile-targets '((org-agenda-files :maxlevel . 4))
-          org-refile-allow-creating-parent-nodes 'confirm)
+          org-outline-path-complete-in-steps nil)
     (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)))
 
 (use-package ob-core
@@ -155,6 +153,12 @@
   :config
   (progn
     (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)))
+
+(use-package org-refile
+  :config
+  (setq org-refile-use-outline-path 'file
+        org-refile-targets '((org-agenda-files :maxlevel . 4))
+        org-refile-allow-creating-parent-nodes 'confirm))
 
 (use-package org-journal
   :config
@@ -255,6 +259,9 @@
     (add-hook 'after-save-hook 'org-html-export-to-html nil t )
     (message "Enabled org html export on save for current buffer...")))
 
+(use-package org-tree-slide
+  :config
+  (setq org-tree-slide-slide-in-effect nil))
 
 (provide 'rs-org)
 ;;; rs-org.el ends here
