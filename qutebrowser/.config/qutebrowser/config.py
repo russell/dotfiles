@@ -1253,6 +1253,7 @@ config.source('private.py')
 ## Characters used for hint strings.
 ## Type: UniqueCharString
 # c.hints.chars = 'asdfghjkl'
+c.hints.chars = 'aoeuidnths'
 
 ## Dictionary file to be used by the word hints.
 ## Type: File
@@ -1945,7 +1946,7 @@ config.source('private.py')
 
 ## Default zoom level.
 ## Type: Perc
-# c.zoom.default = '100%'
+c.zoom.default = '110%'
 
 ## Available zoom levels.
 ## Type: List of Perc
