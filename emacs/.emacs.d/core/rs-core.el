@@ -84,6 +84,11 @@
   :init
   (envrc-global-mode))
 
+(use-package eldoc
+  :config
+  (setq eldoc-echo-area-prefer-doc-buffer t
+        eldoc-echo-area-use-multiline-p 5))
+
 (use-package winum
   :init
   (winum-mode)
@@ -137,6 +142,7 @@
         popper-display-function #'rs-popper-select-popup-at-bottom
         popper-reference-buffers '("\\*Messages\\*$"
                                    "\\*Warnings\\*$"
+                                   "^\\*eldoc"
                                    \"Output\\*$\"
                                    help-mode
                                    helpful-mode
