@@ -24,8 +24,9 @@
 
 ;;; Code:
 
-(prelude-require-packages '(jsonnet-mode))
-
+(rs-require-package '(jsonnet-mode :fetcher github
+                                   :branch "popup-buffer-like-compile"
+                                   :repo "russell/jsonnet-mode"))
 
 (provide 'rs-jsonnet)
 ;;; rs-jsonnet.el ends here
