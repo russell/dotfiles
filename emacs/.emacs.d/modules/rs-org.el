@@ -104,6 +104,9 @@
                                      (shell . t))
           org-agenda-files '("~/org/")
           org-outline-path-complete-in-steps nil)
+    (setq org-refile-use-outline-path 'file
+        org-refile-targets '((org-agenda-files :maxlevel . 4))
+        org-refile-allow-creating-parent-nodes 'confirm)
     (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)))
 
 (use-package ob-core
@@ -153,12 +156,6 @@
   :config
   (progn
     (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)))
-
-(use-package org-refile
-  :config
-  (setq org-refile-use-outline-path 'file
-        org-refile-targets '((org-agenda-files :maxlevel . 4))
-        org-refile-allow-creating-parent-nodes 'confirm))
 
 (use-package org-journal
   :config
