@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(notmuch))
+(prelude-require-packages '(notmuch all-the-icons))
 
 (use-package shr
   :config
@@ -40,6 +40,7 @@
    notmuch-show-mode-map
    ("C-c C-o" . org-open-at-point))
   :init
+  (require 'all-the-icons)
   (setq
    notmuch-hello-tag-list-make-query "tag:unread"
    notmuch-show-logo nil
