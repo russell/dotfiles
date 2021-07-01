@@ -49,6 +49,7 @@
 (require 'rs-rust)
 (require 'rs-ruby)
 (require 'rs-exwm)
+(require 'rs-kubernetes)
 
 ;; Emacs IRC client
 ;; (require 'prelude-erc)
