@@ -51,8 +51,8 @@
                '(width      . 81)
                '(vertical-scroll-bars . nil)
                '(internal-border-width . 17)
-               '(left-fringe    . 4)
-               '(right-fringe   . 4)
+               '(left-fringe    . 6)
+               '(right-fringe   . 6)
                '(tool-bar-lines . 0)
                '(menu-bar-lines . 0))))
 
@@ -66,6 +66,8 @@
 (setq x-underline-at-descent-line t)
 
 (use-package minions
+  :demand t
+  :config
   (setq minions-mode-line-lighter ";")
   (setq minions-direct (list 'defining-kbd-macro))
   (minions-mode 1))
