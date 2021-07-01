@@ -37,7 +37,7 @@
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
-(prelude-require-packages '(modus-vivendi-theme modus-operandi-theme))
+(prelude-require-packages '(modus-vivendi-theme modus-operandi-theme minions recursion-indicator))
 
 (rs-require-package '(circadian :fetcher github
                                 :branch "support-lists-of-themes"
@@ -64,6 +64,18 @@
   (window-divider-mode t))
 
 (setq x-underline-at-descent-line t)
+
+(use-package minions
+  (setq minions-mode-line-lighter ";")
+  (setq minions-direct (list 'defining-kbd-macro))
+  (minions-mode 1))
+
+(use-package recursion-indicator
+  :demand t
+  :config
+  (setq recursion-indicator-general "&")
+  (setq recursion-indicator-minibuffer "@")
+  (recursion-indicator-mode 1))
 
 (use-package circadian
   :ensure t
