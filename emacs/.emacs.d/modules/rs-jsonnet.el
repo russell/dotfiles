@@ -28,5 +28,9 @@
                                    :branch "popup-buffer-like-compile"
                                    :repo "russell/jsonnet-mode"))
 
+(use-package jsonnet-mode
+  :config
+  (inheritenv-add-advice #'jsonnet-eval-buffer))
+
 (provide 'rs-jsonnet)
 ;;; rs-jsonnet.el ends here
