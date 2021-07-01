@@ -261,5 +261,9 @@ parses its input."
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+(use-package marginalia
+  :config
+  (marginalia-mode 1))
+
 (provide 'rs-completion)
 ;;; rs-completion.el ends here
