@@ -49,5 +49,9 @@ PROMPT is the text show at the minibuffer."
     (shell-command (format "kubectl config use-context %s" new-context))
     (message "Set Kubernetes context: %s" new-context)))
 
+(defun eshell/kubectx ()
+  "Kubernetes context switcher."
+  (rs/consult-kubectl-ctx))
+
 (provide 'rs-kubernetes)
 ;;; rs-kubernetes.el ends here
