@@ -153,11 +153,6 @@
                                    "^\\*RuboCop "
                                    "^\\*rspec-compilation\\*"
 
-                                   ;; Terminal Modes
-                                   eshell-mode
-                                   shell-mode
-                                   term-mode
-
                                    ;; Lisp Buffer mode
                                    inferior-emacs-lisp-mode))
   :config
