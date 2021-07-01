@@ -41,7 +41,9 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 case "$TERM" in
-    dumb) ;;
+    dumb)
+        export PAGER=cat
+    ;;
     xterm-color) color_prompt=yes;;
     xterm-256color) color_prompt=yes;;
     xterm) color_prompt=yes;;
@@ -84,10 +86,27 @@ else
 fi
 unset color_prompt force_color_prompt
 
+vterm_printf(){
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+
+vterm_prompt_end(){
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+
 # If this is an xterm set the title to user@host:dir, if it's an emacs term, do better
 case "$TERM" in
     xterm*|rxvt*)
         PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        PS1=$PS1'\[$(vterm_prompt_end)\]'
         ;;
 
     eterm-color*)
@@ -124,6 +143,15 @@ case "$TERM" in
     *)
         ;;
 esac
+
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+    function clear(){
+        vterm_printf "51;Evterm-clear-scrollback";
+        tput clear;
+    }
+    PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+    PS1=$PS1'\[$(vterm_prompt_end)\]'
+fi
 
 if [ "$COLORTERM" == "gnome-terminal" ]
 then

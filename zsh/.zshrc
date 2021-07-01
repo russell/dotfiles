@@ -9,6 +9,7 @@ if [[ $TERM == "dumb" ]]; then	# in emacs
     unsetopt prompt_cr
     setopt prompt_subst
     source ~/.zsh/emacs.zsh-theme
+    export PAGER=cat
     return
 fi
 
@@ -283,6 +284,27 @@ function eterm-preexec {
     echo -e "\033AnSiTp" $(echo "$1" | cut -d ' ' -f 1)
 }
 
+function vterm_printf {
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+
+vterm_prompt_end() {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
+}
+
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+    alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+    add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
+fi
+
 function tmux-precmd {
     if [ -n "$DIRENV_DIR" ]; then
         local project_name=$(basename $(echo $DIRENV_DIR | cut -c 2-))
@@ -302,7 +324,11 @@ fi
 if [ "$TERM" = "eterm-color" ]; then
     add-zsh-hook precmd eterm-precmd
     add-zsh-hook preexec eterm-preexec
+else
+    setopt PROMPT_SUBST
+    PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 fi
+
 
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
