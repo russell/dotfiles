@@ -37,7 +37,9 @@
 
 (use-package project-shells
   :config
-  (setq project-shells-vterm-keys '("1" "2" "3" "4" "5" "6" "7" "8" "9" "0"))
+  (setq project-shells-eshell-keys '("1" "2"))
+  (setq project-shells-keys '("3" "4" "5"))
+  (setq project-shells-vterm-keys '("6" "7" "8" "9" "0"))
   (setq project-shells-setup nil)
   (global-project-shells-mode))
 
