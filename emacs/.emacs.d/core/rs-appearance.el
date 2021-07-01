@@ -41,7 +41,7 @@
 
 (rs-require-package '(circadian :fetcher github
                                 :branch "support-lists-of-themes"
-                                :repo "russell/circadian"))
+                                :repo "russell/circadian.el"))
 
 (setq default-frame-alist
       (append (list
