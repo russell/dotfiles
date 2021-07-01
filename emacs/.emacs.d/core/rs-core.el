@@ -143,6 +143,7 @@
         popper-reference-buffers '("\\*Messages\\*$"
                                    "\\*Warnings\\*$"
                                    "^\\*eldoc"
+                                   "^\\*Backtrace\\*$"
                                    \"Output\\*$\"
                                    help-mode
                                    helpful-mode
