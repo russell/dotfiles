@@ -34,11 +34,10 @@ PROMPT is the text show at the minibuffer."
   (consult--read
    (consult--async-command "kubectl config get-contexts -o name")
    :prompt prompt
-   :sort nil
+   :sort t
    :require-match t
    :initial (string-trim
              (shell-command-to-string "kubectl config current-context"))
-   :category 'kubernetes-context
    :history '(:input rs//kubectl-ctx-history)))
 
 ;;;###autoload
