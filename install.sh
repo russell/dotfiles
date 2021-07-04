@@ -13,7 +13,6 @@ bazel
 conkeror
 debian
 direnv
-docker
 dunst
 emacs
 git
