@@ -27,6 +27,7 @@
 (require 'consult)
 
 (defvar rs//kubectl-ctx-history nil)
+(defvar rs//kubectl-ctx-namespace nil)
 
 (defun rs/consult--kubectl-ctx (prompt)
   "List all Kubernetes contexts.
@@ -51,6 +52,39 @@ PROMPT is the text show at the minibuffer."
 (defun eshell/kubectx ()
   "Kubernetes context switcher."
   (rs/consult-kubectl-ctx))
+
+
+(defun rs/consult--kubectl-namespace-format (lines)
+  "Format kubectl namespace candidates from LINES."
+  (let ((candidates))
+    (dolist (str lines)
+      (push (cadr (split-string str "/")) candidates))
+    (nreverse candidates)))
+
+(defun rs/consult--kubectl-namespace (prompt)
+  "List all Kubernetes contexts.
+PROMPT is the text show at the minibuffer."
+  (consult--read
+   (consult--async-command "kubectl get namespaces -o=name"
+     (consult--async-transform rs/consult--kubectl-namespace-format))
+   :prompt prompt
+   :sort t
+   :require-match t
+   :initial (string-trim
+             (shell-command-to-string "kubectl config view --minify --output 'jsonpath={..namespace}'"))
+   :history '(:input rs//kubectl-namespace-history)))
+
+;;;###autoload
+(defun rs/consult-kubectl-namespace ()
+  "Switch Kubernetes contexts."
+  (interactive)
+  (let ((new-context (rs/consult--kubectl-namespace "Context: ")))
+    (shell-command (format "kubectl config set-context --current --namespace=%s" new-context))
+    (message "Set Kubernetes namespace: %s" new-context)))
+
+(defun eshell/kubens ()
+  "Kubernetes context switcher."
+  (rs/consult-kubectl-namespace))
 
 (provide 'rs-kubernetes)
 ;;; rs-kubernetes.el ends here
