@@ -57,7 +57,9 @@
 ;; recording history
 ;; (global-undo-tree-mode 0)
 
-(setq comp-async-report-warnings-errors nil)
+;; This disables the pages and pages of warning that native-comp keeps
+;; raising
+(setq warning-minimum-level :error)
 
 ;; Tab only tabs, doesn't trigger completion.
 (setq tab-always-indent t)
