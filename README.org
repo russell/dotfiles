@@ -138,5 +138,5 @@
   : ls -la ~ | awk '/dotfiles\// { print $9 }' | xargs rm
 * Fonts
 
-  Install the following into ~/.fonts
-  https://github.com/be5invis/Iosevka/releases/download/v5.2.1/ttf-iosevka-fixed-ss11-5.2.1.zip
+  Install the following into ~/.local/share/fonts
+  https://github.com/be5invis/Iosevka/releases/download/v7.2.5/super-ttc-iosevka-7.2.5.zip
