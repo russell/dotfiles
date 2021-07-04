@@ -43,6 +43,10 @@
   (setq project-shells-setup nil)
   (global-project-shells-mode))
 
+(use-package shell-mode
+  :config
+  (add-hook 'comint-output-filter-functions #'comint-truncate-buffer))
+
 (use-package eshell-z
   :after eshell)
 
@@ -81,7 +85,8 @@
           eshell-term
           eshell-tramp
           eshell-unix
-          eshell-xtra)))
+          eshell-xtra))
+  (add-hook 'eshell-output-filter-functions #'eshell-truncate-buffer))
 
 
 (use-package em-term
