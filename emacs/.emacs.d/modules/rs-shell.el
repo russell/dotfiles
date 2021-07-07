@@ -103,5 +103,12 @@
 
 (use-package vterm)
 
+(defun eshell/async (&rest args)
+  "Run command in an async mode attached to a buffer."
+  (let ((command (mapconcat 'identity args " ")))
+   (async-shell-command
+    command
+    (get-buffer-create (format "*Async: %s*" command)))))
+
 (provide 'rs-shell)
 ;;; rs-shell.el ends here
