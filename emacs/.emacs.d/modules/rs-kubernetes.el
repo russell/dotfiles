@@ -33,19 +33,21 @@
   "List all Kubernetes contexts.
 PROMPT is the text show at the minibuffer."
   (consult--read
-   (consult--async-command "kubectl config get-contexts -o name")
+   (split-string
+    (shell-command-to-string "kubectl config get-contexts -o name"))
    :prompt prompt
    :sort t
    :require-match t
-   :initial (string-trim
-             (shell-command-to-string "kubectl config current-context"))
    :history '(:input rs//kubectl-ctx-history)))
 
 ;;;###autoload
 (defun rs/consult-kubectl-ctx ()
   "Switch Kubernetes contexts."
   (interactive)
-  (let ((new-context (rs/consult--kubectl-ctx "Context: ")))
+  (let ((new-context (rs/consult--kubectl-ctx
+                      (format "Context '%s': "
+                              (string-trim
+                               (shell-command-to-string "kubectl config current-context"))))))
     (shell-command (format "kubectl config use-context %s" new-context))
     (message "Set Kubernetes context: %s" new-context)))
 
@@ -65,20 +67,22 @@ PROMPT is the text show at the minibuffer."
   "List all Kubernetes contexts.
 PROMPT is the text show at the minibuffer."
   (consult--read
-   (consult--async-command "kubectl get namespaces -o=name"
-     (consult--async-transform rs/consult--kubectl-namespace-format))
+   (rs/consult--kubectl-namespace-format
+    (split-string
+     (shell-command-to-string "kubectl get namespaces -o=name")))
    :prompt prompt
    :sort t
    :require-match t
-   :initial (string-trim
-             (shell-command-to-string "kubectl config view --minify --output 'jsonpath={..namespace}'"))
    :history '(:input rs//kubectl-namespace-history)))
 
 ;;;###autoload
 (defun rs/consult-kubectl-namespace ()
   "Switch Kubernetes contexts."
   (interactive)
-  (let ((new-context (rs/consult--kubectl-namespace "Context: ")))
+  (let ((new-context (rs/consult--kubectl-namespace
+                      (format "Namespace '%s': "
+                              (string-trim
+                               (shell-command-to-string "kubectl config view --minify --output 'jsonpath={..namespace}'"))))))
     (shell-command (format "kubectl config set-context --current --namespace=%s" new-context))
     (message "Set Kubernetes namespace: %s" new-context)))
 
