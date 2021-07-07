@@ -86,8 +86,10 @@
           eshell-tramp
           eshell-unix
           eshell-xtra))
+  (setenv "EDITOR" with-editor-emacsclient-executable)
+  (setenv "PAGER" "cat")
+  (add-hook 'eshell-preoutput-filter-functions 'ansi-color-filter-apply)
   (add-hook 'eshell-output-filter-functions #'eshell-truncate-buffer))
-
 
 (use-package em-term
   :config
