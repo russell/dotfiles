@@ -202,15 +202,6 @@ parses its input."
 ;;   ;; (setq corfu-cycle t)
 ;;   )
 
-;; Optionally use the `orderless' completion style.
-;; Enable `partial-completion' for files to allow path expansion.
-;; You may prefer to use `initials' instead of `partial-completion'.
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
-
 ;; Dabbrev works with Corfu
 (use-package dabbrev
   ;; Swap M-/ and C-M-/
