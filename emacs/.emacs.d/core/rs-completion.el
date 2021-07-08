@@ -179,28 +179,28 @@ parses its input."
 
 
 ;; Configure corfu
-(use-package corfu
-  ;; Optionally use TAB for cycling, default is `corfu-complete'.
-  ;; :bind (:map corfu-map
-  ;;        ("TAB" . corfu-next)
-  ;;        ("S-TAB" . corfu-previous))
+;; (use-package corfu
+;;   ;; Optionally use TAB for cycling, default is `corfu-complete'.
+;;   ;; :bind (:map corfu-map
+;;   ;;        ("TAB" . corfu-next)
+;;   ;;        ("S-TAB" . corfu-previous))
 
-  ;; You may want to enable Corfu only for certain modes.
-  ;; :hook ((prog-mode . corfu-mode)
-  ;;        (shell-mode . corfu-mode)
-  ;;        (eshell-mode . corfu-mode))
+;;   ;; You may want to enable Corfu only for certain modes.
+;;   ;; :hook ((prog-mode . corfu-mode)
+;;   ;;        (shell-mode . corfu-mode)
+;;   ;;        (eshell-mode . corfu-mode))
 
 
-  ;; Recommended: Enable Corfu globally.
-  ;; This is recommended since dabbrev can be used globally (M-/).
-  :init
-  (corfu-global-mode)
+;;   ;; Recommended: Enable Corfu globally.
+;;   ;; This is recommended since dabbrev can be used globally (M-/).
+;;   :init
+;;   (corfu-global-mode)
 
-  :config
+;;   :config
 
-  ;; Optionally enable cycling for `corfu-next' and `corfu-previous'.
-  ;; (setq corfu-cycle t)
-  )
+;;   ;; Optionally enable cycling for `corfu-next' and `corfu-previous'.
+;;   ;; (setq corfu-cycle t)
+;;   )
 
 ;; Optionally use the `orderless' completion style.
 ;; Enable `partial-completion' for files to allow path expansion.
