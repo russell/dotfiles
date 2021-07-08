@@ -41,6 +41,7 @@
 ;; (require 'rs-helm)
 ;; (require 'rs-ivy)
 (require 'rs-completion)
+(require 'rs-programming)
 (require 'rs-typescript)
 (require 'rs-rest)
 (require 'rs-tramp)
