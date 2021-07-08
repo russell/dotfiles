@@ -43,10 +43,6 @@
   (setq project-shells-setup nil)
   (global-project-shells-mode))
 
-(use-package shell-mode
-  :config
-  (add-hook 'comint-output-filter-functions #'comint-truncate-buffer))
-
 (use-package eshell-z
   :after eshell)
 
@@ -101,7 +97,8 @@
 (use-package comint
   :config
   (progn
-    (setq comint-input-ignoredups t)))
+    (setq comint-input-ignoredups t)
+    (add-hook 'comint-output-filter-functions #'comint-truncate-buffer)))
 
 (use-package vterm)
 
