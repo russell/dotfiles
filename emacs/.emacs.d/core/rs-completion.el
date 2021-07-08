@@ -57,7 +57,7 @@ parses its input."
     (when (string-suffix-p "~" pattern)
       `(orderless-flex . ,(substring pattern 0 -1))))
 
-  (setq completion-styles '(orderless)
+  (setq completion-styles '(basic orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))
         orderless-matching-styles '(orderless-prefixes orderless-strict-leading-initialism orderless-regexp)
@@ -225,8 +225,7 @@ parses its input."
 
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
-  ;; (setq tab-always-indent 'complete)
-  )
+  (setq tab-always-indent 'complete))
 
 (use-package embark
   :ensure t
