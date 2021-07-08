@@ -54,7 +54,11 @@
         eshell-prompt-function 'epe-theme-multiline-with-status))
 
 (use-package bash-completion
-  :after eshell)
+  :after eshell
+  :config
+  ;; (add-hook 'shell-dynamic-complete-functions
+  ;;           'bash-completion-dynamic-complete)
+  )
 
 (use-package fish-completion
   :after eshell
@@ -82,6 +86,8 @@
           eshell-tramp
           eshell-unix
           eshell-xtra))
+  (require 'with-editor)
+  (require 'esh-mode)
   (setenv "EDITOR" with-editor-emacsclient-executable)
   (setenv "PAGER" "cat")
   (add-hook 'eshell-preoutput-filter-functions 'ansi-color-filter-apply)
