@@ -34,8 +34,7 @@
 
   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
   :config
-  (setq vertico-cycle t)
-)
+  (setq vertico-cycle t))
 
 ;; Use the `orderless' completion style.
 ;; Enable `partial-completion' for files to allow path expansion.
@@ -59,7 +58,7 @@ parses its input."
 
   (setq completion-styles '(basic orderless)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))
+        completion-category-overrides '((file (styles . (basic partial-completion orderless))))
         orderless-matching-styles '(orderless-prefixes orderless-strict-leading-initialism orderless-regexp)
         orderless-style-dispatchers '(rs/orderless-literal-dispatcher rs/orderless-flex-dispatcher)))
 
