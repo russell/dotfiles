@@ -102,11 +102,11 @@
                                      (ruby . t)
                                      (eshell . t)
                                      (shell . t))
-          org-agenda-files '("~/org/")
-          org-outline-path-complete-in-steps nil)
-    (setq org-refile-use-outline-path 'file
-        org-refile-targets '((org-agenda-files :maxlevel . 4))
-        org-refile-allow-creating-parent-nodes 'confirm)
+          org-agenda-files '("~/org/"))
+    (setq org-refile-use-outline-path 'file  ;; the following 2 lines are for vertico support
+          org-outline-path-complete-in-steps nil
+          org-refile-targets '((org-agenda-files :maxlevel . 4))
+          org-refile-allow-creating-parent-nodes 'confirm)
     (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)))
 
 (use-package ob-core
