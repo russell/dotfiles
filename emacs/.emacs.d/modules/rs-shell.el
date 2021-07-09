@@ -106,7 +106,16 @@
     (setq comint-input-ignoredups t)
     (add-hook 'comint-output-filter-functions #'comint-truncate-buffer)))
 
-(use-package vterm)
+(use-package vterm
+  :bind
+  (:map vterm-mode-map
+        ("M-/" . #'vterm-send-meta-forward-slash))
+  :config
+
+  (defun vterm-send-meta-forward-slash ()
+    "Send `M-/' to the libvterm."
+    (interactive)
+    (vterm-send-key "/" nil t)))
 
 (defun eshell/async (&rest args)
   "Run command in an async mode attached to a buffer."
